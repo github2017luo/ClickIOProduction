@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CreateCase</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CreateCase</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CreateCase</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Ignore</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Ignore</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Ignore</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>MassApprovePosts</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>MassApprovePosts</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>MassApprovePosts</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>MassCreateCase</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>MassCreateCase</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>MassCreateCase</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>MassIgnore</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>MassIgnore</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>MassIgnore</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>MassRejectPosts</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>MassRejectPosts</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>MassRejectPosts</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <fields>
+        <fullName>AnalyzerScore</fullName>
+    </fields>
+    <fields>
+        <fullName>Approval_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Approval Status</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>In Approval</fullName>
+                    <default>false</default>
+                    <label>In Approval</label>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                    <label>Approved</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Approval_Type__c</fullName>
+        <description>Social: Field to indicate what type of approval a post is submitted for</description>
+        <externalId>false</externalId>
+        <label>Approval Type</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Training</fullName>
+                    <default>false</default>
+                    <label>Training</label>
+                </value>
+                <value>
+                    <fullName>Offensive Words</fullName>
+                    <default>false</default>
+                    <label>Offensive Words</label>
+                </value>
+                <value>
+                    <fullName>Verified User/High Follower Count</fullName>
+                    <default>false</default>
+                    <label>Verified User/High Follower Count</label>
+                </value>
+                <value>
+                    <fullName>Manual Approval</fullName>
+                    <default>false</default>
+                    <label>Manual Approval</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>AssignedTo</fullName>
+    </fields>
+    <fields>
+        <fullName>AttachmentType</fullName>
+    </fields>
+    <fields>
+        <fullName>AttachmentUrl</fullName>
+    </fields>
+    <fields>
+        <fullName>Awaiting_Customer_Response_Timestamp__c</fullName>
+        <description>Social Care: Timestamp of when an agent responds</description>
+        <externalId>false</externalId>
+        <label>Awaiting Customer Response Timestamp</label>
+        <required>false</required>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Classification</fullName>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>CommentCount</fullName>
+    </fields>
+    <fields>
+        <fullName>Content</fullName>
+    </fields>
+    <fields>
+        <fullName>Customer_Follow_Up_Timestamp__c</fullName>
+        <description>Social Care: Timestamp of when a customer posts</description>
+        <externalId>false</externalId>
+        <label>Customer Follow Up Timestamp</label>
+        <required>false</required>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>DeletedById</fullName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>EngagementLevel</fullName>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ExternalPostId</fullName>
+    </fields>
+    <fields>
+        <fullName>Handle</fullName>
+    </fields>
+    <fields>
+        <fullName>HarvestDate</fullName>
+    </fields>
+    <fields>
+        <fullName>Headline</fullName>
+    </fields>
+    <fields>
+        <fullName>HiddenById</fullName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>InboundLinkCount</fullName>
+    </fields>
+    <fields>
+        <fullName>IsOutbound</fullName>
+    </fields>
+    <fields>
+        <fullName>KeywordGroupName</fullName>
+    </fields>
+    <fields>
+        <fullName>Language</fullName>
+    </fields>
+    <fields>
+        <fullName>LikedBy</fullName>
+    </fields>
+    <fields>
+        <fullName>LikesAndVotes</fullName>
+    </fields>
+    <fields>
+        <fullName>MediaProvider</fullName>
+    </fields>
+    <fields>
+        <fullName>MediaType</fullName>
+    </fields>
+    <fields>
+        <fullName>MessageType</fullName>
+    </fields>
+    <fields>
+        <fullName>Name</fullName>
+    </fields>
+    <fields>
+        <fullName>Notes</fullName>
+    </fields>
+    <fields>
+        <fullName>OutboundSocialAccountId</fullName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OwnerId</fullName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ParentId</fullName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>PersonaId</fullName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>PostPriority</fullName>
+    </fields>
+    <fields>
+        <fullName>PostTags</fullName>
+    </fields>
+    <fields>
+        <fullName>PostUrl</fullName>
+    </fields>
+    <fields>
+        <fullName>Posted</fullName>
+    </fields>
+    <fields>
+        <fullName>Provider</fullName>
+    </fields>
+    <fields>
+        <fullName>R6PostId</fullName>
+    </fields>
+    <fields>
+        <fullName>R6SourceId</fullName>
+    </fields>
+    <fields>
+        <fullName>R6TopicId</fullName>
+    </fields>
+    <fields>
+        <fullName>Recipient</fullName>
+    </fields>
+    <fields>
+        <fullName>RecipientType</fullName>
+    </fields>
+    <fields>
+        <fullName>ReplyToId</fullName>
+        <type>Hierarchy</type>
+    </fields>
+    <fields>
+        <fullName>ResponseContextExternalId</fullName>
+    </fields>
+    <fields>
+        <fullName>ReviewScale</fullName>
+    </fields>
+    <fields>
+        <fullName>ReviewScore</fullName>
+    </fields>
+    <fields>
+        <fullName>ReviewedStatus</fullName>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sentiment</fullName>
+    </fields>
+    <fields>
+        <fullName>Shares</fullName>
+    </fields>
+    <fields>
+        <fullName>SourceTags</fullName>
+    </fields>
+    <fields>
+        <fullName>SpamRating</fullName>
+    </fields>
+    <fields>
+        <fullName>Status</fullName>
+    </fields>
+    <fields>
+        <fullName>StatusMessage</fullName>
+    </fields>
+    <fields>
+        <fullName>ThreadSize</fullName>
+    </fields>
+    <fields>
+        <fullName>TopicProfileName</fullName>
+    </fields>
+    <fields>
+        <fullName>TopicType</fullName>
+    </fields>
+    <fields>
+        <fullName>TruncatedContent</fullName>
+    </fields>
+    <fields>
+        <fullName>UniqueCommentors</fullName>
+    </fields>
+    <fields>
+        <fullName>ViewCount</fullName>
+    </fields>
+    <fields>
+        <fullName>WhoId</fullName>
+        <type>Lookup</type>
+    </fields>
+    <searchLayouts>
+        <customTabListAdditionalFields>Persona</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Content</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Posted</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Parent</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ReviewedStatus</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Notes</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>Persona</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Content</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Posted</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Parent</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ReviewedStatus</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Notes</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Read</sharingModel>
+    <validationRules>
+        <fullName>Social_Misspelled_Words</fullName>
+        <active>true</active>
+        <description>Social Care: restriction from posting misspelled words</description>
+        <errorConditionFormula>AND(IsOutbound =TRUE,
+OR(
+CONTAINS(Content,&quot;accomodate&quot;),
+CONTAINS(Content,&quot;accomodation&quot;),
+CONTAINS(Content,&quot;acheive&quot;),
+CONTAINS(Content,&quot;accross&quot;),
+CONTAINS(Content,&quot;agressive&quot;), 
+CONTAINS(Content,&quot;agression&quot;),
+CONTAINS(Content,&quot;apparantly&quot;),
+CONTAINS(Content,&quot;appearence&quot;),
+CONTAINS(Content,&quot;arguement&quot;),
+CONTAINS(Content,&quot;assasination&quot;),
+CONTAINS(Content,&quot;basicly&quot;),
+CONTAINS(Content,&quot;begining&quot;),
+CONTAINS(Content,&quot;beleive&quot;), 
+CONTAINS(Content,&quot;belive&quot;),
+CONTAINS(Content,&quot;bizzare&quot;),
+CONTAINS(Content,&quot;buisness&quot;),
+CONTAINS(Content,&quot;calender&quot;),
+CONTAINS(Content,&quot;Carribean&quot;),
+CONTAINS(Content,&quot;cemetary&quot;),
+CONTAINS(Content,&quot;chauffer&quot;),
+CONTAINS(Content,&quot;collegue&quot;),
+CONTAINS(Content,&quot;comming&quot;),
+CONTAINS(Content,&quot;commitee&quot;),
+CONTAINS(Content,&quot;completly&quot;),
+CONTAINS(Content,&quot;concious&quot;),
+CONTAINS(Content,&quot;curiousity&quot;),
+CONTAINS(Content,&quot;definately&quot;),
+CONTAINS(Content,&quot;dilemna&quot;),
+CONTAINS(Content,&quot;dissapear&quot;),
+CONTAINS(Content,&quot;dissapoint&quot;),
+CONTAINS(Content,&quot;ecstacy&quot;),
+CONTAINS(Content,&quot;embarass&quot;),
+CONTAINS(Content,&quot;enviroment&quot;),
+CONTAINS(Content,&quot;existance&quot;),
+CONTAINS(Content,&quot;Farenheit&quot;),
+CONTAINS(Content,&quot;familar&quot;),
+CONTAINS(Content,&quot;finaly&quot;),
+CONTAINS(Content,&quot;florescent&quot;),
+CONTAINS(Content,&quot;foriegn&quot;),
+CONTAINS(Content,&quot;forseeable&quot;),
+CONTAINS(Content,&quot;fourty&quot;),
+CONTAINS(Content,&quot;foward&quot;),
+CONTAINS(Content,&quot;freind&quot;),
+CONTAINS(Content,&quot;futher&quot;),
+CONTAINS(Content,&quot;jist&quot;),
+CONTAINS(Content,&quot;glamourous&quot;),
+CONTAINS(Content,&quot;goverment&quot;),
+CONTAINS(Content,&quot;gaurd&quot;),
+CONTAINS(Content,&quot;happend&quot;),
+CONTAINS(Content,&quot;harrass&quot;),
+CONTAINS(Content,&quot;harrassment&quot;),
+CONTAINS(Content,&quot;honourary&quot;),
+CONTAINS(Content,&quot;humourous&quot;),
+CONTAINS(Content,&quot;idiosyncracy&quot;),
+CONTAINS(Content,&quot;immediatly&quot;),
+CONTAINS(Content,&quot;incidently&quot;),
+CONTAINS(Content,&quot;independant&quot;),
+CONTAINS(Content,&quot;interupt&quot;)))</errorConditionFormula>
+        <errorMessage>It appears as if you have misspelled a word.  Please review, adjust and resend your post.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Social_Misspelled_words_2</fullName>
+        <active>true</active>
+        <description>Social Care: restriction from posting misspelled words</description>
+        <errorConditionFormula>AND(IsOutbound=TRUE,
+OR(
+CONTAINS(Content,&quot;irresistable&quot;),
+CONTAINS(Content,&quot;knowlege&quot;),
+CONTAINS(Content,&quot;liase&quot;),
+CONTAINS(Content,&quot;liason&quot;),
+CONTAINS(Content,&quot;lollypop&quot;),
+CONTAINS(Content,&quot;millenium&quot;),
+CONTAINS(Content,&quot;millenia&quot;),
+CONTAINS(Content,&quot;Neandertal&quot;),
+CONTAINS(Content,&quot;neccessary&quot;),
+CONTAINS(Content,&quot;noticable&quot;),
+CONTAINS(Content,&quot;ocassion&quot;),
+CONTAINS(Content,&quot;occassion&quot;),
+CONTAINS(Content,&quot;occured&quot;),
+CONTAINS(Content,&quot;occuring&quot;),
+CONTAINS(Content,&quot;occurance&quot;),
+CONTAINS(Content,&quot;occurence&quot;),
+CONTAINS(Content,&quot;pavillion&quot;),
+CONTAINS(Content,&quot;persistant&quot;),
+CONTAINS(Content,&quot;pharoah&quot;),
+CONTAINS(Content,&quot;peice&quot;),
+CONTAINS(Content,&quot;politican&quot;),
+CONTAINS(Content,&quot;Portugese&quot;),
+CONTAINS(Content,&quot;posession&quot;),
+CONTAINS(Content,&quot;prefered&quot;),
+CONTAINS(Content,&quot;prefering&quot;),
+CONTAINS(Content,&quot;propoganda&quot;),
+CONTAINS(Content,&quot;publically&quot;),
+CONTAINS(Content,&quot;realy&quot;),
+CONTAINS(Content,&quot;recieve&quot;),
+CONTAINS(Content,&quot;refered&quot;),
+CONTAINS(Content,&quot;refering&quot;),
+CONTAINS(Content,&quot;religous&quot;),
+CONTAINS(Content,&quot;rember&quot;),
+CONTAINS(Content,&quot;remeber&quot;),
+CONTAINS(Content,&quot;resistence&quot;),
+CONTAINS(Content,&quot;sence&quot;),
+CONTAINS(Content,&quot;seperate&quot;),
+CONTAINS(Content,&quot;seige&quot;),
+CONTAINS(Content,&quot;succesful&quot;),
+CONTAINS(Content,&quot;supercede&quot;),
+CONTAINS(Content,&quot;suprise&quot;),
+CONTAINS(Content,&quot;tatoo&quot;),
+CONTAINS(Content,&quot;tendancy&quot;),
+CONTAINS(Content,&quot;therefor&quot;),
+CONTAINS(Content,&quot;threshhold&quot;),
+CONTAINS(Content,&quot;tommorow&quot;),
+CONTAINS(Content,&quot;tommorrow&quot;),
+CONTAINS(Content,&quot;tounge&quot;),
+CONTAINS(Content,&quot;truely&quot;),
+CONTAINS(Content,&quot;unforseen&quot;),
+CONTAINS(Content,&quot;unfortunatly&quot;),
+CONTAINS(Content,&quot;untill&quot;),
+CONTAINS(Content,&quot;wierd&quot;),
+CONTAINS(Content,&quot;whereever&quot;)))</errorConditionFormula>
+        <errorMessage>It appears as if you have misspelled a word.  Please review, adjust and resend your post</errorMessage>
+    </validationRules>
+</CustomObject>

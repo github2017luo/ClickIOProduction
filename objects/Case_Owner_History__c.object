@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>This object was created to allow the training support center to report on agent efficiency and workload. The object tracks how long agents own cases and how long queues own cases.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>COH_Role__c</fullName>
+        <externalId>false</externalId>
+        <formula>Owner:User.UserRole.Name</formula>
+        <inlineHelpText>This field displays the role of the user who made the ownership change on the case.</inlineHelpText>
+        <label>COH Role</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Case_Closed_Date_Time__c</fullName>
+        <externalId>false</externalId>
+        <formula>Case__r.ClosedDate</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Case Closed Date/Time</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Case_Owner_Duration_Seconds__c</fullName>
+        <externalId>false</externalId>
+        <formula>(Handed_Off__c - Received__c) *24*3600</formula>
+        <label>Case Owner Duration(Seconds)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Case_Owner_Duration__c</fullName>
+        <description>This field takes the duration__c and turns it into a readable time.</description>
+        <externalId>false</externalId>
+        <formula>IF ((Handed_Off__c - Received__c)&gt; 0, 
+TEXT(FLOOR((Handed_Off__c - Received__c))) &amp; &quot;:&quot; &amp; 
+TEXT(FLOOR( 24 * ((Handed_Off__c - Received__c) - FLOOR((Handed_Off__c - Received__c))))) &amp; &quot;:&quot; &amp; 
+TEXT(ROUND(60 * (ROUND( 24 * ((Handed_Off__c - Received__c)-FLOOR((Handed_Off__c - Received__c))),8) - FLOOR( 
+ROUND( 24 * ((Handed_Off__c - Received__c)- FLOOR((Handed_Off__c - Received__c))),8)) ),0))&amp; &quot;:&quot; &amp; 
+TEXT(Round(60*(((Handed_Off__c - Received__c) *1440) - FLOOR(((Handed_Off__c - Received__c) *1440))),0)) 
+, &quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Case Owner Duration</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Case_Owner_Role__c</fullName>
+        <externalId>false</externalId>
+        <formula>Case__r.Owner:User.UserRole.Name</formula>
+        <label>Case Owner Role</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Case_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( Case__r.Status )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Case Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Case__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Case Owner History</relationshipLabel>
+        <relationshipName>Case_Owner_History</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Duration__c</fullName>
+        <externalId>false</externalId>
+        <formula>(Handed_Off__c - Received__c) *24*3600</formula>
+        <label>Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Hand_Off_Status__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the status of the case when the ownership is handed off.</inlineHelpText>
+        <label>Hand Off Status</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Handed_Off__c</fullName>
+        <description>This is the time the Owner transferred this Case to another User or Queue.</description>
+        <externalId>false</externalId>
+        <label>Handed Off</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Owner_Duration__c</fullName>
+        <description>This field takes the duration__c and turns it into a readable time.</description>
+        <externalId>false</externalId>
+        <formula>IF ((Handed_Off__c - Received__c)&gt; 0, 
+TEXT(FLOOR((Handed_Off__c - Received__c))) &amp; &quot;:&quot; &amp; 
+TEXT(FLOOR( 24 * ((Handed_Off__c - Received__c) - FLOOR((Handed_Off__c - Received__c))))) &amp; &quot;:&quot; &amp; 
+TEXT(ROUND(60 * (ROUND( 24 * ((Handed_Off__c - Received__c)-FLOOR((Handed_Off__c - Received__c))),8) - FLOOR( 
+ROUND( 24 * ((Handed_Off__c - Received__c)- FLOOR((Handed_Off__c - Received__c))),8)) ),0))&amp; &quot;:&quot; &amp; 
+TEXT(Round(60*(((Handed_Off__c - Received__c) *1440) - FLOOR(((Handed_Off__c - Received__c) *1440))),0)) 
+, &quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Owner Duration</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Owner_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Owner Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Owner_Name__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the user who was the case owner for the duration of time outlined in the Case Duration field.</inlineHelpText>
+        <label>Case Owner Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Received__c</fullName>
+        <description>This is the time the Owner received this Case.</description>
+        <externalId>false</externalId>
+        <label>Received</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Recieved_Case_status__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the case status at the time the COH record was created.</inlineHelpText>
+        <label>Recieved Case status</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Case Owner History</label>
+    <nameField>
+        <displayFormat>COH-{000000}</displayFormat>
+        <label>Case Owner History</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Case Owner History</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Case__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Duration__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Handed_Off__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Received__c</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>Case__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Duration__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Handed_Off__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Received__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATED_DATE</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

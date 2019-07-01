@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>City Of Temple Terrace Leisure Services Customer User</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>City Of Temple Terrace Leisure Services Customer User</name>
+    <opportunityAccessLevel>None</opportunityAccessLevel>
+    <parentRole>PHSS_Sales_Team_Aquatics_Southeast</parentRole>
+</Role>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Bucket_Account_Name_Prefix__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Bucket Account Name Prefix</label>
+        <length>192</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CertificationProvisioningTriggerDebug__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If TRUE then records in PHSS_Certification_Provisioning__c will NOT be deleted after processing</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>If TRUE then records in PHSS_Certification_Provisioning__c will NOT be deleted after processing</inlineHelpText>
+        <label>Certification Provisioning Trigger Debug</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Certification_Error_Message__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Certification Error Message</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Default_Email_Encoding_Key__c</fullName>
+        <description>Default - ISO-8859-1</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Default Email Encoding Key</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Default_Language_Key__c</fullName>
+        <description>Default - en_US</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Default Language Key</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Default_Locale_Key__c</fullName>
+        <description>Default - en_US</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Default Locale Key</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Default_Timezone_Key__c</fullName>
+        <description>Default - America/New_York</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Default Timezone Key</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Marked_As_Resource_Group_Name__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Marked_As_Resource_Group_Name</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Maximum_Contacts_Per_Account__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Maximum Contacts Per Account</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Prevent_Certification_Provisioning_Email__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Prevent Certification Provisioning Email</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_User_Provisioning_Email__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Prevent User Provisioning Email</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ProfileName__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Profile Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UserProvisioningTriggerDebug__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If TRUE then records in PHSS_User_Provisioning__c will NOT be deleted after processing</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>If TRUE then records in PHSS_User_Provisioning__c will NOT be deleted after processing</inlineHelpText>
+        <label>User Provisioning Trigger Debug</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>User_Error_Message__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>User Error Message</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Username_Suffix__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Username_Suffix</label>
+        <length>20</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>PHSS Custom Metadata</label>
+    <pluralLabel>PHSS Custom Metadata</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

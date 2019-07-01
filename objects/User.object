@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>CallHighlightAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CallHighlightAction</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CallHighlightAction</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>DeleteBannerPhotoAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>DeleteBannerPhotoAction</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>DeleteBannerPhotoAction</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EditUserAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EditUserAction</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EditUserAction</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EmailHighlightAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EmailHighlightAction</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EmailHighlightAction</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>FreezeUserAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>FreezeUserAction</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>FreezeUserAction</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>LinkToSetupUserDetailAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>LinkToSetupUserDetailAction</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>LinkToSetupUserDetailAction</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ManagePermSetsAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ManagePermSetsAction</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ManagePermSetsAction</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>PasswordUnlockAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>PasswordUnlockAction</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>PasswordUnlockAction</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ResetPasswordAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ResetPasswordAction</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ResetPasswordAction</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SmsHighlightAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SmsHighlightAction</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SmsHighlightAction</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>UpdateBannerPhotoAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>UpdateBannerPhotoAction</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>UpdateBannerPhotoAction</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>UserActivationAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>UserActivationAction</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>UserActivationAction</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>ARC_User_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>ARC User Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Division Scheduler</fullName>
+                    <default>false</default>
+                    <label>Division Scheduler</label>
+                </value>
+                <value>
+                    <fullName>Secondary Scheduler</fullName>
+                    <default>false</default>
+                    <label>Secondary Scheduler</label>
+                </value>
+                <value>
+                    <fullName>Read Only Scheduler</fullName>
+                    <default>false</default>
+                    <label>Read Only Scheduler</label>
+                </value>
+                <value>
+                    <fullName>Resource</fullName>
+                    <default>false</default>
+                    <label>Resource</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Accepted_Community_Terms__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Accepted Community Terms</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Chat_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Chat Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DM_External_Id__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <description>This field is utilized to support the data migration process.  It will contain a combination of the source system identifier and the source system&apos;s unique record identifier.  This field should be deleted after all migration activities are complete.</description>
+        <externalId>true</externalId>
+        <inlineHelpText>This field is utilized to support the data migration process.  It will contain a combination of the source system identifier and the source system&apos;s unique record identifier.  This field should be deleted after all migration activities are complete.</inlineHelpText>
+        <label>DM External Id</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Deactivated_Date__c</fullName>
+        <description>Date user was deactivated</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is automatically filled out based on the date the &apos;Active&apos; box is unchecked.</inlineHelpText>
+        <label>Deactivated Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Employee_ID__c</fullName>
+        <externalId>true</externalId>
+        <label>Employee ID</label>
+        <length>16</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LMS_ID__c</fullName>
+        <description>This field is the LMS Id of the user if user exists on LMS system</description>
+        <externalId>false</externalId>
+        <label>LMS ID</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Legacy_Role__c</fullName>
+        <description>This field is used for old role mapping which are used in call conversation report for Pam Malena</description>
+        <externalId>false</externalId>
+        <formula>CASE( UserRole.Name, 
+
+&quot;ASG (Aquatics)&quot;, &quot;Back Office Agent Role&quot;, 
+
+&quot;CCO&quot;, &quot;Back Office Agent Role&quot;, 
+
+&quot;CERT&quot;, &quot;Back Office Agent Role&quot;, 
+
+&quot;CST&quot;, &quot;Back Office Agent Role&quot;, 
+
+&quot;ISG&quot;, &quot;Back Office Agent Role&quot;, 
+
+&quot;RDC&quot;, &quot;Back Office Agent Role&quot;, 
+
+&quot;Trainer&quot;, &quot;Back Office Agent Role&quot;, 
+
+&quot;PRT Group&quot;, &quot;Back Office Agent Role&quot;, 
+
+&quot;Front Office At Home Agent Role&quot;, &quot;At Home Agent Role&quot;,
+
+&quot;TSC Management&quot;, &quot;Training Support Center&quot;,
+
+&quot;Training Support QA&quot;, &quot;Training Support Center&quot;,
+
+&quot;Font Office Uniontown - ATG&quot;, &quot;Front Office Uniontown Agent Role&quot;,
+
+&quot;Front Office - Chat Agent&quot;, &quot;Chat Agent Role&quot;,
+
+
+UserRole.Name)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Legacy Role</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ManagerId</fullName>
+        <trackFeedHistory>true</trackFeedHistory>
+        <type>Hierarchy</type>
+    </fields>
+    <fields>
+        <fullName>Manager_Name__c</fullName>
+        <description>Formula is used to display the Manager Name optionally in reports. Salesforce out of box reports do not allow reporting on the Manager Name.</description>
+        <externalId>false</externalId>
+        <formula>Manager.FirstName &amp; &apos; &apos; &amp; Manager.LastName</formula>
+        <inlineHelpText>Formula is used to display the Manager Name optionally in reports. Salesforce out of box reports do not allow reporting on the Manager Name.</inlineHelpText>
+        <label>Manager Name</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Match_Status__c</fullName>
+        <description>This is a temporary field used to reconcile users between the training and production environments.  This field should be deleted after all initial users are reconciled and loaded into production.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is a temporary field used to reconcile users between the training and production environments.  This field should be deleted after all initial users are reconciled and loaded into production.</inlineHelpText>
+        <label>Match Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Matched</fullName>
+                    <default>false</default>
+                    <label>Matched</label>
+                </value>
+                <value>
+                    <fullName>Training Only</fullName>
+                    <default>false</default>
+                    <label>Training Only</label>
+                </value>
+                <value>
+                    <fullName>Prod Only</fullName>
+                    <default>false</default>
+                    <label>Prod Only</label>
+                </value>
+                <value>
+                    <fullName>Duplicate</fullName>
+                    <default>false</default>
+                    <label>Duplicate</label>
+                </value>
+                <value>
+                    <fullName>New</fullName>
+                    <default>false</default>
+                    <label>New</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>PHSS_IC_Email__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  Id = $User.Id ,
+     Email, &apos;&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Email</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PHSS_IC_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Id = $User.Id , 
+FirstName &amp; &quot; &quot; &amp; LastName, &apos;&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Name</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PHSS_IC_Username__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Id = $User.Id , 
+Username, &apos;&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Username</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Real_Email__c</fullName>
+        <description>Real email address of user. Derived by removing the extra environment suffix from their username.  Delete after all initial users are loaded into the environment with their correct emails.</description>
+        <externalId>false</externalId>
+        <formula>SUBSTITUTE( Username, &apos;.phss&apos;, &apos;&apos;)</formula>
+        <inlineHelpText>Real email address of user. Derived by removing the extra environment suffix from their username.  Delete after all initial users are loaded into the environment with their correct emails.</inlineHelpText>
+        <label>Real Email</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SABA_Internal_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>SABA Internal ID</label>
+        <length>32</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>SABA_Person_Number__c</fullName>
+        <externalId>true</externalId>
+        <label>SABA Person Number</label>
+        <length>32</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>FULL_NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CORE.USER_ROLE.NAME</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>FULL_NAME</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CORE.USER_ROLE.NAME</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CORE.USERS.PHONE</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CORE.USERS.EXTENSION</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CORE.USERS.CELL</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>FULL_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CORE.USERS.TITLE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CORE.USERS.PHONE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CORE.USERS.EMAIL</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Read</sharingModel>
+    <validationRules>
+        <fullName>Employee_Number</fullName>
+        <active>true</active>
+        <description>Employee number can be only edited by Lindsay Pour</description>
+        <errorConditionFormula>AND(
+ISCHANGED(EmployeeNumber),
+$Profile.Id &lt;&gt;&apos;00ed0000000IUPl&apos;,/*System Administ + Deploy*/
+$Profile.Id  &lt;&gt; &apos;00ed0000000uehO&apos;,/*System Administrator*/
+$User.Id &lt;&gt; &apos;005d0000001VF7D&apos;,/*Lindsay Pour*/
+$User.Id &lt;&gt; &apos;005d0000001YL4H&apos;,/*Tyson Johnson*/
+$Setup.Validation_Rules__c.Bypass_Rules__c = False)</errorConditionFormula>
+        <errorDisplayField>EmployeeNumber</errorDisplayField>
+        <errorMessage>You do not have permission to update this field. If updates need to be performed please contact Salesforce Admin team.</errorMessage>
+    </validationRules>
+</CustomObject>

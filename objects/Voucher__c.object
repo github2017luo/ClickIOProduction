@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Voucher_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>Voucher_Details</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Voucher_Details</fullName>
+        <fields>Name</fields>
+        <fields>ILT_Class__c</fields>
+        <fields>Start_Date_of_Class__c</fields>
+        <fields>Class_Location__c</fields>
+        <fields>Status__c</fields>
+        <label>Voucher Details</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Store the Voucher required to enroll and register for a class</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Voucher</relationshipLabel>
+        <relationshipName>Voucher</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CC_Cart_Item__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>CC Cart Item related to the purchase of this voucher</description>
+        <externalId>false</externalId>
+        <label>CC Cart Item</label>
+        <referenceTo>ccrz__E_CartItem__c</referenceTo>
+        <relationshipLabel>Voucher</relationshipLabel>
+        <relationshipName>Voucher</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CC_Order_Item__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>CC Order Item</label>
+        <referenceTo>ccrz__E_OrderItem__c</referenceTo>
+        <relationshipLabel>Voucher</relationshipLabel>
+        <relationshipName>Voucher</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CC_Order__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>CC Order</label>
+        <referenceTo>ccrz__E_Order__c</referenceTo>
+        <relationshipLabel>Voucher</relationshipLabel>
+        <relationshipName>Voucher</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CC_Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>CC Product</label>
+        <referenceTo>ccrz__E_Product__c</referenceTo>
+        <relationshipLabel>Voucher</relationshipLabel>
+        <relationshipName>Voucher</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Class_Location__c</fullName>
+        <externalId>false</externalId>
+        <formula>ILT_Class__r.redwing__Location__r.Skedulo_Address__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Class Location</inlineHelpText>
+        <label>Class Location</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ILT_Class__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>ILT Class</label>
+        <referenceTo>redwing__ILT_Class__c</referenceTo>
+        <relationshipLabel>Voucher</relationshipLabel>
+        <relationshipName>Voucher</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Learning_Plan__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Learning Plan</label>
+        <referenceTo>redwing__Training_Plan__c</referenceTo>
+        <relationshipLabel>Voucher</relationshipLabel>
+        <relationshipName>Voucher</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Online_Class__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Online Class</label>
+        <referenceTo>redwing__Learning__c</referenceTo>
+        <relationshipLabel>Voucher</relationshipLabel>
+        <relationshipName>Voucher</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Opportunity</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipLabel>Voucher</relationshipLabel>
+        <relationshipName>Voucher</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>QR_Code_Web_Address__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ILT_Class__c != null, IF(CONTAINS($Api.Partner_Server_URL_260, &apos;TransDev1&apos;), &apos;https://transdev1-americanredcross.cs52.force.com/learner/s/ClaimVoucher?voucherid=&apos; +  Id,
+    (If (CONTAINS($Api.Partner_Server_URL_260, &apos;Partial&apos;), &apos;https://partial-americanredcross.cs78.force.com/learner/s/ClaimVoucher?voucherid=&apos; + Id,
+    &apos;https://transuat-americanredcross.cs26.force.com/learner/s/ClaimVoucher?voucherid=&apos; +Id))), &apos;&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>QR Code Web Address</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>QR_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ILT_Class__c != null, HYPERLINK(Id , IMAGE(&quot;http://chart.apis.google.com/chart?cht=qr&amp;chs=150x150&amp;chl=&quot; &amp;QR_Code_Web_Address__c  , QR_Code_Web_Address__c )), &apos;&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>QR Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RCO_Order_Id__c</fullName>
+        <description>The Order Id is defined in DemandWare and used as a proxy to distinguish a specific RCO user session when browsing for and booking a class.  The Order Id is presumed to remain static throughout the entire customer RCO session.  The Order Id is used to identify a specific requestor for reserving/booking a class and allows the reservation service to be called multiple times during a single session (Idempotent).</description>
+        <externalId>true</externalId>
+        <label>RCO Order_Id</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RCO_Reservation_Timestamp__c</fullName>
+        <description>Used in time-dependent workflow rule which releases reserved seat back to inventory after one hour from this time</description>
+        <externalId>false</externalId>
+        <label>RCO Reservation Timestamp</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Start_Date_of_Class__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(MONTH(ILT_Class__r.redwing__Start_Date__c))+&quot;/&quot; +
+TEXT(DAY(ILT_Class__r.redwing__Start_Date__c))+&quot;/&quot; +
+TEXT(YEAR(ILT_Class__r.redwing__Start_Date__c))+ 
+&quot; - &quot; + 
+ILT_Class__r.ltui__Start_Time_Formatted__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Start Date of Class</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>Status of the Voucher</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Current Status of Voucher</inlineHelpText>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Issued</fullName>
+                    <default>true</default>
+                    <label>Issued</label>
+                </value>
+                <value>
+                    <fullName>Temp Hold</fullName>
+                    <default>false</default>
+                    <label>Temp Hold</label>
+                </value>
+                <value>
+                    <fullName>Reserved</fullName>
+                    <default>false</default>
+                    <label>Reserved</label>
+                </value>
+                <value>
+                    <fullName>Claimed</fullName>
+                    <default>false</default>
+                    <label>Claimed</label>
+                </value>
+                <value>
+                    <fullName>Blocked</fullName>
+                    <default>false</default>
+                    <label>Blocked</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Training_Event__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Training Event</label>
+        <referenceTo>Training_Events__c</referenceTo>
+        <relationshipLabel>Voucher</relationshipLabel>
+        <relationshipName>Voucher</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Voucher</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Voucher_Claim__c</fullName>
+        <externalId>false</externalId>
+        <formula>Id</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Voucher Claim Number to be used by Learner to access a Course</inlineHelpText>
+        <label>Voucher Claim #</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Voucher</label>
+    <nameField>
+        <displayFormat>VN {000000}</displayFormat>
+        <label>Voucher Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Voucher</pluralLabel>
+    <searchLayouts>
+        <listViewButtons>Send_Voucher</listViewButtons>
+        <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>QR_Code_Web_Address__c</lookupDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Voucher_Claim__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>QR_Code_Web_Address__c</searchResultsAdditionalFields>
+        <searchResultsCustomButtons>Send_Voucher</searchResultsCustomButtons>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Send_Voucher</fullName>
+        <availability>online</availability>
+        <description>Send single voucher to a contact</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Send Voucher</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/SDOC__SDCreate1?id={!Voucher__c.Id}
+&amp;Object=Voucher__c
+&amp;doclist=a2u210000016SvBAAU
+&amp;prepemail=1</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Send_Voucher_Page</fullName>
+        <availability>online</availability>
+        <description>Send Voucher to contact</description>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Send Voucher</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/apex/SDOC__SDCreate1?id={!Voucher__c.Id}
+&amp;Object=Voucher__c
+&amp;doclist=a2u210000016SvBAAU
+&amp;prepemail=1</url>
+    </webLinks>
+</CustomObject>

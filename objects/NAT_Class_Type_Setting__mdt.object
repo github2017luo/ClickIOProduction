@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Backgroun_Color__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Backgroun Color</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Class_Type__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Class Type</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Orientation</fullName>
+                    <default>true</default>
+                    <label>Orientation</label>
+                </value>
+                <value>
+                    <fullName>CPR</fullName>
+                    <default>false</default>
+                    <label>CPR</label>
+                </value>
+                <value>
+                    <fullName>Theory</fullName>
+                    <default>false</default>
+                    <label>Theory</label>
+                </value>
+                <value>
+                    <fullName>Clinical</fullName>
+                    <default>false</default>
+                    <label>Clinical</label>
+                </value>
+                <value>
+                    <fullName>Lab</fullName>
+                    <default>false</default>
+                    <label>Lab</label>
+                </value>
+                <value>
+                    <fullName>Make Up</fullName>
+                    <default>false</default>
+                    <label>Make Up</label>
+                </value>
+                <value>
+                    <fullName>Graduation</fullName>
+                    <default>false</default>
+                    <label>Graduation</label>
+                </value>
+                <value>
+                    <fullName>Review Day</fullName>
+                    <default>false</default>
+                    <label>Review Day</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Text_Color__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Text Color</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>NAT Class Type Setting</label>
+    <pluralLabel>NAT Class Type Settings</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

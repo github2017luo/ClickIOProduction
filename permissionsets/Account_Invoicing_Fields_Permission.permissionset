@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Permission_for_three_fields_in_Account</name>
+    </customPermissions>
+    <description>created to give the permission for 3 fields in Account
+1) Invoice Delivery method
+2) Invoice Del Assign Date
+3) Invoice Delivery Email</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Account Invoicing Fields Permission</label>
+</PermissionSet>

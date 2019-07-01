@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>Edit</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Team Kirkham</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>TS Sales Mgr Upper Mid-West</name>
+    <opportunityAccessLevel>Edit</opportunityAccessLevel>
+    <parentRole>PHSS_Sales_Dir_West</parentRole>
+</Role>

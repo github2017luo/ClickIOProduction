@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnalyticSnapshot xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Dupes created Today</name>
+    <runningUser>gita.borovsky@redcross.org</runningUser>
+    <sourceReport>DupeCatcher/Duplicates_created_today</sourceReport>
+    <targetObject>Dupes_Created_Today__c</targetObject>
+</AnalyticSnapshot>

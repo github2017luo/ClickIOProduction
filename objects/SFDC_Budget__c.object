@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Allocate multiple requests and claims against a specific budget. Report allocated budget, approved claims, available balance, and unclaimed requests.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Assign a budget to a given account. This is used especially for accrual based MDF.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Assign the budget to a specific account</inlineHelpText>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Budgets</relationshipLabel>
+        <relationshipName>Budgets</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>Optionally set this value and use subsequently to exclude inactive budgets</description>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Approved_Claims__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Sum of all approved claims. This field is calculated automatically and should not be entered manually.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sum of all approved claims. This field is calculated automatically and should not be entered manually.</inlineHelpText>
+        <label>Approved Claims</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Approved_Requests__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Sum of all approved requests. This field is calculated automatically and should not be entered manually.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sum of all approved requests. This field is calculated automatically and should not be entered manually.</inlineHelpText>
+        <label>Approved Requests</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Available_Budget__c</fullName>
+        <description>Total budget less approved requests</description>
+        <externalId>false</externalId>
+        <formula>Total_Active_Budget__c -  Approved_Requests__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Available Budget</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Courses__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Grant covers course fees</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check if Grant covers course fees</inlineHelpText>
+        <label>Courses</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <description>Optionally assign an end date to the budget. Frequently used for accrual based budgets</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Optionally assign an end date to the budget. Frequently used for accrual based budgets</inlineHelpText>
+        <label>End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Fees__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Grant Covers registration fees</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check if grant covers registration fees</inlineHelpText>
+        <label>Fees</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Grant_Notes__c</fullName>
+        <description>Key information regarding grant usage and criteria</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Provide information to help determine purpose and usage of grant</inlineHelpText>
+        <label>Grant Notes</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Last_Refresh_Date__c</fullName>
+        <description>The date &amp; time the budget was last refreshed/ calculated. The budget recalculates when a request or claim is approved, or a previously approved record is rejected</description>
+        <externalId>false</externalId>
+        <label>Last Refresh Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Program_Area__c</fullName>
+        <description>Program Area the grant covers</description>
+        <externalId>false</externalId>
+        <label>Program Area</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Aquatics</fullName>
+                    <default>false</default>
+                    <label>Aquatics</label>
+                </value>
+                <value>
+                    <fullName>FA/CPR</fullName>
+                    <default>false</default>
+                    <label>FA/CPR</label>
+                </value>
+                <value>
+                    <fullName>​​​​​​​NAT</fullName>
+                    <default>false</default>
+                    <label>​​​​​​​NAT</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <description>Optionally assign a start date to the budget. Frequently used for accrual based budgets</description>
+        <externalId>false</externalId>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Total_Active_Budget__c</fullName>
+        <description>The total budget summed up from &apos;Active&apos; budget entries</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The total budget summed up from &apos;Active&apos; budget entries</inlineHelpText>
+        <label>Total Active Budget</label>
+        <summarizedField>SFDC_Budget_Entry__c.Total__c</summarizedField>
+        <summaryFilterItems>
+            <field>SFDC_Budget_Entry__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </summaryFilterItems>
+        <summaryForeignKey>SFDC_Budget_Entry__c.Budget__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Unclaimed__c</fullName>
+        <description>The value of total approved requests less total approved claims to date</description>
+        <externalId>false</externalId>
+        <formula>Approved_Requests__c  -  Approved_Claims__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Unclaimed Requests</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>Budget</label>
+    <nameField>
+        <label>Budget Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Budgets</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Coop</fullName>
+        <active>true</active>
+        <description>Use to fund specific partner account requests and allocations</description>
+        <label>Partner Specific Funds</label>
+        <picklistValues>
+            <picklist>Program_Area__c</picklist>
+            <values>
+                <fullName>%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8BNAT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aquatics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FA%2FCPR</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>MDF</fullName>
+        <active>true</active>
+        <description>Use for discretionary training funds.</description>
+        <label>General Funds</label>
+        <picklistValues>
+            <picklist>Program_Area__c</picklist>
+            <values>
+                <fullName>%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8BNAT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aquatics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FA%2FCPR</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Total_Active_Budget__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Approved_Requests__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Available_Budget__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Active__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Start_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>End_Date__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Total_Active_Budget__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Approved_Requests__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Available_Budget__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Start_Date__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>End_Date__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Total_Active_Budget__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Approved_Requests__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Available_Budget__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Active__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Start_Date__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>End_Date__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>Total_Active_Budget__c</searchFilterFields>
+        <searchFilterFields>Approved_Requests__c</searchFilterFields>
+        <searchFilterFields>Available_Budget__c</searchFilterFields>
+        <searchFilterFields>Active__c</searchFilterFields>
+        <searchFilterFields>Start_Date__c</searchFilterFields>
+        <searchFilterFields>End_Date__c</searchFilterFields>
+        <searchResultsAdditionalFields>Total_Active_Budget__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Approved_Requests__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Available_Budget__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Active__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Start_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>End_Date__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>No_Account_For_MDF_Budget</fullName>
+        <active>true</active>
+        <description>Requires the MDF budget record not have an account entry. This is used when the user switches the record type to MDF from an accrual record and the record still has the account value.</description>
+        <errorConditionFormula>AND( RecordTypeId = &quot;012300000001reS&quot;, LEN( Account__c )&gt;0)</errorConditionFormula>
+        <errorDisplayField>Account__c</errorDisplayField>
+        <errorMessage>MDF record types should not reference an account. Please null the account field before saving the record</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

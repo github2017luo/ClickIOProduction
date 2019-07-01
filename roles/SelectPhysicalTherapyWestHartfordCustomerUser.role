@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Select Physical Therapy- West Hartford Customer User</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Select Physical Therapy- West Hartford Customer User</name>
+    <opportunityAccessLevel>None</opportunityAccessLevel>
+    <parentRole>PHSS_Sales_Team_NY_Metro</parentRole>
+</Role>
