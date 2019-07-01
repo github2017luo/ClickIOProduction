@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModerationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <action>Block</action>
+    <active>true</active>
+    <description>A rule to block word found on the bad words list</description>
+    <entitiesAndFields>
+        <entityName>FeedItem</entityName>
+        <fieldName>Title</fieldName>
+        <keywordList>Instructor&apos;s Corner.Bad_Words</keywordList>
+    </entitiesAndFields>
+    <entitiesAndFields>
+        <entityName>FeedItem</entityName>
+        <fieldName>RawBody</fieldName>
+        <keywordList>Instructor&apos;s Corner.Bad_Words</keywordList>
+    </entitiesAndFields>
+    <entitiesAndFields>
+        <entityName>FeedItem</entityName>
+        <fieldName>LinkUrl</fieldName>
+        <keywordList>Instructor&apos;s Corner.Bad_Words</keywordList>
+    </entitiesAndFields>
+    <entitiesAndFields>
+        <entityName>FeedComment</entityName>
+        <fieldName>RawCommentBody</fieldName>
+        <keywordList>Instructor&apos;s Corner.Bad_Words</keywordList>
+    </entitiesAndFields>
+    <entitiesAndFields>
+        <entityName>FeedPollChoice</entityName>
+        <fieldName>ChoiceBody</fieldName>
+        <keywordList>Instructor&apos;s Corner.Bad_Words</keywordList>
+    </entitiesAndFields>
+    <masterLabel>Block Bad Words</masterLabel>
+    <type>Content</type>
+    <userMessage>You can&apos;t use %BLOCKED_KEYWORD% or other inappropriate words in this community. Review your content and try again.</userMessage>
+</ModerationRule>

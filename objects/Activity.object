@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ComposeGmail</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ComposeGmail</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ComposeGmail</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>LogCall</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>LogCall</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>LogCall</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>MailMerge</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>MailMerge</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>MailMerge</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>RequestUpdate</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>RequestUpdate</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>RequestUpdate</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SendEmail</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SendEmail</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SendEmail</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ViewAll</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ViewAll</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ViewAll</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Activity_On__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(LEFT(WhatId,3), 
+&quot;001&quot;,&quot;Account&quot;, 
+&quot;006&quot;,&quot;Opportunity&quot;, 
+&quot;500&quot;,&quot;Case&quot;, 
+CASE(LEFT(WhoId,3), 
+&quot;003&quot;,&quot;Contact&quot;, 
+&quot;00Q&quot;,&quot;Lead&quot;, 
+NULL))</formula>
+        <inlineHelpText>This field provides description to what object this record belongs to.</inlineHelpText>
+        <label>Activity On</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Call_Result_Detail_1__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Details of the call result</inlineHelpText>
+        <label>Call Result Detail 1</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Call_Result__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>ARC AP</fullName>
+                    <default>false</default>
+                    <label>ARC AP</label>
+                </value>
+                <value>
+                    <fullName>Closed Failed to Connect</fullName>
+                    <default>false</default>
+                    <label>Closed Failed to Connect</label>
+                </value>
+                <value>
+                    <fullName>Community</fullName>
+                    <default>false</default>
+                    <label>Community</label>
+                </value>
+                <value>
+                    <fullName>Competitor</fullName>
+                    <default>false</default>
+                    <label>Competitor</label>
+                </value>
+                <value>
+                    <fullName>Date Availability</fullName>
+                    <default>false</default>
+                    <label>Date Availability</label>
+                </value>
+                <value>
+                    <fullName>Escalated</fullName>
+                    <default>false</default>
+                    <label>Escalated</label>
+                </value>
+                <value>
+                    <fullName>Local Rep</fullName>
+                    <default>false</default>
+                    <label>Local Rep</label>
+                </value>
+                <value>
+                    <fullName>Not Interested / No Reason Given</fullName>
+                    <default>false</default>
+                    <label>Not Interested / No Reason Given</label>
+                </value>
+                <value>
+                    <fullName>Price</fullName>
+                    <default>false</default>
+                    <label>Price</label>
+                </value>
+                <value>
+                    <fullName>Recently Certified</fullName>
+                    <default>false</default>
+                    <label>Recently Certified</label>
+                </value>
+                <value>
+                    <fullName>Referred</fullName>
+                    <default>false</default>
+                    <label>Referred</label>
+                </value>
+                <value>
+                    <fullName>Bad Contact Info</fullName>
+                    <default>false</default>
+                    <label>Bad Contact Info</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>No Sale</controllingFieldValue>
+                <valueName>ARC AP</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No Sale</controllingFieldValue>
+                <valueName>Closed Failed to Connect</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No Sale</controllingFieldValue>
+                <valueName>Community</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No Sale</controllingFieldValue>
+                <valueName>Competitor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No Sale</controllingFieldValue>
+                <valueName>Date Availability</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No Sale</controllingFieldValue>
+                <valueName>Escalated</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No Sale</controllingFieldValue>
+                <valueName>Local Rep</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No Sale</controllingFieldValue>
+                <valueName>Not Interested / No Reason Given</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No Sale</controllingFieldValue>
+                <valueName>Price</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No Sale</controllingFieldValue>
+                <valueName>Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No Opportunity</controllingFieldValue>
+                <valueName>Recently Certified</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No Opportunity</controllingFieldValue>
+                <valueName>Referred</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>No Opportunity</controllingFieldValue>
+                <valueName>Bad Contact Info</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Call_Result_Detail_2__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Details of the call result</inlineHelpText>
+        <label>Call Result Detail 2</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Call_Result_Detail_1__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Date</fullName>
+                    <default>false</default>
+                    <label>Date</label>
+                </value>
+                <value>
+                    <fullName>Group Size</fullName>
+                    <default>false</default>
+                    <label>Group Size</label>
+                </value>
+                <value>
+                    <fullName>Price</fullName>
+                    <default>false</default>
+                    <label>Price</label>
+                </value>
+                <value>
+                    <fullName>NAN</fullName>
+                    <default>false</default>
+                    <label>NAN</label>
+                </value>
+                <value>
+                    <fullName>AP</fullName>
+                    <default>false</default>
+                    <label>AP</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Full Service</fullName>
+                    <default>false</default>
+                    <label>Full Service</label>
+                </value>
+                <value>
+                    <fullName>Shopping</fullName>
+                    <default>false</default>
+                    <label>Shopping</label>
+                </value>
+                <value>
+                    <fullName>Too High</fullName>
+                    <default>false</default>
+                    <label>Too High</label>
+                </value>
+                <value>
+                    <fullName>Budget</fullName>
+                    <default>false</default>
+                    <label>Budget</label>
+                </value>
+                <value>
+                    <fullName>ARC AP</fullName>
+                    <default>false</default>
+                    <label>ARC AP</label>
+                </value>
+                <value>
+                    <fullName>ARC Community</fullName>
+                    <default>false</default>
+                    <label>ARC Community</label>
+                </value>
+                <value>
+                    <fullName>ARC Full Service</fullName>
+                    <default>false</default>
+                    <label>ARC Full Service</label>
+                </value>
+                <value>
+                    <fullName>Competitor - AP</fullName>
+                    <default>false</default>
+                    <label>Competitor - AP</label>
+                </value>
+                <value>
+                    <fullName>Competitor - Full Service</fullName>
+                    <default>false</default>
+                    <label>Competitor - Full Service</label>
+                </value>
+                <value>
+                    <fullName>Competitor - Group Size</fullName>
+                    <default>false</default>
+                    <label>Competitor - Group Size</label>
+                </value>
+                <value>
+                    <fullName>Local Rep</fullName>
+                    <default>false</default>
+                    <label>Local Rep</label>
+                </value>
+                <value>
+                    <fullName>ARC Community - Group Size</fullName>
+                    <default>false</default>
+                    <label>ARC Community - Group Size</label>
+                </value>
+                <value>
+                    <fullName>ARC Community - Other</fullName>
+                    <default>false</default>
+                    <label>ARC Community - Other</label>
+                </value>
+                <value>
+                    <fullName>ARC Community - Price</fullName>
+                    <default>false</default>
+                    <label>ARC Community - Price</label>
+                </value>
+                <value>
+                    <fullName>Demo - No Fee Class</fullName>
+                    <default>false</default>
+                    <label>Demo - No Fee Class</label>
+                </value>
+                <value>
+                    <fullName>Field Non BGST Class</fullName>
+                    <default>false</default>
+                    <label>Field Non BGST Class</label>
+                </value>
+                <value>
+                    <fullName>FO Other</fullName>
+                    <default>false</default>
+                    <label>FO Other</label>
+                </value>
+                <value>
+                    <fullName>RCO Website</fullName>
+                    <default>false</default>
+                    <label>RCO Website</label>
+                </value>
+                <value>
+                    <fullName>Pending Agreement/Proposal</fullName>
+                    <default>false</default>
+                    <label>Pending Agreement/Proposal</label>
+                </value>
+                <value>
+                    <fullName>Out of Business</fullName>
+                    <default>false</default>
+                    <label>Out of Business</label>
+                </value>
+                <value>
+                    <fullName>Wrong Email</fullName>
+                    <default>false</default>
+                    <label>Wrong Email</label>
+                </value>
+                <value>
+                    <fullName>Wrong Phone Number</fullName>
+                    <default>false</default>
+                    <label>Wrong Phone Number</label>
+                </value>
+                <value>
+                    <fullName>Wrong POC</fullName>
+                    <default>false</default>
+                    <label>Wrong POC</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Referred</controllingFieldValue>
+                <valueName>NAN</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Referred</controllingFieldValue>
+                <controllingFieldValue>Community</controllingFieldValue>
+                <valueName>AP</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Referred</controllingFieldValue>
+                <valueName>ARC Community - Group Size</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Referred</controllingFieldValue>
+                <valueName>ARC Community - Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Referred</controllingFieldValue>
+                <valueName>ARC Community - Price</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Referred</controllingFieldValue>
+                <valueName>Demo - No Fee Class</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Referred</controllingFieldValue>
+                <valueName>Field Non BGST Class</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Referred</controllingFieldValue>
+                <valueName>FO Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Referred</controllingFieldValue>
+                <valueName>RCO Website</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Referred</controllingFieldValue>
+                <valueName>Pending Agreement/Proposal</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bad Contact Info</controllingFieldValue>
+                <controllingFieldValue>Community</controllingFieldValue>
+                <valueName>Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bad Contact Info</controllingFieldValue>
+                <valueName>Out of Business</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bad Contact Info</controllingFieldValue>
+                <valueName>Wrong Email</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bad Contact Info</controllingFieldValue>
+                <valueName>Wrong Phone Number</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Bad Contact Info</controllingFieldValue>
+                <valueName>Wrong POC</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Community</controllingFieldValue>
+                <controllingFieldValue>Competitor</controllingFieldValue>
+                <valueName>Date</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Community</controllingFieldValue>
+                <controllingFieldValue>Competitor</controllingFieldValue>
+                <valueName>Group Size</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Community</controllingFieldValue>
+                <controllingFieldValue>Competitor</controllingFieldValue>
+                <valueName>Price</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Competitor</controllingFieldValue>
+                <valueName>Full Service</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Price</controllingFieldValue>
+                <valueName>Shopping</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Price</controllingFieldValue>
+                <valueName>Too High</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Price</controllingFieldValue>
+                <valueName>Budget</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Recently Certified</controllingFieldValue>
+                <valueName>ARC AP</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Recently Certified</controllingFieldValue>
+                <valueName>ARC Community</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Recently Certified</controllingFieldValue>
+                <valueName>ARC Full Service</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Recently Certified</controllingFieldValue>
+                <valueName>Competitor - AP</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Recently Certified</controllingFieldValue>
+                <valueName>Competitor - Full Service</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Recently Certified</controllingFieldValue>
+                <valueName>Competitor - Group Size</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Recently Certified</controllingFieldValue>
+                <valueName>Local Rep</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Call_Result__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Result of the call</inlineHelpText>
+        <label>Call Result</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Open - Not Yet Worked</fullName>
+                    <default>false</default>
+                    <label>Open - Not Yet Worked</label>
+                </value>
+                <value>
+                    <fullName>Opportunity</fullName>
+                    <default>false</default>
+                    <label>Opportunity</label>
+                </value>
+                <value>
+                    <fullName>Sale</fullName>
+                    <default>false</default>
+                    <label>Sale</label>
+                </value>
+                <value>
+                    <fullName>No Sale</fullName>
+                    <default>false</default>
+                    <label>No Sale</label>
+                </value>
+                <value>
+                    <fullName>No Opportunity</fullName>
+                    <default>false</default>
+                    <label>No Opportunity</label>
+                </value>
+                <value>
+                    <fullName>Not Interested - No Reason Given</fullName>
+                    <default>false</default>
+                    <label>Not Interested - No Reason Given</label>
+                </value>
+                <value>
+                    <fullName>Aged Pipeline Lead</fullName>
+                    <default>false</default>
+                    <label>Aged Pipeline Lead</label>
+                </value>
+                <value>
+                    <fullName>Cancellation</fullName>
+                    <default>false</default>
+                    <label>Cancellation</label>
+                </value>
+                <value>
+                    <fullName>Duplicate</fullName>
+                    <default>false</default>
+                    <label>Duplicate</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Call_Source__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Origin of the call</inlineHelpText>
+        <label>Call Source</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>IVR</fullName>
+                    <default>false</default>
+                    <label>IVR</label>
+                </value>
+                <value>
+                    <fullName>TSC Transfer</fullName>
+                    <default>false</default>
+                    <label>TSC Transfer</label>
+                </value>
+                <value>
+                    <fullName>Email</fullName>
+                    <default>false</default>
+                    <label>Email</label>
+                </value>
+                <value>
+                    <fullName>Voice Mail</fullName>
+                    <default>false</default>
+                    <label>Voice Mail</label>
+                </value>
+                <value>
+                    <fullName>After-Hours Transfer Lead Form</fullName>
+                    <default>false</default>
+                    <label>After-Hours Transfer Lead Form</label>
+                </value>
+                <value>
+                    <fullName>Referral/Repeat Business</fullName>
+                    <default>false</default>
+                    <label>Referral/Repeat Business</label>
+                </value>
+                <value>
+                    <fullName>Marketing</fullName>
+                    <default>false</default>
+                    <label>Marketing</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>DM_External_ID__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <description>This field is utilized to support the data migration process. It will contain a combination of the source system identifier and the source system&apos;s unique record identifier. This field should be deleted after all migration activities are complete.</description>
+        <externalId>false</externalId>
+        <label>DM External ID</label>
+        <length>40</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>DM_Legacy_Owner_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>DM Legacy Owner Name</label>
+        <length>120</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Delta_Data_Migration__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If Checked, this record was migrated as part of the Delta Data migration project</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If Checked, this record was migrated as part of the Delta Data migration project</inlineHelpText>
+        <label>Delta Data Migration</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Owner_Profile__c</fullName>
+        <externalId>false</externalId>
+        <formula>$Profile.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Owner Profile</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Source_System__c</fullName>
+        <description>Source System field used for Data Migration.</description>
+        <externalId>false</externalId>
+        <label>Source System</label>
+        <length>150</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <searchLayouts>
+        <searchResultsAdditionalFields>TASK.SUBJECT</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TASK.WHO_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TASK.WHAT_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TASK.DUE_DATE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CORE.USERS.ALIAS</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>Use this custom setting to configure the settings for the programmatic logic which assigns B2C contacts to bucket accounts. IMPORTANT: Do not create exceptions to the default org levels. Only configure the default org levels</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Bucket_Account_Owner_ID__c</fullName>
+        <description>Specify the User ID of the User who will own bucket accounts. This user must be active. Note, changing this will not retroactively change the owner of bucket accounts already in the system.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specify the User ID of the User who will own bucket accounts. This user must be active. Note, changing this will not retroactively change the owner of bucket accounts already in the system.</inlineHelpText>
+        <label>Bucket Account Owner ID</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Bucket_Account_RecordTypeID__c</fullName>
+        <description>Specify the record type of bucket accounts. Note, changing this will not retroactively change the record type of bucket accounts already in the system.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specify the record type of bucket accounts. Note, changing this will not retroactively change the record type of bucket accounts already in the system.</inlineHelpText>
+        <label>Bucket Account RecordTypeID</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Default_Bucket_Name__c</fullName>
+        <description>Define the default account name for bucket accounts. Note, changing this will not retroactively change the name of bucket accounts already in the system.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Define the default account name for bucket accounts. Note, changing this will not retroactively change the name of bucket accounts already in the system.</inlineHelpText>
+        <label>Default Bucket Name</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Maximum_Size_of_Bucket__c</fullName>
+        <description>Define how many contacts a bucket account may contain before it is considered closed and may not accept any more contacts. Note if you change this value, then you must request that all B2C contacts are reassigned to buckets. This can be done by setting their AccountID to null. Triggers will catch on this criteria and reassign them to buckets based on the new threshold.</description>
+        <externalId>false</externalId>
+        <label>Maximum Size of Bucket</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>B2C Bucket Account Settings</label>
+    <visibility>Protected</visibility>
+</CustomObject>

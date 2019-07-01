@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LiveChatButton xmlns="http://soap.sforce.com/2006/04/metadata">
+    <autoGreeting>Hello, {!LiveAgent_VisitorName}. Thank you for contacting The American Red Cross. Our sessions are recorded and/or monitored for quality and training purposes. My name is {!$User.CommunityNickname}. How may I help you today?</autoGreeting>
+    <deployments/>
+    <enableQueue>false</enableQueue>
+    <isActive>true</isActive>
+    <label>LiveAgent</label>
+    <offlineImage>Offline_Button</offlineImage>
+    <onlineImage>Online_Button</onlineImage>
+    <optionsCustomRoutingIsEnabled>false</optionsCustomRoutingIsEnabled>
+    <optionsHasChasitorIdleTimeout>false</optionsHasChasitorIdleTimeout>
+    <optionsHasInviteAfterAccept>false</optionsHasInviteAfterAccept>
+    <optionsHasInviteAfterReject>false</optionsHasInviteAfterReject>
+    <optionsHasRerouteDeclinedRequest>false</optionsHasRerouteDeclinedRequest>
+    <optionsIsAutoAccept>false</optionsIsAutoAccept>
+    <optionsIsInviteAutoRemove>false</optionsIsInviteAutoRemove>
+    <routingType>Choice</routingType>
+    <site>Live_Agent_Chat</site>
+    <skills>
+        <skill>TSC_Chat_Agent_Skill</skill>
+        <skill>TSC_Community</skill>
+    </skills>
+    <type>Standard</type>
+    <windowLanguage>en_US</windowLanguage>
+</LiveChatButton>

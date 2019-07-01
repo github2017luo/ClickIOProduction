@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingOwnerRules>
+        <fullName>BGST_Sales_Admin</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <description>Gives BGST Sales Admin the capability to merge documents when Account owner is someone else.</description>
+        <label>BGST Sales Admin</label>
+        <sharedTo>
+            <role>BGST_Sales_Admin</role>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>BGST_Sales_Admin</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Sales_to_BGST</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>Read</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>Sales to BGST</label>
+        <sharedTo>
+            <group>BGST_Mgmt</group>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>PHSS_Sales_Management</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

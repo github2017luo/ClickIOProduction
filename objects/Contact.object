@@ -1,0 +1,2003 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>AddCampaign</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>AddCampaign</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>AddCampaign</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>AddToCampaign</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>AddToCampaign</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>AddToCampaign</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CallHighlightAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CallHighlightAction</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CallHighlightAction</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EmailHighlightAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EmailHighlightAction</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EmailHighlightAction</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EnableCustomerPortal</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EnableCustomerPortal</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EnableCustomerPortal</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EnablePartnerPortalUser</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EnablePartnerPortalUser</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EnablePartnerPortalUser</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EnableSelfService</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EnableSelfService</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EnableSelfService</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ListClean</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ListClean</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ListClean</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Merge</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Merge</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Merge</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>NewContact</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>NewContact</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>NewContact</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>RequestUpdate</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>RequestUpdate</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>RequestUpdate</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SmsHighlightAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SmsHighlightAction</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SmsHighlightAction</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Contact_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ViewCustomerPortal</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ViewCustomerPortal</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ViewCustomerPortal</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ViewPartnerPortalUser</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ViewPartnerPortalUser</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ViewPartnerPortalUser</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ViewSelfService</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ViewSelfService</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ViewSelfService</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>AccountId</fullName>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Account_Record_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE( Account.RecordTypeId, &quot;012d000000097TK&quot;, &quot;Household Account&quot;, 
+&quot;012d000000097TF&quot;, &quot;Organization Account&quot;,
+
+&quot;NA&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account Record Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Adult__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL( Contact_Age__c ), 
+IMAGE(&quot;/s.gif&quot;, &quot;No Age Defined&quot;), 
+IF(Contact_Age__c &gt; 18, 
+IMAGE(&quot;/servlet/servlet.ImageServer?id=015d00000005ykL&amp;oid=00Dd0000000bxKz&amp;lastMod=1371829547000&quot;, &quot;Contact is an Adult&quot;), 
+IF( Contact_Age__c &lt; 18, 
+IMAGE(&quot;/servlet/servlet.ImageServer?id=015d00000005ykN&amp;oid=00Dd0000000bxKz&amp;lastMod=1371829547000&quot;, &quot;Contact is a Minor&quot;), 
+IMAGE(&quot;/s.gif&quot;, &quot;Status Flag&quot;) 
+)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Adult</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Annual_income_after_training_employmen__c</fullName>
+        <externalId>false</externalId>
+        <label>Annual income after training &amp; employmen</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>&lt;$12,000</fullName>
+                    <default>false</default>
+                    <label>&lt;$12,000</label>
+                </value>
+                <value>
+                    <fullName>$12,000 - $20,780</fullName>
+                    <default>false</default>
+                    <label>$12,000 - $20,780</label>
+                </value>
+                <value>
+                    <fullName>$20,781 - $25,000</fullName>
+                    <default>false</default>
+                    <label>$20,781 - $25,000</label>
+                </value>
+                <value>
+                    <fullName>&gt;$25,001</fullName>
+                    <default>false</default>
+                    <label>&gt;$25,001</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Annual_income_before_training__c</fullName>
+        <externalId>false</externalId>
+        <label>Annual income before training</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>&lt;$12,000</fullName>
+                    <default>false</default>
+                    <label>&lt;$12,000</label>
+                </value>
+                <value>
+                    <fullName>$12,000 - $20,780</fullName>
+                    <default>false</default>
+                    <label>$12,000 - $20,780</label>
+                </value>
+                <value>
+                    <fullName>$20,781 - $25,000</fullName>
+                    <default>false</default>
+                    <label>$20,781 - $25,000</label>
+                </value>
+                <value>
+                    <fullName>&gt;$25,001</fullName>
+                    <default>false</default>
+                    <label>&gt;$25,001</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Are_you_still_in_school__c</fullName>
+        <externalId>false</externalId>
+        <label>Are you still in school?</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>AssistantName</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>AssistantPhone</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Benefits_health_insurance_included__c</fullName>
+        <externalId>false</externalId>
+        <label>Benefits (health insurance included)</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Birthdate</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Contact_Age__c</fullName>
+        <externalId>false</externalId>
+        <formula>FLOOR((TODAY()-Birthdate)/365.2425)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Contact Age</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contact_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Active</fullName>
+                    <default>false</default>
+                    <label>Active</label>
+                </value>
+                <value>
+                    <fullName>No Longer With</fullName>
+                    <default>false</default>
+                    <label>No Longer With</label>
+                </value>
+                <value>
+                    <fullName>Moved</fullName>
+                    <default>false</default>
+                    <label>Moved</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Contact_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Admin</fullName>
+                    <default>false</default>
+                    <label>Admin</label>
+                </value>
+                <value>
+                    <fullName>Billing</fullName>
+                    <default>false</default>
+                    <label>Billing</label>
+                </value>
+                <value>
+                    <fullName>Caregiver/Guardian</fullName>
+                    <default>false</default>
+                    <label>Caregiver/Guardian</label>
+                </value>
+                <value>
+                    <fullName>Chapter representative</fullName>
+                    <default>false</default>
+                    <label>Chapter representative</label>
+                </value>
+                <value>
+                    <fullName>Individual Learner</fullName>
+                    <default>false</default>
+                    <label>Individual Learner</label>
+                </value>
+                <value>
+                    <fullName>Instructor</fullName>
+                    <default>false</default>
+                    <label>Instructor</label>
+                </value>
+                <value>
+                    <fullName>Learning</fullName>
+                    <default>false</default>
+                    <label>Learning</label>
+                </value>
+                <value>
+                    <fullName>Members</fullName>
+                    <default>false</default>
+                    <label>Members</label>
+                </value>
+                <value>
+                    <fullName>NAT Student (Confirmed)</fullName>
+                    <default>false</default>
+                    <label>NAT Student (Confirmed)</label>
+                </value>
+                <value>
+                    <fullName>NAT Student (Prospect)</fullName>
+                    <default>false</default>
+                    <label>NAT Student (Prospect)</label>
+                </value>
+                <value>
+                    <fullName>PHSS Field personnel</fullName>
+                    <default>false</default>
+                    <label>PHSS Field personnel</label>
+                </value>
+                <value>
+                    <fullName>RCS Billing</fullName>
+                    <default>false</default>
+                    <label>RCS Billing</label>
+                </value>
+                <value>
+                    <fullName>RCS Shipping</fullName>
+                    <default>false</default>
+                    <label>RCS Shipping</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>County__c</fullName>
+        <description>County field included in address section of Account and Contact page layouts.</description>
+        <externalId>false</externalId>
+        <label>County</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DM_External_Id__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <description>This field is utilized to support the data migration process. It will contain a combination of the source system identifier and the source system&apos;s unique record identifier. This field should be deleted after all migration activities are complete</description>
+        <externalId>true</externalId>
+        <label>DM External Id</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>DM_Legacy_Owner_Name__c</fullName>
+        <description>This is the record owner&apos;s name from the legacy source system.  This field is used for data migration purposes only.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the record owner&apos;s name from the legacy source system.  This field is used for data migration purposes only.</inlineHelpText>
+        <label>DM Legacy Owner Name</label>
+        <length>120</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Date_employed_in_healthcare_field__c</fullName>
+        <externalId>false</externalId>
+        <label>Date employed in healthcare field</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_passed_state_exam__c</fullName>
+        <externalId>false</externalId>
+        <label>Date passed state exam</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Delta_Data_Migration__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If Checked, this record was migrated as part of the Delta Data migration project</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If Checked, this record was migrated as part of the Delta Data migration project</inlineHelpText>
+        <label>Delta Data Migration</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Department</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Description</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>DoNotCall</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Do_Not_Mail__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Do Not Mail</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Do_Not_Text__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Do Not Text</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Eligibility_for_economic_need_Student__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Student provided documentation of proof for financial assistance</inlineHelpText>
+        <label>Eligibility for economic need</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Email</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Employed_full_time_or_part_time__c</fullName>
+        <externalId>false</externalId>
+        <label>Employed full time or part time?</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>FT</fullName>
+                    <default>false</default>
+                    <label>FT</label>
+                </value>
+                <value>
+                    <fullName>PT</fullName>
+                    <default>false</default>
+                    <label>PT</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Employed_in_healthcare_field__c</fullName>
+        <externalId>false</externalId>
+        <label>Employed in (healthcare) field</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Estimated_Annual_Enrollees__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text( Account.Estimated_Annual_Enrollees__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Estimated Annual Enrollees</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Ethnicity__c</fullName>
+        <externalId>false</externalId>
+        <label>Ethnicity</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Hispanic or Latino</fullName>
+                    <default>false</default>
+                    <label>Hispanic or Latino</label>
+                </value>
+                <value>
+                    <fullName>Not Hispanic or Latino</fullName>
+                    <default>false</default>
+                    <label>Not Hispanic or Latino</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Extension__c</fullName>
+        <description>Phone extension for business numbers</description>
+        <externalId>false</externalId>
+        <label>Extension</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fax</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Follower_Count__c</fullName>
+        <description>Social Care: Follower count of social media user</description>
+        <externalId>false</externalId>
+        <label>Follower Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Gender__c</fullName>
+        <externalId>false</externalId>
+        <label>Gender</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>F</fullName>
+                    <default>false</default>
+                    <label>F</label>
+                </value>
+                <value>
+                    <fullName>M</fullName>
+                    <default>false</default>
+                    <label>M</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>HasOptedOutOfEmail</fullName>
+        <inlineHelpText>Check &quot;True&quot; if this contact is not to be emailed.</inlineHelpText>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>HasOptedOutOfFax</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>HomePhone</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Hours_Since_Last_Survey_Sent__c</fullName>
+        <description>Hours since last time a survey has been sent to contact.</description>
+        <externalId>false</externalId>
+        <formula>(NOW() - Survey_Last_Sent__c) * 24</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Hours since last time a survey has been sent to contact.</inlineHelpText>
+        <label>Hours Since Last Survey Sent</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>If_part_time_is_this_by_choice__c</fullName>
+        <externalId>false</externalId>
+        <label>If part-time, is this by choice?</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>If_yes_pursuing_higher_licensur__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>If yes, are you pursuing higher licensure in the healthcare field?</inlineHelpText>
+        <label>If yes, pursuing higher licensure?</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>IndividualId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Instructor__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field will not be used on the page layout but is automatically checked to identify in the PHSS constituent search who is labeled an instructor</description>
+        <externalId>false</externalId>
+        <label>Instructor</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Jigsaw</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Keycode__c</fullName>
+        <description>created for April 2015 Direct Marketing campaign run out of Business Operations.  intended to capture 3 character code on Postcards and Letters.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Keycode for used for marketing purposes.</inlineHelpText>
+        <label>Keycode</label>
+        <length>16</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LastCURequestDate</fullName>
+    </fields>
+    <fields>
+        <fullName>LastCUUpdateDate</fullName>
+    </fields>
+    <fields>
+        <fullName>LeadSource</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>MailingAddress</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Master_Constituent_ID__c</fullName>
+        <description>This field is used in the CDI search results. The master constituent id is a unique field in the data warehouse.</description>
+        <externalId>true</externalId>
+        <label>Master Constituent ID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Military_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Military Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Active</fullName>
+                    <default>false</default>
+                    <label>Active</label>
+                </value>
+                <value>
+                    <fullName>Dependent</fullName>
+                    <default>false</default>
+                    <label>Dependent</label>
+                </value>
+                <value>
+                    <fullName>Veteran</fullName>
+                    <default>false</default>
+                    <label>Veteran</label>
+                </value>
+                <value>
+                    <fullName>None</fullName>
+                    <default>false</default>
+                    <label>None</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MobilePhone</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Name</fullName>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>OtherAddress</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>OtherPhone</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>OwnerId</fullName>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Phone</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Preferred_Method_of_Contact__c</fullName>
+        <externalId>false</externalId>
+        <label>Preferred Method of Contact</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Email</fullName>
+                    <default>false</default>
+                    <label>Email</label>
+                </value>
+                <value>
+                    <fullName>Phone</fullName>
+                    <default>false</default>
+                    <label>Phone</label>
+                </value>
+                <value>
+                    <fullName>Text</fullName>
+                    <default>false</default>
+                    <label>Text</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Primary_Contact__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the contact primarily responsible for the Account.</inlineHelpText>
+        <label>Primary Contact</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Primary_Product__c</fullName>
+        <externalId>false</externalId>
+        <label>Primary Product</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>AED</fullName>
+                    <default>false</default>
+                    <label>AED</label>
+                </value>
+                <value>
+                    <fullName>Aquatics Learn to Swim</fullName>
+                    <default>false</default>
+                    <label>Aquatics Learn to Swim</label>
+                </value>
+                <value>
+                    <fullName>Aquatics Other</fullName>
+                    <default>false</default>
+                    <label>Aquatics Other</label>
+                </value>
+                <value>
+                    <fullName>Babysitting</fullName>
+                    <default>false</default>
+                    <label>Babysitting</label>
+                </value>
+                <value>
+                    <fullName>Basic Water Rescue</fullName>
+                    <default>false</default>
+                    <label>Basic Water Rescue</label>
+                </value>
+                <value>
+                    <fullName>BLS</fullName>
+                    <default>false</default>
+                    <label>BLS</label>
+                </value>
+                <value>
+                    <fullName>Citizen CPR</fullName>
+                    <default>false</default>
+                    <label>Citizen CPR</label>
+                </value>
+                <value>
+                    <fullName>Continuing Education Units</fullName>
+                    <default>false</default>
+                    <label>Continuing Education Units</label>
+                </value>
+                <value>
+                    <fullName>CPR for the Professional Rescuer</fullName>
+                    <default>false</default>
+                    <label>CPR for the Professional Rescuer</label>
+                </value>
+                <value>
+                    <fullName>Emergency Medical Response</fullName>
+                    <default>false</default>
+                    <label>Emergency Medical Response</label>
+                </value>
+                <value>
+                    <fullName>Emergency Preparedness</fullName>
+                    <default>false</default>
+                    <label>Emergency Preparedness</label>
+                </value>
+                <value>
+                    <fullName>First Aid</fullName>
+                    <default>false</default>
+                    <label>First Aid</label>
+                </value>
+                <value>
+                    <fullName>First Aid/CPR/AED Training</fullName>
+                    <default>false</default>
+                    <label>First Aid/CPR/AED Training</label>
+                </value>
+                <value>
+                    <fullName>First Aid Emergency Drills</fullName>
+                    <default>false</default>
+                    <label>First Aid Emergency Drills</label>
+                </value>
+                <value>
+                    <fullName>Lifeguarding</fullName>
+                    <default>false</default>
+                    <label>Lifeguarding</label>
+                </value>
+                <value>
+                    <fullName>Lifeline</fullName>
+                    <default>false</default>
+                    <label>Lifeline</label>
+                </value>
+                <value>
+                    <fullName>MERT Drills</fullName>
+                    <default>false</default>
+                    <label>MERT Drills</label>
+                </value>
+                <value>
+                    <fullName>Nurse Assistant Training</fullName>
+                    <default>false</default>
+                    <label>Nurse Assistant Training</label>
+                </value>
+                <value>
+                    <fullName>OSHA</fullName>
+                    <default>false</default>
+                    <label>OSHA</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Ready Rating</fullName>
+                    <default>false</default>
+                    <label>Ready Rating</label>
+                </value>
+                <value>
+                    <fullName>Safety Training for Swim Coaches</fullName>
+                    <default>false</default>
+                    <label>Safety Training for Swim Coaches</label>
+                </value>
+                <value>
+                    <fullName>Training Supplies</fullName>
+                    <default>false</default>
+                    <label>Training Supplies</label>
+                </value>
+                <value>
+                    <fullName>Water Safety Instructor</fullName>
+                    <default>false</default>
+                    <label>Water Safety Instructor</label>
+                </value>
+                <value>
+                    <fullName>Water Safety Outreach</fullName>
+                    <default>false</default>
+                    <label>Water Safety Outreach</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Product_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Description</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Race__c</fullName>
+        <externalId>false</externalId>
+        <label>Race</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>White</fullName>
+                    <default>false</default>
+                    <label>White</label>
+                </value>
+                <value>
+                    <fullName>Black or African American</fullName>
+                    <default>false</default>
+                    <label>Black or African American</label>
+                </value>
+                <value>
+                    <fullName>American Indian or Alaska Native</fullName>
+                    <default>false</default>
+                    <label>American Indian or Alaska Native</label>
+                </value>
+                <value>
+                    <fullName>Asian</fullName>
+                    <default>false</default>
+                    <label>Asian</label>
+                </value>
+                <value>
+                    <fullName>Native Hawaiian or Other Pacific Islander</fullName>
+                    <default>false</default>
+                    <label>Native Hawaiian or Other Pacific Islander</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ReportsToId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Role__c</fullName>
+        <externalId>false</externalId>
+        <label>Role</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Head of Household</fullName>
+                    <default>false</default>
+                    <label>Head of Household</label>
+                </value>
+                <value>
+                    <fullName>Resident of Household</fullName>
+                    <default>false</default>
+                    <label>Resident of Household</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>SABA_Internal_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>SABA Internal ID</label>
+        <length>32</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>SFMC_invalid__c</fullName>
+        <description>To be used to exclude contacts from MC connector</description>
+        <externalId>false</externalId>
+        <formula>IF(CONTAINS(FirstName, &quot;Ghost&quot;), true,  
+IF(CONTAINS(FirstName, &quot;ghost&quot;), true,  
+IF(CONTAINS(LastName, &quot;Ghost&quot;), true,
+IF(CONTAINS(LastName, &quot;ghost&quot;), true,
+IF(CONTAINS(Account.Name, &quot;bucket&quot;), true,
+IF(CONTAINS(Account.Name, &quot;Bucket&quot;), true, false))))))</formula>
+        <label>SFMC invalid</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Saba_Person_Id__c</fullName>
+        <description>This field captures the individuals Person ID from the learning center.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field captures the individuals Person ID from the learning center.</inlineHelpText>
+        <label>Learning Center ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Source_System__c</fullName>
+        <description>Source System field used for Data Migration.</description>
+        <externalId>false</externalId>
+        <label>Source System</label>
+        <length>150</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>State_Format_field__c</fullName>
+        <externalId>false</externalId>
+        <formula>Case(MailingState, 
+&quot;AL&quot;,&quot;1&quot;, 
+&quot;FL&quot;,&quot;1&quot;, 
+&quot;GA&quot;,&quot;1&quot;, 
+&quot;LA&quot;,&quot;1&quot;, 
+&quot;MS&quot;,&quot;1&quot;, 
+&quot;Caribbean&quot;,&quot;1&quot;, 
+&quot;PR&quot;,&quot;1&quot;, 
+&quot;SC&quot;,&quot;1&quot;, 
+&quot;NC&quot;,&quot;1&quot;, 
+&quot;VA&quot;,&quot;1&quot;, 
+&quot;WV&quot;,&quot;1&quot;, 
+&quot;MD&quot;,&quot;1&quot;, 
+&quot;DE&quot;,&quot;1&quot;, 
+&quot;PA&quot;,&quot;1&quot;, 
+&quot;DC&quot;,&quot;1&quot;, 
+&quot;MI&quot;,&quot;1&quot;, 
+&quot;IN&quot;,&quot;1&quot;, 
+&quot;OH&quot;,&quot;1&quot;, 
+&quot;KY&quot;,&quot;1&quot;, 
+&quot;TN&quot;,&quot;1&quot;, 
+&quot;NJ&quot;,&quot;1&quot;, 
+&quot;NY&quot;,&quot;1&quot;, 
+&quot;CT&quot;,&quot;1&quot;, 
+&quot;RI&quot;,&quot;1&quot;, 
+&quot;MA&quot;,&quot;1&quot;, 
+&quot;VT&quot;,&quot;1&quot;, 
+&quot;NH&quot;,&quot;1&quot;, 
+&quot;ME&quot;,&quot;1&quot;, 
+&quot;WA&quot;,&quot;1&quot;, 
+&quot;OR&quot;,&quot;1&quot;, 
+&quot;CA&quot;,&quot;1&quot;, 
+&quot;AK&quot;,&quot;1&quot;, 
+&quot;HI&quot;,&quot;1&quot;, 
+&quot;Guam&quot;,&quot;1&quot;, 
+&quot;Northern Mariana Islands&quot;,&quot;1&quot;, 
+&quot;CO&quot;,&quot;1&quot;, 
+&quot;WY&quot;,&quot;1&quot;, 
+&quot;AZ&quot;,&quot;1&quot;, 
+&quot;OK&quot;,&quot;1&quot;, 
+&quot;AR&quot;,&quot;1&quot;, 
+&quot;TX&quot;,&quot;1&quot;, 
+&quot;UT&quot;,&quot;1&quot;, 
+&quot;NV&quot;,&quot;1&quot;, 
+&quot;NM&quot;,&quot;1&quot;, 
+&quot;ID&quot;,&quot;1&quot;, 
+&quot;MT&quot;,&quot;1&quot;, 
+&quot;ND&quot;,&quot;1&quot;, 
+&quot;SD&quot;,&quot;1&quot;, 
+&quot;MN&quot;,&quot;1&quot;, 
+&quot;WI&quot;,&quot;1&quot;, 
+&quot;IL&quot;,&quot;1&quot;, 
+&quot;MO&quot;,&quot;1&quot;, 
+&quot;KS&quot;,&quot;1&quot;, 
+&quot;NE&quot;,&quot;1&quot;, 
+&quot;IA&quot;,&quot;1&quot;,
+&quot;Refused&quot;,&quot;1&quot;,
+&quot; &quot;,&quot;0&quot;, 
+&quot;0&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>State Format field</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Survey_Last_Sent__c</fullName>
+        <description>This field captures the last time a survey was sent via the close case functionality.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field captures the last time a survey was sent via the close case functionality.</inlineHelpText>
+        <label>Survey Last Sent</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Time_Zone__c</fullName>
+        <externalId>false</externalId>
+        <label>Time Zone</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Central Time Zone</fullName>
+                    <default>false</default>
+                    <label>Central Time Zone</label>
+                </value>
+                <value>
+                    <fullName>Eastern Time Zone</fullName>
+                    <default>false</default>
+                    <label>Eastern Time Zone</label>
+                </value>
+                <value>
+                    <fullName>Mountain Time Zone</fullName>
+                    <default>false</default>
+                    <label>Mountain Time Zone</label>
+                </value>
+                <value>
+                    <fullName>Pacific Time Zone</fullName>
+                    <default>false</default>
+                    <label>Pacific Time Zone</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Title</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <searchLayouts>
+        <customTabListAdditionalFields>FULL_NAME</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACCOUNT.NAME</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CONTACT.PHONE1</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Extension__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CONTACT.EMAIL</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CONTACT.ADDRESS2_CITY</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CONTACT.ADDRESS2_STATE</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CONTACT.ADDRESS2_ZIP</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CORE.USERS.ALIAS</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CONTACT.CREATED_DATE</customTabListAdditionalFields>
+        <excludedStandardButtons>AddToCampaign</excludedStandardButtons>
+        <listViewButtons>Ghost_Call</listViewButtons>
+        <lookupDialogsAdditionalFields>FULL_NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCOUNT.NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CONTACT.PHONE1</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CONTACT.EMAIL</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Contact_Type__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CONTACT.ADDRESS2_CITY</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CONTACT.ADDRESS2_STATE</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CONTACT.ADDRESS2_ZIP</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CONTACT.ADDRESS1_CITY</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CONTACT.CREATED_DATE</lookupDialogsAdditionalFields>
+        <lookupFilterFields>CONTACT.FIRST_NAME</lookupFilterFields>
+        <lookupFilterFields>CONTACT.LAST_NAME</lookupFilterFields>
+        <lookupFilterFields>ACCOUNT.NAME</lookupFilterFields>
+        <lookupFilterFields>CONTACT.PHONE1</lookupFilterFields>
+        <lookupFilterFields>CONTACT.ADDRESS2_CITY</lookupFilterFields>
+        <lookupFilterFields>CONTACT.ADDRESS2_STATE</lookupFilterFields>
+        <lookupPhoneDialogsAdditionalFields>FULL_NAME</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCOUNT.NAME</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CONTACT.PHONE1</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CONTACT.EMAIL</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CONTACT.ADDRESS2_CITY</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CONTACT.ADDRESS2_STATE</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CONTACT.ADDRESS2_ZIP</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CONTACT.ADDRESS1_CITY</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CORE.USERS.ALIAS</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CONTACT.CREATED_DATE</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>CONTACT.FIRST_NAME</searchFilterFields>
+        <searchFilterFields>CONTACT.LAST_NAME</searchFilterFields>
+        <searchFilterFields>ACCOUNT.NAME</searchFilterFields>
+        <searchFilterFields>CONTACT.PHONE1</searchFilterFields>
+        <searchFilterFields>CONTACT.EMAIL</searchFilterFields>
+        <searchFilterFields>CONTACT.ADDRESS2_CITY</searchFilterFields>
+        <searchFilterFields>CONTACT.ADDRESS2_ZIP</searchFilterFields>
+        <searchFilterFields>CONTACT.ADDRESS2_STATE</searchFilterFields>
+        <searchFilterFields>CONTACT.ADDRESS1_CITY</searchFilterFields>
+        <searchFilterFields>CONTACT.ADDRESS1_ZIP</searchFilterFields>
+        <searchResultsAdditionalFields>FULL_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACCOUNT.NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CONTACT.PHONE1</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CONTACT.EMAIL</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Contact_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CONTACT.ADDRESS2_CITY</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CONTACT.ADDRESS2_STATE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CONTACT.ADDRESS2_ZIP</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CONTACT.ADDRESS1_CITY</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CONTACT.CREATED_DATE</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Assistant_Phone_Number_with_10_Digits</fullName>
+        <active>true</active>
+        <description>Validates that the Phone number is in (999) 999-9999 format. This works by using the REGEX function to check that the number has ten digits in the (999) 999-9999 format.</description>
+        <errorConditionFormula>IF( OR(ISBLANK(AssistantPhone),  $Setup.Validation_Rules__c.Bypass_Rules__c), false, NOT(REGEX(AssistantPhone, &quot;\\D*?(\\d\\D*?){10}&quot;)))</errorConditionFormula>
+        <errorDisplayField>AssistantPhone</errorDisplayField>
+        <errorMessage>US phone numbers should be in this format: (999) 999-9999</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Birth_Date_cannot_be_future_date</fullName>
+        <active>true</active>
+        <description>Birth Date cannot be future date</description>
+        <errorConditionFormula>AND(Birthdate &gt;  DATEVALUE( LastModifiedDate),  $Setup.Validation_Rules__c.Bypass_Rules__c = false)</errorConditionFormula>
+        <errorDisplayField>Birthdate</errorDisplayField>
+        <errorMessage>Birth Date cannot be greater than current date</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Bucket_Settings_Must_Be_Defined</fullName>
+        <active>true</active>
+        <errorConditionFormula>LEN($Setup.Bucket_Account_Settings__c.Bucket_Account_Owner_ID__c)&lt;15 ||  !BEGINS($Setup.Bucket_Account_Settings__c.Bucket_Account_Owner_ID__c, &apos;005&apos;) || LEN( $Setup.Bucket_Account_Settings__c.Bucket_Account_RecordTypeID__c )&lt;15 ||  !BEGINS($Setup.Bucket_Account_Settings__c.Bucket_Account_RecordTypeID__c, &apos;012&apos;) ||   $Setup.Bucket_Account_Settings__c.Maximum_Size_of_Bucket__c&lt;200 ||  ISBLANK($Setup.Bucket_Account_Settings__c.Default_Bucket_Name__c)</errorConditionFormula>
+        <errorMessage>Please contact your administrator. Settings for business to consumer contacts need to be defined in Salesforce.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Fax_Number_with_10_Digits</fullName>
+        <active>true</active>
+        <description>Fax Number with 10 Digits</description>
+        <errorConditionFormula>IF( OR(ISBLANK(Fax),  $Setup.Validation_Rules__c.Bypass_Rules__c)
+
+, false, NOT(REGEX(Fax, &quot;\\D*?(\\d\\D*?){10}&quot;)))</errorConditionFormula>
+        <errorDisplayField>Fax</errorDisplayField>
+        <errorMessage>US Fax numbers should be in this format: (999) 999-9999</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Format_Mailing_State</fullName>
+        <active>false</active>
+        <description>This validation rule will evaluate the user&apos;s profile and require the mailing state to be 2 capital letters.</description>
+        <errorConditionFormula>/*TSC Agent User = 00ed0000000Idqs */
+
+AND ($User.ProfileId=&quot;00ed0000000Idqs&quot;, State_Format_field__c = &quot;0&quot;,  $Setup.Validation_Rules__c.Bypass_Rules__c = false)</errorConditionFormula>
+        <errorDisplayField>MailingState</errorDisplayField>
+        <errorMessage>As a TSC agent, please fill in the Mailing State with a valid US state abbreviation or one of the following: Caribbean, Guam, or Northern Mariana Islands. If you do not know the Mailing State, enter &quot;Refused&quot;. Capitalizations are Required.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Global_Ghost_Contact</fullName>
+        <active>true</active>
+        <description>Users can not update information on Contact record 003d000001giA46 unless Validation Rule Custom settings is enabled.</description>
+        <errorConditionFormula>AND( 
+Id = &quot;003d000001giA46&quot;, 
+$Setup.Validation_Rules__c.Bypass_Rules__c = False, 
+OR( 
+ISCHANGED(Email), 
+ISCHANGED(Phone), 
+ISCHANGED(MobilePhone), 
+ISCHANGED(Extension__c), 
+ISCHANGED(OtherPhone), 
+ISCHANGED(FirstName), 
+ISCHANGED(LastName), 
+ISCHANGED(MailingCity), 
+ISCHANGED(MailingCountry), 
+ISCHANGED( MailingState ), 
+ISCHANGED( MailingStreet ), 
+ISCHANGED( MailingPostalCode ), 
+ISCHANGED( OtherCity ), 
+ISCHANGED( OtherCountry ), 
+ISCHANGED( OtherState ), 
+ISCHANGED( OtherStreet ), 
+ISCHANGED( OtherPostalCode ), 
+ISCHANGED(Description)))</errorConditionFormula>
+        <errorMessage>You are not allowed to edit this contact, because it is part of the Ghost Call Contact automation process. Please contact your Salesforce administrator if you have any questions.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Home_Phone_Number_with_10_Digits</fullName>
+        <active>true</active>
+        <description>Validates that the Home Phone number is in (999) 999-9999 format.</description>
+        <errorConditionFormula>IF( OR(ISBLANK(HomePhone),  $Setup.Validation_Rules__c.Bypass_Rules__c), false, NOT(REGEX(HomePhone, &quot;\\D*?(\\d\\D*?){10}&quot;)))</errorConditionFormula>
+        <errorDisplayField>HomePhone</errorDisplayField>
+        <errorMessage>US phone numbers should be in this format: (999) 999-9999</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Mailing_Address_Fields_required</fullName>
+        <active>false</active>
+        <description>Validates that the contact Mailing Street, Mailing City, and Mailing Country
+are provided</description>
+        <errorConditionFormula>OR(
+LEN( MailingStreet ) = 0,
+LEN( MailingCity ) = 0,
+LEN( MailingCountry ) = 0
+)</errorConditionFormula>
+        <errorMessage>Mailing Street, City, and Country are required.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Mailing_Address_Fields_required_no_cntry</fullName>
+        <active>true</active>
+        <description>Validates that the contact Mailing Street and Mailing City,are provided</description>
+        <errorConditionFormula>AND(
+   OR($Profile.Id = &quot;00ed0000000IUFH&quot;),
+   OR(
+      LEN( MailingStreet ) = 0,
+      LEN( MailingCity ) = 0
+      ),
+$Setup.Validation_Rules__c.Bypass_Rules__c = false
+    )
+ 
+
+/*ARC Sales User = 00ed0000000IUFH */
+/*Bluewolf has added the ARC Sales Profile as the only profile where the validation rule is relative */</errorConditionFormula>
+        <errorMessage>Mailing Street and City are required.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Mailing_Street_is_Required</fullName>
+        <active>true</active>
+        <description>Validates that the contact Mailing Street is provided.</description>
+        <errorConditionFormula>AND(
+OR($Profile.Id = &quot;00ed0000000IUFH&quot;),
+OR(LEN( MailingState )= 0),
+$Setup.Validation_Rules__c.Bypass_Rules__c = false
+)
+
+/*ARC Sales User = 00ed0000000IUFH */
+/*Bluewolf has added the ARC Sales Profile as the only profile where the validation rule is relative */</errorConditionFormula>
+        <errorDisplayField>MailingStreet</errorDisplayField>
+        <errorMessage>Mailing Street is required.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Mailing_ZIP_Code</fullName>
+        <active>false</active>
+        <description>Validates that the contact Mailing Zip/Postal Code is in 99999 or 99999-9999
+format if Mailing Country is USA or blank.</description>
+        <errorConditionFormula>AND(
+OR(MailingCountry = &quot;USA&quot;, LEN(MailingCountry) = 0),
+OR(
+AND(LEN(MailingPostalCode) &lt;&gt;5, LEN(MailingPostalCode) &lt;&gt;
+10),
+NOT(CONTAINS(&quot;0123456789&quot;, LEFT( MailingPostalCode, 1))),
+NOT(CONTAINS(&quot;0123456789&quot;, MID( MailingPostalCode , 2, 1))),
+NOT(CONTAINS(&quot;0123456789&quot;, MID( MailingPostalCode , 3, 1))),
+NOT(CONTAINS(&quot;0123456789&quot;, MID( MailingPostalCode , 4, 1))),
+NOT(CONTAINS(&quot;0123456789&quot;, MID( MailingPostalCode , 5, 1))),
+AND(
+LEN(MailingPostalCode) = 10,
+OR(
+MID( MailingPostalCode , 6, 1) &lt;&gt; &quot;-&quot;,
+NOT(CONTAINS(&quot;0123456789&quot;, MID( MailingPostalCode , 7, 1))),
+NOT(CONTAINS(&quot;0123456789&quot;, MID( MailingPostalCode , 8, 1))),
+NOT(CONTAINS(&quot;0123456789&quot;, MID( MailingPostalCode , 9, 1))),
+NOT(CONTAINS(&quot;0123456789&quot;, MID( MailingPostalCode , 10, 1)))
+)
+)
+),$Setup.Validation_Rules__c.Bypass_Rules__c = false
+)</errorConditionFormula>
+        <errorDisplayField>MailingPostalCode</errorDisplayField>
+        <errorMessage>Zip code must be in 99999 or 99999-9999 format.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RCS_Billing_And_Shipping_Only_For_RCSPO</fullName>
+        <active>false</active>
+        <description>RCS PO Account can only have contacts with contact Type &apos;RCS Billing&apos; and &apos;RCS Shipping&apos;.</description>
+        <errorConditionFormula>AND(!OR(INCLUDES(Contact_Type__c, &quot;RCS Billing&quot;), INCLUDES(Contact_Type__c, &quot;RCS Shipping&quot;)), 
+	Account.OwnerId = &apos;0050V000006kiTY&apos;)</errorConditionFormula>
+        <errorMessage>Contact Type for RCS Account should be RCS Billing or RCS Shipping.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Restrict_RCS_Billing_for_Other_Account</fullName>
+        <active>false</active>
+        <description>Restrict creating RCS Billing Contact for Accounts other than RCSPO.</description>
+        <errorConditionFormula>AND(
+Account.OwnerId &lt;&gt; &apos;0050V000006kiTY&apos;,
+OR(INCLUDES(Contact_Type__c, &quot;RCS Billing&quot;), INCLUDES(Contact_Type__c, &quot;RCS Shipping&quot;))
+)</errorConditionFormula>
+        <errorMessage>You cannot have RCS Billing contact type with Training Account.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Restrict_change_in_CommunityUserAccount</fullName>
+        <active>false</active>
+        <description>This validation rule restricts change in Account Name when &apos;SABA Internal ID&apos; is present.</description>
+        <errorConditionFormula>AND(!ISBLANK(SABA_Internal_ID__c), ISCHANGED(AccountId), NOT($Permission.Contact_Account_change_for_community_user))</errorConditionFormula>
+        <errorMessage>You cannot change account for this contact record.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>US_Mobile_Number_with_10_Digits</fullName>
+        <active>true</active>
+        <description>Validates that the Mobile number is in (999) 999-9999 format</description>
+        <errorConditionFormula>IF( OR(ISBLANK(MobilePhone), $Setup.Validation_Rules__c.Bypass_Rules__c), false, NOT(REGEX(MobilePhone , &quot;\\D*?(\\d\\D*?){10}&quot;)))</errorConditionFormula>
+        <errorDisplayField>MobilePhone</errorDisplayField>
+        <errorMessage>US Mobile numbers should be in this format: (999) 999-9999</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>US_Other_Phone_Number_with_10_Digits</fullName>
+        <active>true</active>
+        <description>Validates that the Other Phone number is in (999) 999-9999 format</description>
+        <errorConditionFormula>IF( OR(ISBLANK(OtherPhone), $Setup.Validation_Rules__c.Bypass_Rules__c), false, NOT(REGEX(OtherPhone, &quot;\\D*?(\\d\\D*?){10}&quot;)))</errorConditionFormula>
+        <errorDisplayField>OtherPhone</errorDisplayField>
+        <errorMessage>US phone numbers should be in this format: (999) 999-9999</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>US_Phone_Number_with_10_Digits</fullName>
+        <active>true</active>
+        <description>Validates that the Phone number is in (999) 999-9999 format. This works by using the REGEX function to check that the number has ten digits in the (999) 999-9999 format.</description>
+        <errorConditionFormula>AND(
+$User.ProfileId &lt;&gt;&quot;00ed0000000uehO&quot;,
+IF( ISBLANK(Phone), false, NOT(REGEX(Phone, &quot;\\D*?(\\d\\D*?){10}&quot;))))</errorConditionFormula>
+        <errorDisplayField>Phone</errorDisplayField>
+        <errorMessage>US phone numbers should be in this format: (999) 999-9999</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Validation_Rule_on_RCS_Billing_contact</fullName>
+        <active>true</active>
+        <description>Restricting in creating RCS Billing Contact for particular User.</description>
+        <errorConditionFormula>AND( $User.Id != &quot;005d0000001WLvx&quot;, /*Jane McInerney*/ 
+$User.Id != &quot;0050V000006jKNy&quot;, /*Nyle Grimes*/ 
+$User.Id != &quot;005d0000001Wyup&quot;, /*Kara Desmarais*/ 
+$User.Id != &quot;005d0000001Vmik&quot;, /*Wendy Firdman*/ 
+$User.Id != &quot;005d0000000Twtn&quot;, /*Joseph Kensil*/
+$User.Id != &quot;005d0000002mPMz&quot;, /*Stephen Lynch*/
+$User.Id != &quot;005d0000001VvXF&quot;, /*James Thornberg*/
+$User.Id != &quot;005d0000000Tvsu&quot;, /*LaJuanya Jones*/ 
+$User.Id != &quot;005d0000001VstM&quot;, /*Rose Albert*/ 
+$Profile.Name != &quot;System Administrator&quot;, /*System Admin*/ 
+OR( 
+AND(ISNEW(), OR(INCLUDES(Contact_Type__c, &quot;RCS Billing&quot;), INCLUDES(Contact_Type__c, &quot;RCS Shipping&quot;))), /*Restriction in RCS Billing creating*/ 
+AND(!ISNEW(), OR(INCLUDES(Contact_Type__c, &quot;RCS Billing&quot;), INCLUDES(Contact_Type__c, &quot;RCS Shipping&quot;))), /*Resctricting RCS Billing contact Edit*/ 
+AND(!ISNEW(), OR(PRIORVALUE(Contact_Type__c) = &quot;RCS Billing&quot;, PRIORVALUE(Contact_Type__c) = &quot;RCS Shipping&quot;)))/*Change in RCS Billing to other Contact*/ 
+)</errorConditionFormula>
+        <errorMessage>You do not have permission to create/edit RCS Billing Contact.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>BLND_FormFactoryContactLink</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>550</height>
+        <linkType>url</linkType>
+        <masterLabel>FormFactory Contact Link</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>https://www.dreamfactory.net/sforce/formfactory/formfactory.html? 
+sforce_session_id={!API.Session_ID}&amp; 
+sforce_server_url={!API.Partner_Server_URL_120}&amp; 
+sforce_user_name={!User.Username}&amp; 
+sforce_full_name={!User.Name}&amp; 
+sforce_user_id={!User.Id}&amp; 
+custom_link_name=FormFactory Form Name&amp; 
+mycontact={!Contact.Id}&amp; 
+myuser={!User.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Ghost_Call</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Ghost Call</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>https://arc-phss.my.salesforce.com/003d000001giA46</url>
+    </webLinks>
+    <webLinks>
+        <fullName>GoogleMaps</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Google Maps</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>http://maps.google.com/maps?f=q&amp;hl=en&amp;q={!Contact_MailingStreet}+{!Contact_MailingCity}+{!Contact_MailingState}&amp;om=1</url>
+    </webLinks>
+    <webLinks>
+        <fullName>GoogleSearch</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Google Search</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>http://www.google.com/search?q={!Contact_FirstName} {!Contact_LastName}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>MA_MapIt_a0Rd00000006eWhEAI</fullName>
+        <availability>online</availability>
+        <description>Maps this Contact with selected tooltips</description>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Map It</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/apex/sma__mapanything?recordId={!Contact.Id}&amp;baseObjectId=a0Rd00000006eWhEAI&amp;tooltipField=Name&amp;tooltipField2=Title&amp;tooltipField3=Phone&amp;tooltipField4=Email&amp;color=%2366FF00</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Related_Accounts</fullName>
+        <availability>online</availability>
+        <description>This custom link pulls in the contact ID to filter on accounts with contact roles and the contact in the contact role is the contact ID</description>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Related Accounts</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/00Od0000000IK3R?pv0={!Contact.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>SendGmail</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Send Gmail</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>https://mail.google.com/mail?view=cm&amp;tf=0&amp;to={!Contact_Email}&lt;{!Contact_LastName}, {!Contact_FirstName}&gt;&amp;tf=1</url>
+    </webLinks>
+    <webLinks>
+        <fullName>YahooMaps</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>true</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>true</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Yahoo! Maps</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>true</showsLocation>
+        <showsStatus>true</showsStatus>
+        <url>http://maps.yahoo.com/py/maps.py?cn={!Contact_MailingCountry}&amp;csz={!Contact_MailingCity}+{!Contact_MailingState}+{!Contact_MailingPostalCode}+&amp;addr={!Contact_MailingAddress}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>YahooWeather</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Yahoo! Weather</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>http://weather.yahoo.com/search/weather2?p={!Contact_MailingPostalCode}</url>
+    </webLinks>
+</CustomObject>

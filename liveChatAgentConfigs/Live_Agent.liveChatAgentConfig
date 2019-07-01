@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LiveChatAgentConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <profiles>
+            <profile>Admin</profile>
+            <profile>Standard</profile>
+            <profile>ReadOnly</profile>
+            <profile>SolutionManager</profile>
+            <profile>MarketingProfile</profile>
+            <profile>ContractManager</profile>
+            <profile>StandardAul</profile>
+            <profile>API - Read Only - View All Data</profile>
+            <profile>API ONLY</profile>
+            <profile>ARC %2F TSC Agent</profile>
+            <profile>ARC %2F TSC Manager</profile>
+            <profile>ARC BGST Sales Admin</profile>
+            <profile>ARC BGST Sales User</profile>
+            <profile>ARC Business User Profile</profile>
+            <profile>ARC Invoice Task Force</profile>
+            <profile>ARC NAT Team</profile>
+            <profile>ARC SCC User</profile>
+            <profile>ARC Sales User</profile>
+            <profile>ARC Service Delivery</profile>
+            <profile>Knowledge Only User</profile>
+            <profile>Read Only - Vendors</profile>
+            <profile>Read Only - View All Data</profile>
+            <profile>Sales wo SSO</profile>
+            <profile>System Administrator %2B Deploy</profile>
+        </profiles>
+    </assignments>
+    <autoGreeting>Hello, {!LiveAgent_VisitorName}. Thank you for contacting The American Red Cross. Our sessions are recorded and/or monitored for quality and training purposes. My name is {!$User.CommunityNickname}. How may I help you today?</autoGreeting>
+    <capacity>3</capacity>
+    <customAgentName>ARC Live Agent</customAgentName>
+    <enableAgentFileTransfer>false</enableAgentFileTransfer>
+    <enableAgentSneakPeek>false</enableAgentSneakPeek>
+    <enableAssistanceFlag>false</enableAssistanceFlag>
+    <enableAutoAwayOnDecline>false</enableAutoAwayOnDecline>
+    <enableAutoAwayOnPushTimeout>false</enableAutoAwayOnPushTimeout>
+    <enableChatConferencing>false</enableChatConferencing>
+    <enableChatMonitoring>true</enableChatMonitoring>
+    <enableChatTransferToAgent>true</enableChatTransferToAgent>
+    <enableChatTransferToButton>true</enableChatTransferToButton>
+    <enableChatTransferToSkill>true</enableChatTransferToSkill>
+    <enableLogoutSound>true</enableLogoutSound>
+    <enableNotifications>true</enableNotifications>
+    <enableRequestSound>true</enableRequestSound>
+    <enableSneakPeek>true</enableSneakPeek>
+    <enableVisitorBlocking>false</enableVisitorBlocking>
+    <enableWhisperMessage>true</enableWhisperMessage>
+    <label>Live Agent</label>
+    <supervisorSkills>
+        <skill>TSC_Chat_Agent_Skill</skill>
+        <skill>TSC_Community</skill>
+    </supervisorSkills>
+    <transferableButtons>
+        <button>ARC_Standard_Chat_Button</button>
+        <button>Community_Chat</button>
+        <button>LiveAgent</button>
+    </transferableButtons>
+    <transferableSkills>
+        <skill>TSC_Chat_Agent_Skill</skill>
+        <skill>TSC_Community</skill>
+    </transferableSkills>
+</LiveChatAgentConfig>
