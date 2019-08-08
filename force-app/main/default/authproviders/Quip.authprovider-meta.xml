@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuthProvider xmlns="http://soap.sforce.com/2006/04/metadata">
+    <authorizeUrl>https://platform.quip.com/1/oauth/login</authorizeUrl>
+    <consumerKey>HDEAcAy2Guq-a63dffe68741444e83b9f7385a60341e</consumerKey>
+    <consumerSecret>dQxNLMA8+OkcCo2XzKIukhyZ80aZ8zoF0v6EXuqEo+dwQRj3Ygtq1w==</consumerSecret>
+    <friendlyName>Quip</friendlyName>
+    <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
+    <providerType>OpenIdConnect</providerType>
+    <sendAccessTokenInHeader>true</sendAccessTokenInHeader>
+    <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>
+    <tokenUrl>https://platform.quip.com/1/oauth/access_token</tokenUrl>
+</AuthProvider>

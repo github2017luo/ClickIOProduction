@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tool_BGST_Physio_Price_List</fullName>
+    <active>true</active>
+    <label>Tool | BGST | Physio Price List</label>
+    <picklistValues>
+        <picklist>Document_Origin__c</picklist>
+        <values>
+            <fullName>Facebook</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IConnect</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instructor Corner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TSC</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

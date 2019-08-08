@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <choices>
+        <name>c_003a86cb_f3ce_412b_9766_9747e88722c2</name>
+        <choiceText>Poor</choiceText>
+        <dataType>Number</dataType>
+        <value>
+            <numberValue>1.0</numberValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_1a08daa8_22ca_4804_aef1_e9792f82559d</name>
+        <choiceText>To look for availability of Red Cross products</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>To look for availability of Red Cross products</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_1e5eeba3_852d_4fcc_8407_68459cfa40e4</name>
+        <choiceText>2</choiceText>
+        <dataType>Number</dataType>
+        <value>
+            <numberValue>2.0</numberValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_38d27ccc_1ec4_44c0_a51a_067ed17560d7</name>
+        <choiceText>Make a purchase from the Red Cross Store website</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Make a purchase from the Red Cross Store website</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_3e930770_0ddc_4ba0_9328_8697ad9bcff3</name>
+        <choiceText>To research Red Cross products</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>To research Red Cross products</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_3eb26911_4f15_441d_a318_7656657c5fd6</name>
+        <choiceText>Ask a question about products on the Red Cross Store</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Ask a question about products on the Red Cross Store</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_4de00f43_03ce_43ed_980b_fd0139114b65</name>
+        <choiceText>No</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>No</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_4f6bb3e3_b4a8_4df8_ba91_30eb3cfcffb5</name>
+        <choiceText>Yes</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Yes</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_56af53c6_bd6e_4091_aae8_3b41e1872107</name>
+        <choiceText>4</choiceText>
+        <dataType>Number</dataType>
+        <value>
+            <numberValue>4.0</numberValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_5ae13f7c_c0d9_4c44_b338_da3463cc0a8f</name>
+        <choiceText>Report a problem with an order</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Report a problem with an order</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_6538f317_e93a_4ac6_841f_744c94578ade</name>
+        <choiceText>To purchase Red Cross products</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>To purchase Red Cross products</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_72158296_6c52_4527_a681_6cec04e5d5c3</name>
+        <choiceText>4</choiceText>
+        <dataType>Number</dataType>
+        <value>
+            <numberValue>4.0</numberValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_7260c27d_241b_49f2_9c38_e5652d864405</name>
+        <choiceText>Promotional code did not work on website</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Promotional code did not work on website</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_833bdb01_3afe_4fcb_8d9b_3e2361828cf5</name>
+        <choiceText>4</choiceText>
+        <dataType>Number</dataType>
+        <value>
+            <numberValue>4.0</numberValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_8b0e55e0_d122_400b_8cc3_4c2454add473</name>
+        <choiceText>Needed help finding items you wanted to buy</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Needed help finding items you wanted to buy</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_8b9531fd_c0f9_482c_bf21_3d2f8680d50a</name>
+        <choiceText>Very comfortable</choiceText>
+        <dataType>Number</dataType>
+        <value>
+            <numberValue>5.0</numberValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_9f07a4f8_2fb2_4567_b6cc_a8d892a751d2</name>
+        <choiceText>2</choiceText>
+        <dataType>Number</dataType>
+        <value>
+            <numberValue>2.0</numberValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_a762fd19_8919_4dfc_9e24_3a795a714618</name>
+        <choiceText>Very uncomfortable</choiceText>
+        <dataType>Number</dataType>
+        <value>
+            <numberValue>1.0</numberValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_ac09f7a5_3d16_4a93_ba4e_4e07cda6c272</name>
+        <choiceText>3</choiceText>
+        <dataType>Number</dataType>
+        <value>
+            <numberValue>3.0</numberValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_b71b4b13_ac87_4581_aae5_39d0b9dff76f</name>
+        <choiceText>Very hard</choiceText>
+        <dataType>Number</dataType>
+        <value>
+            <numberValue>1.0</numberValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_b846676c_8b82_4c9d_979d_5fd3dedff4c2</name>
+        <choiceText>Phone number was more accessible vs. accessing web</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Phone number was more accessible vs. accessing web</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_c88191f3_e2f6_48d9_a8a5_fde0ccaaaabd</name>
+        <choiceText>3</choiceText>
+        <dataType>Number</dataType>
+        <value>
+            <numberValue>3.0</numberValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_d063e1e7_47cc_496b_813c_a14a38d6aaff</name>
+        <choiceText>3</choiceText>
+        <dataType>Number</dataType>
+        <value>
+            <numberValue>3.0</numberValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_d7da5a96_a9aa_4aa7_a7ee_e7c429ec29e8</name>
+        <choiceText>Very easy</choiceText>
+        <dataType>Number</dataType>
+        <value>
+            <numberValue>5.0</numberValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_dcd821ab_0b12_4fe6_960e_847aa0cccc84</name>
+        <choiceText>Check status of your Red Cross Store order</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Check status of your Red Cross Store order</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_e046224f_0023_406e_a148_54cb8d183b57</name>
+        <choiceText>2</choiceText>
+        <dataType>Number</dataType>
+        <value>
+            <numberValue>2.0</numberValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_e564b52c_a766_43e6_bce5_834779de4966</name>
+        <choiceText>Excellent</choiceText>
+        <dataType>Number</dataType>
+        <value>
+            <numberValue>5.0</numberValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_f3b8f9a0_de4f_43eb_846d_aa23b0f37783</name>
+        <choiceText>To competitive shop (products &amp;amp; pricing)</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>To competitive shop (products &amp; pricing)</stringValue>
+        </value>
+    </choices>
+    <decisions>
+        <name>d_c496721f_6580_48a4_bc0b_b3ad6a3bae58</name>
+        <label>my_decision</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>p_c6183ee4_ca5d_4e35_bdb4_2c9207b90732</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Next Page</defaultConnectorLabel>
+        <rules>
+            <name>r_3b1c82b5_a664_4856_b42e_423e87f1232d</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>q_abb79c8a_cbde_44bd_b9fb_587acef032b6</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>No</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>p_e6b9ed68_c72e_4039_a5cc_c472bec0d79a</targetReference>
+            </connector>
+            <label>my_rule</label>
+        </rules>
+    </decisions>
+    <interviewLabel>RSG Customer Satisfaction Survey with Web Experience</interviewLabel>
+    <label>RSG Customer Satisfaction Survey with Web Experience</label>
+    <processMetadataValues>
+        <name>overrideActiveVersion</name>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </processMetadataValues>
+    <processType>Survey</processType>
+    <screens>
+        <name>p_7249b73f_f19f_4600_b691_d8903247d479</name>
+        <label>Page 5</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>p_a0b272e9_9274_4825_b27b_0625e523dd0b</targetReference>
+        </connector>
+        <fields>
+            <name>q_dbe40e50_fce7_4bbc_a3c0_ffb4265d7260</name>
+            <choiceReferences>c_b71b4b13_ac87_4581_aae5_39d0b9dff76f</choiceReferences>
+            <choiceReferences>c_e046224f_0023_406e_a148_54cb8d183b57</choiceReferences>
+            <choiceReferences>c_d063e1e7_47cc_496b_813c_a14a38d6aaff</choiceReferences>
+            <choiceReferences>c_833bdb01_3afe_4fcb_8d9b_3e2361828cf5</choiceReferences>
+            <choiceReferences>c_d7da5a96_a9aa_4aa7_a7ee_e7c429ec29e8</choiceReferences>
+            <dataType>Number</dataType>
+            <fieldText>&lt;p&gt;&lt;b&gt;Rate how easy it is to understand the information that is on the Red Cross website.&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>true</isRequired>
+            <scale>0</scale>
+        </fields>
+        <pausedText>Survey paused. To pick up where you left off, refresh this page or click the link in your Survey Invitation.</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>p_7e28839e_b450_4d39_9c8d_287bcbd7556b</name>
+        <label>Page 1</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>p_f238780c_4752_4d21_b768_1ea8f4640134</targetReference>
+        </connector>
+        <fields>
+            <name>q_6d7c8c5c_5ac8_49af_8286_67c0ba35e435</name>
+            <choiceReferences>c_38d27ccc_1ec4_44c0_a51a_067ed17560d7</choiceReferences>
+            <choiceReferences>c_3eb26911_4f15_441d_a318_7656657c5fd6</choiceReferences>
+            <choiceReferences>c_5ae13f7c_c0d9_4c44_b338_da3463cc0a8f</choiceReferences>
+            <choiceReferences>c_dcd821ab_0b12_4fe6_960e_847aa0cccc84</choiceReferences>
+            <choiceReferences>c_b846676c_8b82_4c9d_979d_5fd3dedff4c2</choiceReferences>
+            <choiceReferences>c_8b0e55e0_d122_400b_8cc3_4c2454add473</choiceReferences>
+            <choiceReferences>c_7260c27d_241b_49f2_9c38_e5652d864405</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>&lt;p&gt;&lt;b&gt;Why did you call our customer service center?&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <pausedText>Survey paused. To pick up where you left off, refresh this page or click the link in your Survey Invitation.</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>p_a0b272e9_9274_4825_b27b_0625e523dd0b</name>
+        <label>Page 6</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>p_e6b9ed68_c72e_4039_a5cc_c472bec0d79a</targetReference>
+        </connector>
+        <fields>
+            <name>q_06ea3a03_b67c_4b7a_a8cc_affc9ec89d83</name>
+            <dataType>String</dataType>
+            <fieldText>&lt;p&gt;&lt;b&gt;If you could improve one thing in the Red Cross&#39;s online store, what would it be?  &lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <pausedText>Survey paused. To pick up where you left off, refresh this page or click the link in your Survey Invitation.</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>p_c6183ee4_ca5d_4e35_bdb4_2c9207b90732</name>
+        <label>Page 4</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>p_7249b73f_f19f_4600_b691_d8903247d479</targetReference>
+        </connector>
+        <fields>
+            <name>q_199a3720_335a_490e_b293_b7104a747157</name>
+            <choiceReferences>c_6538f317_e93a_4ac6_841f_744c94578ade</choiceReferences>
+            <choiceReferences>c_3e930770_0ddc_4ba0_9328_8697ad9bcff3</choiceReferences>
+            <choiceReferences>c_f3b8f9a0_de4f_43eb_846d_aa23b0f37783</choiceReferences>
+            <choiceReferences>c_1a08daa8_22ca_4804_aef1_e9792f82559d</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>&lt;p&gt;&lt;b&gt;Why did you access the Red Cross Store website?&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <pausedText>Survey paused. To pick up where you left off, refresh this page or click the link in your Survey Invitation.</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>p_e6b9ed68_c72e_4039_a5cc_c472bec0d79a</name>
+        <label>Page 7</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>q_42393c9d_b888_4126_9cbf_2300856022f6</name>
+            <choiceReferences>c_a762fd19_8919_4dfc_9e24_3a795a714618</choiceReferences>
+            <choiceReferences>c_1e5eeba3_852d_4fcc_8407_68459cfa40e4</choiceReferences>
+            <choiceReferences>c_ac09f7a5_3d16_4a93_ba4e_4e07cda6c272</choiceReferences>
+            <choiceReferences>c_56af53c6_bd6e_4091_aae8_3b41e1872107</choiceReferences>
+            <choiceReferences>c_8b9531fd_c0f9_482c_bf21_3d2f8680d50a</choiceReferences>
+            <dataType>Number</dataType>
+            <fieldText>&lt;p&gt;&lt;b&gt;Rate how comfortable you are with buying products online.&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>true</isRequired>
+            <scale>0</scale>
+        </fields>
+        <pausedText>Survey paused. To pick up where you left off, refresh this page or click the link in your Survey Invitation.</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>p_f238780c_4752_4d21_b768_1ea8f4640134</name>
+        <label>Page 2</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>p_fbb4daaa_550f_4265_9702_c4b9f2f7a6fa</targetReference>
+        </connector>
+        <fields>
+            <name>q_ffbf6812_6150_45c9_8055_d20da53e0a91</name>
+            <choiceReferences>c_003a86cb_f3ce_412b_9766_9747e88722c2</choiceReferences>
+            <choiceReferences>c_9f07a4f8_2fb2_4567_b6cc_a8d892a751d2</choiceReferences>
+            <choiceReferences>c_c88191f3_e2f6_48d9_a8a5_fde0ccaaaabd</choiceReferences>
+            <choiceReferences>c_72158296_6c52_4527_a681_6cec04e5d5c3</choiceReferences>
+            <choiceReferences>c_e564b52c_a766_43e6_bce5_834779de4966</choiceReferences>
+            <dataType>Number</dataType>
+            <fieldText>&lt;p&gt;&lt;b&gt;How would you rate your overall experience (or interaction) with the Red Cross&#39;s customer service agent?&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>true</isRequired>
+            <scale>0</scale>
+        </fields>
+        <pausedText>Survey paused. To pick up where you left off, refresh this page or click the link in your Survey Invitation.</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>p_fbb4daaa_550f_4265_9702_c4b9f2f7a6fa</name>
+        <label>Page 3</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>d_c496721f_6580_48a4_bc0b_b3ad6a3bae58</targetReference>
+        </connector>
+        <fields>
+            <name>q_abb79c8a_cbde_44bd_b9fb_587acef032b6</name>
+            <choiceReferences>c_4f6bb3e3_b4a8_4df8_ba91_30eb3cfcffb5</choiceReferences>
+            <choiceReferences>c_4de00f43_03ce_43ed_980b_fd0139114b65</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>&lt;p&gt;&lt;b&gt;Have you accessed the Red Cross Store website (www.RedCross.org/Store)?&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <pausedText>Survey paused. To pick up where you left off, refresh this page or click the link in your Survey Invitation.</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>welcome_page</name>
+        <label>Welcome Page</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>p_7e28839e_b450_4d39_9c8d_287bcbd7556b</targetReference>
+        </connector>
+        <fields>
+            <name>welcome_question</name>
+            <extensionName>survey:runtimeWelcome</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>{!welcome_question_lref_tt}</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>welcome_page</startElementReference>
+    <status>Active</status>
+    <textTemplates>
+        <name>thankYouDescriptionTextTemplate</name>
+        <text/>
+    </textTemplates>
+    <textTemplates>
+        <name>thankYouLabelTextTemplate</name>
+        <text>&lt;p&gt;&lt;b&gt;Thank you for taking the time to fill out the survey.  Your feedback is invaluable and will help us improve your experience with our Red Cross Store website.&lt;/b&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>welcome_question_lref_tt</name>
+        <text>&lt;p&gt;&lt;b&gt;We appreciate your filling out this survey. It will only take a few minutes of your time. Your feedback will help us improve your future visits to the Red Cross Store website.&lt;/b&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <variables>
+        <name>guestUserLang</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>invitationId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue/>
+        </value>
+    </variables>
+    <variables>
+        <name>previewMode</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>thankYouDescription</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue>{!thankYouDescriptionTextTemplate}</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>thankYouLabel</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue>{!thankYouLabelTextTemplate}</stringValue>
+        </value>
+    </variables>
+</Flow>

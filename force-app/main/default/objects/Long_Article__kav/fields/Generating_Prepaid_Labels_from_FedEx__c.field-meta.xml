@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Generating_Prepaid_Labels_from_FedEx__c</fullName>
+    <externalId>false</externalId>
+    <label>Generating Prepaid Labels from FedEx</label>
+    <length>3000</length>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

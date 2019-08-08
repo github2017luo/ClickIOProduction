@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SFMC_invalid__c</fullName>
+    <description>To be used to exclude contacts from MC connector</description>
+    <externalId>false</externalId>
+    <formula>IF(CONTAINS(FirstName, &quot;Ghost&quot;), true,  
+IF(CONTAINS(FirstName, &quot;ghost&quot;), true,  
+IF(CONTAINS(LastName, &quot;Ghost&quot;), true,
+IF(CONTAINS(LastName, &quot;ghost&quot;), true,
+IF(CONTAINS(Account.Name, &quot;bucket&quot;), true,
+IF(CONTAINS(Account.Name, &quot;Bucket&quot;), true, false))))))</formula>
+    <label>SFMC invalid</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Job_Aid_RSG_iCA_WISMO_Where_is_my_Order</fullName>
+    <active>true</active>
+    <label>Job Aid | RSG | iCA WISMO (Where is my Order?)</label>
+    <picklistValues>
+        <picklist>Document_Origin__c</picklist>
+        <values>
+            <fullName>Facebook</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IConnect</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instructor Corner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TSC</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

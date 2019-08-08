@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Current_Marketing_Codes_and_Promos__c</fullName>
+    <externalId>false</externalId>
+    <label>Current Marketing Codes and Promos</label>
+    <length>256</length>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pilot_Survey1__c</fullName>
+    <externalId>false</externalId>
+    <formula>HYPERLINK(&quot;https://americanredcross.force.com/rsg/survey/runtimeApp.app?invitationId=0Ki0V000000000Q&amp;surveyName=tiger_team_springboard_survey_062219&amp;UUID=6827854f-9a08-43e4-a51b-964098ed4fae&quot;, &quot;SpringBoardSurvey&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Pilot Survey</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

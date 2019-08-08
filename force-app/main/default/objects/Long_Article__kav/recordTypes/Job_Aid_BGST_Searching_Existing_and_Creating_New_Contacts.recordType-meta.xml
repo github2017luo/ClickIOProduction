@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Job_Aid_BGST_Searching_Existing_and_Creating_New_Contacts</fullName>
+    <active>true</active>
+    <label>Job Aid | BGST | Searching Existing and Creating New Contacts</label>
+    <picklistValues>
+        <picklist>Document_Origin__c</picklist>
+        <values>
+            <fullName>Facebook</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IConnect</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instructor Corner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TSC</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>
