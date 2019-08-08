@@ -5,7 +5,7 @@
     * Created Date : April 17,2012
     */
 
-@isTest
+//@isTest
 public without sharing class TestUtil {
   public static UnitTest.DataGenerator accounts = new AccountDG();
   public static UnitTest.DataGenerator opportunities = new OpportunityDG();
@@ -31,7 +31,7 @@ public without sharing class TestUtil {
         get
         {
             if(BGST_USER == null)
-                  BGST_USER = [SELECT ID FROM User WHERE Profile.Name ='ARC BGST Sales User' AND IsActive = True LIMIT 1];
+                  BGST_USER = [SELECT ID FROM User WHERE Profile.Name LIKE '%ARC BGST Sales User' AND IsActive = True LIMIT 1];
             return BGST_USER;
         }
         private set;

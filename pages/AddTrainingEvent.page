@@ -23,6 +23,7 @@
             <apex:inputField value="{!trainingEvent.Rescheduling_Fee__c}" />
             <apex:inputField value="{!trainingEvent.Billing_Account__c}" />
             <apex:inputField value="{!trainingEvent.Region__c}" />
+            <apex:inputField value="{!trainingEvent.Course_Order_Status__c}" html-disabled="true"/>
                 
         </apex:pageblocksection>
         </div>

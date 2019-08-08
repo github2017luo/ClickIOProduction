@@ -101,7 +101,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CaseInsertUpdateEmail</shortDescription>
-        <value>jane.mcinerney@redcross.org; kara.desmarais@redcross.org; jacqueline.raikevitch@redcross.org; Thomas.White@redcross.org;gita.borovsky@redcross.org; mike.smith2@redcross.org; brenda.kraus@redcross.org; nyle.grimes@redcross.org</value>
+        <value>jane.mcinerney@redcross.org; kara.desmarais@redcross.org; jacqueline.taggart@redcross.org; Thomas.White@redcross.org;gita.borovsky@redcross.org; mike.smith2@redcross.org; brenda.kraus@redcross.org; nyle.grimes@redcross.org</value>
     </labels>
     <labels>
         <fullName>ClaimedVoucherTypes</fullName>
@@ -288,7 +288,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Learner Community URL</shortDescription>
-        <value>https://transuat-americanredcross.cs26.force.com/learner</value>
+        <value>https://www.redcrosslearningcenter.org</value>
     </labels>
     <labels>
         <fullName>Loading</fullName>
@@ -707,6 +707,14 @@ Select a voucher(s) with a status of &apos;Issued&apos;. Copy and paste the self
         <value>Product Search</value>
     </labels>
     <labels>
+        <fullName>Reported</fullName>
+        <categories>Custom RC UI</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Reported</shortDescription>
+        <value>Reported</value>
+    </labels>
+    <labels>
         <fullName>Request_Blended_Classes</fullName>
         <categories>Custom RC UI</categories>
         <language>en_US</language>
@@ -721,6 +729,13 @@ Select a voucher(s) with a status of &apos;Issued&apos;. Copy and paste the self
         <protected>false</protected>
         <shortDescription>Reset_Search</shortDescription>
         <value>Reset Search</value>
+    </labels>
+    <labels>
+        <fullName>SBSkedToILTClassAllowedProfiles</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sked Job trigger - eligible profiles - Enter names separated by semi-colons</shortDescription>
+        <value>ARC Service Delivery; SB ARC Service Delivery; ARC NAT Team; SB ARC NAT Team</value>
     </labels>
     <labels>
         <fullName>Search_by</fullName>

@@ -12,7 +12,7 @@ Objective:  This trigger does the following:
                the user must set the AccountID of the contact to null
  
 *****************************************************************************************************/ 
-trigger ContactTrigger on Contact (before insert, before delete, after undelete, before update) {
+trigger ContactTrigger on Contact (before insert, before delete, after undelete, before update, after update) {
         if (Trigger.isBefore && Trigger.isInsert) { 
             BucketAssignmentModel.handleNewContacts(Trigger.new);
         }
@@ -24,5 +24,12 @@ trigger ContactTrigger on Contact (before insert, before delete, after undelete,
         }
         if (Trigger.isBefore && Trigger.isUpdate) {
             BucketAssignmentModel.handleUpdatedContacts(Trigger.oldMap,Trigger.new);
+        }
+        // Added by Alejandra O, Salesforce Services
+        if (!PHSS_TriggerSettings__c.getOrgDefaults().ContactTrigger_Disabled__c) {
+        ContactTriggerHandler handler = new ContactTriggerHandler();
+        if (Trigger.isAfter && Trigger.isUpdate) {
+            handler.onAfterUpdate(Trigger.new, Trigger.old, Trigger.newMap, Trigger.oldMap);
+        } 
         }
 }

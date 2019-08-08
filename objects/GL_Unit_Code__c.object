@@ -190,10 +190,10 @@
     <searchLayouts>
         <customTabListAdditionalFields>Unit_Code__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>TS_LOC__c</customTabListAdditionalFields>
-        <excludedStandardButtons>OpenListInQuip</excludedStandardButtons>
         <excludedStandardButtons>Accept</excludedStandardButtons>
         <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>OpenListInQuip</excludedStandardButtons>
         <lookupDialogsAdditionalFields>Unit_Code__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>TS_LOC__c</lookupDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>Unit_Code__c</lookupPhoneDialogsAdditionalFields>

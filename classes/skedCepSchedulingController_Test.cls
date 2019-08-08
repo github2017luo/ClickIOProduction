@@ -86,7 +86,26 @@ private class skedCepSchedulingController_Test {
         model.tagIds = new List<string>();
         model.tagIds.add(tagPickup.Id);
         
+        model.isStackedClass = true;
+        model.courseCode = 'SFA516';
+        
+        model.subclasses = new List<skedCepSchedulingController.jobModel>();
+        skedCepSchedulingController.jobModel subclass1 = new skedCepSchedulingController.jobModel();
+        subclass1.startTime = 1000;
+        subclass1.duration = 45;
+        subclass1.displayOrder = 1;
+        subclass1.courseCode = 'SFA511';
+        model.subclasses.add(subclass1);
+        
+        skedCepSchedulingController.jobModel subclass2 = new skedCepSchedulingController.jobModel();
+        subclass2.startTime = 1000;
+        subclass2.duration = 90;
+        subclass2.displayOrder = 2;
+        subclass2.courseCode = 'SFA513';
+        model.subclasses.add(subclass2);
+        
         skedRemoteResultModel result = skedCepSchedulingController.saveJob(model, true);
+        system.debug('#create result#' + result);
         
         Test.stopTest();
     }
@@ -124,7 +143,29 @@ private class skedCepSchedulingController_Test {
         model.tagIds = new List<string>();
         model.tagIds.add(tagPickup.Id);
         
+        model.isStackedClass = true;
+        model.readyToPublish = false;
+        model.courseCode = 'SFA516';
+        
+        model.subclasses = new List<skedCepSchedulingController.jobModel>();
+        skedCepSchedulingController.jobModel subclass1 = new skedCepSchedulingController.jobModel();
+        subclass1.startTime = 1000;
+        subclass1.finishTime = 1045;
+        subclass1.duration = 45;
+        subclass1.displayOrder = 1;
+        subclass1.courseCode = 'SFA511';
+        model.subclasses.add(subclass1);
+        
+        skedCepSchedulingController.jobModel subclass2 = new skedCepSchedulingController.jobModel();
+        subclass2.startTime = 1000;
+        subclass2.finishTime = 1130;
+        subclass2.duration = 90;
+        subclass2.displayOrder = 2;
+        subclass2.courseCode = 'SFA513';
+        model.subclasses.add(subclass2);
+        
         skedRemoteResultModel result = skedCepSchedulingController.saveJob(model, true);
+        system.debug('#edit result#' + result);
         
         Test.stopTest();
     }

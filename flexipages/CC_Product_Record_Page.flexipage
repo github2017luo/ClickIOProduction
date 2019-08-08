@@ -6,10 +6,6 @@
                 <name>collapsed</name>
                 <value>false</value>
             </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>numVisibleActions</name>
-                <value>3</value>
-            </componentInstanceProperties>
             <componentName>force:highlightsPanel</componentName>
         </componentInstances>
         <mode>Replace</mode>
@@ -20,8 +16,7 @@
         <componentInstances>
             <componentName>force:detailPanel</componentName>
         </componentInstances>
-        <mode>Replace</mode>
-        <name>detailTabContent</name>
+        <name>Facet-8810b72f-0f05-4589-afbc-e7347af2ab2b</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -225,7 +220,7 @@
             </componentInstanceProperties>
             <componentName>force:relatedListSingleContainer</componentName>
         </componentInstances>
-        <name>Facet-f670b699-9234-4e5f-83be-a9ccd6c26f36</name>
+        <name>Facet-f63db297-ad72-4226-bd40-3a538a3ef887</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -289,7 +284,10 @@
             </componentInstanceProperties>
             <componentName>force:relatedListSingleContainer</componentName>
         </componentInstances>
-        <name>Facet-bexocq5bwlr</name>
+        <componentInstances>
+            <componentName>NewPriceListItem</componentName>
+        </componentInstances>
+        <name>Facet-qan9wv1dwl</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -353,7 +351,7 @@
             </componentInstanceProperties>
             <componentName>force:relatedListSingleContainer</componentName>
         </componentInstances>
-        <name>Facet-argnxmefwj6</name>
+        <name>Facet-tfatexfsr5</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -364,7 +362,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>body</name>
-                <value>detailTabContent</value>
+                <value>Facet-8810b72f-0f05-4589-afbc-e7347af2ab2b</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>
@@ -386,7 +384,7 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>body</name>
-                <value>Facet-f670b699-9234-4e5f-83be-a9ccd6c26f36</value>
+                <value>Facet-f63db297-ad72-4226-bd40-3a538a3ef887</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>
@@ -397,7 +395,7 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>body</name>
-                <value>Facet-bexocq5bwlr</value>
+                <value>Facet-qan9wv1dwl</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>
@@ -408,7 +406,7 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>body</name>
-                <value>Facet-argnxmefwj6</value>
+                <value>Facet-tfatexfsr5</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>

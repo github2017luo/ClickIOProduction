@@ -4,10 +4,30 @@
     <description>PHSS_TriggerSettings</description>
     <enableFeeds>false</enableFeeds>
     <fields>
+        <fullName>AccountTrigger_Disabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When checked, the AccountTrigger is disabled.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When checked, the AccountTrigger is disabled. NOTE: Only methods using checkbox will be disabled.</inlineHelpText>
+        <label>AccountTrigger Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>AllDisabled__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>All Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CCOrderItemTrigger_Disabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When checked, the CCOrderItemTrigger is disabled</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When checked, the CCOrderItemTrigger is disabled. NOTE: Only methods using checkbox will be disabled.</inlineHelpText>
+        <label>CCOrderItemTrigger Disabled</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -28,6 +48,16 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>ContactTrigger_Disabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When checked, the ContactTrigger is disabled</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When checked, the ContactTrigger is disabled. NOTE: Only methods using checkbox will be disabled.</inlineHelpText>
+        <label>ContactTrigger Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>ContentVersionDisabled__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -36,10 +66,100 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>FulfillmentTriggerDisabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When checked, the Fulfillment Trigger is disabled.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When checked, the Fulfillment Trigger is disabled. NOTE: Only methods using checkbox will be disabled.</inlineHelpText>
+        <label>Fulfillment Trigger Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ILTRosterTrigger_Disabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When checked, the ILTRosterTrigger is disabled</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When checked, the ILTRosterTrigger is disabled. NOTE: Only methods using checkbox will be disabled.</inlineHelpText>
+        <label>ILTRosterTrigger Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>PHSSinitQRCodeIdentifierDisabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When checked, the PHSS_initQRCodeIdentifier trigger is disabled. NOTE: Only methods using checkbox will be disabled.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When checked, the PHSS_initQRCodeIdentifier trigger is disabled. NOTE: Only methods using checkbox will be disabled.</inlineHelpText>
+        <label>PHSS_initQRCodeIdentifier Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>PriceListItemTriggerDisabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>PriceListItemTriggerDisabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>UserProvisioningDisabled__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>User Provisioning Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UserTrigger_Disabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When checked, the UserTrigger is disabled.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When checked, the UserTrigger is disabled. NOTE: Only methods using checkbox will be disabled.</inlineHelpText>
+        <label>UserTrigger Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VoucherTriggerDisabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>VoucherTriggerDisabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>skedJobtoILTClassTriggerDisabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>skedJobtoILTClassTriggerDisabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>skedLocationtoILTLocationTriggerDisabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>skedLocationtoILTLocationTriggerDisabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>skedResourcetoILTInstructTriggerDisabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>skedResourcetoILTInstructTriggerDisabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>trgr_Channel_Compensation_Disabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When checked, the trgr_Channel_Compensation Trigger is disabled.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When checked, the trgr_Channel_Compensation Trigger is disabled. NOTE: Only methods using checkbox will be disabled.</inlineHelpText>
+        <label>trgr_Channel_Compensation Disabled</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>

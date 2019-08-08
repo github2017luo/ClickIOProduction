@@ -189,7 +189,7 @@
         <relationshipLabel>Voucher</relationshipLabel>
         <relationshipName>Voucher</relationshipName>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -202,7 +202,7 @@
         <relationshipLabel>Voucher</relationshipLabel>
         <relationshipName>Voucher</relationshipName>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -215,7 +215,7 @@
         <relationshipLabel>Voucher</relationshipLabel>
         <relationshipName>Voucher</relationshipName>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -300,9 +300,10 @@
     <fields>
         <fullName>QR_Code_Web_Address__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(ILT_Class__c != null, IF(CONTAINS($Api.Partner_Server_URL_260, &apos;TransDev1&apos;), &apos;https://transdev1-americanredcross.cs52.force.com/learner/s/ClaimVoucher?voucherid=&apos; +  Id,
+        <formula>/*IF(ILT_Class__c != null, IF(CONTAINS($Api.Partner_Server_URL_260, &apos;TransDev1&apos;), &apos;https://transdev1-americanredcross.cs52.force.com/learner/s/ClaimVoucher?voucherid=&apos; +  Id,
     (If (CONTAINS($Api.Partner_Server_URL_260, &apos;Partial&apos;), &apos;https://partial-americanredcross.cs78.force.com/learner/s/ClaimVoucher?voucherid=&apos; + Id,
-    &apos;https://transuat-americanredcross.cs26.force.com/learner/s/ClaimVoucher?voucherid=&apos; +Id))), &apos;&apos;)</formula>
+    &apos;https://transuat-americanredcross.cs26.force.com/learner/s/ClaimVoucher?voucherid=&apos; +Id))), &apos;&apos;)*/
+IF(ILT_Class__c != null, $Label.Learner_Community_URL + &apos;/s/ClaimVoucher?voucherid=&apos; + Id, &apos;&apos;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>QR Code Web Address</label>
         <required>false</required>
@@ -400,6 +401,11 @@ ILT_Class__r.ltui__Start_Time_Formatted__c</formula>
                     <default>false</default>
                     <label>Blocked</label>
                 </value>
+                <value>
+                    <fullName>Void</fullName>
+                    <default>false</default>
+                    <label>Void</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
@@ -424,7 +430,7 @@ ILT_Class__r.ltui__Start_Time_Formatted__c</formula>
         <referenceTo>User</referenceTo>
         <relationshipName>Voucher</relationshipName>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -474,7 +480,7 @@ ILT_Class__r.ltui__Start_Time_Formatted__c</formula>
         <requireRowSelection>true</requireRowSelection>
         <url>/apex/SDOC__SDCreate1?id={!Voucher__c.Id}
 &amp;Object=Voucher__c
-&amp;doclist=a2u210000016SvBAAU
+&amp;doclist=a3W0V000004U5VGUA0
 &amp;prepemail=1</url>
     </webLinks>
     <webLinks>
@@ -497,7 +503,7 @@ ILT_Class__r.ltui__Start_Time_Formatted__c</formula>
         <showsStatus>false</showsStatus>
         <url>/apex/SDOC__SDCreate1?id={!Voucher__c.Id}
 &amp;Object=Voucher__c
-&amp;doclist=a2u210000016SvBAAU
+&amp;doclist=a3W0V000004U5VGUA0
 &amp;prepemail=1</url>
     </webLinks>
 </CustomObject>

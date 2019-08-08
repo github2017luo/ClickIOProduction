@@ -260,7 +260,7 @@
         <externalId>true</externalId>
         <inlineHelpText>This field is utilized to support the data migration process.  It will contain a combination of the source system identifier and the source system&apos;s unique record identifier.  This field should be deleted after all migration activities are complete.</inlineHelpText>
         <label>DM External Id</label>
-        <length>40</length>
+        <length>70</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Text</type>
@@ -277,6 +277,18 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Deactivation_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Community User Deactivation Reason</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Deactivation_Reason</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Employee_ID__c</fullName>
         <externalId>true</externalId>
         <label>Employee ID</label>
@@ -285,6 +297,15 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Is_Appinium_Instructor__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checked once an Appinium Instructor Record is created via flow</description>
+        <externalId>false</externalId>
+        <label>Is Appinium Instructor</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>LMS_ID__c</fullName>
@@ -472,6 +493,15 @@ Username, &apos;&apos;)</formula>
         <searchResultsAdditionalFields>CORE.USERS.EMAIL</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Read</sharingModel>
+    <validationRules>
+        <fullName>Cant_Activate_Blocked_User</fullName>
+        <active>true</active>
+        <description>Validation Rule to prevent users from reactivating Blocked Community Users.</description>
+        <errorConditionFormula>AND(ISPICKVAL(Deactivation_Reason__c, &quot;Blocked&quot;),
+(IsActive = TRUE))</errorConditionFormula>
+        <errorDisplayField>Deactivation_Reason__c</errorDisplayField>
+        <errorMessage>This Community User has been Blocked, please review and update Community User Deactivation Reason to another value if you&apos;d like to reactivate the User.</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>Employee_Number</fullName>
         <active>true</active>

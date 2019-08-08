@@ -28,7 +28,7 @@ public with sharing class CTIScreenPopCtlr {
         set;
     }
 
-    public void initConfirmContactInformation() {
+   public void initConfirmContactInformation() {
         
         confirmContactProxy = new Contact();
         
@@ -115,17 +115,17 @@ public with sharing class CTIScreenPopCtlr {
                 
                 //10-11-2018 Change - Start 
                 // remove all non numeric chars
-				String cleanPhone = phone.replaceAll('[^0-9]','');    
-				
-				// remove leading '1' if the number is 11 digits, otherwise use the number given
-				cleanPhone = cleanPhone.length() == 11 && cleanPhone.startsWith('1') ? cleanPhone.right(10) : cleanPhone;
-				
-				List<List<SObject>> searchList = [FIND :cleanPhone in Phone Fields returning contact(id, FirstName, LastName, Email, Phone, MailingCity, MailingState, MailingPostalCode) limit 200];
-				
-				contactSearchResults = (List<Contact>) searchList[0];
-				
-				System.debug('***contactSearchResults***'+contactSearchResults);
-				
+        String cleanPhone = phone.replaceAll('[^0-9]','');    
+        
+        // remove leading '1' if the number is 11 digits, otherwise use the number given
+        cleanPhone = cleanPhone.length() == 11 && cleanPhone.startsWith('1') ? cleanPhone.right(10) : cleanPhone;
+        
+        List<List<SObject>> searchList = [FIND :cleanPhone in Phone Fields returning contact(id, FirstName, LastName, Email, Phone, MailingCity, MailingState, MailingPostalCode) limit 200];
+        
+        contactSearchResults = (List<Contact>) searchList[0];
+        
+        System.debug('***contactSearchResults***'+contactSearchResults);
+        
                 /*
                 String query = 'select id, FirstName, LastName, Email, Phone, MailingCity, MailingState, MailingPostalCode from Contact where id != null';
                 query += ' And Phone = \'' + formattedPhone + '\'';
@@ -343,8 +343,10 @@ public with sharing class CTIScreenPopCtlr {
         newContact.mailingState = qcContactProxy.mailingState;
         
         try {
-            insert newContact;
+            System.debug('newContact'+newContact);
+            insert newContact;  
         } catch (Exception ex) {
+            System.debug('ExceptionEx'+ex);
             ApexPages.addMessages(ex);
             ExLog.log(ex); 
             return null;

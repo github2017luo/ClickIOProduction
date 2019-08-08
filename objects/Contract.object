@@ -561,6 +561,19 @@ AP-LTP-NAN = length of agreement</inlineHelpText>
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
+        <fullName>Expired_Contract__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+EndDate  &lt;=  TODAY(),
+True,
+False
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Expired Contract</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>LMS_ORG_ID__c</fullName>
         <externalId>false</externalId>
         <formula>Account.SABA_LMS_Code__c</formula>
@@ -573,6 +586,16 @@ AP-LTP-NAN = length of agreement</inlineHelpText>
     <fields>
         <fullName>Name</fullName>
         <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Non_Binding_Contract__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Contract Record to support Transactional  Sales.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Use to indicate customer received confirmation of Order in lieu of Agreement signature</inlineHelpText>
+        <label>Non Binding Contract</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Opportunity__c</fullName>

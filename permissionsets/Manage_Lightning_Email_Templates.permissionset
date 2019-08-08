@@ -4,10 +4,6 @@
     <label>Manage Lightning Email Templates</label>
     <userPermissions>
         <enabled>true</enabled>
-        <name>CreateLtngTempFolder</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
         <name>CreateLtngTempInPub</name>
     </userPermissions>
 </PermissionSet>

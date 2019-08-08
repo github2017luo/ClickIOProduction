@@ -368,6 +368,66 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Learner_City__c</fullName>
+        <externalId>false</externalId>
+        <formula>Learner__r.MailingCity</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Learner City</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Learner_Gender__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text( Learner__r.Gender__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Learner Gender</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Learner_Race__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text( Learner__r.Race__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Learner Race</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Learner_State__c</fullName>
+        <externalId>false</externalId>
+        <formula>Learner__r.MailingState</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Learner State</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Learner_Zip__c</fullName>
+        <externalId>false</externalId>
+        <formula>Learner__r.MailingPostalCode</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Learner Zip</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Learner__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -495,6 +555,20 @@
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
+    <fields>
+        <fullName>learner_Age__c</fullName>
+        <externalId>false</externalId>
+        <formula>FLOOR((TODAY()-Learner__r.Birthdate)/365.2425)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>learner Age</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
     <label>Grant Request</label>
     <nameField>
         <displayFormat>REQ-{000000}</displayFormat>
@@ -538,9 +612,9 @@
         <fullName>Amount_Limits</fullName>
         <active>true</active>
         <description>Incorporate limits on the requested amount</description>
-        <errorConditionFormula>OR(     Amount__c &lt; 200,    Amount__c &gt; 2000 )</errorConditionFormula>
+        <errorConditionFormula>OR(     Amount__c &lt; 0,    Amount__c &gt; 50000 )</errorConditionFormula>
         <errorDisplayField>Amount__c</errorDisplayField>
-        <errorMessage>The amount requested must be between $200 and $2,000</errorMessage>
+        <errorMessage>The amount requested must be between $0 and $50,000</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Require_Other_Activity_Type</fullName>
@@ -563,5 +637,25 @@
         <openType>sidebar</openType>
         <protected>false</protected>
         <url>/flow/Select_Budget?frmGrantRequest={!SFDC_MDF__c.Id}&amp;retURL=/{!SFDC_MDF__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Revoke_Request</fullName>
+        <availability>online</availability>
+        <description>Revoke the Grant Request</description>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Revoke Request</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/flow/Revoke_Grant_Request?frmGrantRequestID={!SFDC_MDF__c.Id}&amp;retURL=/{!SFDC_MDF__c.Id}</url>
     </webLinks>
 </CustomObject>

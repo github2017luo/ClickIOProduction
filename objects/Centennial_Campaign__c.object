@@ -167,7 +167,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Adult_Swim_Improving_Skills_and_Swimming__c</fullName>
         <externalId>false</externalId>
@@ -206,7 +206,7 @@
     </fields>
     <fields>
         <fullName>Centennial_Campaign_Reporting__c</fullName>
-        <defaultValue>(&quot;The report below is intended to capture high-level participation numbers as a result of the Centennial Campaign collaboration. In addition, please be certain to formally report all of your course activity through normal processes, such as through http://www.redcross.org/courserecords or by submitting course records to the Training Support Center.&quot;)</defaultValue>
+        <defaultValue>(&quot;The report below is for organizations participating in the Centennial Campaign and is intended to capture high-level participation numbers as a result of the Centennial Campaign collaboration. In addition, please be certain to formally report all of your course activity through normal processes of the Course Record Entry system.&quot;)</defaultValue>
         <externalId>false</externalId>
         <label>Centennial Campaign Reporting</label>
         <length>32768</length>

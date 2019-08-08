@@ -1,10 +1,10 @@
 global class skedCommunitySchedulingController {
 
-	@remoteAction
+    @remoteAction
     global static skedRemoteResultModel getCSCConfigData() {
-    	skedRemoteResultModel result = new skedRemoteResultModel();
+        skedRemoteResultModel result = new skedRemoteResultModel();
         try {
-    		configDataModel configData = new configDataModel();
+            configDataModel configData = new configDataModel();
             configData.regions = skedUtils.getRegions();
             configData.courseCatalogs = skedARCUtils.getCourseCatalogs(skedConstants.COURSE_CATALOG_TYPE_COMMUNITY);
             configData.tags = skedUtils.getTags();
@@ -14,7 +14,7 @@ global class skedCommunitySchedulingController {
             configData.communityClassSubTypes = skedUtils.getPickListValues('sked__Job__c', 'Class_Sub_Type__c');
 
             result.data = configData;
-		}
+        }
         catch (Exception ex) {
             result.getError(ex);
         }
@@ -23,56 +23,81 @@ global class skedCommunitySchedulingController {
 
     @remoteAction
     global static skedRemoteResultModel getFacilityList(facilityQueryModel queryModel) {
-    	skedRemoteResultModel result = new skedRemoteResultModel();
+        skedRemoteResultModel result = new skedRemoteResultModel();
         try {
-        	sked__Region__c skedRegion = [SELECT Id, sked__Timezone__c FROM sked__Region__c 
-        								  WHERE Id = :queryModel.regionId];
-        	string timezoneSidId = skedRegion.sked__Timezone__c;
+            sked__Region__c skedRegion = [SELECT Id, sked__Timezone__c FROM sked__Region__c 
+                                          WHERE Id = :queryModel.regionId];
+            string timezoneSidId = skedRegion.sked__Timezone__c;
 
-        	Date startDate = skedDateTimeUtils.getDateFromIsoString(queryModel.startDateIso);
-        	DateTime startTime = skedDateTimeUtils.getStartOfDate(startDate, timezoneSidId);
+            Date startDate = skedDateTimeUtils.getDateFromIsoString(queryModel.startDateIso);
+            DateTime startTime = skedDateTimeUtils.getStartOfDate(startDate, timezoneSidId);
 
-        	Date endDate = skedDateTimeUtils.getDateFromIsoString(queryModel.endDateIso);
-        	DateTime endTime = skedDateTimeUtils.getEndOfDate(endDate, timezoneSidId);
+            Date endDate = skedDateTimeUtils.getDateFromIsoString(queryModel.endDateIso);
+            DateTime endTime = skedDateTimeUtils.getEndOfDate(endDate, timezoneSidId);
 
             Date monthStartDate = startDate.toStartOfMonth();
 
-        	List<sked__Location__c> skedLocations = [SELECT Id, Name, Facility_ID__c, Notes__c,
+            List<sked__Location__c> skedLocations = [SELECT Id, Name, Facility_ID__c, Notes__c,
                                                      sked__Region__c, sked__Address__c,
                                                      sked__GeoLocation__Latitude__s, sked__GeoLocation__Longitude__s,
-        											 (SELECT Id, Name, sked__Region__c, sked__Address__c, sked__Contact__c, sked__Recurring_Schedule__c,
-			                                          sked__GeoLocation__Latitude__s, sked__GeoLocation__Longitude__s, sked__GeoLocation__c,
-			                                          sked__Timezone__c, sked__Start__c, sked__Finish__c, sked__Duration__c, sked__Type__c, 
+                                                     (SELECT Id, Name, sked__Region__c, sked__Address__c, sked__Contact__c, sked__Recurring_Schedule__c,
+                                                      sked__GeoLocation__Latitude__s, sked__GeoLocation__Longitude__s, sked__GeoLocation__c,
+                                                      sked__Timezone__c, sked__Start__c, sked__Finish__c, sked__Duration__c, sked__Type__c, 
                                                       sked__Job_Status__c, Copy_Result_Message__c, Number_of_Instructors__c, Location_Confirmed__c,
                                                       sked__Location__c, Course_Catalog__c, Course_Catalog__r.Name,
                                                       Break_Duration__c, Number_of_Breaks__c, Special_Instructions__c,
                                                       Is_Queued__c, Is_Previously_Cancelled__c, sked__Job_Allocation_Count__c, Number_of_Students__c,
                                                       Before_class_duration__c, After_class_duration__c, ClasS_Sub_Type__c,
-                                                      Remaining_Resources_to_be_Allocated__c
-        											  FROM sked__Jobs__r
-        											  WHERE (Job_Month__c = :monthStartDate OR (sked__Start__c < :endTime AND sked__Finish__c > :startTime))
-        											  AND sked__Type__c = :skedConstants.JOB_TYPE_COMMUNITY)
-        											 FROM sked__Location__c
-        											 WHERE sked__Region__c = :queryModel.regionId
+                                                      Remaining_Resources_to_be_Allocated__c, Course_Code__c, Display_Order__c, sked__Parent__c, 
+                                                      Is_Stacked_Class__c, Is_Master_Class__c
+                                                      FROM sked__Jobs__r
+                                                      WHERE (Job_Month__c = :monthStartDate OR (sked__Start__c < :endTime AND sked__Finish__c > :startTime))
+                                                      AND sked__Type__c = :skedConstants.JOB_TYPE_COMMUNITY
+                                                      AND (Is_Stacked_Class__c = FALSE OR Is_Master_Class__c = TRUE))
+                                                     FROM sked__Location__c
+                                                     WHERE sked__Region__c = :queryModel.regionId
                                                      AND (sked__Type__c = :skedConstants.LOCATION_TYPE_COMMUNITY
-                                                     	  OR sked__Type__c = :skedConstants.LOCATION_TYPE_COMMUNITY_TEMP
+                                                          OR sked__Type__c = :skedConstants.LOCATION_TYPE_COMMUNITY_TEMP
                                                           OR sked__Type__c = :skedConstants.LOCATION_TYPE_INTERNAL
                                                           OR sked__Type__c = :skedConstants.LOCATION_TYPE_NAT_AND_COMMUNITY)
                                                      AND Is_Active__c = TRUE
-        											 ORDER BY Name ASC];
-		    Map<Id, jobModel> mapJob = new Map<Id, jobModel>();
+                                                     ORDER BY Name ASC];
+            Map<Id, jobModel> mapJob = new Map<Id, jobModel>();
             List<facilityModel> facilityList = new List<facilityModel>();
-        	for (sked__Location__c skedLocation : skedLocations) {
-        		facilityModel facility = new facilityModel(skedLocation);
+            for (sked__Location__c skedLocation : skedLocations) {
+                facilityModel facility = new facilityModel(skedLocation);
 
-        		for (sked__Job__c skedJob : skedLocation.sked__Jobs__r) {
-        			jobModel job = new jobModel(skedJob);
+                for (sked__Job__c skedJob : skedLocation.sked__Jobs__r) {
+                    jobModel job = new jobModel(skedJob);
                     job.allocations = new List<skedModels.jobAllocation>();
-        			facility.jobs.add(job);
+                    facility.jobs.add(job);
                     mapJob.put(job.id, job);
-        		}
-        		facilityList.add(facility);
-        	}
+                }
+                facilityList.add(facility);
+            }
+
+            List<sked__Job__c> skedSubClasses = [SELECT Id, Name, sked__Region__c, sked__Address__c, sked__Contact__c, sked__Recurring_Schedule__c,
+                                                 sked__GeoLocation__Latitude__s, sked__GeoLocation__Longitude__s, sked__GeoLocation__c,
+                                                 sked__Timezone__c, sked__Start__c, sked__Finish__c, sked__Duration__c, sked__Type__c, 
+                                                 sked__Job_Status__c, Copy_Result_Message__c, Number_of_Instructors__c, Location_Confirmed__c,
+                                                 sked__Location__c, Course_Catalog__c, Course_Catalog__r.Name,
+                                                 Break_Duration__c, Number_of_Breaks__c, Special_Instructions__c,
+                                                 Is_Queued__c, Is_Previously_Cancelled__c, sked__Job_Allocation_Count__c, Number_of_Students__c,
+                                                 Before_class_duration__c, After_class_duration__c, ClasS_Sub_Type__c,
+                                                 Remaining_Resources_to_be_Allocated__c, Course_Code__c, Display_Order__c, sked__Parent__c, 
+                                                 Is_Stacked_Class__c, Is_Master_Class__c
+                                                 FROM sked__Job__c
+                                                 WHERE sked__Parent__c IN :mapJob.keySet()
+                                                 AND sked__Job_Status__c != :skedConstants.JOB_STATUS_CANCELLED
+                                                 ORDER BY sked__Start__c ASC];
+            for (sked__Job__c skedSubClass : skedSubClasses) {
+                jobModel job = mapJob.get(skedSubClass.sked__Parent__c);
+                jobModel subclass = new jobModel(skedSubClass);
+                if (job.subclasses == NULL) {
+                    job.subclasses = new List<jobModel>();
+                }
+                job.subclasses.add(subclass);
+            }
 
             List<Offering__c> skedOfferings = [SELECT Id, Name, Job__c
                                                FROM Offering__c
@@ -100,8 +125,8 @@ global class skedCommunitySchedulingController {
                 jobModel job = mapJob.get(skedAllocation.sked__Job__c);
                 job.allocations.add(allocation);
             }                                                 
-        	result.data = facilityList;
-    	}
+            result.data = facilityList;
+        }
         catch (Exception ex) {
             result.getError(ex);
         }
@@ -109,7 +134,7 @@ global class skedCommunitySchedulingController {
     }
 
     @remoteAction
-    global static skedRemoteResultModel copyClassPattern(string sourceDateIso, string destinationDateIso, string regionId) {
+    global static skedRemoteResultModel copyClassPattern(string sourceDateIso, string destinationDateIso, string regionId, boolean isIncludingSubclasses) {
         skedRemoteResultModel result = new skedRemoteResultModel();
         SavePoint sp = Database.setSavePoint();
         try {
@@ -134,9 +159,23 @@ global class skedCommunitySchedulingController {
                                              sked__Job_Status__c, sked__Location__c, Course_Catalog__c, Course_Catalog__r.Name,
                                              Number_of_Instructors__c, Break_Duration__c, Number_of_Breaks__c, 
                                              Special_Instructions__c, Number_of_Students__c, Before_class_duration__c,
-                                             After_class_duration__c, ClasS_Sub_Type__c, sked__Description__c,
+                                             After_class_duration__c, ClasS_Sub_Type__c, sked__Description__c, Course_Code__c, Display_Order__c,
+                                             sked__Parent__c, Is_Stacked_Class__c, Is_Master_Class__c,
                                              (SELECT sked__Job__c, sked__Tag__c, sked__Tag__r.Name
-                                              FROM sked__JobTags__r)
+                                              FROM sked__JobTags__r),
+                                             (SELECT Id, Name, sked__Region__c, sked__Address__c, sked__Contact__c, sked__Recurring_Schedule__c,
+                                              sked__GeoLocation__Latitude__s, sked__GeoLocation__Longitude__s, sked__GeoLocation__c,
+                                              sked__Timezone__c, sked__Start__c, sked__Finish__c, sked__Duration__c, sked__Type__c, 
+                                              sked__Job_Status__c, Copy_Result_Message__c, Number_of_Instructors__c, Location_Confirmed__c,
+                                              sked__Location__c, Course_Catalog__c, Course_Catalog__r.Name, 
+                                              Break_Duration__c, Number_of_Breaks__c, Number_of_Students__c,
+                                              Special_Instructions__c, Is_Queued__c, Is_Previously_Cancelled__c, sked__Job_Allocation_Count__c,
+                                              Before_class_duration__c, After_class_duration__c, ClasS_Sub_Type__c,
+                                              Remaining_Resources_to_be_Allocated__c, Course_Code__c, Display_Order__c, sked__Parent__c, 
+                                              Is_Stacked_Class__c, Is_Master_Class__c
+                                              FROM sked__Followups__r
+                                              WHERE sked__Job_Status__c != :skedConstants.JOB_STATUS_CANCELLED
+                                              ORDER BY sked__Start__c ASC)
                                              FROM sked__Job__c
                                              WHERE sked__Region__c = :regionId
                                              AND sked__Type__c = :skedConstants.JOB_TYPE_COMMUNITY
@@ -145,6 +184,7 @@ global class skedCommunitySchedulingController {
                                              AND sked__Start__c < :sourceEndTime
                                              AND sked__Finish__c > :sourceStartTime
                                              AND Is_Queued__c = FALSE
+                                             AND (Is_Stacked_Class__c = FALSE OR Is_Master_Class__c = TRUE)
                                              AND sked__Location__r.sked__Type__c != :skedConstants.LOCATION_TYPE_INTERNAL
                                              ORDER BY sked__Start__c ASC];
             if (sourceJobs.isEmpty()) {
@@ -159,7 +199,7 @@ global class skedCommunitySchedulingController {
                 sourceCourseCatalogIds.add(sourceJob.Course_Catalog__c);
             }
             Map<Id, Course_Catalog__c> mapSourceCourseCatalog 
-                = new Map<Id, Course_Catalog__c>([SELECT Id, Number_of_Students__c, Number_of_Instructors__c, 
+                = new Map<Id, Course_Catalog__c>([SELECT Id, Name, Number_of_Students__c, Number_of_Instructors__c, 
                                                   Break_Duration__c, Number_of_Breaks__c,
                                                   (SELECT Tag__c, Tag__r.Name
                                                    FROM Course_Catalog_Tags__r)
@@ -237,6 +277,7 @@ global class skedCommunitySchedulingController {
 
                 sked__Job__c copiedJob = sourceJob.clone();
                 copiedJob.Source_Job__c = sourceJob.Id;
+                copiedJob.sked__Description__c = '';
                 copiedJob.sked__Can_Be_Declined__c = FALSE;
                 copiedJob.Job_Month__c = destinationStartDate;
                 copiedJob.sked__Job_Status__c = skedConstants.JOB_STATUS_QUEUED;
@@ -251,11 +292,13 @@ global class skedCommunitySchedulingController {
                     copiedJob.After_class_duration__c = defaultAfterDuration;
                 }
                 if (skedCourseCatalog != NULL) {
+                    copiedJob.sked__Description__c += skedCourseCatalog.Name + ', ';
                     copiedJob.Break_Duration__c = skedCourseCatalog.Break_Duration__c;
                     copiedJob.Number_of_Breaks__c = skedCourseCatalog.Number_of_Breaks__c;
                     copiedJob.Number_of_Instructors__c = skedCourseCatalog.Number_of_Instructors__c;
                     copiedJob.Number_of_Students__c = skedCourseCatalog.Number_of_Students__c;
                 }
+                copiedJob.sked__Description__c += copiedJob.sked__Start__c.format('hh:mma z', copiedJob.sked__Timezone__c);
                 if (destinationEndTime <= copiedJob.sked__Finish__c) {
                     copiedJob.Copy_Result_Message__c = skedConstants.COMMUNITY_COPY_OUT_OF_MONTH;
                 }
@@ -270,6 +313,28 @@ global class skedCommunitySchedulingController {
 
             if (!copiedJobs.isEmpty()) {
                 insert copiedJobs;
+
+                Map<Id, sked__Job__c> mapSourceJob = new Map<Id, sked__Job__c>(sourceJobs);
+                if (isIncludingSubclasses == TRUE) {
+                    List<sked__Job__c> subClasses = new List<sked__Job__c>();
+                    for (sked__Job__c copiedJob : copiedJobs) {
+                        sked__Job__c sourceJob = mapSourceJob.get(copiedJob.Source_Job__c);
+                        if (sourceJob.Is_Stacked_Class__c == TRUE && sourceJob.sked__Followups__r != NULL) {
+                            for (sked__Job__c sourceSubClass : sourceJob.sked__Followups__r) {
+                                sked__Job__c subClass = sourceSubClass.clone();
+                                subClass.sked__Parent__c = copiedJob.Id;
+                                subClass.sked__Start__c = skedDateTimeUtils.addDays(subClass.sked__Start__c, daysDifferent, timezoneSidId);
+                                subClass.sked__Finish__c = skedDateTimeUtils.addDays(subClass.sked__Finish__c, daysDifferent, timezoneSidId);
+                                subClass.sked__Job_Status__c = skedConstants.JOB_STATUS_QUEUED;
+                                subClass.sked__Recurring_Schedule__c = NULL;
+                                subClasses.add(subClass);
+                            }
+                        }
+                    }
+                    if (!subClasses.isEmpty()) {
+                        insert subClasses;
+                    }
+                }
 
                 List<sked__Job_Tag__c> copiedJobTags = new List<sked__Job_Tag__c>();
                 for (sked__Job__c copiedJob : copiedJobs) {
@@ -309,9 +374,23 @@ global class skedCommunitySchedulingController {
                                     Break_Duration__c, Number_of_Breaks__c, Number_of_Students__c,
                                     Special_Instructions__c, Is_Queued__c, Is_Previously_Cancelled__c, sked__Job_Allocation_Count__c,
                                     Before_class_duration__c, After_class_duration__c, ClasS_Sub_Type__c,
-                                    Remaining_Resources_to_be_Allocated__c,
+                                    Remaining_Resources_to_be_Allocated__c, Course_Code__c, Display_Order__c, sked__Parent__c, Is_Stacked_Class__c,
+                                    Is_Master_Class__c,
                                     (SELECT sked__Job__c, sked__Tag__c, sked__Tag__r.Name
-                                     FROM sked__JobTags__r)
+                                     FROM sked__JobTags__r),
+                                    (SELECT Id, Name, sked__Region__c, sked__Address__c, sked__Contact__c, sked__Recurring_Schedule__c,
+                                     sked__GeoLocation__Latitude__s, sked__GeoLocation__Longitude__s, sked__GeoLocation__c,
+                                     sked__Timezone__c, sked__Start__c, sked__Finish__c, sked__Duration__c, sked__Type__c, 
+                                     sked__Job_Status__c, Copy_Result_Message__c, Number_of_Instructors__c, Location_Confirmed__c,
+                                     sked__Location__c, Course_Catalog__c, Course_Catalog__r.Name, 
+                                     Break_Duration__c, Number_of_Breaks__c, Number_of_Students__c,
+                                     Special_Instructions__c, Is_Queued__c, Is_Previously_Cancelled__c, sked__Job_Allocation_Count__c,
+                                     Before_class_duration__c, After_class_duration__c, ClasS_Sub_Type__c,
+                                     Remaining_Resources_to_be_Allocated__c, Course_Code__c, Display_Order__c, sked__Parent__c, Is_Stacked_Class__c,
+                                     Is_Master_Class__c
+                                     FROM sked__Followups__r
+                                     WHERE sked__Job_Status__c != :skedConstants.JOB_STATUS_CANCELLED
+                                     ORDER BY sked__Start__c ASC)
                                     FROM sked__Job__c
                                     WHERE Id = :jobId];
             List<Offering__c> skedOfferings = [SELECT Id, Name, Job__c
@@ -319,6 +398,14 @@ global class skedCommunitySchedulingController {
                                                WHERE Job__c = :skedJob.Id];
             jobModel job = new jobModel(skedJob);
             job.loadJobTags(skedJob.sked__JobTags__r);
+
+            if (skedJob.sked__Followups__r != NULL && !skedJob.sked__Followups__r.isEmpty()) {
+                job.subclasses = new List<jobModel>();
+                for (sked__Job__c skedSubclass : skedJob.sked__Followups__r) {
+                    jobModel subclass = new jobModel(skedSubclass);
+                    job.subclasses.add(subclass); 
+                }
+            }
 
             List<offeringModel> offerings = new List<offeringModel>();
             for (Offering__c skedOffering : skedOfferings) {
@@ -363,7 +450,6 @@ global class skedCommunitySchedulingController {
             
             sked__Job__c skedJob = new sked__Job__c(
                 sked__Region__c = model.regionId,
-                sked__Description__c = courseCatalog.Name,
                 sked__Start__c = jobStart,
                 sked__Finish__c = jobFinish,
                 sked__Duration__c = jobDuration,
@@ -381,7 +467,10 @@ global class skedCommunitySchedulingController {
                 Location_Confirmed__c = model.locationConfirmed,
                 Before_class_duration__c = model.beforeClassDuration,
                 After_class_duration__c = model.afterClassDuration,
-                ClasS_Sub_Type__c = model.communityClassSubType
+                ClasS_Sub_Type__c = model.communityClassSubType,
+                Course_Code__c = model.courseCode,
+                Is_Stacked_Class__c = model.isStackedClass,
+                Is_Master_Class__c = model.isStackedClass
             );
 
             boolean isRescheduling = model.isRescheduling(skedJob);
@@ -393,12 +482,13 @@ global class skedCommunitySchedulingController {
                 }
             }
             
+            List<sked__Job__c> allJobs = new List<sked__Job__c>();
+            allJobs.add(skedJob);
             if (string.isBlank(model.id)) {
                 skedJob.sked__Job_Status__c = skedConstants.JOB_STATUS_PENDING_ALLOCATION;
                 skedJob.sked__Can_Be_Declined__c = FALSE;
-                List<sked__Job__c> allJobs = new List<sked__Job__c>();
-                allJobs.add(skedJob);
-
+                
+                
                 if (model.isRecurring) {
                     sked__Recurring_Schedule__c schedule = prepareScheduleData(model);
                     insert schedule;
@@ -467,6 +557,46 @@ global class skedCommunitySchedulingController {
                     if (!skedOfferingsToDelete.isEmpty()) {
                         delete skedOfferingsToDelete;
                     }
+                }
+            }
+
+            if (model.isStackedClass == TRUE) {
+                List<sked__Job__c> skedSubclasses = new List<sked__Job__c>();
+                for (sked__Job__c masterJob : allJobs) {
+                    DateTime jobDateStart = skedDateTimeUtils.getStartOfDate(masterJob.sked__Start__c, model.timezoneSidId);
+                    for (jobModel subclass : model.subclasses) {
+                        sked__Job__c skedSubclass;
+                        if (subclass.action == 'delete') {
+                            skedSubclass = new sked__Job__c(
+                                Id = subclass.id,
+                                sked__Job_Status__c = skedConstants.JOB_STATUS_CANCELLED
+                            );
+                        }
+                        else {
+                            integer subclassStartMinutes = skedDateTimeUtils.convertTimeNumberToMinutes(subclass.startTime);
+                            DateTime subclassStart = skedDateTimeUtils.addMinutes(jobDateStart, subclassStartMinutes, model.timezoneSidId);
+                            DateTime subclassFinish = skedDateTimeUtils.addMinutes(subclassStart, subclass.duration, model.timezoneSidId);
+                            
+                            skedSubclass = masterJob.clone();
+                            skedSubclass.sked__Parent__c = masterJob.Id;
+                            skedSubclass.sked__Start__c = subclassStart;
+                            skedSubclass.sked__Finish__c = subclassFinish;
+                            skedSubclass.sked__Duration__c = subclass.duration;
+                            skedSubclass.sked__Recurring_Schedule__c = NULL;
+                            skedSubclass.Is_Master_Class__c = FALSE;
+                            skedSubclass.Course_Code__c = subclass.courseCode;
+                            skedSubclass.Display_Order__c = subclass.displayOrder;
+                            skedSubclass.Ready_to_Publish__c = FALSE;
+                            if (!string.isBlank(subclass.id)) {
+                                skedSubclass.Id = subclass.id;
+                            }
+                        }
+
+                        skedSubclasses.add(skedSubclass);
+                    }
+                }
+                if (!skedSubclasses.isEmpty()) {
+                    upsert skedSubclasses;
                 }
             }
 
@@ -589,11 +719,13 @@ global class skedCommunitySchedulingController {
                                          sked__Timezone__c, sked__Start__c, sked__Finish__c, sked__Duration__c, sked__Type__c, 
                                          sked__Job_Status__c, Copy_Result_Message__c, Number_of_Instructors__c, Job_Month__c,
                                          sked__Location__c, Course_Catalog__c, Course_Catalog__r.Name, Break_Duration__c, 
-                                         Number_of_Breaks__c, Special_Instructions__c, ClasS_Sub_Type__c
+                                         Number_of_Breaks__c, Special_Instructions__c, ClasS_Sub_Type__c, Course_Code__c, Display_Order__c,
+                                         sked__Parent__c, Is_Stacked_Class__c, Is_Master_Class__c
                                          FROM sked__Job__c
                                          WHERE Job_Month__c = :jobMonth
                                          AND sked__Region__c = :regionId
-                                         AND Is_Queued__c = TRUE];
+                                         AND Is_Queued__c = TRUE
+                                         AND (Is_Stacked_Class__c = FALSE OR Is_Master_Class__c = TRUE)];
         return validateQueuedJobs(regionId, queuedJobs);
     }
 
@@ -623,6 +755,7 @@ global class skedCommunitySchedulingController {
                                          AND Is_Queued__c = FALSE
                                          AND sked__Start__c < :endTime
                                          AND sked__Finish__c > :startTime
+                                         AND (Is_Stacked_Class__c = FALSE OR Is_Master_Class__c = TRUE)
                                          ORDER BY sked__Start__c];
         List<sked__Job__c> jobsToUpdate = new List<sked__Job__c>();
         for (sked__Job__c queuedJob : queuedJobs) {
@@ -748,21 +881,22 @@ global class skedCommunitySchedulingController {
 
     /**************************************************************** Nested clases ***********************************************************************/
     global class facilityQueryModel {
-    	public string regionId {get;set;}
-    	public string startDateIso {get;set;} 
-    	public string endDateIso {get;set;}
+        public string regionId {get;set;}
+        public string startDateIso {get;set;} 
+        public string endDateIso {get;set;}
     }
 
     global class facilityModel extends skedModels.facility {
-    	public List<jobModel> jobs {get;set;}
+        public List<jobModel> jobs {get;set;}
 
-    	public facilityModel(sked__Location__c skedLocation) {
+        public facilityModel(sked__Location__c skedLocation) {
             super(skedLocation);
-    		this.jobs = new List<jobModel>();
-    	}
+            this.jobs = new List<jobModel>();
+        }
     }
 
     global class jobModel extends skedModels.job {
+        public string action {get;set;}
         public boolean isQueued {get;set;}
         public boolean isPreviouslyCancelled {get;set;}
         public integer numberOfStudents {get;set;}
@@ -771,6 +905,10 @@ global class skedCommunitySchedulingController {
         public boolean hasAllocation {get;set;}
         public string communityClassSubType {get;set;}
         public copyResultModel copyResult {get;set;}
+        public boolean isStackedClass {get;set;}
+        public string courseCode {get;set;}
+        public integer displayOrder {get;set;}
+        public List<jobModel> subclasses {get;set;}
 
         public jobModel() {}
 
@@ -797,6 +935,12 @@ global class skedCommunitySchedulingController {
             this.beforeClassDuration = skedJob.Before_class_duration__c == NULL ? 0 : integer.valueOf(skedJob.Before_class_duration__c);
             this.afterClassDuration = skedJob.After_class_duration__c == NULL ? 0 : integer.valueOf(skedJob.After_class_duration__c);
             this.communityClassSubType = skedJob.ClasS_Sub_Type__c;
+            this.isStackedClass = skedJob.Is_Stacked_Class__c;
+            this.courseCode = skedJob.Course_Code__c;
+            if (skedJob.Display_Order__c != NULL) {
+                this.displayOrder = integer.valueOf(skedJob.Display_Order__c);
+            }
+            this.parentId = skedJob.sked__Parent__c;
         }
     }
 
@@ -830,6 +974,10 @@ global class skedCommunitySchedulingController {
         public integer numberOfBreaks {get;set;}
         public boolean locationConfirmed {get;set;}
         public string communityClassSubType {get;set;}
+        public boolean isStackedClass {get;set;}
+        public string courseCode {get;set;}
+        public integer displayOrder {get;set;}
+        public List<jobModel> subclasses {get;set;}
         
         //recurring options
         public boolean isRecurring {get;set;}

@@ -326,6 +326,15 @@
         <type>Default</type>
     </actionOverrides>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Contact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>AccountId</fields>
+        <fields>Phone</fields>
+        <fields>Email</fields>
+        <fields>MobilePhone</fields>
+        <label>Contact Layout</label>
+    </compactLayouts>
     <enableEnhancedLookup>true</enableEnhancedLookup>
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
@@ -504,6 +513,31 @@ IMAGE(&quot;/s.gif&quot;, &quot;Status Flag&quot;)
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
+        <fullName>Community_User_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Community User Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Active</fullName>
+                    <default>false</default>
+                    <label>Active</label>
+                </value>
+                <value>
+                    <fullName>Inactive</fullName>
+                    <default>false</default>
+                    <label>Inactive</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Contact_Age__c</fullName>
         <externalId>false</externalId>
         <formula>FLOOR((TODAY()-Birthdate)/365.2425)</formula>
@@ -643,7 +677,7 @@ IMAGE(&quot;/s.gif&quot;, &quot;Status Flag&quot;)
         <description>This field is utilized to support the data migration process. It will contain a combination of the source system identifier and the source system&apos;s unique record identifier. This field should be deleted after all migration activities are complete</description>
         <externalId>true</externalId>
         <label>DM External Id</label>
-        <length>40</length>
+        <length>70</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -680,6 +714,28 @@ IMAGE(&quot;/s.gif&quot;, &quot;Status Flag&quot;)
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Deactivation_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Deactivation Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Deactivation_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Deactivation Reason</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Deactivation_Reason</valueSetName>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Delta_Data_Migration__c</fullName>
@@ -878,7 +934,7 @@ IMAGE(&quot;/s.gif&quot;, &quot;Status Flag&quot;)
         <label>Gender</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Picklist</type>
         <valueSet>
             <restricted>true</restricted>
@@ -1302,12 +1358,23 @@ IMAGE(&quot;/s.gif&quot;, &quot;Status Flag&quot;)
         <type>TextArea</type>
     </fields>
     <fields>
+        <fullName>Profile__c</fullName>
+        <externalId>false</externalId>
+        <formula>LEFT($Api.Partner_Server_URL_260, FIND( &apos;/services&apos;, $Api.Partner_Server_URL_260))&amp; &quot;lightning/r/User/&quot; &amp; $User.Id &amp; &quot;/view&quot;</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Profile</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Race__c</fullName>
         <externalId>false</externalId>
         <label>Race</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Picklist</type>
         <valueSet>
             <restricted>true</restricted>
@@ -1372,6 +1439,54 @@ IMAGE(&quot;/s.gif&quot;, &quot;Status Flag&quot;)
         </valueSet>
     </fields>
     <fields>
+        <fullName>SABA_Birthdate__c</fullName>
+        <externalId>false</externalId>
+        <label>SABA Birthdate</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>SABA_BusinessPhone__c</fullName>
+        <externalId>false</externalId>
+        <label>SABA BusinessPhone</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>SABA_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>SABA Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SABA_FirstName__c</fullName>
+        <externalId>false</externalId>
+        <label>SABA FirstName</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SABA_HomePhone__c</fullName>
+        <externalId>false</externalId>
+        <label>SABA HomePhone</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Phone</type>
+    </fields>
+    <fields>
         <fullName>SABA_Internal_ID__c</fullName>
         <caseSensitive>false</caseSensitive>
         <externalId>true</externalId>
@@ -1382,6 +1497,37 @@ IMAGE(&quot;/s.gif&quot;, &quot;Status Flag&quot;)
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>SABA_LastName__c</fullName>
+        <externalId>false</externalId>
+        <label>SABA LastName</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SABA_MobilePhone__c</fullName>
+        <externalId>false</externalId>
+        <label>SABA MobilePhone</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>SABA_Salutation__c</fullName>
+        <externalId>false</externalId>
+        <label>SABA Salutation</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>SFMC_invalid__c</fullName>
@@ -1619,8 +1765,7 @@ IF(CONTAINS(Account.Name, &quot;Bucket&quot;), true, false))))))</formula>
         <fullName>Birth_Date_cannot_be_future_date</fullName>
         <active>true</active>
         <description>Birth Date cannot be future date</description>
-        <errorConditionFormula>AND(Birthdate &gt;  DATEVALUE( LastModifiedDate),  $Setup.Validation_Rules__c.Bypass_Rules__c = false)</errorConditionFormula>
-        <errorDisplayField>Birthdate</errorDisplayField>
+        <errorConditionFormula>AND( Birthdate &gt; TODAY(), $Setup.Validation_Rules__c.Bypass_Rules__c = false)</errorConditionFormula>
         <errorMessage>Birth Date cannot be greater than current date</errorMessage>
     </validationRules>
     <validationRules>
@@ -1628,6 +1773,13 @@ IF(CONTAINS(Account.Name, &quot;Bucket&quot;), true, false))))))</formula>
         <active>true</active>
         <errorConditionFormula>LEN($Setup.Bucket_Account_Settings__c.Bucket_Account_Owner_ID__c)&lt;15 ||  !BEGINS($Setup.Bucket_Account_Settings__c.Bucket_Account_Owner_ID__c, &apos;005&apos;) || LEN( $Setup.Bucket_Account_Settings__c.Bucket_Account_RecordTypeID__c )&lt;15 ||  !BEGINS($Setup.Bucket_Account_Settings__c.Bucket_Account_RecordTypeID__c, &apos;012&apos;) ||   $Setup.Bucket_Account_Settings__c.Maximum_Size_of_Bucket__c&lt;200 ||  ISBLANK($Setup.Bucket_Account_Settings__c.Default_Bucket_Name__c)</errorConditionFormula>
         <errorMessage>Please contact your administrator. Settings for business to consumer contacts need to be defined in Salesforce.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Email_Required_for_Billing_Contacts</fullName>
+        <active>true</active>
+        <description>The Email is required for Billing Contacts. Billing Contacts are determined by the Contact Type, if the Contact Type contains &apos;Billing&apos; then the Contact is considered a Billing Contact.</description>
+        <errorConditionFormula>IF( AND( INCLUDES(Contact_Type__c , &apos;Billing&apos;), ISBLANK(Email) ), TRUE, FALSE)</errorConditionFormula>
+        <errorMessage>An email address must be provided for the Billing Contact, update Contact record</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Fax_Number_with_10_Digits</fullName>
@@ -1761,6 +1913,13 @@ NOT(CONTAINS(&quot;0123456789&quot;, MID( MailingPostalCode , 10, 1)))
         <errorMessage>Zip code must be in 99999 or 99999-9999 format.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>Phone_Required_for_Billing_Contacts</fullName>
+        <active>true</active>
+        <description>The Phone is required for Billing Contacts. Billing Contacts are determined by the Contact Type, if the Contact Type contains &apos;Billing&apos; then the Contact is considered a Billing Contact.</description>
+        <errorConditionFormula>IF( AND( INCLUDES(Contact_Type__c , &apos;Billing&apos;), ISBLANK(Phone) ), TRUE, FALSE)</errorConditionFormula>
+        <errorMessage>A phone number must be provided for the Billing Contact, update Contact record</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>RCS_Billing_And_Shipping_Only_For_RCSPO</fullName>
         <active>false</active>
         <description>RCS PO Account can only have contacts with contact Type &apos;RCS Billing&apos; and &apos;RCS Shipping&apos;.</description>
@@ -1851,6 +2010,18 @@ sforce_user_id={!User.Id}&amp;
 custom_link_name=FormFactory Form Name&amp; 
 mycontact={!Contact.Id}&amp; 
 myuser={!User.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Customer_User_Detail</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Customer User Detail</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/apex/CustomerUserDetailRedirect?Id={!Contact.Id}</url>
     </webLinks>
     <webLinks>
         <fullName>Ghost_Call</fullName>
@@ -1998,6 +2169,6 @@ myuser={!User.Id}</url>
         <protected>false</protected>
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
-        <url>http://weather.yahoo.com/search/weather2?p={!Contact_MailingPostalCode}</url>
+        <url>https://www.yahoo.com/news/weather={!Contact.MailingPostalCode}</url>
     </webLinks>
 </CustomObject>

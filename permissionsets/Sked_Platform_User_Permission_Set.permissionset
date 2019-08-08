@@ -189,10 +189,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>skedSupportImportTriggerTests</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>skedTravelTimeService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -1089,12 +1085,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>sked__Job__c.Course_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>sked__Job__c.Course__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>sked__Job__c.Dispatch__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>sked__Job__c.Display_Order__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1129,17 +1135,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>sked__Job__c.Is_Master_Class__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>sked__Job__c.Is_Queued__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>sked__Job__c.Job_Month__c</field>
+        <field>sked__Job__c.Is_Stacked_Class__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>sked__Job__c.Job_Tag_Count__c</field>
+        <editable>true</editable>
+        <field>sked__Job__c.Job_Month__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

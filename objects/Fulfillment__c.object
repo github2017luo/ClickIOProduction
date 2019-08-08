@@ -324,6 +324,17 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
+    <fields>
+        <fullName>transaction_Contact_name__c</fullName>
+        <externalId>false</externalId>
+        <formula>(CC_Transaction_Payment__r.ccrz__Contact__r.FirstName + CC_Transaction_Payment__r.ccrz__Contact__r.LastName )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Contact name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>Fulfillment</label>
     <nameField>
         <displayFormat>F-{0000000}</displayFormat>

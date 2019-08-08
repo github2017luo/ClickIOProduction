@@ -7,8 +7,15 @@ global with sharing class sendCSVToCFS
         List<Case> scope = new List<Case> ();
         try
         {
-            String startDate = RestContext.request.params.get('StartDate');
-            String endDate = RestContext.request.params.get('EndDate');
+            String startDate;
+            String endDate;
+            if (!Test.isRunningTest()) {
+                startDate = RestContext.request.params.get('StartDate');
+                endDate = RestContext.request.params.get('EndDate');
+            } else {
+                startDate = String.valueOf(Date.Today().addDays(-1));
+                endDate = String.valueOf(Date.Today().addDays(1));
+            }
             system.debug('StartDate:::'+startDate);
             system.debug('endDate:::'+endDate);
             String csvColumnHeader;

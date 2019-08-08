@@ -34,7 +34,7 @@
 	    <h3>{!v.description}</h3>
 	    <table class="slds-table slds-table--bordered slds-table--cell-buffer">
 	        <thead>
-	            <tr class="slds-text-title slds-hide">
+	            <tr class="slds-text-title">
 	                <th scope="col">
 	                	<div class="search-header">
 	                		<div class="search-header-section">
@@ -76,7 +76,7 @@
 	            		<tr>
 	            			<th class="slds-truncate cursor slds-grid">
 	            				<span class="slds-size--7-of-12">{#v.materialNameColumnLabel}</span>
-	            				<span class="slds-size--3-of-12" style="visibility:hidden;">{#v.lastModifiedDateColumnLabel}</span>
+	            				<span class="slds-size--3-of-12">{#v.lastModifiedDateColumnLabel}</span>
 	            				<span class="slds-size--2-of-12">{#v.materialTypeColumnLabel}</span>
 	            			</th>
 	            		</tr>

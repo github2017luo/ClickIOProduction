@@ -186,8 +186,8 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>Account_Record_Page</content>
+        <comment>Action override updated by Lightning App Builder during activation.</comment>
+        <content>Account_Record_Page5</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
@@ -497,6 +497,62 @@ Status__c , &quot;Red&quot;, &quot;/img/samples/flag_red.gif&quot;, &quot;Green&
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Active_Contract_Exception_Status__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Approval for Exception Processing of Orders</inlineHelpText>
+        <label>Active Contract Exception Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Requested</fullName>
+                    <default>false</default>
+                    <label>Requested</label>
+                </value>
+                <value>
+                    <fullName>Submitted</fullName>
+                    <default>false</default>
+                    <label>Submitted</label>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                    <label>Approved</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Active_Contract_Exception__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Request a Contract Exception</inlineHelpText>
+        <label>Active Contract Exception</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Add_Roster__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>If Yes, Invoice Delivery Method must be Email or Portal.</inlineHelpText>
+        <label>Add Roster</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Agreement_Covers__c</fullName>
@@ -1130,6 +1186,16 @@ TEXT(Is_Pricing_Agreement__c)
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Consolidate_Period_Fulfillments__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>If multiple transactions occur in the same invoice cycle they will appear on the same invoice.</inlineHelpText>
+        <label>Consolidate Transactions</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Copy_Billing_to_Shipping__c</fullName>
         <defaultValue>false</defaultValue>
         <description>This checkbox will run a formula that copies all of the Billing Address information to the Shipping Address Fields.</description>
@@ -1212,6 +1278,33 @@ TEXT(Is_Pricing_Agreement__c)
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Credit_Available__c</fullName>
+        <description>Available Credit for purchases</description>
+        <externalId>false</externalId>
+        <formula>Credit_Limit__c - Total_AR__c - Open_Order_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Credit Available = Credit Limit – (Open Orders + Total AR)</inlineHelpText>
+        <label>Credit Available</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Credit_Limit__c</fullName>
+        <description>Authorized Credit Extension for Customer</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Amount of credit extended to a customer for invoicing purposes. Automatically defaulted to $10,000 when the Prefered Payment Method is set to Invoice or $0 if the Prefered Payment method is set to Credit Card. Once saved, you may updated the credit limit.</inlineHelpText>
+        <label>Credit Limit</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>Customer_PO_Expiration_Date__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>This is the same as the Expiration Date on the Purchase Order in Saba.</inlineHelpText>
@@ -1220,6 +1313,16 @@ TEXT(Is_Pricing_Agreement__c)
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Customer_PO_Required_on_Invoice__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Check box if customer requires their PO to be referenced on the invoice.</inlineHelpText>
+        <label>Customer PO Required on Invoice</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Customer_PO__c</fullName>
@@ -1248,7 +1351,7 @@ TEXT(Is_Pricing_Agreement__c)
         <description>This field is utilized to support the data migration process.  It will contain a combination of the source system identifier and the source system&apos;s unique record identifier.  This field should be deleted after all migration activities are complete.</description>
         <externalId>true</externalId>
         <label>DM External Id</label>
-        <length>40</length>
+        <length>70</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1307,6 +1410,16 @@ TEXT(Is_Pricing_Agreement__c)
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Estimated_Annual_Enrollees__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Estimated annual enrollees from initial interview.</inlineHelpText>
@@ -1352,6 +1465,19 @@ TEXT(Is_Pricing_Agreement__c)
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>External_ID__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <description>External ID Used for LMS Integration</description>
+        <externalId>false</externalId>
+        <label>External ID</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>FS_Territory_Owner__c</fullName>
@@ -1453,10 +1579,33 @@ TEXT(Is_Pricing_Agreement__c)
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Include_Roster__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>If Yes, Invoice Delivery Method must be Email or Portal.</inlineHelpText>
+        <label>Include Roster</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Industry</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Inherit_Parent_Terms__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Select if you want the Account to Inherit the 
+- Available Credit 
+- Payment Terms
+from Parent Account</inlineHelpText>
+        <label>Inherit Parent Terms</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Inv_Del_Assign_Date__c</fullName>
@@ -1467,6 +1616,32 @@ TEXT(Is_Pricing_Agreement__c)
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Invoice_Delivery_Frequency__c</fullName>
+        <description>This field indicates the invoice delivery frequency for a customer.</description>
+        <externalId>false</externalId>
+        <label>Invoice Delivery Frequency</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>4x/Monthly</fullName>
+                    <default>true</default>
+                    <label>4x/Monthly</label>
+                </value>
+                <value>
+                    <fullName>Monthly</fullName>
+                    <default>false</default>
+                    <label>Monthly</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Invoice_Delivery_Type__c</fullName>
@@ -1482,7 +1657,7 @@ TEXT(Is_Pricing_Agreement__c)
                 <sorted>false</sorted>
                 <value>
                     <fullName>Postal Mail</fullName>
-                    <default>false</default>
+                    <default>true</default>
                     <label>Postal Mail</label>
                 </value>
                 <value>
@@ -1491,19 +1666,35 @@ TEXT(Is_Pricing_Agreement__c)
                     <label>Email</label>
                 </value>
                 <value>
-                    <fullName>Invoice Central</fullName>
-                    <default>false</default>
-                    <label>Invoice Central</label>
-                </value>
-                <value>
                     <fullName>Portal Billing</fullName>
                     <default>false</default>
                     <label>Portal Billing</label>
                 </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Invoice_Template__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>See Job Aid: Invoice Template Selections to determine your customer needs.</inlineHelpText>
+        <label>Invoice Template</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
                 <value>
-                    <fullName>Returned to Postal Mail</fullName>
+                    <fullName>Simple</fullName>
+                    <default>true</default>
+                    <label>Simple</label>
+                </value>
+                <value>
+                    <fullName>Detailed</fullName>
                     <default>false</default>
-                    <label>Returned to Postal Mail</label>
+                    <label>Detailed</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -1636,6 +1827,15 @@ TEXT(Is_Pricing_Agreement__c)
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Mobile__c</fullName>
+        <externalId>false</externalId>
+        <label>Mobile</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Phone</type>
+    </fields>
+    <fields>
         <fullName>NAICS_Code__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -1675,6 +1875,19 @@ TEXT(Is_Pricing_Agreement__c)
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>New_TSC_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>New TSC Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Accounts (New TSC Contact)</relationshipLabel>
+        <relationshipName>Accounts1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>No_Fee_Expiration_Date__c</fullName>
@@ -1778,6 +1991,20 @@ TEXT(Is_Pricing_Agreement__c)
         </valueSet>
     </fields>
     <fields>
+        <fullName>Open_Order_Amount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Sum of Orders In Process</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Based on the total dollar value of open orders for all orders on the account. </inlineHelpText>
+        <label>Open Order Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>Opportunity_Count__c</fullName>
         <externalId>false</externalId>
         <label>Opportunity Count</label>
@@ -1785,6 +2012,18 @@ TEXT(Is_Pricing_Agreement__c)
         <summaryOperation>count</summaryOperation>
         <trackHistory>false</trackHistory>
         <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Original_SABA_LMS_Code__c</fullName>
+        <description>Legacy SABA fields- Data Migration from SABA</description>
+        <externalId>false</externalId>
+        <label>Original SABA LMS Code</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>OwnerId</fullName>
@@ -1965,7 +2204,7 @@ TEXT(Is_Pricing_Agreement__c)
         <fullName>Preferred_Payment_type__c</fullName>
         <description>identify which types are the customer preferred payment</description>
         <externalId>false</externalId>
-        <inlineHelpText>This is how customers pay for products and services</inlineHelpText>
+        <inlineHelpText>This is how customer will pay for products and services.</inlineHelpText>
         <label>Preferred Payment Type</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1975,11 +2214,6 @@ TEXT(Is_Pricing_Agreement__c)
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Check</fullName>
-                    <default>false</default>
-                    <label>Check</label>
-                </value>
-                <value>
                     <fullName>Credit/Debit Card</fullName>
                     <default>false</default>
                     <label>Credit/Debit Card</label>
@@ -1988,16 +2222,6 @@ TEXT(Is_Pricing_Agreement__c)
                     <fullName>Invoice</fullName>
                     <default>false</default>
                     <label>Invoice</label>
-                </value>
-                <value>
-                    <fullName>Invoice exception</fullName>
-                    <default>false</default>
-                    <label>Invoice exception</label>
-                </value>
-                <value>
-                    <fullName>Money Order</fullName>
-                    <default>false</default>
-                    <label>Money Order</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -2021,6 +2245,19 @@ TEXT(Is_Pricing_Agreement__c)
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prodid__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>For data migration only</description>
+        <externalId>true</externalId>
+        <label>Prodid</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>REPORT_AR_0_30_Days__c</fullName>
@@ -2192,6 +2429,131 @@ Lifeline C- Refers sporadically</inlineHelpText>
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>SABA_BillingCity__c</fullName>
+        <description>Legacy SABA fields- Data Migration from SABA</description>
+        <externalId>false</externalId>
+        <label>SABA BillingCity</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SABA_BillingCountry__c</fullName>
+        <description>Legacy SABA fields- Data Migration from SABA</description>
+        <externalId>false</externalId>
+        <label>SABA BillingCountry</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SABA_BillingPostalCode__c</fullName>
+        <description>Legacy SABA fields- Data Migration from SABA</description>
+        <externalId>false</externalId>
+        <label>SABA BillingPostalCode</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SABA_BillingState__c</fullName>
+        <description>Legacy SABA fields- Data Migration from SABA</description>
+        <externalId>false</externalId>
+        <label>SABA BillingState</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SABA_BillingStreet__c</fullName>
+        <description>Legacy SABA fields- Data Migration from SABA</description>
+        <externalId>false</externalId>
+        <label>SABA BillingStreet</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>SABA_Billing_Contact_Email__c</fullName>
+        <description>Saba-Legacy data migration</description>
+        <externalId>false</externalId>
+        <label>SABA Billing Contact Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SABA_Billing_Contact_Name__c</fullName>
+        <description>Saba legacy data migration</description>
+        <externalId>false</externalId>
+        <label>SABA Billing Contact Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SABA_Billing_Contact_Phone__c</fullName>
+        <description>Saba-Legacy data migration</description>
+        <externalId>false</externalId>
+        <label>SABA Billing Contact Phone</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>SABA_Company_affiliation__c</fullName>
+        <description>Legacy SABA fields- Data Migration from SABA</description>
+        <externalId>false</externalId>
+        <label>SABA Company affiliation</label>
+        <length>25</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SABA_Createdby__c</fullName>
+        <description>Legacy SABA fields- Data Migration from SABA</description>
+        <externalId>false</externalId>
+        <label>SABA Createdby</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SABA_Createddate__c</fullName>
+        <description>Legacy SABA fields- Data Migration from SABA</description>
+        <externalId>false</externalId>
+        <label>SABA Createddate</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>SABA_LMS_Code__c</fullName>
         <externalId>false</externalId>
         <label>SABA\LMS Code</label>
@@ -2201,6 +2563,263 @@ Lifeline C- Refers sporadically</inlineHelpText>
         <trackHistory>true</trackHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SABA_Lastmodifiedby__c</fullName>
+        <description>Legacy SABA fields- Data Migration from SABA</description>
+        <externalId>false</externalId>
+        <label>SABA Lastmodifiedby</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SABA_Lastmodifieddate__c</fullName>
+        <description>Legacy SABA fields- Data Migration from SABA</description>
+        <externalId>false</externalId>
+        <label>SABA Lastmodifieddate</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>SABA_Name__c</fullName>
+        <description>Legacy SABA fields- Data Migration from SABA</description>
+        <externalId>false</externalId>
+        <label>SABA Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SABA_ORG_KEY__c</fullName>
+        <description>Unique id for SABA data migration.</description>
+        <externalId>true</externalId>
+        <label>SABA ORG KEY</label>
+        <length>24</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SABA_ORG_Match_Type__c</fullName>
+        <description>Legacy SABA fields- Data Migration from SABA</description>
+        <externalId>false</externalId>
+        <label>SABA ORG Match Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>NetNew</fullName>
+                    <default>false</default>
+                    <label>NetNew</label>
+                </value>
+                <value>
+                    <fullName>1-1</fullName>
+                    <default>false</default>
+                    <label>1-1</label>
+                </value>
+                <value>
+                    <fullName>M-1</fullName>
+                    <default>false</default>
+                    <label>M-1</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>SABA_Org_Type__c</fullName>
+        <description>Legacy SABA fields- Data Migration from SABA</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates the type of customer relationship this organization has with Training Services.  Required for Field Sales and BGST customer accounts.</inlineHelpText>
+        <label>Org Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>AP</fullName>
+                    <default>false</default>
+                    <label>AP</label>
+                </value>
+                <value>
+                    <fullName>AP NAN</fullName>
+                    <default>false</default>
+                    <label>AP NAN</label>
+                </value>
+                <value>
+                    <fullName>AP/BC</fullName>
+                    <default>false</default>
+                    <label>AP/BC</label>
+                </value>
+                <value>
+                    <fullName>AP/BC/FS</fullName>
+                    <default>false</default>
+                    <label>AP/BC/FS</label>
+                </value>
+                <value>
+                    <fullName>AP/FS</fullName>
+                    <default>false</default>
+                    <label>AP/FS</label>
+                </value>
+                <value>
+                    <fullName>AQ</fullName>
+                    <default>false</default>
+                    <label>AQ</label>
+                </value>
+                <value>
+                    <fullName>AQ NAN</fullName>
+                    <default>false</default>
+                    <label>AQ NAN</label>
+                </value>
+                <value>
+                    <fullName>BC</fullName>
+                    <default>false</default>
+                    <label>BC</label>
+                </value>
+                <value>
+                    <fullName>BC/FS</fullName>
+                    <default>false</default>
+                    <label>BC/FS</label>
+                </value>
+                <value>
+                    <fullName>Blood Region</fullName>
+                    <default>false</default>
+                    <label>Blood Region</label>
+                </value>
+                <value>
+                    <fullName>CEPA</fullName>
+                    <default>false</default>
+                    <label>CEPA</label>
+                </value>
+                <value>
+                    <fullName>Community Branch</fullName>
+                    <default>false</default>
+                    <label>Community Branch</label>
+                </value>
+                <value>
+                    <fullName>Community Chapter</fullName>
+                    <default>false</default>
+                    <label>Community Chapter</label>
+                </value>
+                <value>
+                    <fullName>Division</fullName>
+                    <default>false</default>
+                    <label>Division</label>
+                </value>
+                <value>
+                    <fullName>FS</fullName>
+                    <default>false</default>
+                    <label>FS</label>
+                </value>
+                <value>
+                    <fullName>FS NAN</fullName>
+                    <default>false</default>
+                    <label>FS NAN</label>
+                </value>
+                <value>
+                    <fullName>FS/APNAN</fullName>
+                    <default>false</default>
+                    <label>FS/APNAN</label>
+                </value>
+                <value>
+                    <fullName>House AQ</fullName>
+                    <default>false</default>
+                    <label>House AQ</label>
+                </value>
+                <value>
+                    <fullName>House AP</fullName>
+                    <default>false</default>
+                    <label>House AP</label>
+                </value>
+                <value>
+                    <fullName>House FS</fullName>
+                    <default>false</default>
+                    <label>House FS</label>
+                </value>
+                <value>
+                    <fullName>House LTP</fullName>
+                    <default>false</default>
+                    <label>House LTP</label>
+                </value>
+                <value>
+                    <fullName>LTP</fullName>
+                    <default>false</default>
+                    <label>LTP</label>
+                </value>
+                <value>
+                    <fullName>NATA</fullName>
+                    <default>false</default>
+                    <label>NATA</label>
+                </value>
+                <value>
+                    <fullName>NATI</fullName>
+                    <default>false</default>
+                    <label>NATI</label>
+                </value>
+                <value>
+                    <fullName>NHQ</fullName>
+                    <default>false</default>
+                    <label>NHQ</label>
+                </value>
+                <value>
+                    <fullName>Red Cross - Other</fullName>
+                    <default>false</default>
+                    <label>Red Cross - Other</label>
+                </value>
+                <value>
+                    <fullName>Region</fullName>
+                    <default>false</default>
+                    <label>Region</label>
+                </value>
+                <value>
+                    <fullName>Regional Branch</fullName>
+                    <default>false</default>
+                    <label>Regional Branch</label>
+                </value>
+                <value>
+                    <fullName>Regional Chapter</fullName>
+                    <default>false</default>
+                    <label>Regional Chapter</label>
+                </value>
+                <value>
+                    <fullName>SAF AP</fullName>
+                    <default>false</default>
+                    <label>SAF AP</label>
+                </value>
+                <value>
+                    <fullName>SAF Station</fullName>
+                    <default>false</default>
+                    <label>SAF Station</label>
+                </value>
+                <value>
+                    <fullName>Station Branch</fullName>
+                    <default>false</default>
+                    <label>Station Branch</label>
+                </value>
+                <value>
+                    <fullName>Unknown</fullName>
+                    <default>false</default>
+                    <label>Unknown</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>SFMC_invalid__c</fullName>
@@ -2260,6 +2879,18 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Saba_Id__c</fullName>
+        <description>Unique identifier for a customer account in CFS. Initial data load contains unique identifier in Saba.</description>
+        <externalId>true</externalId>
+        <label>Saba Id</label>
+        <length>60</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Salesforce_Auto_Number__c</fullName>
         <displayFormat>SF{00000000}</displayFormat>
         <externalId>false</externalId>
@@ -2268,9 +2899,31 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
         <type>AutoNumber</type>
     </fields>
     <fields>
+        <fullName>Separate_Invoice_For_Products__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Product purchases and training services transactions together or separate.</inlineHelpText>
+        <label>Separate Invoice For Products</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>ShippingAddress</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Shipping_Address__c</fullName>
+        <description>Store Shipping Address for Training Event</description>
+        <externalId>false</externalId>
+        <formula>ShippingStreet + &quot; &quot;+ ShippingCity + &quot; &quot;+ ShippingState + &quot; &quot;+ ShippingPostalCode</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Shipping Address</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Sic</fullName>
@@ -2300,6 +2953,32 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Special_Invoicing__c</fullName>
+        <description>This field holds information to determine processing transactions for special invoicing. Required for determining customer class.</description>
+        <externalId>false</externalId>
+        <label>Special Invoicing</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>SHAREPOINT INVOICING</fullName>
+                    <default>false</default>
+                    <label>SHAREPOINT INVOICING</label>
+                </value>
+                <value>
+                    <fullName>DO NOT MAIL</fullName>
+                    <default>false</default>
+                    <label>DO NOT MAIL</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Spots_Taken__c</fullName>
         <description>This field should only be populated for bucket accounts. This field represents how many contacts are under the bucket account.</description>
         <externalId>false</externalId>
@@ -2326,7 +3005,7 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
                 <sorted>false</sorted>
                 <value>
                     <fullName>Active</fullName>
-                    <default>false</default>
+                    <default>true</default>
                     <label>Active</label>
                 </value>
                 <value>
@@ -2397,6 +3076,15 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Tax_Exempt_Cert_Expiry_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Tax Exempt Cert Expiry Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>Tax_Exempt__c</fullName>
@@ -2548,8 +3236,10 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
     </fields>
     <fields>
         <fullName>Total_AR__c</fullName>
+        <description>Balance of money due to the Red Cross for goods and services on the Account. Includes invoiced transactions and pre-payments. </description>
         <externalId>false</externalId>
         <formula>REPORT_Total_AR__c</formula>
+        <inlineHelpText>Balance of money due to the Red Cross for goods and services on the Account. Includes invoiced transactions and pre-payments. </inlineHelpText>
         <label>Total AR</label>
         <precision>18</precision>
         <required>false</required>
@@ -2577,6 +3267,18 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
         <fullName>Website</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>nk_billto_org_id__c</fullName>
+        <description>Created for Data migration-to be used by Finance on a regular basis.</description>
+        <externalId>false</externalId>
+        <label>nk billto org id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>true</recordTypeTrackHistory>
@@ -2713,6 +3415,25 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
             <values>
                 <fullName>User</fullName>
                 <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Active_Contract_Exception_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -2942,6 +3663,43 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Invoice_Delivery_Frequency__c</picklist>
+            <values>
+                <fullName>4x%2FMonthly</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Invoice_Delivery_Type__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portal Billing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Postal Mail</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Invoice_Template__c</picklist>
+            <values>
+                <fullName>Detailed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Is_Pricing_Agreement__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3078,23 +3836,11 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
         <picklistValues>
             <picklist>Preferred_Payment_type__c</picklist>
             <values>
-                <fullName>Check</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Credit%2FDebit Card</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Invoice</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Invoice exception</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Money Order</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3110,6 +3856,163 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
             </values>
             <values>
                 <fullName>Lifeline C</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SABA_ORG_Match_Type__c</picklist>
+            <values>
+                <fullName>1-1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M-1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NetNew</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SABA_Org_Type__c</picklist>
+            <values>
+                <fullName>AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%2FBC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%2FBC%2FFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%2FFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AQ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AQ NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BC%2FFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blood Region</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CEPA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Community Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Community Chapter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Division</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FS NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FS%2FAPNAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>House AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>House FS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>House LTP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LTP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NATA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NATI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NHQ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Red Cross - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Region</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Chapter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAF AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAF Station</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Station Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Special_Invoicing__c</picklist>
+            <values>
+                <fullName>DO NOT MAIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SHAREPOINT INVOICING</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3357,6 +4260,25 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Active_Contract_Exception_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Agreement_Covers__c</picklist>
             <values>
                 <fullName>All Domestic Locations</fullName>
@@ -3811,13 +4733,20 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Invoice_Delivery_Frequency__c</picklist>
+            <values>
+                <fullName>4x%2FMonthly</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Invoice_Delivery_Type__c</picklist>
             <values>
                 <fullName>Email</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Invoice Central</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3826,11 +4755,18 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
             </values>
             <values>
                 <fullName>Postal Mail</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Invoice_Template__c</picklist>
+            <values>
+                <fullName>Detailed</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Returned to Postal Mail</fullName>
-                <default>false</default>
+                <fullName>Simple</fullName>
+                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -3970,23 +4906,11 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
         <picklistValues>
             <picklist>Preferred_Payment_type__c</picklist>
             <values>
-                <fullName>Check</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Credit%2FDebit Card</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Invoice</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Invoice exception</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Money Order</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4006,10 +4930,167 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>SABA_ORG_Match_Type__c</picklist>
+            <values>
+                <fullName>1-1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M-1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NetNew</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SABA_Org_Type__c</picklist>
+            <values>
+                <fullName>AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%2FBC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%2FBC%2FFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%2FFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AQ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AQ NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BC%2FFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blood Region</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CEPA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Community Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Community Chapter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Division</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FS NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FS%2FAPNAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>House AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>House FS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>House LTP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LTP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NATA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NATI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NHQ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Red Cross - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Region</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Chapter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAF AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAF Station</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Station Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Special_Invoicing__c</picklist>
+            <values>
+                <fullName>DO NOT MAIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SHAREPOINT INVOICING</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Status__c</picklist>
             <values>
                 <fullName>Active</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Inactive</fullName>
@@ -4233,6 +5314,25 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Active_Contract_Exception_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Agreement_Covers__c</picklist>
             <values>
                 <fullName>All Domestic Locations</fullName>
@@ -4459,6 +5559,28 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Invoice_Delivery_Frequency__c</picklist>
+            <values>
+                <fullName>4x%2FMonthly</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Invoice_Template__c</picklist>
+            <values>
+                <fullName>Detailed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Is_Pricing_Agreement__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -4575,23 +5697,11 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
         <picklistValues>
             <picklist>Preferred_Payment_type__c</picklist>
             <values>
-                <fullName>Check</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Credit%2FDebit Card</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Invoice</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Invoice exception</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Money Order</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4607,6 +5717,163 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
             </values>
             <values>
                 <fullName>Lifeline C</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SABA_ORG_Match_Type__c</picklist>
+            <values>
+                <fullName>1-1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M-1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NetNew</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SABA_Org_Type__c</picklist>
+            <values>
+                <fullName>AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%2FBC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%2FBC%2FFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%2FFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AQ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AQ NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BC%2FFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blood Region</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CEPA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Community Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Community Chapter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Division</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FS NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FS%2FAPNAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>House AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>House FS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>House LTP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LTP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NATA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NATI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NHQ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Red Cross - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Region</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Chapter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAF AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAF Station</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Station Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Special_Invoicing__c</picklist>
+            <values>
+                <fullName>DO NOT MAIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SHAREPOINT INVOICING</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4691,10 +5958,10 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>Organization_Account</fullName>
+        <fullName>Individual_Account</fullName>
         <active>true</active>
-        <description>The record type most associated with accounts focused on Businesses and organizations dealing with PHSS</description>
-        <label>Organization Account</label>
+        <description>Learners and Instructors</description>
+        <label>Individual Account</label>
         <picklistValues>
             <picklist>AccountSource</picklist>
             <values>
@@ -4839,6 +6106,25 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
             <values>
                 <fullName>User</fullName>
                 <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Active_Contract_Exception_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -5296,13 +6582,20 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Invoice_Delivery_Frequency__c</picklist>
+            <values>
+                <fullName>4x%2FMonthly</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Invoice_Delivery_Type__c</picklist>
             <values>
                 <fullName>Email</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Invoice Central</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5311,11 +6604,18 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
             </values>
             <values>
                 <fullName>Postal Mail</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Invoice_Template__c</picklist>
+            <values>
+                <fullName>Detailed</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Returned to Postal Mail</fullName>
-                <default>false</default>
+                <fullName>Simple</fullName>
+                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -5479,10 +6779,3365 @@ if(ISBLANK(SF_Account_Number_Text__c), if(ISBLANK(Salesforce_Auto_Number__c),CFS
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>SABA_ORG_Match_Type__c</picklist>
+            <values>
+                <fullName>1-1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M-1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NetNew</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SABA_Org_Type__c</picklist>
+            <values>
+                <fullName>AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%2FBC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%2FBC%2FFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%2FFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AQ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AQ NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BC%2FFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blood Region</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CEPA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Community Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Community Chapter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Division</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FS NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FS%2FAPNAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>House AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>House FS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>House LTP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LTP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NATA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NATI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NHQ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Red Cross - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Region</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Chapter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAF AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAF Station</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Station Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Special_Invoicing__c</picklist>
+            <values>
+                <fullName>DO NOT MAIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SHAREPOINT INVOICING</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Strategic_Account_Type__c</picklist>
+            <values>
+                <fullName>Enhanced Support</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCC Scheduling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Handling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Handling - Field</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Tax_Exempt__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Termination_Reason__c</picklist>
+            <values>
+                <fullName>Bankruptcy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exception Granted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice Paid in Full</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non Payment%3B Sent to Collections</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non-Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non-Payment sent to collections agency</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Competitor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer - Corporate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer - Local</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer - NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Organization_Account</fullName>
+        <active>true</active>
+        <description>The record type most associated with accounts focused on Businesses and organizations dealing with PHSS</description>
+        <label>Organization Account</label>
+        <picklistValues>
+            <picklist>AccountSource</picklist>
+            <values>
+                <fullName>AED Partner Referral - Cardiac Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AED Partner Referral - Philips</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AED Partner Referral - Physio-Control</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AED Partner Referral - Zoll</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BGST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BioMed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chapter Exec</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Client Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cold Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Data Warehouse</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email Jump Page</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2015 BLS Launch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Google Search</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Janet%27s Law</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Participant Survey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCO Wufoo Form</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ready Rating</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TSC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Account_Source_API__c</picklist>
+            <values>
+                <fullName>Quick Create CDI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Smart Account Search</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>User</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Active_Contract_Exception_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Agreement_Covers__c</picklist>
+            <values>
+                <fullName>All Domestic Locations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MOU</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other%2C please describe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Single Location</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>BGST_Employee_Count__c</picklist>
+            <values>
+                <fullName>1-10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1000%2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>101-250</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11-25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>251-500</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>26-50</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>501-1000</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>51-100</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>BGST_Industry__c</picklist>
+            <values>
+                <fullName>Accommodation and Food Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Administrative and Support and Waste Management and Remediation Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arts%2C Entertainment%2C and Recreation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Educational Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance and Insurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Forestry%2C Fishing and Hunting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Health Care and Social Assistance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Management of Companies and Enterprises</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mining%2C Quarrying%2C and Oil and Gas Extraction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Services%2C except Public Administration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional%2C Scientific and Technical Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate and Rental and Leasing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retail Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation and Warehousing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unclassified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesale Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ublic Administration</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>BGST_Lead_Source__c</picklist>
+            <values>
+                <fullName>Accommodation and Food Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Administrative and Support and Waste Management and Remediation Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arts%2C Entertainment%2C and Recreation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Educational Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance and Insurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Forestry%2C Fishing and Hunting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Health Care and Social Assistance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Management of Companies and Enterprises</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mining%2C Quarrying%2C and Oil and Gas Extraction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Services%2C except Public Administration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional%2C Scientific and Technical Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate and Rental and Leasing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retail Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation and Warehousing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unclassified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesale Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ublic Administration</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>BGST_Rating__c</picklist>
+            <values>
+                <fullName>Cold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warm</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Bankruptcy_Type__c</picklist>
+            <values>
+                <fullName>Chapter 11 %28restructure%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chapter 7 %28out of business%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chapter 9 %28municipal%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Estimated_Annual_Enrollees__c</picklist>
+            <values>
+                <fullName>0-75</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1000%2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>501-999</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>76-500</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FN__Mapping_Status__c</picklist>
+            <values>
+                <fullName>Bad Google Key</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Google Exhausted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Located</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Located Yet</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Problem with Address</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FN__Which_Address__c</picklist>
+            <values>
+                <fullName>Billing</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Do Not Map</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shipping</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Industry</picklist>
+            <values>
+                <fullName>Agriculture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Apparel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Biotechnology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chemicals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Communications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consulting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electronics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Energy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Entertainment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Food %26 Beverage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Government</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hospitality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Machinery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mining</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not For Profit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place of Worship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recreation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shipping</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telecommunications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Invoice_Delivery_Frequency__c</picklist>
+            <values>
+                <fullName>4x%2FMonthly</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Invoice_Delivery_Type__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portal Billing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Postal Mail</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Invoice_Template__c</picklist>
+            <values>
+                <fullName>Detailed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Is_Pricing_Agreement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Number_of_Times_Terminated__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Ownership</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Private</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Subsidiary</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PHSS_Channel__c</picklist>
+            <values>
+                <fullName>AED</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorized Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Business Client</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CEP Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Full Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Licensed Training Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NAT AP%2FLTP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NAT Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>National Account Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCS Distributor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCS Retail</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Payment_Status__c</picklist>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Eligible for Reinstatement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Granted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Suspended</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Terminated</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Payment_Terms__c</picklist>
+            <values>
+                <fullName>NET 30</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NET 45</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NET 60</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NET 75</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NET 90</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Preferred_Payment_type__c</picklist>
+            <values>
+                <fullName>Credit%2FDebit Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Rating</picklist>
+            <values>
+                <fullName>Lifeline A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lifeline B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lifeline C</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SABA_ORG_Match_Type__c</picklist>
+            <values>
+                <fullName>1-1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M-1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NetNew</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SABA_Org_Type__c</picklist>
+            <values>
+                <fullName>AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%2FBC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%2FBC%2FFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%2FFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AQ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AQ NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BC%2FFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blood Region</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CEPA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Community Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Community Chapter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Division</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FS NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FS%2FAPNAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>House AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>House FS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>House LTP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LTP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NATA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NATI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NHQ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Red Cross - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Region</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Chapter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAF AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAF Station</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Station Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Special_Invoicing__c</picklist>
+            <values>
+                <fullName>DO NOT MAIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SHAREPOINT INVOICING</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Status__c</picklist>
             <values>
                 <fullName>Active</fullName>
                 <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Strategic_Account_Type__c</picklist>
+            <values>
+                <fullName>Enhanced Support</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCC Scheduling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Handling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Handling - Field</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Tax_Exempt__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Termination_Reason__c</picklist>
+            <values>
+                <fullName>Bankruptcy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exception Granted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice Paid in Full</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non Payment%3B Sent to Collections</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non-Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non-Payment sent to collections agency</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Competitor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer - Corporate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer - Local</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer - NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>SB_Household_Account</fullName>
+        <active>false</active>
+        <description>The record type associated to the holding household records for individuals who will be dealing with the Training Support Center at PHSS.</description>
+        <label>SB Household Account</label>
+        <picklistValues>
+            <picklist>AccountSource</picklist>
+            <values>
+                <fullName>AED Partner Referral - Cardiac Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AED Partner Referral - Philips</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AED Partner Referral - Physio-Control</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AED Partner Referral - Zoll</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BioMed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chapter Exec</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Client Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cold Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Google Search</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Participant Survey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCO Wufoo Form</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ready Rating</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TSC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Account_Source_API__c</picklist>
+            <values>
+                <fullName>Quick Create CDI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Smart Account Search</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>User</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Active_Contract_Exception_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Agreement_Covers__c</picklist>
+            <values>
+                <fullName>All Domestic Locations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MOU</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other%2C please describe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Single Location</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>BGST_Employee_Count__c</picklist>
+            <values>
+                <fullName>1-10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1000%2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>101-250</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11-25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>251-500</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>26-50</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>501-1000</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>51-100</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>BGST_Industry__c</picklist>
+            <values>
+                <fullName>Accommodation and Food Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Administrative and Support and Waste Management and Remediation Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arts%2C Entertainment%2C and Recreation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Educational Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance and Insurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Forestry%2C Fishing and Hunting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Health Care and Social Assistance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Management of Companies and Enterprises</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mining%2C Quarrying%2C and Oil and Gas Extraction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Services%2C except Public Administration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional%2C Scientific and Technical Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate and Rental and Leasing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retail Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation and Warehousing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unclassified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesale Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ublic Administration</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>BGST_Lead_Source__c</picklist>
+            <values>
+                <fullName>Accommodation and Food Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Administrative and Support and Waste Management and Remediation Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arts%2C Entertainment%2C and Recreation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Educational Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance and Insurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Forestry%2C Fishing and Hunting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Health Care and Social Assistance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Management of Companies and Enterprises</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mining%2C Quarrying%2C and Oil and Gas Extraction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Services%2C except Public Administration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional%2C Scientific and Technical Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate and Rental and Leasing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retail Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation and Warehousing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unclassified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesale Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ublic Administration</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>BGST_Rating__c</picklist>
+            <values>
+                <fullName>Cold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warm</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Bankruptcy_Type__c</picklist>
+            <values>
+                <fullName>Chapter 11 %28restructure%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chapter 7 %28out of business%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chapter 9 %28municipal%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Estimated_Annual_Enrollees__c</picklist>
+            <values>
+                <fullName>0-75</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1000%2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>501-999</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>76-500</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FN__Mapping_Status__c</picklist>
+            <values>
+                <fullName>Bad Google Key</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Google Exhausted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Located</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Located Yet</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Problem with Address</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FN__Which_Address__c</picklist>
+            <values>
+                <fullName>Billing</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Do Not Map</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shipping</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Industry</picklist>
+            <values>
+                <fullName>Agriculture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Apparel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Biotechnology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chemicals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Communications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consulting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electronics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Energy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Entertainment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Food %26 Beverage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Government</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hospitality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Machinery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not For Profit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place of Worship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recreation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shipping</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telecommunications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Invoice_Delivery_Frequency__c</picklist>
+            <values>
+                <fullName>4x%2FMonthly</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Invoice_Delivery_Type__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portal Billing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Postal Mail</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Invoice_Template__c</picklist>
+            <values>
+                <fullName>Detailed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Is_Pricing_Agreement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Number_of_Times_Terminated__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Ownership</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Private</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Subsidiary</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PHSS_Channel__c</picklist>
+            <values>
+                <fullName>AED</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorized Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Business Client</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CEP Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Full Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Licensed Training Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NAT AP%2FLTP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NAT Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>National Account Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCS Distributor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCS Retail</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Payment_Status__c</picklist>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Eligible for Reinstatement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Granted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Suspended</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Terminated</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Payment_Terms__c</picklist>
+            <values>
+                <fullName>NET 30</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NET 45</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NET 60</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NET 75</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NET 90</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Preferred_Payment_type__c</picklist>
+            <values>
+                <fullName>Credit%2FDebit Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Rating</picklist>
+            <values>
+                <fullName>Lifeline A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lifeline B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lifeline C</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SABA_ORG_Match_Type__c</picklist>
+            <values>
+                <fullName>1-1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M-1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NetNew</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SABA_Org_Type__c</picklist>
+            <values>
+                <fullName>AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%2FBC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%2FBC%2FFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%2FFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AQ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AQ NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BC%2FFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blood Region</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CEPA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Community Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Community Chapter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Division</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FS NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FS%2FAPNAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>House AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>House FS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>House LTP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LTP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NATA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NATI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NHQ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Red Cross - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Region</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Chapter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAF AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAF Station</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Station Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Special_Invoicing__c</picklist>
+            <values>
+                <fullName>DO NOT MAIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SHAREPOINT INVOICING</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Strategic_Account_Type__c</picklist>
+            <values>
+                <fullName>Enhanced Support</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCC Scheduling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Handling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Handling - Field</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Tax_Exempt__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Termination_Reason__c</picklist>
+            <values>
+                <fullName>Bankruptcy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exception Granted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice Paid in Full</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non Payment%3B Sent to Collections</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non-Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non-Payment sent to collections agency</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Competitor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer - Corporate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer - Local</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer - NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>SB_Organization_Account</fullName>
+        <active>true</active>
+        <description>The record type most associated with accounts focused on Businesses and organizations dealing with PHSS</description>
+        <label>SB Organization Account</label>
+        <picklistValues>
+            <picklist>AccountSource</picklist>
+            <values>
+                <fullName>AED Partner Referral - Cardiac Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AED Partner Referral - Philips</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AED Partner Referral - Physio-Control</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AED Partner Referral - Zoll</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BGST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BioMed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chapter Exec</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Client Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cold Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Data Warehouse</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email Jump Page</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2015 BLS Launch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Google Search</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Janet%27s Law</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Participant Survey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCO Wufoo Form</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ready Rating</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TSC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Account_Source_API__c</picklist>
+            <values>
+                <fullName>Quick Create CDI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Smart Account Search</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>User</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Active_Contract_Exception_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Agreement_Covers__c</picklist>
+            <values>
+                <fullName>All Domestic Locations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MOU</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other%2C please describe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Single Location</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>BGST_Employee_Count__c</picklist>
+            <values>
+                <fullName>1-10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1000%2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>101-250</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11-25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>251-500</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>26-50</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>501-1000</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>51-100</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>BGST_Industry__c</picklist>
+            <values>
+                <fullName>Accommodation and Food Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Administrative and Support and Waste Management and Remediation Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arts%2C Entertainment%2C and Recreation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Educational Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance and Insurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Forestry%2C Fishing and Hunting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Health Care and Social Assistance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Management of Companies and Enterprises</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mining%2C Quarrying%2C and Oil and Gas Extraction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Services%2C except Public Administration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional%2C Scientific and Technical Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate and Rental and Leasing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retail Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation and Warehousing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unclassified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesale Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ublic Administration</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>BGST_Lead_Source__c</picklist>
+            <values>
+                <fullName>Accommodation and Food Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Administrative and Support and Waste Management and Remediation Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arts%2C Entertainment%2C and Recreation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Educational Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance and Insurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Forestry%2C Fishing and Hunting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Health Care and Social Assistance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Management of Companies and Enterprises</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mining%2C Quarrying%2C and Oil and Gas Extraction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Services%2C except Public Administration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional%2C Scientific and Technical Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate and Rental and Leasing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retail Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation and Warehousing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unclassified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesale Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ublic Administration</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>BGST_Rating__c</picklist>
+            <values>
+                <fullName>Cold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warm</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Bankruptcy_Type__c</picklist>
+            <values>
+                <fullName>Chapter 11 %28restructure%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chapter 7 %28out of business%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chapter 9 %28municipal%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Estimated_Annual_Enrollees__c</picklist>
+            <values>
+                <fullName>0-75</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1000%2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>501-999</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>76-500</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FN__Mapping_Status__c</picklist>
+            <values>
+                <fullName>Bad Google Key</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Google Exhausted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Located</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Located Yet</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Problem with Address</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FN__Which_Address__c</picklist>
+            <values>
+                <fullName>Billing</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Do Not Map</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shipping</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Industry</picklist>
+            <values>
+                <fullName>Agriculture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Apparel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Biotechnology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chemicals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Communications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consulting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electronics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Energy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Entertainment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Food %26 Beverage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Government</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hospitality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Machinery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mining</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not For Profit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place of Worship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recreation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shipping</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telecommunications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Invoice_Delivery_Frequency__c</picklist>
+            <values>
+                <fullName>4x%2FMonthly</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Invoice_Delivery_Type__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portal Billing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Postal Mail</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Invoice_Template__c</picklist>
+            <values>
+                <fullName>Detailed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Is_Pricing_Agreement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Number_of_Times_Terminated__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Ownership</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Private</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Subsidiary</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PHSS_Channel__c</picklist>
+            <values>
+                <fullName>AED</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorized Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Business Client</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CEP Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Full Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Licensed Training Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NAT AP%2FLTP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NAT Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>National Account Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCS Distributor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCS Retail</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Payment_Status__c</picklist>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Eligible for Reinstatement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Granted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Suspended</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Terminated</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Payment_Terms__c</picklist>
+            <values>
+                <fullName>NET 30</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NET 45</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NET 60</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NET 75</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NET 90</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Preferred_Payment_type__c</picklist>
+            <values>
+                <fullName>Credit%2FDebit Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Rating</picklist>
+            <values>
+                <fullName>Lifeline A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lifeline B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lifeline C</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SABA_ORG_Match_Type__c</picklist>
+            <values>
+                <fullName>1-1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M-1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NetNew</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SABA_Org_Type__c</picklist>
+            <values>
+                <fullName>AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%2FBC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%2FBC%2FFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%2FFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AQ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AQ NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BC%2FFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blood Region</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CEPA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Community Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Community Chapter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Division</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FS NAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FS%2FAPNAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>House AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>House FS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>House LTP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LTP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NATA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NATI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NHQ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Red Cross - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Region</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Chapter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAF AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAF Station</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Station Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Special_Invoicing__c</picklist>
+            <values>
+                <fullName>DO NOT MAIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SHAREPOINT INVOICING</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Inactive</fullName>
@@ -5727,6 +10382,13 @@ $Setup.Validation_Rules__c.Bypass_Rules__c = False)</errorConditionFormula>
         <errorMessage>You do not have permission to make this change. Contact Customer Ops if you are receiving this message in error.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>Billing_Contact_Required_for_Invoicing</fullName>
+        <active>false</active>
+        <description>The Billing Contact is required for Invoicing Accounts. Invoicing Accounts are determined by the Preferred Payment Type=Invoice.</description>
+        <errorConditionFormula>IF( AND(ISPICKVAL(Preferred_Payment_type__c, &apos;Invoice&apos;), ISBLANK(Billing_Contact__c ) ) , TRUE, FALSE)</errorConditionFormula>
+        <errorMessage>Billing Contact must be listed on the Account when the Preferred Payment Type equals Invoicing</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Check_for_RCS_channel_Billing_Contacts</fullName>
         <active>false</active>
         <description>Checks if the Billing contact type is &quot;RCS Billing&quot; for the PHSS channel RCS Retail or RCS Distributor</description>
@@ -5800,6 +10462,14 @@ $User.Id &lt;&gt; &quot;005d00000040uDS&quot; /*Gita Borovsky */
         <errorMessage>Fill billing details before saving Account with PHSS Channel Type RCS Retail.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>Inherit_Parent_Terms</fullName>
+        <active>true</active>
+        <description>Validate if the Account has a Parent Account i.e is a Child Account</description>
+        <errorConditionFormula>AND(Inherit_Parent_Terms__c,
+  OR(  ISBLANK(ParentId) ))</errorConditionFormula>
+        <errorMessage>Inherit Parent Terms is only available for Child Accounts</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Initial_Bucket_Account_Creation</fullName>
         <active>true</active>
         <description>Bucket accounts that are newly created must be marked as having no spots taken</description>
@@ -5809,7 +10479,7 @@ $User.Id &lt;&gt; &quot;005d00000040uDS&quot; /*Gita Borovsky */
     </validationRules>
     <validationRules>
         <fullName>Insert_Restriction_on_Invoice_del_Fields</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Prevents inserting Invoice delivery fields, while creating Account if the user does not have permission.</description>
         <errorConditionFormula>AND(ISNEW(), !$Permission.Permission_for_three_fields_in_Account, 
 OR(!ISPICKVAL(Invoice_Delivery_Type__c, &apos;&apos;), !ISBLANK(Inv_Del_Assign_Date__c), !ISBLANK(Invoice_delivery_Email__c)), $Profile.Name != &quot;System Administrator&quot;)</errorConditionFormula>
@@ -6027,6 +10697,17 @@ ISPICKVAL(PRIORVALUE( Payment_Status__c ),&quot;Terminated&quot;), (ISPICKVAL(Pa
  $Setup.Validation_Rules__c.Bypass_Rules__c = False)</errorConditionFormula>
         <errorDisplayField>Payment_Status__c</errorDisplayField>
         <errorMessage>Customer cannot go directly from &quot;Terminated&quot; to &quot;Pending&quot;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Postal_Mail_cannot_include_Roster</fullName>
+        <active>true</active>
+        <description>If Invoice Delivery Method is Postal Mail, then &quot;Include Roster&quot; cannot be selected.</description>
+        <errorConditionFormula>AND( 
+    ISPICKVAL( Invoice_Delivery_Type__c , &quot;Postal Mail&quot;), 
+     Include_Roster__c  = TRUE
+)</errorConditionFormula>
+        <errorDisplayField>Include_Roster__c</errorDisplayField>
+        <errorMessage>If Invoice Delivery Method is Postal Mail, then &quot;Include Roster&quot; cannot be selected.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Preferred_Payment_Type</fullName>

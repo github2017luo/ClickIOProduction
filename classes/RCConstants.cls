@@ -11,6 +11,7 @@ public with sharing class RCConstants {
     public static final String STATUS_COMPLETED    = System.Label.Completed;
     public static final String STATUS_CANCELLED    = System.Label.Cancelled;
     public static final String STATUS_NOT_STARTED  = System.Label.Not_Started;
+    public static final String STATUS_REPORTED     = System.Label.Reported;
 
     public static final String APINAME_FIELD_ORGANIZATION = 'Skedulo_Account__r.Name';
     public static final String APINAME_FIELD_CLASSSETTINGS = 'Classroom_Setting__c';

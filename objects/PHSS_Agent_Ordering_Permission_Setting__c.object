@@ -3,6 +3,18 @@
     <customSettingsType>List</customSettingsType>
     <description>A list of user role names that will be used to determine if a user should be automatically assigned the &apos;PHSS Agent Ordering Permission&apos; permission set by the UserTrigger.</description>
     <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Role_Name__c</fullName>
+        <description>The role name that will be used to determine if the permission set should be assigned to user</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Role Name used to determine if the permission set should be assigned to user</inlineHelpText>
+        <label>Role Name</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>PHSS Agent Ordering Permission Setting</label>
     <visibility>Public</visibility>
 </CustomObject>

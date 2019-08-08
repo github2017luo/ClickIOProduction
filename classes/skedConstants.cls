@@ -33,7 +33,9 @@ public class skedConstants {
     public static final string JOB_TYPE_FULL_SERVICE = 'Full Service';
     public static final string JOB_TYPE_COMMUNITY = 'Community';
     public static final string JOB_TYPE_NURSE_ASSISTANT_TESTING = 'Nurse Assistant Testing';
+    public static final string JOB_TYPE_NURSE_ASSISTANT_TESTING_FULL_SERVICE = 'Nurse Assistant Testing - Full Service';
     public static final string JOB_TYPE_NURSE_ASSISTANT_TRAINING = 'Nurse Assistant Training';
+    public static final string JOB_TYPE_NURSE_ASSISTANT_TRAINING_FULL_SERVICE = 'Nurse Assistant Training - Full Service';
     
     public static final string JOB_ALLOCATION_STATUS_COMPLETE = 'Complete';
     public static final string JOB_ALLOCATION_STATUS_CONFIRMED = 'Confirmed';

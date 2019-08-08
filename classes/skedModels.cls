@@ -96,6 +96,8 @@ global class skedModels {
         public List<selectOption> neededSkills {get;set;}
         public string ratioToInstructor {get;set;}
         public boolean isActive {get;set;}
+        public string masterClassName {get;set;}
+        public List<subclassSetting> subclassSettings {get;set;}
         
         public courseCatalog(Course_Catalog__c skedCourseCatalog) {
             this.id = skedCourseCatalog.Id;
@@ -127,6 +129,32 @@ global class skedModels {
             }
             this.isActive = skedCourseCatalog.Is_Active__c;
             this.ratioToInstructor = skedCourseCatalog.Ratio_to_Instructor__c;
+            this.masterClassName = skedCourseCatalog.Master_Class_Name__c;
+            if (skedCourseCatalog.Sub_Class_Settings__r != NULL && !skedCourseCatalog.Sub_Class_Settings__r.isEmpty()) {
+                this.subclassSettings = new List<subclassSetting>();
+                for (Sub_Class_Setting__c skedSubClassSetting : skedCourseCatalog.Sub_Class_Settings__r) {
+                    subclassSetting setting = new subclassSetting(skedSubClassSetting);
+                    this.subclassSettings.add(setting);
+                }
+            }
+        }
+    }
+    
+    public virtual class subclassSetting {
+        public string courseCatalogId {get;set;}
+        public string courseCode {get;set;}
+        public integer displayOrder {get;set;}
+        public integer duration {get;set;}
+        
+        public subclassSetting(Sub_Class_Setting__c skedSubClassSetting) {
+            this.courseCatalogId = skedSubClassSetting.Course_Catalog__c;
+            this.courseCode = skedSubClassSetting.Course_Code__c;
+            if (skedSubClassSetting.Display_Order__c != NULL) {
+                this.displayOrder = integer.valueOf(skedSubClassSetting.Display_Order__c);
+            }
+            if (skedSubClassSetting.Duration__c != NULL) {
+                this.duration = integer.valueOf(skedSubClassSetting.Duration__c);
+            }
         }
     }
 

@@ -3,11 +3,6 @@
     <description>This permission set contains the permissions needed to create and manage knowledge articles</description>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Long_Article__kav.Body_2__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Long_Article__kav.Body__c</field>
         <readable>true</readable>
     </fieldPermissions>

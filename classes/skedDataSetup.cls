@@ -48,8 +48,16 @@ public class skedDataSetup {
         
         /***********************************************************Course_Catalog__c******************************************************/
         Course_Catalog__c courseCatalog1 = new Course_Catalog__c(
-            name = 'Adult First Aid/CPR/AED',
-            Type__c = 'Full Service;Community;Nurse Assistant Training;Nurse Assistant Testing'
+            name = 'SFA516-513-511',
+            Type__c = 'Full Service;Community;Nurse Assistant Training;Nurse Assistant Testing',
+            Number_of_Classes__c = 1,
+            Number_of_Breaks__c = 2,
+            Break_Duration__c = 60,
+            Class_Duration__c = 240,
+            Master_Class_Name__c = 'SFA516',
+            Number_of_Instructors__c = 1,
+            Number_of_Students__c = 30,
+            Ratio_to_Instructor__c = '1:10'
         );
         firstList.add(courseCatalog1);
         mapTestData.put('courseCatalog1', courseCatalog1);
@@ -129,7 +137,32 @@ public class skedDataSetup {
         firstList.add(sanFranciscoRegionHoliday);
         
         insert firstList;
+        
         List<sObject> secondList = new List<sObject>();
+        /*********************************************************Course Catalog Tag**************************************************/
+        Course_Catalog_Tag__c courseCatalog1_tagPickup = new Course_Catalog_Tag__c(
+        	Tag__c = tagPickup.Id,
+            Course_Catalog__c = courseCatalog1.Id
+        );
+        secondList.add(courseCatalog1_tagPickup);
+        /*********************************************************Subclass Settings**************************************************/
+        Sub_class_Setting__c subclassSetting1 = new Sub_class_Setting__c(
+        	Course_Catalog__c = courseCatalog1.Id,
+            Course_Code__c = 'SFA513',
+            Display_Order__c = 1,
+            Duration__c = 90
+        );
+        secondList.add(subclassSetting1);
+        mapTestData.put('courseCatalog1_subclassSetting1', subclassSetting1);
+        
+        Sub_class_Setting__c subclassSetting2 = new Sub_class_Setting__c(
+        	Course_Catalog__c = courseCatalog1.Id,
+            Course_Code__c = 'SFA511',
+            Display_Order__c = 2,
+            Duration__c = 45
+        );
+        secondList.add(subclassSetting2);
+        mapTestData.put('courseCatalog1_subclassSetting2', subclassSetting2);
 
         /*********************************************************Locations**************************************************/
         sked__Location__c communityLocation1 = new sked__Location__c(
@@ -540,7 +573,7 @@ public class skedDataSetup {
             sked__Type__c = skedConstants.JOB_TYPE_FULL_SERVICE,
             sked__Start__c = startTime.addDays(1).addHours(8),
             sked__Finish__c = startTime.addDays(1).addHours(11),
-            sked__Job_Status__c = skedConstants.JOB_STATUS_PENDING_DISPATCH,
+            sked__Job_Status__c = skedConstants.JOB_STATUS_PENDING_ALLOCATION,
             Equipment__c = 'DVD and TV on site',
             Number_of_Students__c = 10,
             Number_of_Instructors__c = 1,
@@ -554,6 +587,7 @@ public class skedDataSetup {
         );
         allJobs.add(pendingAllocationJob);
         mapTestData.put('pendingAllocationJob', pendingAllocationJob);
+        
         insert allJobs;
 
         List<sked__Job_Allocation__c> jobAllocs = new List<sked__Job_Allocation__c>();
@@ -569,12 +603,6 @@ public class skedDataSetup {
             sked__Status__c = skedConstants.JOB_ALLOCATION_STATUS_DISPATCHED
         );
         jobAllocs.add(jobAlloc2);
-        sked__Job_Allocation__c jobAlloc3 = new sked__Job_Allocation__c(
-            sked__Resource__c = instructor1.Id,
-            sked__Job__c = pendingAllocationJob.Id,
-            sked__Status__c = skedConstants.JOB_ALLOCATION_STATUS_PENDING_DISPATCH
-        );
-        jobAllocs.add(jobAlloc3);
         
         insert jobAllocs;
 
@@ -636,7 +664,10 @@ public class skedDataSetup {
             Number_of_Breaks__c = 1,
             Special_Instructions__c = 'None',
             Location_Confirmed__c = true,
-            sked__Recurring_Schedule__c = recurringSchedule.id
+            sked__Recurring_Schedule__c = recurringSchedule.id,
+            Is_Master_Class__c = true,
+            Is_Stacked_Class__c = true,
+            Course_Code__c = 'SFA516'
         );
         allJobs.add(dispatchjob);
         mapTestData.put('dispatchjob', dispatchjob);
@@ -667,6 +698,26 @@ public class skedDataSetup {
         allJobs.add(pendingAllocationJob);
         mapTestData.put('pendingAllocationJob', pendingAllocationJob);
         insert allJobs;
+        
+        List<sked__Job__c> dispatchjob_subclasses = new List<sked__Job__c>();
+        
+        sked__Job__c dispatchjob_subclass1 = dispatchjob.clone();
+        dispatchjob_subclass1.sked__Parent__c = dispatchjob.Id;
+        dispatchjob_subclass1.sked__Finish__c = dispatchjob_subclass1.sked__Start__c.addMinutes(45);
+        dispatchjob_subclass1.sked__Duration__c = 45;
+        dispatchjob_subclass1.Is_Master_Class__c = false;
+        dispatchjob_subclass1.Course_Code__c = 'SFA511';
+        dispatchjob_subclasses.add(dispatchjob_subclass1);
+        
+        sked__Job__c dispatchjob_subclass2 = dispatchjob.clone();
+        dispatchjob_subclass2.sked__Parent__c = dispatchjob.Id;
+        dispatchjob_subclass2.sked__Finish__c = dispatchjob_subclass1.sked__Start__c.addMinutes(90);
+        dispatchjob_subclass2.sked__Duration__c = 90;
+        dispatchjob_subclass2.Is_Master_Class__c = false;
+        dispatchjob_subclass2.Course_Code__c = 'SFA513';
+        dispatchjob_subclasses.add(dispatchjob_subclass2);
+        
+        insert dispatchjob_subclasses;
 
         List<sked__Job_Allocation__c> jobAllocs = new List<sked__Job_Allocation__c>();
         sked__Job_Allocation__c jobAlloc = new sked__Job_Allocation__c(
@@ -781,11 +832,34 @@ public class skedDataSetup {
             Number_of_Breaks__c = 1,
             Special_Instructions__c = 'None',
             Location_Confirmed__c = false,
-            sked__Recurring_Schedule__c = recurringSchedule.id
+            sked__Recurring_Schedule__c = recurringSchedule.id,
+            Is_Master_Class__c = true,
+            Is_Stacked_Class__c = true,
+            Course_Code__c = 'SFA516'
         );
         allJobs.add(pendingAllocationJob);
         mapTestData.put('pendingAllocationJob', pendingAllocationJob);
         insert allJobs;
+        
+        List<sked__Job__c> dispatchjob_subclasses = new List<sked__Job__c>();
+        
+        sked__Job__c dispatchjob_subclass1 = dispatchjob.clone();
+        dispatchjob_subclass1.sked__Parent__c = dispatchjob.Id;
+        dispatchjob_subclass1.sked__Finish__c = dispatchjob_subclass1.sked__Start__c.addMinutes(45);
+        dispatchjob_subclass1.sked__Duration__c = 45;
+        dispatchjob_subclass1.Is_Master_Class__c = false;
+        dispatchjob_subclass1.Course_Code__c = 'SFA511';
+        dispatchjob_subclasses.add(dispatchjob_subclass1);
+        
+        sked__Job__c dispatchjob_subclass2 = dispatchjob.clone();
+        dispatchjob_subclass2.sked__Parent__c = dispatchjob.Id;
+        dispatchjob_subclass2.sked__Finish__c = dispatchjob_subclass1.sked__Start__c.addMinutes(90);
+        dispatchjob_subclass2.sked__Duration__c = 90;
+        dispatchjob_subclass2.Is_Master_Class__c = false;
+        dispatchjob_subclass2.Course_Code__c = 'SFA513';
+        dispatchjob_subclasses.add(dispatchjob_subclass2);
+        
+        insert dispatchjob_subclasses;
 
         List<sked__Job_Allocation__c> jobAllocs = new List<sked__Job_Allocation__c>();
         sked__Job_Allocation__c jobAlloc = new sked__Job_Allocation__c(

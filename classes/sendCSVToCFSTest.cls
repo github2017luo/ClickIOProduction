@@ -1,24 +1,11 @@
 @istest
-public class sendCSVToCFSTest 
+public class sendCSVToCFSTest
 {
-    static testMethod void testGetRestService()
-    {   
-        Test.startTest();
-        
-        //Switch Custom Settings
-        Switch__c  sw = new Switch__c ();
-        sw.Name = 'CaseOwnerHistorySwitch';
-        sw.Switch__c = false;
-        sw.Switch_Description__c = 'Test';
-        insert sw;
-        
-        //Validation rule
-        Validation_Rules__c valRule = Validation_Rules__c.getOrgDefaults();
-        valRule.Bypass_Rules__c = false;
-        insert valRule;
-        
+    @testSetup
+    static void createTestData() {
+
         Id accRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Bucket Account').getRecordTypeId();
-        
+
         //Bucket Custom settings
         Bucket_Account_Settings__c bas = Bucket_Account_Settings__c.getOrgDefaults();
         bas.Bucket_Account_Owner_ID__c = UserInfo.getUserID();
@@ -26,7 +13,24 @@ public class sendCSVToCFSTest
         bas.Default_Bucket_Name__c = 'Bucket Account';
         bas.Maximum_Size_of_Bucket__c = 5000;
         insert bas;
-        
+    }
+
+    static testMethod void testGetRestService()
+    {
+
+
+        //Switch Custom Settings
+        Switch__c  sw = new Switch__c ();
+        sw.Name = 'CaseOwnerHistorySwitch';
+        sw.Switch__c = false;
+        sw.Switch_Description__c = 'Test';
+        insert sw;
+
+        //Validation rule
+        Validation_Rules__c valRule = Validation_Rules__c.getOrgDefaults();
+        valRule.Bypass_Rules__c = true;
+        insert valRule;
+
         Account acc = new Account();
         acc.Name = 'ABC Infotech';
         acc.Log_In_Email__c = 'corey.burke2@redcross.org';
@@ -38,10 +42,10 @@ public class sendCSVToCFSTest
         acc.BillingPostalCode = '69042';
         acc.BillingCountry = 'USA';
         acc.Invoice_delivery_Email__c = 'corey.burke2@redcross.org';
-        //acc.Invoice_Delivery_Type__c = 'Email';
+        acc.Invoice_Delivery_Type__c = 'Postal Mail';
         acc.Payment_Terms__c = 'NET 60';
         insert acc;
-        
+
         contact con = new contact();
         con.firstName = 'suhas';
         con.lastName = 'mario';
@@ -56,17 +60,17 @@ public class sendCSVToCFSTest
         con.MailingCountry = 'USA';
         con.Contact_Type__c = 'RCS Billing';
         insert con;
-        
+
         acc.Billing_Contact__c = con.Id;
         update acc;
-        
+
         Id recordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByName().get('RCS PO').getRecordTypeId();
         Case insertcase = new Case();
         //minimum requirement
         insertcase.Status = 'New';
         insertcase.Origin = 'Phone';
         insertcase.Channel__c = 'RCS Retail';
-        
+
         insertcase.Company_Name__c = 'ABC Infotech';
         insertcase.Customer_First_name__c = 'Corey';
         insertcase.Customer_Last_name__c = 'Burke';
@@ -110,21 +114,22 @@ public class sendCSVToCFSTest
         insertcase.T_C_s_Confirmation_Date__c = dateTime.Now();
         //Sub type
         insertcase.Case_Sub_Type__c = 'RCS PO';
-        
+
         //Account lookUp
         insertcase.AccountId = acc.Id;
         insertcase.Shipping_Contact__c = con.Id;
         insertcase.Invoice_Delivery__c = 'Postal Mail';
         insert insertcase;
-        
+
+        Test.startTest();
         //Status change
         insertcase.Site_Name1__c = 'Orlando';
         insertcase.Status = 'PO On-Hold CFS';
         update insertcase;
-        
-        RestRequest req = new RestRequest(); 
+
+        RestRequest req = new RestRequest();
         RestResponse res = new RestResponse();
-             
+
         req.requestURI = '/services/apexrest/getRCSPOFile';
         req.addParameter('StartDate', '2017-01-01');
         req.addParameter('EndDate', '2018-01-01');
@@ -135,33 +140,23 @@ public class sendCSVToCFSTest
         String response = sendCSVToCFS.generateCSV();
         Test.stopTest();
     }
-    
+
     static testMethod void testGetRestService1()
-    {   
-        Test.startTest();
-        
+    {
+
+
         //Switch Custom Settings
         Switch__c  sw = new Switch__c ();
         sw.Name = 'CaseOwnerHistorySwitch';
         sw.Switch__c = false;
         sw.Switch_Description__c = 'Test';
         insert sw;
-        
+
         //Validation rule
         Validation_Rules__c valRule = Validation_Rules__c.getOrgDefaults();
-        valRule.Bypass_Rules__c = false;
+        valRule.Bypass_Rules__c = true;
         insert valRule;
-        
-        Id accRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Bucket Account').getRecordTypeId();
-        
-        //Bucket Custom settings
-        Bucket_Account_Settings__c bas = Bucket_Account_Settings__c.getOrgDefaults();
-        bas.Bucket_Account_Owner_ID__c = UserInfo.getUserID();
-        bas.Bucket_Account_RecordTypeID__c = accRecordTypeId;
-        bas.Default_Bucket_Name__c = 'Bucket Account';
-        bas.Maximum_Size_of_Bucket__c = 5000;
-        insert bas;
-        
+
         Account acc = new Account();
         acc.Name = 'ABC Infotech';
         acc.Log_In_Email__c = 'corey.burke2@redcross.org';
@@ -173,10 +168,10 @@ public class sendCSVToCFSTest
         acc.BillingPostalCode = '69042';
         acc.BillingCountry = 'USA';
         acc.Invoice_delivery_Email__c = 'corey.burke2@redcross.org';
-        //acc.Invoice_Delivery_Type__c = 'Email';
+        acc.Invoice_Delivery_Type__c = 'Postal Mail';
         acc.Payment_Terms__c = 'NET 60';
         insert acc;
-        
+
         contact con = new contact();
         con.firstName = 'suhas';
         con.lastName = 'mario';
@@ -191,17 +186,17 @@ public class sendCSVToCFSTest
         con.MailingCountry = 'USA';
         con.Contact_Type__c = 'RCS Billing';
         insert con;
-        
+
         acc.Billing_Contact__c = con.Id;
         update acc;
-        
+
         Id recordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByName().get('RCS PO').getRecordTypeId();
         Case insertcase = new Case();
         //minimum requirement
         insertcase.Status = 'New';
         insertcase.Origin = 'Phone';
         insertcase.Channel__c = 'RCS Retail';
-        
+
         insertcase.Company_Name__c = 'ABC Infotech';
         insertcase.Customer_First_name__c = 'Corey';
         insertcase.Customer_Last_name__c = 'Burke';
@@ -245,21 +240,22 @@ public class sendCSVToCFSTest
         insertcase.T_C_s_Confirmation_Date__c = dateTime.Now();
         //Sub type
         insertcase.Case_Sub_Type__c = 'RCS PO';
-        
+
         //Account lookUp
         insertcase.AccountId = acc.Id;
         insertcase.Invoice_Delivery__c = 'Postal Mail';
         insertcase.Shipping_Contact__c = con.Id;
         insert insertcase;
-        
+
+        Test.startTest();
         //Status change
         insertcase.Site_Name1__c = 'Orlando';
         insertcase.Status = 'PO On-Hold CFS';
         update insertcase;
-        
-        RestRequest req = new RestRequest(); 
+
+        RestRequest req = new RestRequest();
         RestResponse res = new RestResponse();
-             
+
         req.requestURI = '/services/apexrest/getRCSPOFile';
         req.addParameter('StartDate', '2017-01-01');
         req.httpMethod = 'GET';
@@ -268,5 +264,16 @@ public class sendCSVToCFSTest
 
         String response = sendCSVToCFS.generateCSV();
         Test.stopTest();
+    }
+    
+    @isTest
+    static void testException() {
+        
+        try {
+            sendCSVToCFS.generateCSV();
+        } catch (Exception e) {
+            System.debug(e.getMessage());
+        }
+        
     }
 }

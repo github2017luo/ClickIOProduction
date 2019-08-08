@@ -771,7 +771,7 @@ global class skedFullServiceBookingGridController {
         Training_Events__c skedTrainingEvent = new Training_Events__c(
             Id = model.trainingEventId,
             Start_Date__c = skedDateTimeUtils.getDate(firstJob.sked__Start__c, model.timezoneSidId),
-            End_Date__c = skedDateTimeUtils.getDate(lastJob.sked__Start__c, model.timezoneSidId),
+            End_Date__c = skedDateTimeUtils.getDate(lastJob.sked__Finish__c, model.timezoneSidId),
             Start_Time__c = firstJob.sked__Start__c.format('hh:mm a', model.timezoneSidId),
             End_Time__c = firstJob.sked__Finish__c.format('hh:mm a', model.timezoneSidId),
             Equipment__c = string.join(model.selectedAvEquipments, ';'),

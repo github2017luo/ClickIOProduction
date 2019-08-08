@@ -62,9 +62,9 @@ public with sharing class cls_Channel_Compensation {
                 
                 //check if records are unique
                 for (Channel_Compensation__c channel :newChannels) {
-                    
+
                     Channel_Compensation__c chTemp = mapChannelsExisting.get(channel.DWH_ID__c);
-                    
+
                     if (chTemp != null && chTemp.Id != channel.Id) {// if ids are the the same this means the same record is being update therefore it can still be unique
                         channel.addError('Record not unique, record with identical key fields already exists on the system!');
                     }
@@ -95,4 +95,55 @@ public with sharing class cls_Channel_Compensation {
         }
     }
     
+    /* 
+     * Author: Salesforce Services
+     * Date Added: 2/21/2019
+     */
+    public static void updateTerritoryCode(List <Channel_Compensation__c> newChannels, Set<String> zipCodeSet) {
+        List<Geo_Location__c> geoLocations = new List<Geo_Location__c>([SELECT Postal_Code__c,Land_Territory__c,AQ_Territory__c FROM Geo_Location__c WHERE Postal_Code__c IN:zipCodeSet]);
+        Map<String,Geo_Location__c> geoLocationMap = new Map<String,Geo_Location__c>();
+        for(Geo_Location__c gl : geoLocations) {
+            geoLocationMap.put(gl.Postal_Code__c,gl);
+        }
+        for(Channel_Compensation__c cc : newChannels) {
+            if(geoLocationMap.containsKey(cc.Zip_Code__c)) {            
+                if(cc.Org_Type__c == 'AP' || cc.Org_Type__c == 'AP NAN' || cc.Org_Type__c == 'AP/BC' || 
+                   cc.Org_Type__c == 'AP/BC/FS'|| cc.Org_Type__c == 'AP/FS' || cc.Org_Type__c == 'BC' || 
+                   cc.Org_Type__c == 'FS' || cc.Org_Type__c == 'BC/FS' || cc.Org_Type__c == 'FS NAN' || 
+                   cc.Org_Type__c == 'FS/APNAN' || cc.Org_Type__c == 'Unknown' || cc.Org_Type__c == 'LTP') {
+                    cc.Territory_Code__c = geoLocationMap.get(cc.Zip_Code__c).Land_Territory__c;
+                } else if(cc.Org_Type__c == 'AQ' || cc.Org_Type__c == 'AQ NAN') {
+                    cc.Territory_Code__c = geoLocationMap.get(cc.Zip_Code__c).AQ_Territory__c;
+                }
+            }
+        }
+    }
+    public static void OnBeforeInsert(List <Channel_Compensation__c> newChannels) {
+        List<Channel_Compensation__c> channelsToUpdate = new List<Channel_Compensation__c>();
+        Set<String> zipCodeSet = new Set<String>();
+        String currentFiscalYear = [SELECT FiscalYearSettings.Name FROM Period WHERE Type = 'Year' AND StartDate <= TODAY AND EndDate >= TODAY].FiscalYearSettings.Name;
+        for(Channel_Compensation__c cc: newChannels) {
+            if(cc.Zip_Code__c!=null && cc.Org_Type__c!=null) { 
+                channelsToUpdate.add(cc);
+                zipCodeSet.add(cc.Zip_Code__c);
+            }
+			cc.Fiscal_Year__c = currentFiscalYear;
+        }
+        updateTerritoryCode(channelsToUpdate,zipCodeSet);
+    }
+    public static void OnBeforeUpdate(List <Channel_Compensation__c> newChannels, List <Channel_Compensation__c> oldChannels, Map<ID, Channel_Compensation__c> newChannelMap, Map<ID, Channel_Compensation__c> oldChannelMap) {
+        List<Channel_Compensation__c> channelsToUpdate = new List<Channel_Compensation__c>();
+        Set<String> zipCodeSet = new Set<String>();
+        for(Channel_Compensation__c cc: newChannels) {
+            if(cc.Zip_Code__c!=null && cc.Org_Type__c!=null && (cc.Zip_Code__c!=oldChannelMap.get(cc.Id).Zip_Code__c || cc.Org_Type__c!=oldChannelMap.get(cc.Id).Org_Type__c)) { 
+                channelsToUpdate.add(cc);
+                zipCodeSet.add(cc.Zip_Code__c);
+            } else if(cc.Zip_Code__c==null || cc.Org_Type__c==null) {
+                cc.Territory_Code__c='';
+            }
+        } 
+        if(!channelsToUpdate.isEmpty()) {
+            updateTerritoryCode(channelsToUpdate,zipCodeSet);
+        }
+    }
 }

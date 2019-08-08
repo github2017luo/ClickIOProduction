@@ -166,8 +166,6 @@ public without sharing class EmailMessageServices {
                 Id salesCaseRT = getCaseRtIdByName('Sales Case');
                 Id serviceCaseReadOnlyRT = getCaseRtIdByName('Service Case Read Only');
                 Id serviceCaseRT = getCaseRtIdByName('Service Cases');
-                Id InvoiceCaseReadOnlyRT = getCaseRtIdByName('Read Only Invoicing');
-                Id InvoiceCaseRT = getCaseRtIdByName('Invoicing Case');
                 /*TODO: move to custom setting */
                 // Get a map of Case id and its Queue Owner Id
                 
@@ -203,7 +201,7 @@ public without sharing class EmailMessageServices {
                     
                     if (ca.RecordTypeId == salesCaseReadOnlyRT) ca.RecordTypeId = salesCaseRT;
                     if (ca.RecordTypeId == serviceCaseReadOnlyRT) ca.RecordTypeId = serviceCaseRT;
-                    if (ca.RecordTypeId == InvoiceCaseReadOnlyRT) ca.RecordTypeId = InvoiceCaseRT;
+                    
                     casesToUpdate.add(ca);
                 }
             }

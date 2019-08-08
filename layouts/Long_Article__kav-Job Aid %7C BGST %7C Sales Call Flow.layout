@@ -28,7 +28,7 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>AP/LTP</label>
+        <label>LTP</label>
         <layoutColumns>
             <layoutItems>
                 <field>Section_3__c</field>

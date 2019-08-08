@@ -112,7 +112,7 @@ global class skedScheduleAllocationController {
                 update skedAllocsToUpdate;
             }
 
-            List<sked__Job__c> skedJobs = [SELECT Id, Number_of_Instructors__c, Number_of_Evaluators__c, Location_Confirmed__c,
+            List<sked__Job__c> skedJobs = [SELECT Id, Number_of_Instructors__c, Number_of_Evaluators__c, Location_Confirmed__c, Ready_to_Publish__c,
                                            sked__Job_Status__c, sked__Job_Allocation_Count__c, sked__Type__c,
                                            (SELECT Id, sked__Team_Leader__c, sked__Status__c,
                                             sked__Resource__c, sked__Resource__r.Employment_Type__c
@@ -154,11 +154,15 @@ global class skedScheduleAllocationController {
             Map<Id, sked__Job__c> mapSkedJobsToUpdate = new Map<Id, sked__Job__c>();
             Set<Id> jobIdsToUpdateStatus = new Set<Id>();
             skedAllocsToUpdate = new List<sked__Job_Allocation__c>();
-
+			
             for (sked__Job__c skedJob : skedJobs) {
                 jobModel job = mapJobModel.get(skedJob.Id);
                 if (skedJob.sked__Type__c == skedConstants.JOB_TYPE_COMMUNITY && skedJob.Location_Confirmed__c != job.locationConfirmed) {
                     skedJob.Location_Confirmed__c = job.locationConfirmed;
+                    mapSkedJobsToUpdate.put(skedJob.Id, skedJob);
+                }
+                if (skedJob.sked__Type__c.contains(skedConstants.JOB_TYPE_NURSE_ASSISTANT_TESTING) && skedJob.Ready_to_Publish__c != job.readyToPublish) {
+                    skedJob.Ready_to_Publish__c = job.readyToPublish;
                     mapSkedJobsToUpdate.put(skedJob.Id, skedJob);
                 }
                 if (notifyResourceOnSave) {
@@ -235,21 +239,22 @@ global class skedScheduleAllocationController {
 
     private static void getAvailableAllocations(scheduleAllocationModel model) {
         model.skedJobs = [SELECT Id, Name, sked__Region__c, sked__Address__c, sked__Contact__c, sked__Recurring_Schedule__c,
-                           sked__Description__c, sked__GeoLocation__Latitude__s, sked__GeoLocation__Longitude__s, sked__GeoLocation__c,
-                           sked__Timezone__c, sked__Start__c, sked__Finish__c, sked__Duration__c, sked__Type__c, sked__Job_Status__c,
-                           sked__Location__c, sked__Location__r.Name, Number_of_Instructors__c, Number_of_Evaluators__c, Number_of_Students__c, 
-                           Course_Catalog__r.Name, Location_Confirmed__c, Class_Type__c, Class_Type__r.Class_Type__c, 
-                           Course__c, Before_class_duration__c, After_class_duration__c, Remaining_Resources_to_be_Allocated__c,
-                           (SELECT sked__Job__c, sked__Tag__c, sked__Tag__r.Name
-                            FROM sked__JobTags__r),
-                           (SELECT sked__Job__c, sked__Resource__c, sked__Resource__r.Name, sked__Resource__r.sked__User__r.SmallPhotoUrl,
-                            sked__Team_Leader__c, Number_of_Resources__c
-                            FROM sked__Job_Allocations__r
-                            WHERE sked__Status__c != :skedConstants.JOB_ALLOCATION_STATUS_DELETED)
-                           FROM sked__Job__c
-                           WHERE Id IN :model.jobIds
-                           AND sked__Job_Status__c != :skedConstants.JOB_STATUS_CANCELLED
-                           ORDER BY sked__Start__c ASC];
+                          sked__Description__c, sked__GeoLocation__Latitude__s, sked__GeoLocation__Longitude__s, sked__GeoLocation__c,
+                          sked__Timezone__c, sked__Start__c, sked__Finish__c, sked__Duration__c, sked__Type__c, sked__Job_Status__c,
+                          sked__Location__c, sked__Location__r.Name, Number_of_Instructors__c, Number_of_Evaluators__c, Number_of_Students__c, 
+                          Course_Catalog__r.Name, Location_Confirmed__c, Class_Type__c, Class_Type__r.Class_Type__c, 
+                          Course__c, Before_class_duration__c, After_class_duration__c, Remaining_Resources_to_be_Allocated__c,
+                          Ready_to_Publish__c,
+                          (SELECT sked__Job__c, sked__Tag__c, sked__Tag__r.Name
+                           FROM sked__JobTags__r),
+                          (SELECT sked__Job__c, sked__Resource__c, sked__Resource__r.Name, sked__Resource__r.sked__User__r.SmallPhotoUrl,
+                           sked__Team_Leader__c, Number_of_Resources__c
+                           FROM sked__Job_Allocations__r
+                           WHERE sked__Status__c != :skedConstants.JOB_ALLOCATION_STATUS_DELETED)
+                          FROM sked__Job__c
+                          WHERE Id IN :model.jobIds
+                          AND sked__Job_Status__c != :skedConstants.JOB_STATUS_CANCELLED
+                          ORDER BY sked__Start__c ASC];
         sked__Job__c firstSkedJob = model.skedJobs.get(0);
         model.timezoneSidId = firstSkedJob.sked__Timezone__c;
         Map<Id, jobModel> mapJob = new Map<Id, jobModel>();
@@ -288,12 +293,12 @@ global class skedScheduleAllocationController {
         }
 
         List<string> resourceCategories = new List<string>();
-        if (firstSkedJob.sked__Type__c == skedConstants.JOB_TYPE_NURSE_ASSISTANT_TESTING) {
+        if (firstSkedJob.sked__Type__c.contains(skedConstants.JOB_TYPE_NURSE_ASSISTANT_TESTING)) {
             resourceCategories.add(skedConstants.RESOURCE_CATEGORY_EVALUATOR);
             resourceCategories.add(skedConstants.RESOURCE_CATEGORY_CHARGE_NURSE);
             resourceCategories.add(skedConstants.RESOURCE_CATEGORY_PROCTOR);
         }
-        else if (firstSkedJob.sked__Type__c == skedConstants.JOB_TYPE_NURSE_ASSISTANT_TRAINING) {
+        else if (firstSkedJob.sked__Type__c.contains(skedConstants.JOB_TYPE_NURSE_ASSISTANT_TRAINING)) {
             resourceCategories.add(skedConstants.RESOURCE_CATEGORY_NURSE_INSTRUCTOR);
         }
         else {
@@ -342,8 +347,8 @@ global class skedScheduleAllocationController {
         if (adminSetting.Google_Travel_Time_Enabled__c == TRUE) {
             applyGoogleTravelTime(model.resources);
         }
-        if (firstSkedJob.sked__Type__c != skedConstants.JOB_TYPE_NURSE_ASSISTANT_TESTING
-            && firstSkedJob.sked__Type__c != skedConstants.JOB_TYPE_NURSE_ASSISTANT_TRAINING) {
+        if (!firstSkedJob.sked__Type__c.contains(skedConstants.JOB_TYPE_NURSE_ASSISTANT_TESTING)
+            && !firstSkedJob.sked__Type__c.contains(skedConstants.JOB_TYPE_NURSE_ASSISTANT_TRAINING)) {
             List<skedModels.resource> subcontractors = getSubcontractors();
             model.resources.addAll(subcontractors);
         }
@@ -354,7 +359,7 @@ global class skedScheduleAllocationController {
 
     private static void applyGoogleTravelTime(List<skedModels.resource> resources) {
         resources.sort();
-        
+
         List<skedModels.resource> resourcesToApplyGoogle = new List<skedModels.resource>();
         for (integer i = 0; i < 50; i++) {
             if (i == resources.size()) {
@@ -637,6 +642,7 @@ global class skedScheduleAllocationController {
         public string classType {get;set;}
         public string classTypeName {get;set;}
         public boolean locationConfirmed {get;set;}
+        public boolean readyToPublish {get;set;}
         public boolean dispatch {get;set;}
 
         public List<skedModels.jobAllocation> possibleAllocations {get;set;}
@@ -652,6 +658,7 @@ global class skedScheduleAllocationController {
             this.classType = skedJob.Class_Type__c;
             this.classTypeName = skedJob.Class_Type__r.Class_Type__c;
             this.locationConfirmed = skedJob.Location_Confirmed__c;
+            this.readyToPublish = skedJob.Ready_to_Publish__c;
             this.facilityId = skedJob.sked__Location__c;
             this.facilityName = skedJob.sked__Location__r.Name;
 

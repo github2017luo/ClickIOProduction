@@ -9,7 +9,7 @@
     <aura:attribute name="label_Details"                         type="String" default="{!$Label.c.Details}"/>
     <aura:attribute name="label_Course"                          type="String" default="{!$Label.c.Course}"/>
     <aura:attribute name="label_Organization"                    type="String" default="{!$Label.c.Organization}"/>
-    <aura:attribute name="label_OfferingId"                      type="String" default="Offering Id"/>    
+    <aura:attribute name="label_OfferingId"                      type="String" default="Class Id"/>    
     <aura:attribute name="label_Class_Setting"                   type="String" default="{!$Label.c.Class_Setting}"/>
     <aura:attribute name="label_Status"                          type="String" default="{!$Label.c.Status_Title}"/>
     <aura:attribute name="label_Language"                        type="String" default="{!$Label.c.Language}"/>

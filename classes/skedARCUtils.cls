@@ -20,8 +20,11 @@ public class skedARCUtils {
         List<Course_Catalog__c> skedCourseCatalogs = [SELECT Id, Name, Number_of_Students__c, Number_of_Instructors__c, 
                                                       Ratio_to_Instructor__c, Class_Duration__c, Number_of_Classes__c, 
                                                       Break_Duration__c, Number_of_Breaks__c, Is_Active__c,
+                                                      Master_Class_Name__c, 
                                                       (SELECT Tag__c, Tag__r.Name
-                                                       FROM Course_Catalog_Tags__r)
+                                                       FROM Course_Catalog_Tags__r),
+                                                      (SELECT Course_Catalog__c, Course_Code__c, Display_Order__c, Duration__c
+                                                       FROM Sub_Class_Settings__r)	
                                                       FROM Course_Catalog__c
                                                       WHERE Type__c INCLUDES (:courseType)
                                                       AND Is_Active__c = TRUE];

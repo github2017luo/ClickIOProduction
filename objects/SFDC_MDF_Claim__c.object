@@ -310,6 +310,29 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Course_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>CC_Order__r.ccrz__CCSubscription__r.ccrz__CCOrderItem__r.ILT_Class__r.Learning_Plan__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Course Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>CC_Order__r.ccrz__CCSubscription__r.ccrz__CCOrderItem__r.ILT_Class__r.redwing__End_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Expenditure_Type__c</fullName>
         <description>A list of available activity/ expenditure types. Customize as needed</description>
         <externalId>false</externalId>
@@ -358,6 +381,66 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>ILT_Location_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>CC_Order__r.ccrz__CCSubscription__r.ccrz__CCOrderItem__r.ILT_Class__r.redwing__Location__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>ILT Location Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Location_Mailing_City__c</fullName>
+        <externalId>false</externalId>
+        <formula>CC_Order__r.ccrz__CCSubscription__r.ccrz__CCOrderItem__r.ILT_Class__r.Location_Mailing_City__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Location Mailing City</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Location_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>CC_Order__r.ccrz__CCSubscription__r.ccrz__CCOrderItem__r.ILT_Class__r.redwing__Location__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Location Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Location_State__c</fullName>
+        <externalId>false</externalId>
+        <formula>CC_Order__r.ccrz__CCSubscription__r.ccrz__CCOrderItem__r.ILT_Class__r.Location_State__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Location State</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Location_zip_code__c</fullName>
+        <externalId>false</externalId>
+        <formula>CC_Order__r.ccrz__CCSubscription__r.ccrz__CCOrderItem__r.ILT_Class__r.Site_Postal_Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Location zip code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Other_Expenditure_Type__c</fullName>
         <description>Used when the user chooses &apos;other&apos; as the expenditure type</description>
         <externalId>false</externalId>
@@ -403,7 +486,7 @@
         <type>Picklist</type>
         <valueSet>
             <valueSetDefinition>
-                <sorted>false</sorted>
+                <sorted>true</sorted>
                 <value>
                     <fullName>Check</fullName>
                     <default>false</default>
@@ -441,6 +524,17 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>CC_Order__r.ccrz__CCSubscription__r.ccrz__CCOrderItem__r.ILT_Class__r.redwing__Start_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>Status__c</fullName>

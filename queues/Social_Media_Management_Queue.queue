@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Social Media Management Queue</name>
+    <queueMembers>
+        <users>
+            <user>alyssa.kinney7@redcross.org</user>
+            <user>mike.smith2@redcross.org</user>
+            <user>paul.munn@redcross.org</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

@@ -757,6 +757,38 @@ IF(Ispickval( Timeline__c, &quot;3 Months&quot;), 0.25, If(Ispickval( Timeline__
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
+        <fullName>Contact_SCC_Sync_Status__c</fullName>
+        <defaultValue>&quot;Created&quot;</defaultValue>
+        <description>This field hold contact status when its created, updated from Salesforce Commerce Cloud.</description>
+        <externalId>false</externalId>
+        <label>Contact SCC Sync Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Created</fullName>
+                    <default>true</default>
+                    <label>Created</label>
+                </value>
+                <value>
+                    <fullName>Updated</fullName>
+                    <default>false</default>
+                    <label>Updated</label>
+                </value>
+                <value>
+                    <fullName>Synchronised</fullName>
+                    <default>false</default>
+                    <label>Synchronised</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>DM_External_Id__c</fullName>
         <caseSensitive>true</caseSensitive>
         <description>This field is utilized to support the data migration process. It will contain a combination of the source system identifier and the source system&apos;s unique record identifier. This field should be deleted after all migration activities are complete.</description>

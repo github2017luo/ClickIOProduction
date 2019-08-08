@@ -44,7 +44,7 @@ public without sharing class RCILTViewerCmpCtrl {
         @AuraEnabled public String classSetting;
         @AuraEnabled public String status;
         @AuraEnabled public String language;
-        @AuraEnabled public Integer numberOfStudents;
+        @AuraEnabled public String numberOfStudents;
         @AuraEnabled public String certificates;
         @AuraEnabled public String instructors;
         @AuraEnabled public Date startDate;
@@ -100,13 +100,22 @@ public without sharing class RCILTViewerCmpCtrl {
                     this.status = RCConstants.STATUS_UPCOMING;
                 }
             }
+            
             if(fieldNames.contains('redwing__ILT_Rosters__r')) {
-                this.numberOfStudents = rec.redwing__ILT_Rosters__r.size();
+                this.numberOfStudents = String.valueOf(rec.redwing__ILT_Rosters__r.size());
             }
-            // DE712 - CRE does not create roster records.  Need to calculate number of student from query on Achievement Assignment object
-            else {
-            	this.numberOfStudents = database.Query('Select count(Id) From redwing__Achievement_Assignment__c Where ILT_Class__c = :recId Group By External_Id__c').size();
-            }
+            // DE1079 - For Learn-To-Swim (and possibly others), display student counts from aggregate count fields if available and defined
+            else if (fieldNames.contains('Successful_Evaluations__c') && fieldNames.contains('Unsuccessful_Evaluations__c') && 
+            	fieldNames.contains('Not_Evaluated__c') && (rec.Successful_Evaluations__c + rec.Unsuccessful_Evaluations__c + rec.Not_Evaluated__c > 0)) {
+            		this.numberOfStudents = 'Successful '+rec.Successful_Evaluations__c+', Unsuccessful '+rec.Unsuccessful_Evaluations__c +
+            			', Not Evaluated '+rec.Not_Evaluated__c;
+            	}
+            	else {
+            		// DE712 - CRE does not create roster records.  Need to calculate number of student from query on Achievement Assignment object            		
+	            	Integer nStudents = database.Query('Select count(Id) From redwing__Achievement_Assignment__c Where ILT_Class__c = :recId Group By External_Id__c').size();
+	            	this.numberOfStudents = (nStudents > 0) ? this.numberOfStudents = String.valueOf(nStudents) : 'N/A';
+            	}
+
             if(fieldNames.contains('redwing__ILT_Instructors__r')) {
                 Set<String> names = new Set<String>();
 
@@ -158,7 +167,8 @@ public without sharing class RCILTViewerCmpCtrl {
             List<redwing__ILT_Class__c> classes = new List<redwing__ILT_Class__c>();
             String queryString = 'SELECT Id, Name, ' +
             		// DE712 - CRE does not create roster records.  Need to calculate number of student from query on Achievement Assignment object
-            		'Offering_Id__c, ' +
+            		// DE1079 - Learn To Swim does not use roster or achievement assignment records.  Need to disoplay student count from LTS fields in class record
+            		'Offering_Id__c, Successful_Evaluations__c, Unsuccessful_Evaluations__c, Not_Evaluated__c, ' +
                     'redwing__Start_Date__c, redwing__End_Date__c, redwing__Start_Time__c, redwing__End_Time__c, ' +
                     'redwing__Cancelled__c, redwing__Learning__r.Id, ' + RCConstants.APINAME_FIELD_ORGANIZATION + ', ' +
                     '(SELECT Id, redwing__Instructor__r.Name FROM redwing__ILT_Instructors__r), ' +
@@ -180,7 +190,8 @@ public without sharing class RCILTViewerCmpCtrl {
             List<redwing__Training_Plan__c> plans = new List<redwing__Training_Plan__c>();
             String queryString = 'SELECT Id, Name, toLabel(redwing__Language__c), ' +
                     'toLabel(' + RCConstants.APINAME_FIELD_CLASSSETTINGS + '), ' +
-                    '(SELECT Id, redwing__Achievement__r.Name FROM redwing__Training_Plan_Achievements__r) ' +
+                    // DE986 - Insure that achievements displayed are only certificates (not skills or CEUs)
+                    '(SELECT Id, redwing__Achievement__r.Name FROM redwing__Training_Plan_Achievements__r WHERE redwing__Achievement__r.redwing__Type__c = \'Certifications\') ' +
                     'FROM redwing__Training_Plan__c ' +
                     'WHERE Id = :planId';
 

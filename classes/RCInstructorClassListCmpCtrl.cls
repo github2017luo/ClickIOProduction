@@ -100,6 +100,7 @@ public class RCInstructorClassListCmpCtrl {
                 ,'redwing__ILT_Class__r.redwing__Location__r.redwing__State__c'
                 ,'redwing__ILT_Class__r.redwing__Location__r.redwing__Postal_Code__c'
                 ,'redwing__ILT_Class__r.redwing__Start_Date__c'
+                ,'redwing__ILT_Class__r.Class_Closed_Date__c'
                 ,'redwing__ILT_Class__r.' + RCConstants.APINAME_FIELD_ORGANIZATION
                 ,'redwing__ILT_Session__c'
                 ,'redwing__Instructor__c'
@@ -110,6 +111,7 @@ public class RCInstructorClassListCmpCtrl {
                 query +=  'AND redwing__ILT_Class__r.redwing__End_Date__c < TODAY ';
             }else{
                 query +=  'AND redwing__ILT_Class__r.redwing__End_Date__c >= TODAY ';
+                // query +=  'AND redwing__ILT_Class__r.redwing__End_Date__c > TODAY ';
             }
             query +=  'ORDER BY redwing__ILT_Class__r.Name ASC ';
             if(Integer.valueOf(limitOffset) != 0){
@@ -131,10 +133,15 @@ public class RCInstructorClassListCmpCtrl {
                     if(!classIds.contains(item.redwing__ILT_Class__c)){
                         String classStatus = RCConstants.STATUS_UPCOMING;
                         if(item.redwing__ILT_Class__r.redwing__Start_Date__c <= Date.today()){
+                        // if(item.redwing__ILT_Class__r.redwing__Start_Date__c <= datetime.now()){
                             classStatus = RCConstants.STATUS_IN_PROGRESS;
                         }
                         if(item.redwing__ILT_Class__r.redwing__End_Date__c < Date.today()){
+                        // if(item.redwing__ILT_Class__r.redwing__End_Date__c <= datetime.now()){
                             classStatus = RCConstants.STATUS_COMPLETED;
+                        }
+                        if(item.redwing__ILT_Class__r.Class_Closed_Date__c != null) {
+                            classStatus = RCConstants.STATUS_REPORTED;
                         }
                         Integer duration = 0;
                         if(item.redwing__ILT_Class__r.redwing__Start_Date__c != null && item.redwing__ILT_Class__r.redwing__End_Date__c != null){

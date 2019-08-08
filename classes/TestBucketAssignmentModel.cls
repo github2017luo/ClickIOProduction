@@ -272,6 +272,116 @@ private class TestBucketAssignmentModel {
 				'All contacts must be in a bucket');
 		}
 	}
+    
+    static testMethod void testHandleNewContacts() {
+		// 100 -> 180; 200 contacts; 
+		// 200, 200, 80
+		setup();
+		orgSettings.Maximum_Size_of_Bucket__c = 200;
+		update orgSettings;
+		Account bucket1 = TestUtil.createBucketAccount((Integer)orgSettings.Maximum_Size_of_Bucket__c-100, orgSettings, true);
+		Account bucket2 = TestUtil.createBucketAccount((Integer)orgSettings.Maximum_Size_of_Bucket__c-20, orgSettings, true);
+
+		List<Contact> testContacts = TestUtil.createContacts(200, false);
+
+		Test.startTest();
+			BucketAssignmentModel.handleNewContacts(testContacts);
+		Test.stopTest();
+    }
+        
+    static testMethod void testHandleUndeletedContacts() {
+		// 100 -> 180; 200 contacts; 
+		// 200, 200, 80
+		setup();
+		orgSettings.Maximum_Size_of_Bucket__c = 200;
+		update orgSettings;
+		Account bucket1 = TestUtil.createBucketAccount((Integer)orgSettings.Maximum_Size_of_Bucket__c-100, orgSettings, true);
+		Account bucket2 = TestUtil.createBucketAccount((Integer)orgSettings.Maximum_Size_of_Bucket__c-20, orgSettings, true);
+
+		List<Contact> testContacts = TestUtil.createContacts(200, false);
+
+		Test.startTest();
+			BucketAssignmentModel.handleUndeletedContacts(testContacts);
+		Test.stopTest();
+    }
+    
+    static testMethod void testAllowRetry() {
+		// 100 -> 180; 200 contacts; 
+		// 200, 200, 80
+		setup();
+		orgSettings.Maximum_Size_of_Bucket__c = 200;
+		update orgSettings;
+		Account bucket1 = TestUtil.createBucketAccount((Integer)orgSettings.Maximum_Size_of_Bucket__c-100, orgSettings, true);
+		Account bucket2 = TestUtil.createBucketAccount((Integer)orgSettings.Maximum_Size_of_Bucket__c-20, orgSettings, true);
+
+		List<Contact> testContacts = TestUtil.createContacts(200, false);
+
+		Test.startTest();
+			BucketAssignmentModel.allowRetry(testContacts);
+		Test.stopTest();
+    }
+    
+    static testMethod void testStampTriggerNew() {
+		// 100 -> 180; 200 contacts; 
+		// 200, 200, 80
+		setup();
+		orgSettings.Maximum_Size_of_Bucket__c = 200;
+		update orgSettings;
+		Account bucket1 = TestUtil.createBucketAccount((Integer)orgSettings.Maximum_Size_of_Bucket__c-100, orgSettings, true);
+		Account bucket2 = TestUtil.createBucketAccount((Integer)orgSettings.Maximum_Size_of_Bucket__c-20, orgSettings, true);
+
+		List<Contact> testContacts = TestUtil.createContacts(200, false);
+
+		Test.startTest();
+			BucketAssignmentModel.stampTriggerNew(testContacts);
+		Test.stopTest();
+    }
+        
+    static testMethod void testHandleDeletedContacts() {
+		// 100 -> 180; 200 contacts; 
+		// 200, 200, 80
+		setup();
+		orgSettings.Maximum_Size_of_Bucket__c = 200;
+		update orgSettings;
+		Account bucket1 = TestUtil.createBucketAccount((Integer)orgSettings.Maximum_Size_of_Bucket__c-100, orgSettings, true);
+		Account bucket2 = TestUtil.createBucketAccount((Integer)orgSettings.Maximum_Size_of_Bucket__c-20, orgSettings, true);
+
+		List<Contact> testContacts = TestUtil.createContacts(200, false);
+        
+        Map<ID,Contact> oldContacts = new Map<ID,Contact> ();
+        
+        for (Contact c : testContacts)
+        {
+            oldContacts.put(c.Id,c);
+        }
+
+		Test.startTest();
+			BucketAssignmentModel.handleDeletedContacts(oldContacts);
+		Test.stopTest();
+    }
+    
+    static testMethod void testHandleUpdatedContacts() {
+		// 100 -> 180; 200 contacts; 
+		// 200, 200, 80
+		setup();
+		orgSettings.Maximum_Size_of_Bucket__c = 200;
+		update orgSettings;
+		Account bucket1 = TestUtil.createBucketAccount((Integer)orgSettings.Maximum_Size_of_Bucket__c-100, orgSettings, true);
+		Account bucket2 = TestUtil.createBucketAccount((Integer)orgSettings.Maximum_Size_of_Bucket__c-20, orgSettings, true);
+
+		List<Contact> testContacts = TestUtil.createContacts(200, false);
+        
+        Map<ID,Contact> oldContacts = new Map<ID,Contact> ();
+        
+        for (Contact c : testContacts)
+        {
+            oldContacts.put(c.Id,c);
+        }
+
+		Test.startTest();
+			BucketAssignmentModel.handleUpdatedContacts(oldContacts,testContacts);
+		Test.stopTest();
+    }
 
 	static testMethod void testAssignContactsTo200Buckets() {
 		setup();

@@ -10,9 +10,15 @@
     <authorizationRequiredPage>CommunitiesLogin</authorizationRequiredPage>
     <bandwidthExceededPage>BandwidthExceeded</bandwidthExceededPage>
     <browserXssProtection>true</browserXssProtection>
-    <clickjackProtectionLevel>SameOriginOnly</clickjackProtectionLevel>
+    <changePasswordPage>PHSS_ChangePasswordCommunity</changePasswordPage>
+    <clickjackProtectionLevel>AllowAllFraming</clickjackProtectionLevel>
     <contentSniffingProtection>true</contentSniffingProtection>
     <cspUpgradeInsecureRequests>true</cspUpgradeInsecureRequests>
+    <customWebAddresses>
+        <certificate>www_redcrosslearningcenter_org</certificate>
+        <domainName>www.redcrosslearningcenter.org</domainName>
+        <primary>false</primary>
+    </customWebAddresses>
     <enableAuraRequests>true</enableAuraRequests>
     <fileNotFoundPage>FileNotFound</fileNotFoundPage>
     <genericErrorPage>Exception</genericErrorPage>
@@ -23,7 +29,7 @@
     <requireHttps>true</requireHttps>
     <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
     <selfRegPage>CommunitiesSelfReg</selfRegPage>
-    <siteAdmin>shweta.kohli@redcross.org</siteAdmin>
+    <siteAdmin>gita.borovsky@redcross.org</siteAdmin>
     <siteType>ChatterNetwork</siteType>
     <subdomain>americanredcross</subdomain>
     <urlPathPrefix>learner</urlPathPrefix>

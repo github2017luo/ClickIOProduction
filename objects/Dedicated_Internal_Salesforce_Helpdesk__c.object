@@ -337,6 +337,16 @@ Fix - Use when something is not working correctly</inlineHelpText>
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>New_Learning_Center_related__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>New Learning Center related</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>New_User_Email__c</fullName>
         <externalId>false</externalId>
         <label>New User Email</label>
@@ -634,6 +644,19 @@ For CREATION requests please enter the new hire&apos;s newly created Saba UN so 
             </valueSetDefinition>
         </valueSet>
         <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Subject__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Entering in a brief subject helps with the List view in DISH, to help differentiate tickets.</inlineHelpText>
+        <label>Subject</label>
+        <length>75</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Time_Zone__c</fullName>

@@ -4,6 +4,10 @@
     <language>en_US</language>
     <masterLabel>americanredcrosslogopngtransparent</masterLabel>
     <relationships>
+        <network>
+            <access>VIEWER</access>
+            <name>Red Cross Learning Center</name>
+        </network>
         <workspace>
             <access>INFERRED</access>
             <isManagingWorkspace>true</isManagingWorkspace>

@@ -28,7 +28,7 @@
             <criteriaItems>
                 <field>Opportunity.Highest_Product_Discount_Value__c</field>
                 <operation>greaterThan</operation>
-                <value>10.00</value>
+                <value>10</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Opportunity.Highest_Product_Discount_Value__c</field>
@@ -37,7 +37,7 @@
             </criteriaItems>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
-        <label>Greater Than OR Equal to 11.00% and Up to 20.0%</label>
+        <label>Greater Than  10.00% and Up to 20.0%</label>
         <name>Greater_Than_OR_Equal_to_11_00_and_Up_to_20_0</name>
     </approvalStep>
     <approvalStep>

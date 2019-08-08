@@ -64,7 +64,7 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Change to Course to be Trained/Add Components</label>
+        <label>Change to Courses to be Trained/Add Components/Add Products</label>
         <layoutColumns>
             <layoutItems>
                 <field>Section_6__c</field>

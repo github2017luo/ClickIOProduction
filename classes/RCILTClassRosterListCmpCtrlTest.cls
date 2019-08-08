@@ -93,7 +93,7 @@ public with sharing class RCILTClassRosterListCmpCtrlTest {
 
 
         Test.startTest();
-        RCILTClassRosterListCmpCtrl.ResultData result = RCILTClassRosterListCmpCtrl.getData(String.valueOf(iltClass.Id), String.valueOf(plan.Id));
+        RCILTViewerCmpCtrl.ResultData result = RCILTViewerCmpCtrl.getRecord(String.valueOf(iltClass.Id), String.valueOf(plan.Id));
         Test.stopTest();
 
         System.assertEquals(RCConstants.ANSWER_STATUS_SUCCESS, result.status);

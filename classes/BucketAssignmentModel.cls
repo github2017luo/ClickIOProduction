@@ -99,8 +99,10 @@ public with sharing class BucketAssignmentModel {
     {
         List<Contact> bucketedContacts = new List<Contact>();
         for (Contact c: contacts) {
-            if (c.AccountId != null && mapOfAllAccounts.get(c.AccountId).RecordTypeID == bucketAccountSettings.Bucket_Account_RecordTypeID__c) 
-                bucketedContacts.add(c);
+            if (mapOfAllAccounts.get(c.AccountId) != null) {
+                if (c.AccountId != null && mapOfAllAccounts.get(c.AccountId).RecordTypeID == bucketAccountSettings.Bucket_Account_RecordTypeID__c) 
+                    bucketedContacts.add(c);
+            }
         }
         return bucketedContacts;
     }
@@ -112,8 +114,10 @@ public with sharing class BucketAssignmentModel {
     {
         List<Contact> normalContacts = new List<Contact>();
         for (Contact c: contacts) {
-            if (c.AccountId != null && mapOfAllAccounts.get(c.AccountId).RecordTypeID != bucketAccountSettings.Bucket_Account_RecordTypeID__c) 
-                normalContacts.add(c);
+            if (mapOfAllAccounts.get(c.AccountId) != null) {
+                if (c.AccountId != null && mapOfAllAccounts.get(c.AccountId).RecordTypeID != bucketAccountSettings.Bucket_Account_RecordTypeID__c) 
+                    normalContacts.add(c);
+            }
         }
         return normalContacts;
     }

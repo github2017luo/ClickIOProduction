@@ -20,6 +20,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Change_Lead_Owner_to_NAT_Sales_Leads</fullName>
+        <field>OwnerId</field>
+        <lookupValue>NAT_Sales_Leads</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Change Lead Owner to NAT Sales Leads</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Change_owner_to_AQ_mgrs</fullName>
         <field>OwnerId</field>
         <lookupValue>AQ_Managers</lookupValue>
@@ -165,6 +175,43 @@
             <operation>notEqual</operation>
         </criteriaItems>
         <description>Routes the  LTP applications to Queues</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>RCO LTP Application - Water -AES</fullName>
+        <actions>
+            <name>Change_owner_to_AQ_mgrs</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <criteriaItems>
+            <field>Lead.Landing_Page__c</field>
+            <operation>contains</operation>
+            <value>org/take-a-class/licensed-training-authorized-providers</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Lead.Water_Based_Training__c</field>
+            <operation>contains</operation>
+            <value>AES</value>
+        </criteriaItems>
+        <description>Routes the AES LTP applications to AQ Managers queue</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>RCO NAT Application</fullName>
+        <actions>
+            <name>Change_Lead_Owner_to_NAT_Sales_Leads</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1</booleanFilter>
+        <criteriaItems>
+            <field>Lead.Landing_Page__c</field>
+            <operation>contains</operation>
+            <value>org//take-a-class/instructors/nurse-assistant-training</value>
+        </criteriaItems>
+        <description>Routes NAT applications to Lead Queue</description>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>

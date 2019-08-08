@@ -155,6 +155,19 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Training Revenue</relationshipLabel>
+        <relationshipName>Training_Revenue</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>BATCH_Id__c</fullName>
         <externalId>false</externalId>
         <label>BATCH Id</label>
@@ -189,7 +202,7 @@
         <fullName>Data_Source__c</fullName>
         <externalId>false</externalId>
         <label>Data Source</label>
-        <length>5</length>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -232,7 +245,7 @@
     <fields>
         <fullName>FOCIS_Category__c</fullName>
         <externalId>false</externalId>
-        <label>FOCIS Category</label>
+        <label>PSC Code</label>
         <length>20</length>
         <required>false</required>
         <trackHistory>true</trackHistory>
@@ -243,8 +256,8 @@
     <fields>
         <fullName>FOCIS_Subject_Area__c</fullName>
         <externalId>false</externalId>
-        <label>FOCIS Subject Area</label>
-        <length>48</length>
+        <label>Product SKU</label>
+        <length>100</length>
         <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -303,7 +316,7 @@ NULL)</formula>
     <fields>
         <fullName>Focis_Location__c</fullName>
         <externalId>false</externalId>
-        <label>Focis Location</label>
+        <label>BGST</label>
         <length>20</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -314,13 +327,28 @@ NULL)</formula>
     <fields>
         <fullName>Focis_Program__c</fullName>
         <externalId>false</externalId>
-        <label>Focis Program</label>
+        <label>Product 3</label>
         <length>50</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fulfillment_Item__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The transaction item the Training Revenue record is based on</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The transaction item the Training Revenue record is based on</inlineHelpText>
+        <label>Fulfillment Item</label>
+        <referenceTo>Fulfillment_Item__c</referenceTo>
+        <relationshipLabel>Training Revenue</relationshipLabel>
+        <relationshipName>Training_Revenue</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Org_Id__c</fullName>
@@ -349,7 +377,7 @@ NULL)</formula>
         <description>Possible Types: AP, FS, CO, LTP</description>
         <externalId>false</externalId>
         <label>Org Type</label>
-        <length>10</length>
+        <length>20</length>
         <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -405,7 +433,7 @@ NULL)</formula>
     <fields>
         <fullName>SubPG__c</fullName>
         <externalId>false</externalId>
-        <label>SubPG</label>
+        <label>Product 2</label>
         <length>50</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -452,7 +480,7 @@ NULL)</formula>
         <fullName>User_Field__c</fullName>
         <externalId>false</externalId>
         <label>User Field</label>
-        <length>50</length>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

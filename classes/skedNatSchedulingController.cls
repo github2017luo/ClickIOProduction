@@ -12,6 +12,11 @@ global class skedNatSchedulingController {
             configData.mapHolidays = skedDateTimeUtils.getHolidayOptions();
             configData.courseTemplates = skedARCUtils.getCourseTemplates();
             configData.userPermission = getUserPermissions();
+            
+            List<skedModels.selectOption> jobTypes = new List<skedModels.selectOption>();
+            jobTypes.add(new skedModels.selectOption(skedConstants.JOB_TYPE_NURSE_ASSISTANT_TRAINING, skedConstants.JOB_TYPE_NURSE_ASSISTANT_TRAINING, true));
+            jobTypes.add(new skedModels.selectOption(skedConstants.JOB_TYPE_NURSE_ASSISTANT_TRAINING_FULL_SERVICE, skedConstants.JOB_TYPE_NURSE_ASSISTANT_TRAINING_FULL_SERVICE));
+            configData.jobTypes = jobTypes;
 
             List<string> locationTypes = new List<String>();
             locationTypes.add(skedConstants.LOCATION_TYPE_NURSE_ASSISTANT_TRAINING);
@@ -44,10 +49,14 @@ global class skedNatSchedulingController {
 
             Date endDate = skedDateTimeUtils.getDateFromIsoString(queryModel.endDateIso);
             DateTime endTime = skedDateTimeUtils.getEndOfDate(endDate, timezoneSidId);
+            
+            List<string> jobTypes = new List<string>();
+            jobTypes.add(skedConstants.JOB_TYPE_NURSE_ASSISTANT_TRAINING);
+            jobTypes.add(skedConstants.JOB_TYPE_NURSE_ASSISTANT_TRAINING_FULL_SERVICE);
 
             List<sked__Job__c> skedJobsInTimeRange = [SELECT Id, Course__c
                                                       FROM sked__Job__c
-                                                      WHERE sked__Type__c = :skedConstants.JOB_TYPE_NURSE_ASSISTANT_TRAINING
+                                                      WHERE sked__Type__c IN :jobTypes
                                                       AND sked__Region__c = :queryModel.regionId
                                                       AND sked__Start__c < :endTime 
                                                       AND sked__Finish__c > :startTime
@@ -178,6 +187,7 @@ global class skedNatSchedulingController {
                 job.startTime = integer.valueOf(skedJob.sked__Start__c.format('Hmm', timezoneSidId));
                 job.finishTime = integer.valueOf(skedJob.sked__Finish__c.format('Hmm', timezoneSidId));
                 job.jobDate = skedJob.sked__Start__c.format(skedDateTimeUtils.DATE_ISO_FORMAT, timezoneSidId);
+                job.jobType = skedJob.sked__Type__c;
                 job.classType = skedJob.Class_Type__c;
                 job.jobStatus = skedJob.sked__Job_Status__c;
                 job.numberOfStudents = integer.valueOf(skedJob.Number_of_Students__c);
@@ -246,7 +256,7 @@ global class skedNatSchedulingController {
                 sked__Start__c = jobStart,
                 sked__Finish__c = jobFinish,
                 sked__Duration__c = jobDuration,
-                sked__Type__c = skedConstants.JOB_TYPE_NURSE_ASSISTANT_TRAINING,
+                sked__Type__c = model.jobType,
                 sked__Location__c = model.facilityId,
                 sked__Address__c = skedLocation.sked__Address__c,
                 sked__GeoLocation__Latitude__s = skedLocation.sked__GeoLocation__Latitude__s,
@@ -734,7 +744,7 @@ global class skedNatSchedulingController {
                     sked__Description__c = model.name,
                     sked__Region__c = model.regionId,
                     sked__Recurring_Schedule__c = skedCourse.Recurring_Schedule__c,
-                    sked__Type__c = skedConstants.JOB_TYPE_NURSE_ASSISTANT_TRAINING,
+                    sked__Type__c = model.jobType,
                     sked__Job_Status__c = skedConstants.JOB_STATUS_PENDING_ALLOCATION,
                     sked__Start__c = jobStart,
                     sked__Finish__c = jobFinish,
@@ -825,6 +835,7 @@ global class skedNatSchedulingController {
                     sked__Address__c = skedLocation.sked__Address__c,
                     sked__GeoLocation__Latitude__s = skedLocation.sked__GeoLocation__Latitude__s,
                     sked__GeoLocation__Longitude__s = skedLocation.sked__GeoLocation__Longitude__s,
+                    sked__Type__c = job.jobType,
                     Special_Instructions__c = job.specialInstructions,
                     Number_of_Students__c = job.numberOfStudents,
                     Number_of_Instructors__c = job.numberOfInstructors,
@@ -839,7 +850,6 @@ global class skedNatSchedulingController {
                     skedJob.sked__Description__c = course.name;
                     skedJob.sked__Region__c = course.regionId;
                     skedJob.sked__Recurring_Schedule__c = course.scheduleId;
-                    skedJob.sked__Type__c = skedConstants.JOB_TYPE_NURSE_ASSISTANT_TRAINING;
                     skedJob.sked__Job_Status__c = skedConstants.JOB_STATUS_PENDING_ALLOCATION;
                 }
                 else {
@@ -1128,6 +1138,7 @@ global class skedNatSchedulingController {
         public string courseId {get;set;}
         public string courseCatalogId {get;set;}
         public string classType {get;set;}
+        public string jobType {get;set;}
         public string specialInstructions {get;set;}
         public string facilityId {get;set;}
         public integer numberOfInstructors {get;set;}
@@ -1146,6 +1157,7 @@ global class skedNatSchedulingController {
     global class courseSaveModel {
         //creation step 1
         public string name {get;set;}
+        public string jobType {get;set;}
         public string courseCatalogId {get;set;}
         public List<string> tagIds {get;set;}
         public string specialInstructions {get;set;}
@@ -1196,6 +1208,7 @@ global class skedNatSchedulingController {
         public List<skedModels.courseTemplate> courseTemplates {get;set;}
         public skedModels.permissionModel userPermission {get;set;}
         public skedModels.natClassSetting natClassSetting {get;set;}
+        public List<skedModels.selectOption> jobTypes {get;set;}
 
         public configDataModel() {
             this.regions = new List<skedModels.selectOption>();

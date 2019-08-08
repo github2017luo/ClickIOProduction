@@ -93,6 +93,10 @@ trigger updateInvCaseSubType on Case bulk(after insert) {
             {
                 cs.Dispute_Issue__c ='Vendor Forms';
             }
+            else if(sub == 'Request Extended Payment Terms')
+            {
+                cs.Dispute_Issue__c ='Invoicing Privileges';
+            }
             else if(sub == 'Other')
             {
                 cs.Dispute_Issue__c ='Other';

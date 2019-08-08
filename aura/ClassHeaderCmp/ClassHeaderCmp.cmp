@@ -8,6 +8,7 @@
   <aura:attribute name="item"                 type="Object"   default=""                        />
   <aura:attribute name="extraFields"          type="Object[]" default=""                        />
 
+   
   <aura:attribute name="label_Number_Of_Students"              type="String" default="{!$Label.c.Number_Of_Students}"/>
   <aura:attribute name="label_Status"                          type="String" default="{!$Label.c.Status_Title}"/>
   <aura:attribute name="label_Language"                        type="String" default="{!$Label.c.Language}"/>

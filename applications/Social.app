@@ -3,7 +3,6 @@
     <consoleConfig>
         <componentList>
             <alignment>right</alignment>
-            <components>Console.BuiltInComponent.macroBrowser</components>
             <components>AgentCommandCenter</components>
         </componentList>
         <detailPageRefreshMethod>none</detailPageRefreshMethod>

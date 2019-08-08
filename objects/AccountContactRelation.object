@@ -39,6 +39,14 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Display_Payment_Info__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>Used to Display Payment Info to Instructor in Community</description>
+        <externalId>false</externalId>
+        <label>Display Payment Info</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>EndDate</fullName>
     </fields>
     <fields>

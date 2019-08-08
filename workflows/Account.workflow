@@ -1,5 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Electronic_Invoice_Delivery_Opt_In_Alert</fullName>
+        <description>Electronic Invoice Delivery Opt In Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Billing_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Invoicing/IDM_Email_to_customer_to_advise_Portal_Billing_setup_is_complete</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Active_Contract_Exception_Approval</fullName>
+        <field>Active_Contract_Exception_Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Active Contract Exception Approval</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Active_Contract_Exception_Flag</fullName>
+        <field>Active_Contract_Exception__c</field>
+        <literalValue>0</literalValue>
+        <name>Active Contract Exception Flag</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Active_Contract_Exception_Rejected</fullName>
+        <field>Active_Contract_Exception_Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Active Contract Exception Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Active_Contract_Submitted</fullName>
+        <field>Active_Contract_Exception_Status__c</field>
+        <literalValue>Submitted</literalValue>
+        <name>Active Contract Submitted</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Credit_Limit</fullName>
+        <field>Credit_Limit__c</field>
+        <formula>0</formula>
+        <name>Credit Limit</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <fieldUpdates>
         <fullName>Increment_Num_Of_Times_Terminated_to_1</fullName>
         <field>Number_of_Times_Terminated__c</field>
@@ -92,6 +149,31 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Update_Credit_Limit</fullName>
+        <description>Update Credit Limit to 20000</description>
+        <field>Credit_Limit__c</field>
+        <formula>20000</formula>
+        <name>Update Credit Limit</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Saba_LMS_Code</fullName>
+        <description>The Saba\LMS Code field is populated when an Account is created, it&apos;s null and the PHSS Channel is not &apos;RCS Distributor&apos; or &apos;RCS Retail&apos;. The Account Auto Number field is used to populate the field.</description>
+        <field>SABA_LMS_Code__c</field>
+        <formula>IF( 
+  OR( 
+    INCLUDES( PHSS_Channel__c, &apos;RCS Distributor&apos;),  
+    INCLUDES( PHSS_Channel__c, &apos;RCS Retail&apos;) ), 
+  &apos;&apos;, 
+  Salesforce_Auto_Number__c)</formula>
+        <name>Update Saba\LMS Code</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Update_Shipping_City</fullName>
         <field>ShippingCity</field>
         <formula>BillingCity</formula>
@@ -142,6 +224,16 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_field_to_Granted</fullName>
+        <description>Updates field to &quot;Granted&quot; when Preferred Payment = &quot;Invoice&quot;</description>
+        <field>Payment_Status__c</field>
+        <literalValue>Granted</literalValue>
+        <name>Update field to Granted</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <rules>
         <fullName>Copy Billing to Shipping Address</fullName>
         <actions>
@@ -175,6 +267,40 @@
             <timeLength>0</timeLength>
             <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Email Alert for Portal Billing Opt In</fullName>
+        <actions>
+            <name>Electronic_Invoice_Delivery_Opt_In_Alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.Invoice_Delivery_Type__c</field>
+            <operation>equals</operation>
+            <value>Portal Billing</value>
+        </criteriaItems>
+        <description>When a user selects &quot;Portal Billing&quot; as an Invoice Delivery Method an email will be sent to the Account Owner that includes the Opt In Form link.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Granted Payment Status if Pref%2E Pymt is Invoice</fullName>
+        <actions>
+            <name>Update_Credit_Limit</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_field_to_Granted</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.Preferred_Payment_type__c</field>
+            <operation>equals</operation>
+            <value>Invoice</value>
+        </criteriaItems>
+        <description>Preferred Payment Type of Invoice is selected, &quot;Granted&quot; must be selected for Payment Status.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>Payment Status EXPIRED</fullName>
@@ -215,6 +341,35 @@
             <value>Terminated</value>
         </criteriaItems>
         <description>If Payment Status Terminated, then Payment Status Terminated field Checked</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Populate Saba%5CLMS Code field for new Accounts</fullName>
+        <actions>
+            <name>Update_Saba_LMS_Code</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Account.SABA_LMS_Code__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>Populate Saba\LMS Code field for new Accounts.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Reset Credit Limit if Credit Card Only</fullName>
+        <actions>
+            <name>Credit_Limit</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.Preferred_Payment_type__c</field>
+            <operation>equals</operation>
+            <value>Credit/Debit Card</value>
+        </criteriaItems>
+        <description>Preferred Payment Type of Credit Card is selected, Credit Limit = 0, Invoice Status = blank</description>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

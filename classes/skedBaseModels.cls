@@ -41,6 +41,7 @@ global class skedBaseModels {
         public decimal lat {get;set;}
         public decimal lng {get;set;}
         public string regionId {get;set;}
+        public string parentId {get;set;}
         public string scheduleId {get;set;}
         public List<tag> tags {get;set;}
         

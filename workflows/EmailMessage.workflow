@@ -90,7 +90,7 @@
     <fieldUpdates>
         <fullName>Update_Case_Record_Type_to_Service_case</fullName>
         <field>RecordTypeId</field>
-        <lookupValue>Service_Cases</lookupValue>
+        <lookupValue>Invoicing</lookupValue>
         <lookupValueType>RecordType</lookupValueType>
         <name>Update Case Record Type to Service case</name>
         <notifyAssignee>false</notifyAssignee>
@@ -267,7 +267,12 @@
         <criteriaItems>
             <field>Case.Status</field>
             <operation>equals</operation>
-            <value>Closed - Invoicing</value>
+            <value>Follow Up - New Email</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Read Only Invoicing</value>
         </criteriaItems>
         <description>Update Case Record Type  for Read only Invoicing Case when customer replied to closed case</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>

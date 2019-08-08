@@ -46,6 +46,7 @@ public with sharing class RCClassHeaderCmpCtrl {
 
         @AuraEnabled public LearningItemWrapper item                                    = null;
         @AuraEnabled public List<Map<String,Object>> extraFields                        = new List<Map<String, Object>>();
+        @AuraEnabled public List<RCUserWrapper> assignedUsers                             = new List<RCUserWrapper>();
         @AuraEnabled public String dueDate                                              = '';
         @AuraEnabled public String learningType                                         = '';
 

@@ -15,7 +15,7 @@
         <td scope="row" data-label="Material Name">
             <div class="slds-truncate cursor slds-grid" title="{!v.materialObject.Material_Name__c}" onclick="{!c.toggle}">
             	<span class="slds-size--7-of-12 break-line">{!v.materialObject.Material_Name__c}</span>
-                <span class="slds-size--3-of-12" style="visibility:hidden">{!v.materialObject.LastModifiedDate}</span>
+                <span class="slds-size--3-of-12">{!v.materialObject.LastModifiedDate}</span>
                 <span class="slds-size--2-of-12">{!v.materialObject.Type__c}</span>
             </div>
             <aura:if isTrue="{!v.expanded}">

@@ -57,6 +57,9 @@
                 <behavior>Edit</behavior>
                 <field>Personal_Email__c</field>
             </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>Email_Alert_Order_Agreement_when_Opportunity_reaches_the_Reservation_Stage</fullName>
+        <description>Email Alert - Order Agreement when Opportunity reaches the Reservation Stage</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Customer_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>ccrz__Ecommerce/B2B_Order_Confirmation_Order_Agreement</template>
+    </alerts>
+    <alerts>
         <fullName>Multi_Jurisdictional_Opp_needs_attention</fullName>
         <ccEmails>PHSSAccountStructure@redcross.org</ccEmails>
         <description>Multi-Jurisdictional Opp needs attention</description>
@@ -171,6 +182,7 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>Set_Approval_Status_To_Rejected</fullName>
@@ -303,6 +315,26 @@
             <operation>equals</operation>
             <value>Closed Won</value>
         </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email Alert to Create an Order Agreement</fullName>
+        <actions>
+            <name>Email_Alert_Order_Agreement_when_Opportunity_reaches_the_Reservation_Stage</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Reservation</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>Contract</value>
+        </criteriaItems>
+        <description>When a Sales Opportunity reaches the Reservation Stage when there is no Contract Opportunity.</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>

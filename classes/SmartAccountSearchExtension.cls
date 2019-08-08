@@ -80,10 +80,25 @@ public  class SmartAccountSearchExtension {
         
         String pageRecordTypeId = ApexPages.currentPage().getParameters().get('RecordType');
         
-        if (pageRecordTypeId != null && pageRecordTypeId != '') {
+        if (pageRecordTypeId != null && pageRecordTypeId != '')
+        {
             return new PageReference('/../001/e?retURL=/apex/SmartAccountSearch&nooverride=1&RecordType=' + pageRecordTypeId + '&acc2=' + this.accountNameToSeaarch);   
         }
-        
+        else
+        {
+            Schema.DescribeSObjectResult dsr = Account.SObjectType.getDescribe();
+            Schema.RecordTypeInfo defaultRecordType;
+            
+            for(Schema.RecordTypeInfo rti : dsr.getRecordTypeInfos())
+            {
+                if(rti.isDefaultRecordTypeMapping())
+                {
+                    defaultRecordType = rti;
+                }
+            }
+            return new PageReference('/../001/e?retURL=/apex/SmartAccountSearch&nooverride=1&RecordType=' + defaultRecordType.recordtypeid + '&acc2=' + this.accountNameToSeaarch);
+        }
+
         return new PageReference('/../001/e?retURL=/apex/SmartAccountSearch&nooverride=1&RecordType=012d000000097TF&acc2=' + this.accountNameToSeaarch);
         
    } 

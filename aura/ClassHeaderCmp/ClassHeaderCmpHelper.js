@@ -68,6 +68,7 @@
                                 value : result.item.language
                             });
                         }*/
+                        /*
                         if(result.item.numberOfStudents >= 0){
                             extraFields.push({
                                 fieldPath : "",
@@ -76,6 +77,7 @@
                                 value : result.item.numberOfStudents
                             });
                         }
+                        */
                         if(result.item.status){
                             extraFields.push({
                                 fieldPath : "",

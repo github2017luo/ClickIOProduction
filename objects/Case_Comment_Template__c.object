@@ -217,6 +217,11 @@
                     <label>Organizations</label>
                 </value>
                 <value>
+                    <fullName>Portal</fullName>
+                    <default>false</default>
+                    <label>Portal</label>
+                </value>
+                <value>
                     <fullName>Programs</fullName>
                     <default>false</default>
                     <label>Programs</label>
@@ -225,6 +230,11 @@
                     <fullName>Purchase Orders</fullName>
                     <default>false</default>
                     <label>Purchase Orders</label>
+                </value>
+                <value>
+                    <fullName>RBC</fullName>
+                    <default>false</default>
+                    <label>RBC</label>
                 </value>
                 <value>
                     <fullName>Red Cross Store</fullName>
