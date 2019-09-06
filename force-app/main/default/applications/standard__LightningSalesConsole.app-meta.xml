@@ -340,14 +340,14 @@
     <tabs>standard-Feed</tabs>
     <tabs>standard-CollaborationGroup</tabs>
     <tabs>standard-File</tabs>
-    <tabs>Attendee__c</tabs>
+    <tabs>Job_Attendee__c</tabs>
     <tabs>sked__Availability__c</tabs>
     <tabs>Resource_Activity_Report</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>LightningSalesConsole_UtilityBar</utilityBar>
     <workspaceConfig>
         <mappings>
-            <tab>Attendee__c</tab>
+            <tab>Job_Attendee__c</tab>
         </mappings>
         <mappings>
             <tab>Resource_Activity_Report</tab>

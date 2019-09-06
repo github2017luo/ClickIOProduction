@@ -16,13 +16,15 @@ public class skedSkeduloApiManager_Test {
                 
         skedSkeduloApiManager_MockTest mockClass = new skedSkeduloApiManager_MockTest();
         mockClass.resourceId = instructor1.Id;
+        mockClass.jobId = pendingDispatchjob.Id;
         Test.setMock(HttpCalloutMock.class, mockClass);
         
         mockClass.calloutMethod = 'dispatch';
-        skedSkeduloApiManager.dispatchJobAllocations(mapAllocation.keySet());
+        skedSkeduloApiManager apiManager = new skedSkeduloApiManager();
+        apiManager.dispatchJobAllocations(mapAllocation.keySet());
         
         mockClass.calloutMethod = 'dispatch_error';
-        skedSkeduloApiManager.dispatchJobAllocations(mapAllocation.keySet());
+        apiManager.dispatchJobAllocations(mapAllocation.keySet());
         
         Test.stopTest();
     }
@@ -40,20 +42,39 @@ public class skedSkeduloApiManager_Test {
                 
         skedSkeduloApiManager_MockTest mockClass = new skedSkeduloApiManager_MockTest();
         mockClass.resourceId = instructor1.Id;
+        mockClass.jobId = pendingDispatchjob.Id;
         Test.setMock(HttpCalloutMock.class, mockClass);
         
         mockClass.calloutMethod = 'dispatch';
-        skedSkeduloApiManager.dispatchJobs(mapJob.keySet());
-        
-        mockClass.calloutMethod = 'dispatch_error';
-        skedSkeduloApiManager.dispatchJobs(mapJob.keySet());
-        
-        mockClass.calloutMethod = 'dispatch_error_salesforce_side';
-        skedSkeduloApiManager.dispatchJobs(jobIds);
+        skedSkeduloApiManager apiManager = new skedSkeduloApiManager();
+        apiManager.dispatchJobs(mapJob.keySet());
         
         Test.stopTest();
     }
 
+    static testmethod void TestDispatchJobApi_Sked_Error() {
+        Map<string, sObject> mapTestData = skedDataSetup.setupFullServiceTestData();
+        sked__Resource__c instructor1 = (sked__Resource__c)mapTestData.get('instructor1');
+        sked__Job__c pendingDispatchjob = (sked__Job__c)mapTestData.get('pendingDispatchjob');
+        
+        Set<Id> jobIds = new Set<Id>();
+        jobIds.add(pendingDispatchjob.Id);
+        
+        Test.startTest();
+        Map<Id, sked__Job__c> mapJob = new Map<Id, sked__Job__c>([SELECT Id FROM sked__Job__c]);
+                
+        skedSkeduloApiManager_MockTest mockClass = new skedSkeduloApiManager_MockTest();
+        mockClass.resourceId = instructor1.Id;
+        mockClass.jobId = pendingDispatchjob.Id;
+        Test.setMock(HttpCalloutMock.class, mockClass);
+        
+        mockClass.calloutMethod = 'dispatch_error';
+        skedSkeduloApiManager apiManager = new skedSkeduloApiManager();
+        apiManager.dispatchJobs(mapJob.keySet());
+        
+        Test.stopTest();
+    }
+/*
     static testmethod void TestDispatchJobApiError1() {
         Map<string, sObject> mapTestData = skedDataSetup.setupFullServiceTestData();
         sked__Resource__c instructor1 = (sked__Resource__c)mapTestData.get('instructor1');
@@ -66,14 +87,17 @@ public class skedSkeduloApiManager_Test {
                 
         skedSkeduloApiManager_MockTest mockClass = new skedSkeduloApiManager_MockTest();
         mockClass.resourceId = instructor1.Id;
+        mockClass.jobId = pendingDispatchjob.Id;
         Test.setMock(HttpCalloutMock.class, mockClass);
         
         mockClass.calloutMethod = 'dispatch_error';
-        skedSkeduloApiManager.dispatchJobs(jobIds);
+        skedSkeduloApiManager apiManager = new skedSkeduloApiManager();
+        apiManager.dispatchJobs(jobIds);
         
         Test.stopTest();
     }
 
+    
     static testmethod void TestDispatchJobApiError2() {
         Map<string, sObject> mapTestData = skedDataSetup.setupFullServiceTestData();
         sked__Resource__c instructor1 = (sked__Resource__c)mapTestData.get('instructor1');
@@ -86,10 +110,12 @@ public class skedSkeduloApiManager_Test {
         
         skedSkeduloApiManager_MockTest mockClass = new skedSkeduloApiManager_MockTest();
         mockClass.resourceId = instructor1.Id;
+        mockClass.jobId = pendingDispatchjob.Id;
         Test.setMock(HttpCalloutMock.class, mockClass);
         
         mockClass.calloutMethod = 'dispatch_error_salesforce_side';
-        skedSkeduloApiManager.dispatchJobs(jobIds);
+        skedSkeduloApiManager apiManager = new skedSkeduloApiManager();
+        apiManager.dispatchJobs(jobIds);
         
         Test.stopTest();
     }
@@ -109,6 +135,6 @@ public class skedSkeduloApiManager_Test {
         System.debug(response.dts);
         System.debug(response.protocol);
         System.debug(response.referenceId);
-    }
+    }*/
     
 }

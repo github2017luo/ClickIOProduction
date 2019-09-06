@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentAsset xmlns="http://soap.sforce.com/2006/04/metadata">
+    <isVisibleByExternalUsers>true</isVisibleByExternalUsers>
+    <language>en_US</language>
+    <masterLabel>FY19_Alert_FS_Digital_Ad1</masterLabel>
+    <versions>
+        <version>
+            <number>1</number>
+            <pathOnClient>FY19 Alert_FS Digital Ad.png</pathOnClient>
+        </version>
+    </versions>
+</ContentAsset>

@@ -85,6 +85,11 @@
                 <default>false</default>
                 <label>Others</label>
             </value>
+            <value>
+                <fullName>RCSPO</fullName>
+                <default>false</default>
+                <label>RCSPO</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

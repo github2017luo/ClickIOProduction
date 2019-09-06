@@ -2966,7 +2966,7 @@
         <object>ccrz__E_OrderItem__c</object>
     </recordUpdates>
     <startElementReference>myPreWaitDecision_myWait_myRule_14</startElementReference>
-    <status>Active</status>
+    <status>Obsolete</status>
     <variables>
         <name>cancelWaits</name>
         <dataType>String</dataType>

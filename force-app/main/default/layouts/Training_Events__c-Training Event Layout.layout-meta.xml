@@ -101,6 +101,10 @@
                 <field>Rescheduling_Fee__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Returned_to_Sales__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>BGST_Indicator__c</field>
             </layoutItems>

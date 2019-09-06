@@ -119,41 +119,11 @@
             <type>user</type>
         </recipients>
         <recipients>
-            <recipient>mike.smith2@redcross.org</recipient>
-            <type>user</type>
-        </recipients>
-        <recipients>
             <recipient>paul.munn@redcross.org</recipient>
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>unfiled$public/Social_Media_Mgt_Queue_New_Case</template>
-    </alerts>
-    <alerts>
-        <fullName>This_is_to_send_email_alert_to_customer_when_case_record_is_sent_to_CFS</fullName>
-        <description>This is to send email alert to customer when case record is sent to CFS</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Billing_Contact_Email__c</field>
-            <type>email</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>Red_Cross_Store_PO/Case_sent_to_CFS</template>
-    </alerts>
-    <alerts>
-        <fullName>Web_to_case_Created</fullName>
-        <description>Web to case Created</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Billing_Contact_Email__c</field>
-            <type>email</type>
-        </recipients>
-        <recipients>
-            <field>External_LOGIN_EMAIL__c</field>
-            <type>email</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>Red_Cross_Store_PO/Web_to_case_Template_Case_Object</template>
     </alerts>
     <alerts>
         <fullName>X20_day_owner_notification_on_invoicing_cases</fullName>
@@ -2758,10 +2728,6 @@ ISPICKVAL( Follow_Up_Group__c, &quot;Course Records&quot;) ,
     </rules>
     <rules>
         <fullName>Case sent to CFS</fullName>
-        <actions>
-            <name>This_is_to_send_email_alert_to_customer_when_case_record_is_sent_to_CFS</name>
-            <type>Alert</type>
-        </actions>
         <active>false</active>
         <criteriaItems>
             <field>Case.Sent_to_CFS__c</field>
@@ -4779,10 +4745,6 @@ Learn To Swim Facility Registration - Account Name</description>
     </rules>
     <rules>
         <fullName>Web to case Created</fullName>
-        <actions>
-            <name>Web_to_case_Created</name>
-            <type>Alert</type>
-        </actions>
         <active>false</active>
         <criteriaItems>
             <field>Case.RecordTypeId</field>

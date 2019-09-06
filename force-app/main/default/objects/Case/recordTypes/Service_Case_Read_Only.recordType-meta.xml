@@ -853,6 +853,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Hurricane Dorian</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Hurricane Florence</fullName>
             <default>false</default>
         </values>

@@ -1,6 +1,7 @@
 <aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="PHSSProgramMaterialsApexController">
 	<aura:attribute name="libraryName" type="String" default=""/>
 	<aura:attribute name="tagsCsv" type="String" default=""/>
+    <aura:attribute name="url" type="String"/>
 
 	<aura:attribute name="isCandidateMaterial" type="Boolean" default="false"/>
 
@@ -37,6 +38,7 @@
 		materialNameColumnLabel="{#v.materialNameColumnLabel}"
 		lastModifiedDateColumnLabel="{#v.lastModifiedDateColumnLabel}"
 		materialTypeColumnLabel="{#v.materialTypeColumnLabel}"
+       	url="{#v.url}"
 	/>
 
 </aura:component>

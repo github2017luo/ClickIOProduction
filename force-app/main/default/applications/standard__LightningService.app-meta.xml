@@ -36,7 +36,7 @@
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
     <tabs>standard-home</tabs>
-    <tabs>Attendee__c</tabs>
+    <tabs>Job_Attendee__c</tabs>
     <tabs>sked__Availability__c</tabs>
     <tabs>Resource_Activity_Report</tabs>
     <tabs>Long_Article__kav</tabs>
@@ -44,7 +44,7 @@
     <utilityBar>LightningService_UtilityBar</utilityBar>
     <workspaceConfig>
         <mappings>
-            <tab>Attendee__c</tab>
+            <tab>Job_Attendee__c</tab>
         </mappings>
         <mappings>
             <tab>Long_Article__kav</tab>

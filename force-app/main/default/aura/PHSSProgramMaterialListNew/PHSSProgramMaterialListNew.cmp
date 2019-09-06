@@ -2,6 +2,8 @@
     <aura:attribute name="category" type="String" description="category of the material"/>
     <aura:attribute name="type" type="String" description="type of the material"/>
     <aura:attribute name="description" type="String" description="list name displayed at the top"/>
+    
+    <aura:attribute name="url" type="String" default=""/>
 
     <aura:attribute name="initalDisplayNum" type="String" description="initial number of displayed records"/>
     <aura:attribute name="currentDisplayNum" type="String" description="current number of displayed records"/>
@@ -90,7 +92,8 @@
 	            			</th>
 	            		</tr>
 	            		<aura:iteration items="{!v.filteredMaterials}" var="material">
-			            	<c:PHSSProgramMaterialListItem materialObject="{!material}" unavailablePreviewMessage="{#v.unavailablePreviewMessage}"/>
+			            	<c:PHSSProgramMaterialListItem materialObject="{!material}" unavailablePreviewMessage="{#v.unavailablePreviewMessage}"
+                                                           	url = "{#v.url}"/>
 			            </aura:iteration>
 	            	</aura:set>
 	            </aura:if>

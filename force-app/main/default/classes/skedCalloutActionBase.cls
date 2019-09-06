@@ -1,86 +1,69 @@
 public abstract class skedCalloutActionBase {
-    
-    /*public skedCalloutResultBase execute(string endPoint, string httpMethod, Map<string, string> mapHeader, Map<string, string> mapParam) {
-        List<string> params = new List<string>();
-        for (string paramKey : mapParam.keySet()) {
-            string paramValue = mapParam.get(paramKey);
-            params.add(paramKey + '=' + EncodingUtil.urlEncode(paramValue, 'UTF-8'));
+
+    public static final integer DEFAULT_TIMEOUT = 60000;
+
+    public virtual skedCalloutResultBase execute(Type resultType, string endPoint, string httpMethod, Map<string, string> mapHeader, string body) {
+        skedCalloutResultBase result;
+        try {
+            Http h = new Http();
+            HttpRequest req = prepareHttpRequest(endPoint, httpMethod, mapHeader, body);
+            HttpResponse res = h.send(req);
+            
+            string response = res.getBody();
+            string status = res.getStatus();
+            integer statusCode = res.getStatusCode();
+
+            system.debug('#request# ' + req);
+            system.debug('#response: ' + response);
+            
+            if (statusCode >= 400) {
+                result = processError(resultType, result, response);
+                result.success = false;
+            }
+            else {
+                result = processResponse(resultType, result, response);
+                result.success = true;
+            }
+
+            result.status = status;
+            result.statusCode = statusCode;
         }
-        string body;
-        if (!params.isEmpty()) {
-            body = string.join(params, '&');
+        catch (Exception ex) {
+            result = (skedCalloutResultBase)resultType.newInstance();
+            result.success = false;
+            result.message = ex.getMessage() + ' - ' + ex.getStackTraceString();
         }
-        return execute(endPoint, httpMethod, mapHeader, body);
-    }*/
-    
-    public skedCalloutResultBase execute(string endPoint, string httpMethod, Map<string, string> mapHeader, string body) {
-        beforeExecute();
-        skedCalloutResultBase result = doExecute(endPoint, httpMethod, mapHeader, body);
-        afterExecute();
-        
         return result;
     }
-    
-    protected virtual void beforeExecute() {
-        
+
+    protected abstract skedCalloutResultBase processError(Type resultType, skedCalloutResultBase result, string response);
+
+    protected virtual skedCalloutResultBase processResponse(Type resultType, skedCalloutResultBase result, string response) {
+        return (skedCalloutResultBase)Json.deserialize(response, resultType);
     }
     
-    protected virtual void afterExecute() {
-        
-    }
-    
-    protected virtual skedCalloutResultBase initializeResult() {
-        return new skedCalloutResultBase();
-    }
-    
-    protected virtual skedCalloutResultBase doExecute(string endPoint, string httpMethod, Map<string, string> mapHeader, string body) {
-        skedCalloutResultBase result = initializeResult();
-        
-        HttpRequest req = new HttpRequest();
-        req.setEndpoint(endPoint);
+    /******************************************* Private methods *******************************************/
+    private HttpRequest prepareHttpRequest(string endPoint, string httpMethod, Map<string, string> mapHeader, string body) {
+        HttpRequest request = new Httprequest();
+        request.setEndpoint(endPoint);
         if (!string.isBlank(body)) {
-            req.setBody(body);
+            request.setBody(body);
         }
         else {
-            req.setHeader('Content-length', '0');
+            request.setHeader('Content-length', '0');
         }
         
         if (httpMethod == 'PATCH') {
-            req.setHeader('X-HTTP-Method-Override', 'PATCH');
+            request.setHeader('X-HTTP-Method-Override', 'PATCH');
         }
         for (string headerKey : mapHeader.keySet()) {
             string headerValue = mapHeader.get(headerKey);
-            req.setHeader(headerKey, headerValue);
+            request.setHeader(headerKey, headerValue);
         }
         
         httpMethod = httpMethod == 'PATCH' ? 'POST' : httpMethod;
-        req.setMethod(httpMethod);
-        req.setTimeout(60000);
-        
-        Http h = new Http();
-        HttpResponse res = h.send(req);
-        
-        string response = res.getBody();
-        string status = res.getStatus();
-        integer statusCode = res.getStatusCode();
-
-        result.status = status;
-        result.statusCode = statusCode;
-        
-        if (statusCode >= 400) {
-            result.success = false;
-            throw new skedCalloutException(statusCode, status, response);
-        }
-        else {
-            result.success = true;
-            result = processResponse(response);
-        }
-        
-        return result;
+        request.setMethod(httpMethod);
+        request.setTimeout(DEFAULT_TIMEOUT);
+        return request;
     }
-    
-    protected virtual skedCalloutResultBase processResponse(string response) {
-        return null;
-    }
-    
 }

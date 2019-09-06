@@ -18,6 +18,7 @@ public class skedJobHandler {
         updateGeoLocation(updatedRecords, newRecords);
         updateResourceScheduledHours(updatedRecords, newRecords);
         captureEventsOnUpdate(updatedRecords, newRecords);
+        updateSubClassDetails(updatedRecords, newRecords);
         notifyJobUpdates(updatedRecords, newRecords);
     }
     
@@ -44,6 +45,7 @@ public class skedJobHandler {
     
     private static void populateJobData(List<sked__Job__c> newRecords) {
         Set<Id> locationIds = new Set<Id>();
+        Set<Id> courseCatalogIds = new Set<Id>();
         for (sked__Job__c newRecord : newRecords) {
             if (newRecord.Job_Month__c == NULL) {
                 newRecord.Job_Month__c = newRecord.sked__Start__c.date().toStartOfMonth();
@@ -51,10 +53,11 @@ public class skedJobHandler {
             if (newRecord.sked__Location__c != NULL) {
                 locationIds.add(newRecord.sked__Location__c);
             }
+            if (newRecord.Course_Catalog__c != NULL) {
+                courseCatalogIds.add(newRecord.Course_Catalog__c);
+            }
             newRecord.Job_Time__c = newRecord.sked__Start__c.format('hh:mma', newRecord.sked__Timezone__c) 
                                     + ' - ' + newRecord.sked__Finish__c.format('h:mma z', newRecord.sked__Timezone__c);
-            
-            newRecord.sked__Description__c = generateJobDescription(newRecord);
         }
         if (!locationIds.isEmpty()) {
             Map<Id, sked__Location__c> mapLocation = new Map<Id, sked__Location__c>([SELECT Id, Notes__c
@@ -67,10 +70,28 @@ public class skedJobHandler {
                 }
             }
         }
+        
+        Map<Id, Course_Catalog__c> mapCourseCatalog;
+        if (!courseCatalogIds.isEmpty()) {
+            mapCourseCatalog = new Map<Id, Course_Catalog__c>([SELECT Id, Name
+                                                               FROM Course_Catalog__c
+                                                               WHERE Id IN :courseCatalogIds]);
+        }
+        for (sked__Job__c newRecord : newRecords) {
+            newRecord.sked__Description__c = '';
+            if (mapCourseCatalog != NULL && newRecord.Course_Catalog__c != NULL) {
+                Course_Catalog__c courseCatalog = mapCourseCatalog.get(newRecord.Course_Catalog__c);
+                newRecord.sked__Description__c = courseCatalog.Name + ', ';
+            }
+            string startTimeStr = newRecord.sked__Start__c.format('hh:mma z', newRecord.sked__Timezone__c);
+            newRecord.sked__Description__c += startTimeStr;
+        }
     }
 
     private static void populateJobData(Map<Id, sked__Job__c> updatedRecords, List<sked__Job__c> newRecords) {
         Set<Id> locationIds = new Set<Id>();
+        Set<Id> courseCatalogIds = new Set<Id>();
+        boolean repopulateJobInfo = false;
         for (sked__Job__c newRecord : newRecords) {
             sked__Job__c oldData = updatedRecords.get(newRecord.Id);
             if (newRecord.sked__Location__c != NULL && newRecord.sked__Location__c != oldData.sked__Location__c) {
@@ -80,15 +101,13 @@ public class skedJobHandler {
                 newRecord.Job_Time__c = newRecord.sked__Start__c.format('hh:mma', newRecord.sked__Timezone__c) 
                                         + ' - ' + newRecord.sked__Finish__c.format('h:mma z', newRecord.sked__Timezone__c);
             }
-            if (newRecord.sked__Start__c != oldData.sked__Start__c || newRecord.sked__Description__c != oldData.sked__Description__c) {
-                string oldStartTimeStr = oldData.sked__Start__c.format('hh:mma z', newRecord.sked__Timezone__c);
-                string startTimeStr = newRecord.sked__Start__c.format('hh:mma z', newRecord.sked__Timezone__c);
-                if (newRecord.sked__Description__c.contains(oldStartTimeStr)) {
-                    newRecord.sked__Description__c = newRecord.sked__Description__c.replace(oldStartTimeStr, startTimeStr);
-                }
-                else {
-                    newRecord.sked__Description__c = generateJobDescription(newRecord);
-                }
+            if (repopulateJobInfo == FALSE) {
+                repopulateJobInfo = newRecord.sked__Start__c != oldData.sked__Start__c 
+                    || newRecord.sked__Finish__c != oldData.sked__Finish__c 
+                    || newRecord.Course_Catalog__c != oldData.Course_Catalog__c;
+            }
+            if (newRecord.Course_Catalog__c != NULL) {
+                courseCatalogIds.add(newRecord.Course_Catalog__c);
             }
         }
         if (!locationIds.isEmpty()) {
@@ -103,25 +122,24 @@ public class skedJobHandler {
                 }
             }
         }
-    }
-
-    private static string generateJobDescription(sked__Job__c skedJob) {
-        string startTimeStr = skedJob.sked__Start__c.format('hh:mma z', skedJob.sked__Timezone__c);
-        string jobDescription = skedJob.sked__Description__c;
-        string finalDescription = '';
-        integer maxLength = 255;
-        integer startTimeStrMaxLength = 17;
-        if (!string.isBlank(jobDescription)) {
-            finalDescription = jobDescription +'\n' + startTimeStr;
-            if (finalDescription.length() > maxLength) {
-                jobDescription = jobDescription.subString(0, maxLength - startTimeStrMaxLength);
-                finalDescription = jobDescription + ' ...' + '\n' + startTimeStr;
+        
+        if (repopulateJobInfo == TRUE) {
+            Map<Id, Course_Catalog__c> mapCourseCatalog;
+            if (!courseCatalogIds.isEmpty()) {
+                mapCourseCatalog = new Map<Id, Course_Catalog__c>([SELECT Id, Name
+                                                                   FROM Course_Catalog__c
+                                                                   WHERE Id IN :courseCatalogIds]);
+            }
+            for (sked__Job__c newRecord : newRecords) {
+                newRecord.sked__Description__c = '';
+                if (mapCourseCatalog != NULL && newRecord.Course_Catalog__c != NULL) {
+                    Course_Catalog__c courseCatalog = mapCourseCatalog.get(newRecord.Course_Catalog__c);
+                    newRecord.sked__Description__c = courseCatalog.Name + ', ';
+                }
+                string startTimeStr = newRecord.sked__Start__c.format('hh:mma z', newRecord.sked__Timezone__c);
+                newRecord.sked__Description__c += startTimeStr;
             }
         }
-        else {
-            finalDescription = startTimeStr;
-        }
-        return finalDescription;
     }
     
     private static void updateGeoLocation(List<sked__Job__c> newRecords) {
@@ -369,6 +387,50 @@ public class skedJobHandler {
 
         if (emailList.size() > 0) {
             Messaging.sendEmail(emailList);
+        }
+    }
+    
+    private static void updateSubClassDetails(Map<Id, sked__Job__c> updatedRecords, List<sked__Job__c> newRecords) {
+        Map<Id, sked__Job__c> mapMasterClass = new Map<Id, sked__Job__c>();
+        for (sked__Job__c newRecord : newRecords) {
+            sked__Job__c oldData = updatedRecords.get(newRecord.Id);
+            if (newRecord.Is_Master_Class__c == TRUE) {
+                if (newRecord.sked__Start__c != oldData.sked__Start__c
+                   || newRecord.sked__Finish__c != oldData.sked__Finish__c
+                   || newRecord.sked__Location__c != oldData.sked__Location__c
+                   || newRecord.sked__GeoLocation__Latitude__s != oldData.sked__GeoLocation__Latitude__s
+                   || newRecord.sked__GeoLocation__Longitude__s != oldData.sked__GeoLocation__Longitude__s
+                   || newRecord.sked__Address__c != oldData.sked__Address__c
+                   || newRecord.sked__Job_Status__c != oldData.sked__Job_Status__c) {
+                    mapMasterClass.put(newRecord.Id, newRecord);
+                }
+            }
+        }
+        if (!mapMasterClass.isEmpty()) {
+            List<sked__Job__c> skedSubClasses = [SELECT Id, sked__Start__c, sked__Finish__c, sked__Job_Status__c, sked__Parent__c, sked__Timezone__c,
+                                                 sked__Address__c, sked__Location__c, sked__GeoLocation__Latitude__s, sked__GeoLocation__Longitude__s
+                                                 FROM sked__Job__c
+                                                 WHERE sked__Parent__c IN :mapMasterClass.keySet()];
+            if (!skedSubClasses.isEmpty()) {
+                for (sked__Job__c skedSubClass : skedSubClasses) {
+                    sked__Job__c skedMasterClass = mapMasterClass.get(skedSubClass.sked__Parent__c);
+                    sked__Job__c oldMasterClass = updatedRecords.get(skedMasterClass.Id);
+                    
+                    integer startDifferentMinutes = integer.valueOf((skedMasterClass.sked__Start__c.getTime() - oldMasterClass.sked__Start__c.getTime()) / 60000);
+                    integer finishDifferentMinutes = integer.valueOf((skedMasterClass.sked__Finish__c.getTime() - oldMasterClass.sked__Finish__c.getTime()) / 60000);
+                    
+                    skedSubClass.sked__Start__c = skedDateTimeUtils.addMinutes(skedSubClass.sked__Start__c, startDifferentMinutes, skedSubClass.sked__Timezone__c);
+                    skedSubClass.sked__Finish__c = skedDateTimeUtils.addMinutes(skedSubClass.sked__Finish__c, finishDifferentMinutes, skedSubClass.sked__Timezone__c);
+                    skedSubClass.sked__Duration__c = integer.valueOf((skedSubClass.sked__Finish__c.getTime() - skedSubClass.sked__Start__c.getTime()) / 60000);
+                    
+                    skedSubClass.sked__Address__c = skedMasterClass.sked__Address__c;
+                    skedSubClass.sked__Location__c = skedMasterClass.sked__Location__c;
+                    skedSubClass.sked__GeoLocation__Latitude__s = skedMasterClass.sked__GeoLocation__Latitude__s;
+                    skedSubClass.sked__GeoLocation__Longitude__s = skedMasterClass.sked__GeoLocation__Longitude__s;
+                    skedSubClass.sked__Job_Status__c = skedMasterClass.sked__Job_Status__c;
+                }
+                update skedSubClasses;
+            }
         }
     }
 

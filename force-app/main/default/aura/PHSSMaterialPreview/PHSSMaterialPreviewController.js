@@ -27,8 +27,25 @@
             component.set('v.pdfVars', pdfVars);
             component.set('v.PdfStatus', 'Loading');
             var progress = 0;
+            
+            console.log("URL$$$"+component.get("v.url"));
+            console.log(material.ContentVersionLink__c);
+            
+            var url 		 = component.get("v.url");
+                        
+            if(url === "")
+            {
+                url 		 = $A.get("$Label.c.PHSS_IC_Community_URL_Domain");
+            }
+            
+            var Servlet 		 = $A.get("$Label.c.PHSS_IC_Community_URL_Content_Version_Servlet");
+            var ContentVersionID = material.ContentVersionID__c;
+            var finalURL 		 = url+Servlet+ContentVersionID;
+            
+            console.log(finalURL);
 
-            pdfVars.pdfLoadingPromise = PDFJS.getDocument(material.ContentVersionLink__c);
+            //pdfVars.pdfLoadingPromise = PDFJS.getDocument(material.ContentVersionLink__c);
+            pdfVars.pdfLoadingPromise = PDFJS.getDocument(finalURL);
 
             pdfVars.pdfLoadingPromise.onProgress = function(progressData) {
                 var progressNew = Math.floor((progressData.loaded / progressData.total)*100);

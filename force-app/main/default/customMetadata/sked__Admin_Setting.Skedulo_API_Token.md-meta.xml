@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Skedulo API Token</label>
+    <protected>false</protected>
+    <values>
+        <field>sked__Description__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>sked__Value__c</field>
+        <value xsi:type="xsd:string">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5za2VkdWxvLmNvbS9hdXRoL3Rva2VuIiwiYXVkIjpbIjVjMDIzM2U3OTFjMjNkNGZhZGRkNjBjODAxNTBmNzM2Il0sImp0aSI6IkJBbkVEaGJMaG5MQkR0M2VSN1JXcXByVGI3dHFEZUlYIiwiaHR0cHM6Ly9hcGkuc2tlZHVsby5jb20vc2ZfZW52Ijoic2FsZXNmb3JjZS1zYW5kYm94IiwiaHR0cHM6Ly9hcGkuc2tlZHVsby5jb20vdmVuIjp7InVzZXJfaWQiOiIwMDVnMDAwMDAwNENNdTJBQUciLCJjb21tdW5pdHlfaWQiOm51bGx9LCJodHRwczovL2FwaS5za2VkdWxvLmNvbS91c2VyX2lkIjoic2FsZXNmb3JjZS1zYW5kYm94fDAwNWcwMDAwMDA0Q011MkFBRyIsImh0dHBzOi8vYXBpLnNrZWR1bG8uY29tL29yZ2FuaXphdGlvbl9pZCI6IjAwRGcwMDAwMDAxcUhRUUVBMiIsImh0dHBzOi8vYXBpLnNrZWR1bG8uY29tL3VzZXJuYW1lIjoibGh1bnRAc2tlZHVsby5jb20iLCJzdWIiOiJzYWxlc2ZvcmNlLXNhbmRib3h8MDA1ZzAwMDAwMDRDTXUyQUFHIiwiaHR0cHM6Ly9hcGkuc2tlZHVsby5jb20vdmVuZG9yIjoic2FsZXNmb3JjZSIsImh0dHBzOi8vYXBpLnNrZWR1bG8uY29tL3Jlc291cmNlX2lkIjoiYTJHZzAwMDAwMDFoZndwRUFBIiwiaHR0cHM6Ly9hcGkuc2tlZHVsby5jb20vcm9sZXMiOlsiU2NoZWR1bGVyIiwiQWRtaW5pc3RyYXRvciIsImRpdmlzaW9uIHNjaGVkdWxlciJdfQ.D2amiNFBQqiZHo1NRjhEjjHeNjaWUX2nAPdqoTxr0e0</value>
+    </values>
+</CustomMetadata>

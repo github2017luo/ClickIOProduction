@@ -45,7 +45,7 @@ public class skedScheduleAllocation_Test {
         sked__Resource__c instructor1 = (sked__Resource__c)mapTestData.get('instructor1');
         
         skedGeoservicesApi_Mock mockClass = new skedGeoservicesApi_Mock();
-        mockClass.calloutMethod = 'calculateMultiDistances';
+        mockClass.calloutMethod = 'findDirections';
         Test.setMock(HttpCalloutMock.class, mockClass);
         
         Test.startTest();
@@ -76,7 +76,7 @@ public class skedScheduleAllocation_Test {
         sked__Resource__c instructor1 = (sked__Resource__c)mapTestData.get('instructor1');
         
         skedGeoservicesApi_Mock mockClass = new skedGeoservicesApi_Mock();
-        mockClass.calloutMethod = 'calculateMultiDistances';
+        mockClass.calloutMethod = 'findDirections';
         Test.setMock(HttpCalloutMock.class, mockClass);
         
         Test.startTest();

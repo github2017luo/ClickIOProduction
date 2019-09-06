@@ -1,5 +1,6 @@
 <design:component label="PHSS Materials by library or tags">
 	<design:attribute name="libraryName" label="Library Name" description="Name of library"/>
+    <design:attribute name="url" label="Community URL" description="URL For Community"/>
 	<design:attribute name="tagsCsv" label="Tags CSV" description="List of tags separated by comma"/>
 
 	<design:attribute name="category" datasource="All, Instructor Bulletin,Instructor Materials,Supporting Materials,Participant Materials,Other" />

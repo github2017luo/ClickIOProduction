@@ -15,7 +15,7 @@
     <contentSniffingProtection>false</contentSniffingProtection>
     <cspUpgradeInsecureRequests>false</cspUpgradeInsecureRequests>
     <customWebAddresses>
-        <certificate>www_instructorscorner_org</certificate>
+        <certificate>instructorscorner_org</certificate>
         <domainName>www.instructorscorner.org</domainName>
         <primary>true</primary>
     </customWebAddresses>
