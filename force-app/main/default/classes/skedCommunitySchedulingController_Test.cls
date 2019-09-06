@@ -220,7 +220,6 @@ private class skedCommunitySchedulingController_Test {
         sked__Region__c sanFranciscoRegion = (sked__Region__c)mapTestData.get('sanFranciscoRegion');
         Contact testContact = (Contact)mapTestData.get('testContact');
         sked__Location__c communityLocation2 = (sked__Location__c)mapTestData.get('communityLocation2');
-        Attendee__c attendeeTest = (Attendee__c)mapTestData.get('attendee');
         sked__Tag__c tagPickup = (sked__Tag__c)mapTestData.get('tagPickup');
         sked__Job__c dispatchjob = (sked__Job__c)mapTestData.get('dispatchjob');
         Offering__c offferingDispatch = (Offering__c)mapTestData.get('offferingDispatch');

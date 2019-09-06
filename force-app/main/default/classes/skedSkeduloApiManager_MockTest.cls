@@ -2,20 +2,20 @@
 global class skedSkeduloApiManager_MockTest implements HttpCalloutMock {
 
 	global string calloutMethod {get;set;}
-
 	global string resourceId {get;set;}
+    global string jobId {get;set;}
 
 	global HTTPResponse respond(HTTPRequest req) {
 		HttpResponse res = new HttpResponse();
 		if (calloutMethod == 'dispatch' || calloutMethod == 'cancel') {
 			res.setHeader('Content-Type', 'application/json');
-			string jsonResult = '{"results":{"' + resourceId + '":{"dts":"2016-04-22T06:37:59.585Z","protocol":"n/a","success":true}}}';
+			string jsonResult = '{"result": { "jobId": "' + jobId + '", "results": [ { "resourceId": "' + resourceId + '", "protocol": "sms", "error": { "errorType": "", "message": "", "errorId": "" } } ] } }';
 			res.setBody(jsonResult);
 			res.setStatusCode(200);
 		}
 		else if (calloutMethod == 'dispatch_error' || calloutMethod == 'cancel_error') {
 			res.setHeader('Content-Type', 'application/json');
-			string jsonResult = '{"results":{"' + resourceId + '":{"dts":"2016-04-22T06:37:59.585Z","protocol":"n/a","success":false,"errorMessage":"The resource is not notifiable","errorCode":"NotNotifiable"}}}';
+			string jsonResult = '{"result": { "jobId": "' + jobId + '", "results": [ { "resourceId": "' + resourceId + '", "protocol": "sms", "error": { "errorType": "test", "message": "test", "errorId": "test" } } ] } }';
 			res.setBody(jsonResult);
 			res.setStatusCode(200);
 		}
@@ -25,6 +25,7 @@ global class skedSkeduloApiManager_MockTest implements HttpCalloutMock {
 			res.setBody(jsonResult);
 			res.setStatusCode(400);
 		}
+        
 		return res;
 	}
 

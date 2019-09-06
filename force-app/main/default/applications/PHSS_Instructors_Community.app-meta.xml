@@ -23,7 +23,7 @@
     <tabs>PHSS_Error_Logger__c</tabs>
     <tabs>PHSS_Certification_Provisioning_Clone__c</tabs>
     <tabs>PHSS_User_Provisioning_Clone__c</tabs>
-    <tabs>Attendee__c</tabs>
+    <tabs>Job_Attendee__c</tabs>
     <tabs>sked__Availability__c</tabs>
     <tabs>Resource_Activity_Report</tabs>
 </CustomApplication>

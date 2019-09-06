@@ -1061,7 +1061,7 @@
     <tabs>Dupes_Created_Today__c</tabs>
     <tabs>SIC__c</tabs>
     <tabs>NAICS__c</tabs>
-    <tabs>Attendee__c</tabs>
+    <tabs>Job_Attendee__c</tabs>
     <tabs>sked__Availability__c</tabs>
     <tabs>Resource_Activity_Report</tabs>
     <uiType>Lightning</uiType>

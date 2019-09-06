@@ -8,6 +8,8 @@
     <design:attribute name="tags" default="" label="Tags"/>
     <design:attribute name="unavailablePreviewMessage" default="Preview of this file is not supported, please download" label="Unavailable Preview Message"/>
 
+    <design:attribute name="url" label="Community URL" description="URL For Community"/>
+    
     <design:attribute name="materialNameColumnLabel" label="Material Name Column Label" default="Material Name"/>
     <design:attribute name="lastModifiedDateColumnLabel" label="Last Modified Date Column Label" default="Last Modified Date"/>
     <design:attribute name="materialTypeColumnLabel" label="Material Type Column Label" default="Type"/>

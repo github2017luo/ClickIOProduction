@@ -1542,6 +1542,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>skedDirectionTravelTimeService</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>skedEmailUtils</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -2975,41 +2979,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Associated_Orders__c.Payment_Method__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Attendee__c.Attended__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Attendee__c.Comments__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Attendee__c.Email__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Attendee__c.Job__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Attendee__c.Last_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Attendee__c.Mobile_Phone__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Attendee__c.Offering__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5998,64 +5967,64 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Case.Shipping_Address_1__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Case.Shipping_Address_2__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Case.Shipping_City__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Case.Shipping_Contact_Email__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Case.Shipping_Contact_First_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Case.Shipping_Contact_Last_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Case.Shipping_Contact_Phone__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Case.Shipping_Contact__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Case.Shipping_Country_Code__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Case.Shipping_Country_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Case.Shipping_State__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Case.Shipping_Zip__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -8860,6 +8829,41 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Integration_Log__c.Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Job_Attendee__c.Attended__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Job_Attendee__c.Comments__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Job_Attendee__c.Email__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Job_Attendee__c.Job__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Job_Attendee__c.Last_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Job_Attendee__c.Mobile_Phone__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Job_Attendee__c.Offering__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -13514,6 +13518,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Training_Events__c.Returned_to_Sales__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Training_Events__c.SCC_Code__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -14118,9 +14127,6 @@
         <layout>Associated_Orders__c-Associated Order Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Attendee__c-Attendee Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>AuditTrailLoginAs__c-AuditTrailLoginAs Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -14288,6 +14294,70 @@
         <recordType>Case.Troubleshooting_Case</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>CaseClose-Invoicing Close Case</layout>
+        <recordType>Case.CRE_Case</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Invoicing Close Case</layout>
+        <recordType>Case.Community_Instructor_Case</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Invoicing Close Case</layout>
+        <recordType>Case.Community_Learner_Case</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Invoicing Close Case</layout>
+        <recordType>Case.Community_Partner_Case</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Invoicing Close Case</layout>
+        <recordType>Case.Data_Quality_Case</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Invoicing Close Case</layout>
+        <recordType>Case.Invoicing</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Invoicing Close Case</layout>
+        <recordType>Case.Learn_to_Swim_Facility_Registration</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Invoicing Close Case</layout>
+        <recordType>Case.Non_Training_Case</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Invoicing Close Case</layout>
+        <recordType>Case.RBC_Case</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Invoicing Close Case</layout>
+        <recordType>Case.RCS_PO</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Invoicing Close Case</layout>
+        <recordType>Case.Read_Only_Invoicing</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Invoicing Close Case</layout>
+        <recordType>Case.Read_Only_Non_Training_Case</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Invoicing Close Case</layout>
+        <recordType>Case.Read_Only_RCS_PO</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Invoicing Close Case</layout>
+        <recordType>Case.Read_Only_Troubleshooting_Case</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Invoicing Close Case</layout>
+        <recordType>Case.Social_Case</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Invoicing Close Case</layout>
+        <recordType>Case.Troubleshooting_Case</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>CaseClose-Read Only Sales Case Close Layout</layout>
         <recordType>Case.LTP_on_RCO</recordType>
     </layoutAssignments>
@@ -14333,6 +14403,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>CollaborationGroup-Group Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CommunityClassCancellationPolicy__mdt-CommunityClassCancellationPolicy Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CommunityMemberLayout-Community Member Layout</layout>
@@ -14485,6 +14558,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Integration_Log__c-Integration Log Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Job_Attendee__c-Attendee Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Lead-Lead Layout</layout>
@@ -15750,6 +15826,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>Case.Community_Partner_Case</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -16450,10 +16527,6 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Attendee__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
         <tab>B2CCommerceCloud_Internal_SF_Helpdesk__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
@@ -16572,6 +16645,10 @@
     <tabVisibilities>
         <tab>Integration_Log__c</tab>
         <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Job_Attendee__c</tab>
+        <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Lead__c</tab>

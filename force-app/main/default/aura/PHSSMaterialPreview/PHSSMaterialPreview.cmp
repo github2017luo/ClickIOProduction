@@ -2,6 +2,7 @@
 	<ltng:require scripts="{!$Resource.PDFjs + '/pdf.js'}" afterScriptsLoaded="{!c.scriptsLoaded}"></ltng:require>
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 	<aura:handler name="destroy" value="{!this}" action="{!c.doCleanup}"/>
+    <aura:attribute name="url" type="String"/>
 
 	<aura:attribute name="materialObject" type="PHSS_Material__C"/>
    	<aura:attribute name="previewAvailable" type="Boolean" default="true"/>   

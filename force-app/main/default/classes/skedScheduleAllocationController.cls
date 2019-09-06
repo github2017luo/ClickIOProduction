@@ -37,6 +37,12 @@ global class skedScheduleAllocationController {
             configData.userPermission = getUserPermissions();
             configData.natClassSetting = skedARCUtils.getNatSetting();
             
+            /*sked_Admin_Setting__c skedSetting = sked_Admin_Setting__c.getOrgDefaults();
+            configData.defaultTravelTimeFilter = skedSetting.Default_Travel_Time_Filter__c != NULL ? 
+                integer.valueOf(skedSetting.Default_Travel_Time_Filter__c) : 90;
+            configData.defaultTravelDistanceFilter = skedSetting.Default_Travel_Distance_Filter__c != NULL ? 
+                integer.valueOf(skedSetting.Default_Travel_Distance_Filter__c) : 50;*/
+            
             result.data = configData;
         }
         catch (Exception ex) {
@@ -367,7 +373,7 @@ global class skedScheduleAllocationController {
             }
             resourcesToApplyGoogle.add(resources.get(i));
         }
-
+        
         Map<Id, skedBaseModels.geometry> map_jobId_geometry = new Map<Id, skedBaseModels.geometry>();
         Map<Id, List<skedModels.jobAllocation>> map_jobId_allocations = new Map<Id, List<skedModels.jobAllocation>>();
         
@@ -392,9 +398,9 @@ global class skedScheduleAllocationController {
             allocations.add(allocation);
         }
 
-        skedGoogleTravelTimeService travelTimeService = new skedGoogleTravelTimeService();
-
-        List<skedGoogleTravelTimeService.distanceMatrixRequest> allRequests = new List<skedGoogleTravelTimeService.distanceMatrixRequest>();
+        //skedGoogleTravelTimeService travelTimeService = new skedGoogleTravelTimeService();
+        //List<skedGoogleTravelTimeService.distanceMatrixRequest> allRequests = new List<skedGoogleTravelTimeService.distanceMatrixRequest>();
+        List<skedSkeduloApiData.directionsRequest> requests = new List<skedSkeduloApiData.directionsRequest>();
         for (Id jobId : map_jobId_allocations.keySet()) {
             List<skedBaseModels.geometry> origins = new List<skedBaseModels.geometry>();
             List<skedModels.jobAllocation> allocations = map_jobId_allocations.get(jobId);
@@ -408,12 +414,46 @@ global class skedScheduleAllocationController {
                 List<skedBaseModels.geometry> destinations = new List<skedBaseModels.geometry>();
                 skedBaseModels.geometry jobGeometry = map_jobId_geometry.get(jobId);
                 destinations.add(jobGeometry);
-                List<skedGoogleTravelTimeService.distanceMatrixRequest> requests = travelTimeService.getRequestList(origins, destinations);
-                allRequests.addAll(requests);
+                //List<skedGoogleTravelTimeService.distanceMatrixRequest> requests = travelTimeService.getRequestList(origins, destinations);
+                //allRequests.addAll(requests);
+                for (skedBaseModels.geometry origin : origins) {
+                    skedSkeduloApiData.directionsRequest request = new skedSkeduloApiData.directionsRequest();
+                    request.origin = new skedSkeduloApiData.latlng();
+                    request.origin.lat = origin.lat;
+                    request.origin.lng = origin.lng;
+        
+                    request.destination = new skedSkeduloApiData.latlng();
+                    request.destination.lat = jobGeometry.lat;
+                    request.destination.lng = jobGeometry.lng;
+        
+                    requests.add(request);
+                }
+                
             }
         }
 
-        travelTimeService.initialize(allRequests);
+        //travelTimeService.initialize(allRequests);
+        skedDirectionTravelTimeService travelTimeService = new skedDirectionTravelTimeService();
+        travelTimeService.calculateTravelTimes(requests);
+
+        /*List<skedSkeduloApiData.directionsRequest> requests = new List<skedSkeduloApiData.directionsRequest>();
+        for (skedModels.resource resource : resourcesToApplyGoogle) {
+            skedModels.jobAllocation allocation = resource.firstJobAllocation;
+            skedSkeduloApiData.directionsRequest request = new skedSkeduloApiData.directionsRequest();
+            request.origin = new skedSkeduloApiData.latlng();
+            request.origin.lat = allocation.startFromLocation.lat;
+            request.origin.lng = allocation.startFromLocation.lng;
+
+            request.destination = new skedSkeduloApiData.latlng();
+            request.destination.lat = allocation.job.geoLocation.getLatitude();
+            request.destination.lng = allocation.job.geoLocation.getLongitude();
+
+            requests.add(request);
+        }
+
+        skedDirectionTravelTimeService travelTimeService = new skedDirectionTravelTimeService();
+        travelTimeService.calculateTravelTimes(requests);
+		*/
 
         for (skedModels.resource resource : resourcesToApplyGoogle) {
             skedModels.jobAllocation allocation = resource.firstJobAllocation;
@@ -589,6 +629,8 @@ global class skedScheduleAllocationController {
         public List<skedModels.jobStatusSetting> jobStatusSettings {get;set;}
         public skedModels.permissionModel userPermission {get;set;}
         public skedModels.natClassSetting natClassSetting {get;set;}
+        //public integer defaultTravelTimeFilter;
+        //public integer defaultTravelDistanceFilter;
 
         public configDataModel() {
             this.regions = new List<skedModels.selectOption>();

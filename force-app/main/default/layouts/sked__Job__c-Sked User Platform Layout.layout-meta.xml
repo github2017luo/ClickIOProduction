@@ -366,7 +366,7 @@
         <fields>Mobile_Phone__c</fields>
         <fields>Email__c</fields>
         <fields>Comments__c</fields>
-        <relatedList>Attendee__c.Job__c</relatedList>
+        <relatedList>Job_Attendee__c.Job__c</relatedList>
         <sortField>NAME</sortField>
         <sortOrder>Asc</sortOrder>
     </relatedLists>

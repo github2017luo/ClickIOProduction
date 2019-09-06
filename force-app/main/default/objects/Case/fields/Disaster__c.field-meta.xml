@@ -21,6 +21,11 @@
                 <label>Hurricane Barry</label>
             </value>
             <value>
+                <fullName>Hurricane Dorian</fullName>
+                <default>false</default>
+                <label>Hurricane Dorian</label>
+            </value>
+            <value>
                 <fullName>Hurricane Florence</fullName>
                 <default>false</default>
                 <label>Hurricane Florence</label>
