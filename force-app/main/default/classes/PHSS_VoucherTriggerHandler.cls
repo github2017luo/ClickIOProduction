@@ -33,46 +33,61 @@ public class PHSS_VoucherTriggerHandler {
         
         //find out the vouchers which have a status change away from 'Issued'
         for(Voucher__c vcr : newVouchers){
-            //check the status in old map and new map to identify the change in voucher status
-            if(oldVoucherMap.get(vcr.id).status__c == 'Issued' && 
-            	newVoucherMap.get(vcr.id).status__c != oldVoucherMap.get(vcr.id).status__c) {
-                // Vouchers for Online Classes will have Online_Class__c lookup populated (ILT Class vouchers will not)
-                if (vcr.Online_Class__c != null) {  
-                	classLearningPlan.put(vcr.Online_Class__c, vcr.Learning_Plan__c);
-                	onlineClasses.add(vcr.Online_Class__c);
-                	classIssuedVouchers.put(vcr.Online_Class__c, 0);
+            if (oldVouchers != null && !oldVouchers.isEmpty()) {
+                //check the status in old map and new map to identify the change in voucher status
+                if (oldVoucherMap.get(vcr.id).status__c == 'Issued' &&
+                        newVoucherMap.get(vcr.id).status__c != oldVoucherMap.get(vcr.id).status__c) {
+                    // Vouchers for Online Classes will have Online_Class__c lookup populated (ILT Class vouchers will not)
+                    if (vcr.Online_Class__c != null) {
+                        classLearningPlan.put(vcr.Online_Class__c, vcr.Learning_Plan__c);
+                        onlineClasses.add(vcr.Online_Class__c);
+                        classIssuedVouchers.put(vcr.Online_Class__c, 0); // Covers case in which no Issued vouchers remain
+                    }
                 }
-            } 
+            } else {
+                // this handles insert of new voucher - insure number of Issued vouchers is at the high water mark
+                if (vcr.Online_Class__c != null) {
+                    classLearningPlan.put(vcr.Online_Class__c, vcr.Learning_Plan__c);
+                    onlineClasses.add(vcr.Online_Class__c);
+                    classIssuedVouchers.put(vcr.Online_Class__c, 0); // Covers case in which no Issued vouchers remain
+                }
+            }
         }
         System.debug('classLearningPlan='+classLearningPlan);
         System.debug('onlineClasses='+onlineClasses);
         
-        // Determine the total number of available (Issued) vouchers for each online class impacted by voucher status changes
-        List<AggregateResult> issuedVoucherCounts = [Select Online_Class__c, Count(Id) vCount From Voucher__c 
-        	Where Online_Class__c In :onlineClasses And Status__c = 'Issued' Group by Online_Class__c];
-        System.debug('issuedVoucherCounts='+issuedVoucherCounts);
-        
-        For(AggregateResult theCount : issuedVoucherCounts) {
-        	Integer classIssuedVoucherCount = (Integer)theCount.get('vCount');
-        	Id theOnlineClass = (Id)theCount.get('Online_Class__c');
-        	System.debug('classIssuedVoucherCount='+classIssuedVoucherCount);
-        	
-        	classIssuedVouchers.put(theOnlineClass, classIssuedVoucherCount);
+        if (!onlineClasses.isEmpty()) {
+            // Determine the total number of available (Issued) vouchers for each online class impacted by voucher status changes
+            List<AggregateResult> issuedVoucherCounts = [
+                    Select Online_Class__c, Count(Id) vCount
+                    From Voucher__c
+                    Where Online_Class__c In :onlineClasses And Status__c = 'Issued'
+                    Group by Online_Class__c
+            ];
+            System.debug('issuedVoucherCounts=' + issuedVoucherCounts);
+
+            For (AggregateResult theCount : issuedVoucherCounts) {
+                Integer classIssuedVoucherCount = (Integer) theCount.get('vCount');
+                Id theOnlineClass = (Id) theCount.get('Online_Class__c');
+                System.debug('classIssuedVoucherCount=' + classIssuedVoucherCount);
+
+                classIssuedVouchers.put(theOnlineClass, classIssuedVoucherCount);
+            }
+
+            For (Id theOnlineClass : classIssuedVouchers.keySet()) {
+                Integer classIssuedVoucherCount = classIssuedVouchers.get(theOnlineClass);
+                // Determine if number of Issued vouchers for each online class is below lower limit
+                if (classIssuedVoucherCount < voucherFloor) {
+                    Id theLearningPlan = classLearningPlan.get(theOnlineClass);
+                    // Generate additional vouchers to bring the total Issued vouchers up to the defined upper limit
+                    addVouchers.addAll(createVouchers(theOnlineClass, theLearningPlan, voucherCeiling - classIssuedVoucherCount));
+                }
+            }
+
+            if (!addVouchers.isEmpty()) {
+                insert addVouchers;
+            }
         }
-        
-        For(Id theOnlineClass : classIssuedVouchers.keySet()) {
-        	Integer classIssuedVoucherCount = classIssuedVouchers.get(theOnlineClass);
-        	// Determine if number of Issued vouchers for each online class is below lower limit
-        	if (classIssuedVoucherCount < voucherFloor) {
-        		Id theLearningPlan = classLearningPlan.get(theOnlineClass);
-        		// Generate additional vouchers to bring the total Issued vouchers up to the defined upper limit
-        		addVouchers.addAll(createVouchers(theOnlineClass, theLearningPlan, voucherCeiling-classIssuedVoucherCount));
-        	}
-        }
-        
-        if(!addVouchers.isEmpty()){
-            insert addVouchers; 
-        }       
     }
 	
 	private List<Voucher__c> createVouchers(Id onlineClassId, Id learningPlanId, Integer numberOfVouchers) {
@@ -146,7 +161,7 @@ public class PHSS_VoucherTriggerHandler {
                 list<string> ClaimedStatuses = system.label.ClaimedVoucherTypes.split(';');
                 
                 // Count the number of claimed vouchers for every stacked job
-                list<voucher__c> lstvchrs = [select id, status__c, ILT_Class__r.Skedulo_Job_Id__c, ILT_Class__r.Skedulo_Parent_Job__c from voucher__c where ILT_Class__r.Skedulo_Parent_Job__c IN :setParentJobIds];
+                list<voucher__c> lstvchrs = [select id, status__c, User__c, ILT_Class__r.Skedulo_Job_Id__c, ILT_Class__r.Skedulo_Parent_Job__c from voucher__c where ILT_Class__r.Skedulo_Parent_Job__c IN :setParentJobIds];
                 System.debug('+++lstvchrs='+lstvchrs);
                 for(voucher__c ar : lstvchrs){
                     if(ClaimedStatuses.contains(ar.status__c)){
@@ -228,7 +243,7 @@ public class PHSS_VoucherTriggerHandler {
                 
                 list<voucher__c> lstVouchersToUpdate = new list<voucher__c>();
                 for(voucher__c vcr : lstvchrs){	
-                    if(vcr.Status__c =='Issued' || vcr.Status__c =='Blocked' || vcr.Status__c == 'Void'){
+                    if ((vcr.Status__c =='Issued' || vcr.Status__c =='Blocked' || vcr.Status__c == 'Void') && String.isBlank(vcr.User__c)) {
                     	if (vcr.ILT_Class__c != null && vcr.ILT_Class__r.Skedulo_Parent_Job__c != null) {
 	                		// Block the remaining vouchers (Issued) for each oversold class in stack                     	
 	                        if(OversoldParentJobIds.contains(vcr.ILT_Class__r.Skedulo_Parent_Job__c) && vcr.status__c =='Issued'){
@@ -290,7 +305,7 @@ public class PHSS_VoucherTriggerHandler {
         for (Voucher__c vcr : newVouchers) {
             // Check the status in old map and new map to identify the change in voucher status
             if (newVoucherMap.get(vcr.id).status__c != oldVoucherMap.get(vcr.id).status__c) {
-                // Filter changed classes so that we only have non-skedulo assigned classes
+                // Filter changed classes so that we only have non-stacked classes
                 if (vcr.ILT_Class__c != null && vcr.ILT_Class__r.Skedulo_Parent_Job__c == null) {
                     ILT_classes.add(vcr.ILT_Class__c);
                 }
@@ -301,25 +316,35 @@ public class PHSS_VoucherTriggerHandler {
         if (!ILT_classes.isEmpty()) {
 
             Map<Id,Integer> mapMaxClassSize = new map<Id,Integer>();
-            List<AggregateResult> iltAggregateResults = [select ILT_Class__c, count(Id) maxSize from Voucher__c where (Status__c = 'Claimed' or Status__c = 'Issued') and ILT_Class__c IN: ILT_classes group by ILT_Class__c];
+            // DE1755 - No need to calculate the max seats in a class; this is a static value set at class level
+            List<Voucher__c> voucherList = [SELECT ILT_Class__c, ILT_Class__r.redwing__Max_Seats__c
+                FROM Voucher__c
+                WHERE ILT_Class__c IN: ILT_classes];
+            //List<AggregateResult> iltAggregateResults = [select ILT_Class__c, count(Id) maxSize from Voucher__c where (Status__c = 'Claimed' or Status__c = 'Issued') and ILT_Class__c IN: ILT_classes group by ILT_Class__c];
 
-            for (AggregateResult result : iltAggregateResults) {
-                mapMaxClassSize.put((Id) result.get('ILT_Class__c'), (Integer) result.get('maxSize'));
-                system.debug('Max size for '+ (Id) result.get('ILT_Class__c') + ': ' + (Integer) result.get('maxSize'));
+            for (Voucher__c result : voucherList) {
+            //for (AggregateResult result : iltAggregateResults) {
+                mapMaxClassSize.put(result.ILT_Class__c, (Integer)result.ILT_Class__r.redwing__Max_Seats__c);
+                //mapMaxClassSize.put((Id) result.get('ILT_Class__c'), (Integer) result.get('maxSize'));
+                System.debug('Max size for '+ result.ILT_Class__c + ': ' + (Integer) result.ILT_Class__r.redwing__Max_Seats__c);
             }
-            Map<id,integer> mapSeatsClaimed = new map<id,integer>();
-            iltAggregateResults = [select ILT_Class__c, count(Id) claimedSeats from Voucher__c where Status__c = 'Claimed' and ILT_Class__c IN: ILT_classes group by ILT_Class__c];
+            Map<Id,Integer> mapSeatsClaimed = new Map<Id,Integer>();
+            List<AggregateResult> iltAggregateResults = [SELECT ILT_Class__c, COUNT(Id) claimedSeats
+                FROM Voucher__c
+                WHERE (Status__c = 'Claimed' or Status__c = 'Reserved' OR Status__c = 'Temp Hold')
+                AND ILT_Class__c IN: ILT_classes GROUP BY ILT_Class__c];
             for (AggregateResult result : iltAggregateResults) {
                 mapSeatsClaimed.put((Id) result.get('ILT_Class__c'), (Integer) result.get('claimedSeats'));
-                system.debug('claimedSeats for '+ (Id) result.get('ILT_Class__c') + ': ' + (Integer) result.get('claimedSeats'));
+                System.debug('claimedSeats for '+ (Id) result.get('ILT_Class__c') + ': ' + (Integer) result.get('claimedSeats'));
             }
-            list<redwing__ILT_Class__c> updateClasses = new list<redwing__ILT_Class__c>();
+            List<redwing__ILT_Class__c> updateClasses = new List<redwing__ILT_Class__c>();
             for (Id id : ILT_classes) {
                 Integer maxSize = mapMaxClassSize.get(id);
                 if (maxSize != null && mapSeatsClaimed.get(id) != null) {
                     redwing__ILT_Class__c classUpdate = new redwing__ILT_Class__c();
                     classUpdate.Id = id;
-                    classUpdate.redwing__Max_Seats__c = maxSize;
+                    // DE1755 - No need to update max seats; this is a static value set at class level
+                    //classUpdate.redwing__Max_Seats__c = maxSize;
                     classUpdate.Available_Seats__c = maxSize - mapSeatsClaimed.get(id);
                     updateClasses.add(classUpdate);
 
@@ -329,6 +354,42 @@ public class PHSS_VoucherTriggerHandler {
                 update updateClasses;
             }
 
+        }
+    }
+
+    /**
+     *@description Resets vouchers associated to abandoned cart items
+     *
+     * @param newVouchers
+     * @param oldVouchers
+     * @param newVoucherMap
+     * @param oldVoucherMap
+     */
+    public void resetAbandonedVouchers(List<Voucher__c> newVouchers, List<Voucher__c> oldVouchers, Map<Id,Voucher__c> newVoucherMap , Map<Id,Voucher__c> oldVoucherMap) {
+        List<Voucher__c> abandonedVouchers = new List<Voucher__c>();
+
+        // Identify vouchers that are associated with abandoned carts
+        for (Voucher__c newVoucher : newVouchers) {
+            Voucher__c oldVoucher = oldVoucherMap.get(newVoucher.Id);
+            if (oldVoucher != null) {
+                if (oldVoucher.Status__c == phss_cc_VoucherUtil.TEMP_HOLD_STATUS && newVoucher.Status__c == phss_cc_VoucherUtil.ISSUED_STATUS) {
+                    if (newVoucher.CC_Cart_Item__c != null) {
+                        newVoucher.CC_Cart_Item__c = null;
+                        abandonedVouchers.add(newVoucher);
+                    }
+                }
+            }
+        }
+
+        try {
+            if (!abandonedVouchers.isEmpty()){
+
+                // Set the flag to true so that it will not call recursively
+                PHSS_VoucherTriggerHandler.setAlreadyUpdatedVouchers();
+                update abandonedVouchers;
+            }
+        } catch (Exception e) {
+            System.debug('JASON: PHSS_VoucherTriggerHandler.resetAbandonedVouchers() exception caught: ' + e.getMessage() + ' lineNumber=' + e.getLineNumber() + ' stackTrace=' + e.getStackTraceString());
         }
     }
 }

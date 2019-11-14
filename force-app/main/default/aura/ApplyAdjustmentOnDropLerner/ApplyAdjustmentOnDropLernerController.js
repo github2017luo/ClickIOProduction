@@ -1,14 +1,26 @@
-({  doInit : function(component, event, helper)
+({  
+    doInit : function(component, event, helper)
   	{
-    	var initPrice = component.get("v.adjPercentDiscount");
-        component.set("v.adjPercentDiscountOld",initPrice);
+		var oId = component.get("v.oId");
+        var action = component.get('c.getOrderItemDetail');
+        
+        action.setParams({orderId : oId});
+        action.setCallback(this, function(response) 
+		{
+            var state = response.getState();
+            if (state === "SUCCESS")
+            {   
+                var storeResponse = response.getReturnValue();
+                var newPrice 	  = storeResponse[0].ccrz__Price__c * -1;
+                component.set("v.adjPercentDiscountOld",newPrice);                
+            }
+        });
+        $A.enqueueAction(action);
 	},
      
 	showPrompt : function(component, event, helper)
     {
-    	component.set("v.isPrompt", "true");
-        /*var initPrice = component.get("v.adjPercentDiscount");
-        component.set("v.adjPercentDiscountOld",initPrice);*/
+    	component.set("v.isPrompt", "true");        
 	},
     
     overrideSelected: function (component, event, helper)
@@ -52,9 +64,25 @@
             {
                 if (priceA !== "")
                 {
-                    if(!isNaN(total))
+                    if(priceA < 0)
                     {
-                        if(priceP <= total)
+                        if(!isNaN(total))
+                        {
+                            if(priceP <= total)
+                            {
+                                component.set("v.newPrice",priceA);
+                                component.set("v.isPrompt", false);
+                                
+                                var vx = component.get("v.method");
+                                $A.enqueueAction(vx);
+                            }
+                            else
+                            {
+                                component.set("v.hasGraterDiscount", true);
+                                component.set("v.prMsg","Can't exceed the purchase price.")
+                            }
+                        }
+                        else
                         {
                             component.set("v.newPrice",priceA);
                             component.set("v.isPrompt", false);
@@ -62,19 +90,11 @@
                             var vx = component.get("v.method");
                             $A.enqueueAction(vx);
                         }
-                        else
-                        {
-                            component.set("v.hasGraterDiscount", true);
-                            component.set("v.prMsg","Can't exceed the purchase price.")
-                        }
                     }
                     else
                     {
-                        component.set("v.newPrice",priceA);
-                        component.set("v.isPrompt", false);
-                        
-                        var vx = component.get("v.method");
-                        $A.enqueueAction(vx);
+                        component.set("v.hasGraterDiscount", true);
+                        component.set("v.prMsg","The amount must be negative.")
                     }
                 }
                 else
@@ -103,9 +123,9 @@
                     {
                         var newPrice = price * pDis / 100;
                     
-                        price = price - newPrice; 
+                        //price = price - newPrice; //DE1381
                         
-                        component.set("v.newPrice", price);
+                        component.set("v.newPrice", newPrice);
                         component.set("v.isPrompt", false);
                         
                         var vx = component.get("v.method");
@@ -130,11 +150,5 @@
         component.set("v.adjPercentDiscount", oPrice);
         component.set("v.hasGraterPercent", false);
         component.set("v.hasGraterDiscount", false);
-        
-        //DE1187 - Start
-        /*
-        var vx = component.get("v.method");
-        $A.enqueueAction(vx);*/
-        //DE1187 - End
     },
 })

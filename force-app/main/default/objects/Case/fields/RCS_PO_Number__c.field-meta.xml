@@ -3,7 +3,7 @@
     <fullName>RCS_PO_Number__c</fullName>
     <externalId>false</externalId>
     <inlineHelpText>RCS ONLY: Enter PO Number that needs update.</inlineHelpText>
-    <label>RCS PO Number</label>
+    <label>RCS PO #</label>
     <length>15</length>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

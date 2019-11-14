@@ -118,7 +118,7 @@
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>LoopCounter</leftValueReference>
-                <operator>GreaterThanOrEqualTo</operator>
+                <operator>GreaterThan</operator>
                 <rightValue>
                     <numberValue>0.0</numberValue>
                 </rightValue>
@@ -276,7 +276,7 @@
         <queriedFields>Course_Catalog__c</queriedFields>
     </recordLookups>
     <startElementReference>Get_Training_ID_Fields</startElementReference>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <name>collVoucher</name>
         <dataType>SObject</dataType>

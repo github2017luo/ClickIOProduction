@@ -23,10 +23,6 @@
                 <field>ccrz__OriginatedCart__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ccrz__PaymentMethod__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>ccrz__TotalAmount__c</field>
             </layoutItems>
@@ -45,6 +41,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ccrz__AdjustmentReason__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Coupon_Codes__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -68,19 +68,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NSSCCConnector_SFCC_Order_Total__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>NSSCCConnector_SFCC_Order_Number__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>NSSCCConnector_Order_Contact__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>NSSCCConnector_isContactIdExist__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -440,8 +432,8 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>ccrz__AccountNumber__c</fields>
-        <fields>ccrz__PaymentType__c</fields>
+        <fields>ccrz__AccountType__c</fields>
+        <fields>ccrz__TransactionType__c</fields>
         <fields>ccrz__StoredPayment__c</fields>
         <fields>ccrz__Amount__c</fields>
         <relatedList>ccrz__E_TransactionPayment__c.ccrz__CCOrder__c</relatedList>
@@ -485,10 +477,10 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>OWNER.ALIAS</fields>
-        <fields>CREATED_DATE</fields>
         <fields>ccrz__OrderDate__c</fields>
+        <fields>ccrz__AdjustmentAmount__c</fields>
         <fields>ccrz__OrderStatus__c</fields>
+        <fields>CREATED_DATE</fields>
         <relatedList>ccrz__E_Order__c.ccrz__Order__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -536,6 +528,10 @@
         <fields>Account__c</fields>
         <relatedList>redwing__ILT_Class__c.CC_Order_Number__c</relatedList>
     </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>redwing__ILT_Class__c.CPS_Order__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>
     <showInteractionLogPanel>true</showInteractionLogPanel>
@@ -544,7 +540,17 @@
     <summaryLayout>
         <masterLabel>00h21000000SC1Q</masterLabel>
         <sizeX>4</sizeX>
-        <sizeY>0</sizeY>
+        <sizeY>1</sizeY>
+        <summaryLayoutItems>
+            <field>NSSCCConnector_from_SFCC__c</field>
+            <posX>0</posX>
+            <posY>0</posY>
+        </summaryLayoutItems>
+        <summaryLayoutItems>
+            <field>NSSCCConnector_SFCC_Order_Number__c</field>
+            <posX>1</posX>
+            <posY>0</posY>
+        </summaryLayoutItems>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
     </summaryLayout>
 </Layout>

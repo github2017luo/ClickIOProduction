@@ -4,7 +4,7 @@
 
 public with sharing class phss_cc_ClassCartUtil {
 
-    private static final String ILT_CLASS_FIELD = 'ILT_Class__c';
+    public static final String ILT_CLASS_FIELD = 'ILT_Class__c';
 
     private static final String CART_ITEM_PRODUCT_SFID_KEY = 'product';
     private static final String CART_ITEM_QUANTITY_KEY = 'quantity';
@@ -66,10 +66,12 @@ public with sharing class phss_cc_ClassCartUtil {
             List<Map<String, Object>> lineData = createLineItems(classData);
             Map<String, Object> addToResult = phss_cc_CartUtil.cartAddTo(lineData, encryptedCartId);
             addClassesToCartResponse = phss_cc_CartUtil.retrieveLineItemsAndTotalAmountFromCart(addToResult, true);
-            Map<String, String> courseCartItemMap = getCourseCartItemMap(addToResult);
+
+
+            Map<String, String> classCartItemMap = getClassCartItemMap();
 
             // AFTER the cart line items are created, associate them to the requested vouchers
-            List<Voucher__c> vouchers = phss_cc_VoucherUtil.reserveVouchersForCartItems(classVoucherMap, classCourseMap, courseCartItemMap, opportunityId);
+            List<Voucher__c> vouchers = phss_cc_VoucherUtil.reserveVouchersForCartItems(classVoucherMap, classCourseMap, classCartItemMap, opportunityId);
             addClassesToCartResponse.put(VOUCHERS_KEY, vouchers);
 
         } catch (Exception e) {
@@ -112,36 +114,58 @@ public with sharing class phss_cc_ClassCartUtil {
         return lineItems;
     }
 
-    /**
-     * @description Maps courses to cart items
-     *
-     * @param cartDetails
-     *
-     * @return
-     */
-    private static Map<String, String> getCourseCartItemMap(Map<String, Object> cartDetails) {
+    private static Map<String, String> getClassCartItemMap() {
 
-        Map<String, String> courseCartItemMap = new Map<String, String>();
+        Map<String, String> classCartItemMap = new Map<String, String>();
 
-        if (cartDetails.get(ccrz.ccApiCart.CART_OBJLIST) != null) {
-            List<Map<String, Object>> carts = (List<Map<String, Object>>) cartDetails.get(ccrz.ccApiCart.CART_OBJLIST);
-            if (carts.size() > 0) {
-                Map<String, Object> currentCart = (Map<String, Object>) carts[0];
-                if (currentCart.containsKey(CART_ITEMS_KEY)) {
-                    List<Map<String, Object>> cartItems = (List<Map<String, Object>>) currentCart.get(CART_ITEMS_KEY);
-                    for (Map<String, Object> cartItem : cartItems) {
-                        if (cartItem.get(CART_ITEM_TYPE) == CART_ITEM_TYPE_MAJOR) {
-                            String courseId = (String) cartItem.get(CART_ITEM_PRODUCT_SFID_KEY);
-                            String cartItemId = (String) cartItem.get(CART_ITEM_SFID_KEY);
-                            if (courseId != null && cartItemId != null) {
-                                courseCartItemMap.put(courseId, cartItemId);
-                            }
-                        }
-                    }
-                }
-            }
+        Map<String, Object> cartItemInfo = phss_cc_CartUtil.fetchCartItems(phss_cc_Context.currCart.Id);
+        Map<String, Object> cartItemMap = (Map<String, Object>) cartItemInfo.get(phss_cc_CartUtil.CART_ITEM_MAP);
+
+        for (String cartItemId : cartItemMap.keySet()) {
+            Map<String, Object> cartItem = (Map<String, Object>) cartItemMap.get(cartItemId);
+            String iltClass = (String) cartItem.get('ILT_Class__c');
+            classCartItemMap.put(iltClass, cartItemId);
         }
 
-        return courseCartItemMap;
+        return classCartItemMap;
     }
+
+//    /**
+//     * @description Maps courses to cart items
+//     *
+//     * @param cartDetails
+//     *
+//     * @return
+//     */
+//    private static Map<String, String> getCourseCartItemMap(Map<String, Object> cartDetails, List<Map<String, Object>> lineData) {
+//
+//        System.debug('cartDetails');
+//        System.debug(cartDetails);
+//        System.debug('lineData');
+//        System.debug(lineData);
+//
+//
+//        Map<String, String> courseCartItemMap = new Map<String, String>();
+//
+//        if (cartDetails.get(ccrz.ccApiCart.CART_OBJLIST) != null) {
+//            List<Map<String, Object>> carts = (List<Map<String, Object>>) cartDetails.get(ccrz.ccApiCart.CART_OBJLIST);
+//            if (carts.size() > 0) {
+//                Map<String, Object> currentCart = (Map<String, Object>) carts[0];
+//                if (currentCart.containsKey(CART_ITEMS_KEY)) {
+//                    List<Map<String, Object>> cartItems = (List<Map<String, Object>>) currentCart.get(CART_ITEMS_KEY);
+//                    for (Map<String, Object> cartItem : cartItems) {
+//                        if (cartItem.get(CART_ITEM_TYPE) == CART_ITEM_TYPE_MAJOR) {
+//                            String courseId = (String) cartItem.get(CART_ITEM_PRODUCT_SFID_KEY);
+//                            String cartItemId = (String) cartItem.get(CART_ITEM_SFID_KEY);
+//                            if (courseId != null && cartItemId != null) {
+//                                courseCartItemMap.put(courseId, cartItemId);
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+//        return courseCartItemMap;
+//    }
 }

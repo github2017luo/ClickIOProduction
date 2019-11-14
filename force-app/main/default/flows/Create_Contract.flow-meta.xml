@@ -4,8 +4,8 @@
         <description>Add to output collection of price list items</description>
         <name>Add_to_oPriceGroupPriceLists</name>
         <label>Add to oPriceGroupPriceLists</label>
-        <locationX>1486</locationX>
-        <locationY>459</locationY>
+        <locationX>1433</locationX>
+        <locationY>217</locationY>
         <assignmentItems>
             <assignToReference>oColPriceGroupPriceLists</assignToReference>
             <operator>Add</operator>
@@ -88,8 +88,8 @@
         <description>Initializes Start and End Dates - Set in Set Price Group ID</description>
         <name>Initialize_Start_and_End_Dates</name>
         <label>Initialize Start and End Dates</label>
-        <locationX>446</locationX>
-        <locationY>379</locationY>
+        <locationX>482</locationX>
+        <locationY>53</locationY>
         <assignmentItems>
             <assignToReference>vEffectiveEndDate</assignToReference>
             <operator>Assign</operator>
@@ -104,6 +104,13 @@
                 <elementReference>Effective_Start_Date</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>HighestDiscount</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>sOppurtunity.Highest_Product_Discount__c</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Upsell</targetReference>
         </connector>
@@ -111,8 +118,8 @@
     <assignments>
         <name>Set_End_Date</name>
         <label>Set End Date</label>
-        <locationX>1144</locationX>
-        <locationY>502</locationY>
+        <locationX>745</locationX>
+        <locationY>301</locationY>
         <assignmentItems>
             <assignToReference>vEffectiveEndDate</assignToReference>
             <operator>Assign</operator>
@@ -199,8 +206,8 @@
         <description>Found a Price Group Account - Set the Price Group ID to the found Price Group Account</description>
         <name>Set_Price_Group_ID</name>
         <label>Set Price Group ID</label>
-        <locationX>819</locationX>
-        <locationY>521</locationY>
+        <locationX>391</locationX>
+        <locationY>310</locationY>
         <assignmentItems>
             <assignToReference>sPriceGroupID</assignToReference>
             <operator>Assign</operator>
@@ -237,8 +244,8 @@
         <description>Set end date for the Price lists looping through</description>
         <name>Set_Price_Group_Price_List_End_Date</name>
         <label>Set Price Group Price List End Date</label>
-        <locationX>1597</locationX>
-        <locationY>350</locationY>
+        <locationX>1436</locationX>
+        <locationY>62</locationY>
         <assignmentItems>
             <assignToReference>sPriceGroupPriceListLoop.ccrz__EffectiveEnd__c</assignToReference>
             <operator>Assign</operator>
@@ -365,8 +372,8 @@
     <decisions>
         <name>Account_Setting_Record_Exists</name>
         <label>Account Setting Record Exists</label>
-        <locationX>430</locationX>
-        <locationY>988</locationY>
+        <locationX>309</locationX>
+        <locationY>1004</locationY>
         <defaultConnector>
             <targetReference>Approval_Levels</targetReference>
         </defaultConnector>
@@ -487,8 +494,8 @@
     <decisions>
         <name>Approval_Levels</name>
         <label>Approval Levels</label>
-        <locationX>875</locationX>
-        <locationY>985</locationY>
+        <locationX>886</locationX>
+        <locationY>1009</locationY>
         <defaultConnector>
             <targetReference>Set_No_Approval</targetReference>
         </defaultConnector>
@@ -578,8 +585,8 @@
     <decisions>
         <name>CreatePriceGroupAccount</name>
         <label>CreatePriceGroupAccount</label>
-        <locationX>206</locationX>
-        <locationY>652</locationY>
+        <locationX>211</locationX>
+        <locationY>699</locationY>
         <defaultConnector>
             <targetReference>Create_Price_Group_Account</targetReference>
         </defaultConnector>
@@ -604,7 +611,7 @@
         <name>Include_Price_List</name>
         <label>Include Price List</label>
         <locationX>909</locationX>
-        <locationY>717</locationY>
+        <locationY>721</locationY>
         <defaultConnector>
             <targetReference>Loop_through_Price_Lists_to_Add</targetReference>
         </defaultConnector>
@@ -628,8 +635,8 @@
     <decisions>
         <name>Is_Discount_Higher</name>
         <label>Is Discount Higher</label>
-        <locationX>1215</locationX>
-        <locationY>723</locationY>
+        <locationX>1171</locationX>
+        <locationY>725</locationY>
         <defaultConnector>
             <targetReference>Assign_Price_Lists</targetReference>
         </defaultConnector>
@@ -654,8 +661,8 @@
         <description>Does a Price Group Account Exists for the given Storefront in the appropriate Date Range?</description>
         <name>Price_Group_Account_Validation</name>
         <label>Price Group Account Validation</label>
-        <locationX>863</locationX>
-        <locationY>382</locationY>
+        <locationX>621</locationX>
+        <locationY>328</locationY>
         <defaultConnector>
             <targetReference>Create_Price_Group</targetReference>
         </defaultConnector>
@@ -708,15 +715,15 @@
     <decisions>
         <description>Check to see if this is an upsell</description>
         <name>Upsell</name>
-        <label>Upsell</label>
-        <locationX>643</locationX>
-        <locationY>192</locationY>
+        <label>isUpsell?</label>
+        <locationX>618</locationX>
+        <locationY>54</locationY>
         <defaultConnector>
-            <targetReference>Get_Upsell_Price_Group_Account</targetReference>
+            <targetReference>Get_Price_Group_Account</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>Check_Upsell</name>
+            <name>Not_Upsell_Contract</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>sOppurtunity.Type</leftValueReference>
@@ -726,9 +733,9 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get_Price_Group_Account</targetReference>
+                <targetReference>Get_Price_Group_Contract_Upsell</targetReference>
             </connector>
-            <label>Check Upsell</label>
+            <label>Not Upsell Contract</label>
         </rules>
     </decisions>
     <decisions>
@@ -822,6 +829,13 @@
         <dataType>String</dataType>
         <displayField>Name</displayField>
         <filters>
+            <field>Private__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
             <field>ccrz__Enabled__c</field>
             <operator>EqualTo</operator>
             <value>
@@ -847,6 +861,8 @@
             <assignToReference>sPriceLists.Id</assignToReference>
             <field>Id</field>
         </outputAssignments>
+        <sortField>Name</sortField>
+        <sortOrder>Asc</sortOrder>
         <valueField>Id</valueField>
     </dynamicChoiceSets>
     <formulas>
@@ -871,8 +887,8 @@
     <loops>
         <name>Loop_through_Price_Lists_to_Add</name>
         <label>Loop through Price Lists to Add</label>
-        <locationX>670</locationX>
-        <locationY>715</locationY>
+        <locationX>674</locationX>
+        <locationY>700</locationY>
         <assignNextValueToReference>sPriceLists</assignNextValueToReference>
         <collectionReference>colAvailablePriceLists</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -887,8 +903,8 @@
         <description>Set end date of price lists associated to price group</description>
         <name>Set_End_Date_of_all_Price_Lists</name>
         <label>Set End Date of all Price Lists</label>
-        <locationX>1474</locationX>
-        <locationY>192</locationY>
+        <locationX>1285</locationX>
+        <locationY>56</locationY>
         <assignNextValueToReference>sPriceGroupPriceListLoop</assignNextValueToReference>
         <collectionReference>colPriceGroupPriceLists</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -909,8 +925,8 @@
     <recordCreates>
         <name>Create_CC_Account_Setup</name>
         <label>Create CC Account Setup</label>
-        <locationX>425</locationX>
-        <locationY>1111</locationY>
+        <locationX>498</locationX>
+        <locationY>1052</locationY>
         <connector>
             <targetReference>Approval_Levels</targetReference>
         </connector>
@@ -931,8 +947,8 @@
     <recordCreates>
         <name>Create_Price_Group</name>
         <label>Create Price Group</label>
-        <locationX>1326</locationX>
-        <locationY>454</locationY>
+        <locationX>812</locationX>
+        <locationY>490</locationY>
         <assignRecordIdToReference>sPriceGroupID</assignRecordIdToReference>
         <connector>
             <targetReference>Get_Available_Price_Lists</targetReference>
@@ -978,8 +994,8 @@
     <recordCreates>
         <name>Create_Price_Group_Account</name>
         <label>Create Price Group Account</label>
-        <locationX>214</locationX>
-        <locationY>863</locationY>
+        <locationX>225</locationX>
+        <locationY>873</locationY>
         <connector>
             <targetReference>Get_Account_Settings</targetReference>
         </connector>
@@ -1036,8 +1052,8 @@
     <recordCreates>
         <name>Create_Price_Group_Price_List</name>
         <label>Create Price Group Price List</label>
-        <locationX>426</locationX>
-        <locationY>717</locationY>
+        <locationX>427</locationX>
+        <locationY>693</locationY>
         <connector>
             <targetReference>CreatePriceGroupAccount</targetReference>
         </connector>
@@ -1068,19 +1084,12 @@
     <recordLookups>
         <name>Get_Available_Price_Lists</name>
         <label>Get Available Price Lists</label>
-        <locationX>1244</locationX>
-        <locationY>613</locationY>
+        <locationX>391</locationX>
+        <locationY>496</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Price_Lists</targetReference>
         </connector>
-        <filters>
-            <field>Private__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </filters>
         <filters>
             <field>Private__c</field>
             <operator>EqualTo</operator>
@@ -1121,8 +1130,8 @@
     <recordLookups>
         <name>Get_Oppurtunity</name>
         <label>Get Oppurtunity</label>
-        <locationX>164</locationX>
-        <locationY>380</locationY>
+        <locationX>180</locationX>
+        <locationY>51</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Establish_Price_Group</targetReference>
@@ -1169,11 +1178,63 @@
         </outputAssignments>
     </recordLookups>
     <recordLookups>
-        <description>Find Price Group Account for requested screen entry</description>
+        <description>Get price group associated with the upsell opportunity</description>
         <name>Get_Price_Group_Account</name>
         <label>Get Price Group Account</label>
-        <locationX>650</locationX>
-        <locationY>377</locationY>
+        <locationX>803</locationX>
+        <locationY>56</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Price_Groups_Price_Lists</targetReference>
+        </connector>
+        <filters>
+            <field>ccrz__Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>sOppurtunity.AccountId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>ccrz__EffectiveEnd__c</field>
+            <operator>GreaterThanOrEqualTo</operator>
+            <value>
+                <elementReference>vEffectiveStartDate</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>ccrz__EffectiveStart__c</field>
+            <operator>LessThanOrEqualTo</operator>
+            <value>
+                <elementReference>vEffectiveStartDate</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>ccrz__Enabled__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>ccrz__Storefront__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Storefront</elementReference>
+            </value>
+        </filters>
+        <object>ccrz__E_PriceGroupAccount__c</object>
+        <outputReference>sPriceGroupAccount</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>ccrz__PriceGroup__c</queriedFields>
+        <queriedFields>ccrz__EffectiveStart__c</queriedFields>
+        <queriedFields>ccrz__EffectiveEnd__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <description>Find Price Group Account for requested screen entry</description>
+        <name>Get_Price_Group_Contract_Upsell</name>
+        <label>Get Price Group Contract Upsell</label>
+        <locationX>626</locationX>
+        <locationY>191</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Price_Group_Account_Validation</targetReference>
@@ -1224,11 +1285,11 @@
         <description>Get Price Groups associated to the Price Group Account</description>
         <name>Get_Price_Groups_Price_Lists</name>
         <label>Get Price Groups Price Lists</label>
-        <locationX>1226</locationX>
-        <locationY>186</locationY>
+        <locationX>985</locationX>
+        <locationY>221</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Set_End_Date_of_all_Price_Lists</targetReference>
+            <targetReference>Create_Price_Group</targetReference>
         </connector>
         <filters>
             <field>ccrz__PriceGroup__c</field>
@@ -1240,58 +1301,6 @@
         <object>ccrz__E_PriceGroupPricelist__c</object>
         <outputReference>colPriceGroupPriceLists</outputReference>
         <queriedFields>Id</queriedFields>
-        <queriedFields>ccrz__EffectiveEnd__c</queriedFields>
-    </recordLookups>
-    <recordLookups>
-        <description>Get price group associated with the upsell opportunity</description>
-        <name>Get_Upsell_Price_Group_Account</name>
-        <label>Get Upsell Price Group Account</label>
-        <locationX>819</locationX>
-        <locationY>180</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Update_Price_Group_Account_End_Date</targetReference>
-        </connector>
-        <filters>
-            <field>ccrz__Account__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>sOppurtunity.AccountId</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>ccrz__EffectiveEnd__c</field>
-            <operator>GreaterThanOrEqualTo</operator>
-            <value>
-                <elementReference>vEffectiveStartDate</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>ccrz__EffectiveStart__c</field>
-            <operator>LessThanOrEqualTo</operator>
-            <value>
-                <elementReference>vEffectiveStartDate</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>ccrz__Enabled__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <filters>
-            <field>ccrz__Storefront__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>Storefront</elementReference>
-            </value>
-        </filters>
-        <object>ccrz__E_PriceGroupAccount__c</object>
-        <outputReference>sPriceGroupAccount</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>ccrz__PriceGroup__c</queriedFields>
-        <queriedFields>ccrz__EffectiveStart__c</queriedFields>
         <queriedFields>ccrz__EffectiveEnd__c</queriedFields>
     </recordLookups>
     <recordUpdates>
@@ -1308,8 +1317,8 @@
         <description>Update Price Group Account End Date</description>
         <name>Update_Price_Group_Account_End_Date</name>
         <label>Update Price Group Account End Date</label>
-        <locationX>992</locationX>
-        <locationY>183</locationY>
+        <locationX>1157</locationX>
+        <locationY>222</locationY>
         <connector>
             <targetReference>Get_Price_Groups_Price_Lists</targetReference>
         </connector>
@@ -1332,8 +1341,8 @@
         <description>Update looped price group price lits</description>
         <name>Update_Price_Group_Price_Lists</name>
         <label>Update Price Group Price Lists</label>
-        <locationX>1365</locationX>
-        <locationY>330</locationY>
+        <locationX>1271</locationX>
+        <locationY>480</locationY>
         <connector>
             <targetReference>Create_Price_Group</targetReference>
         </connector>
@@ -1342,8 +1351,8 @@
     <screens>
         <name>Establish_Price_Group</name>
         <label>Establish Price Group</label>
-        <locationX>298</locationX>
-        <locationY>379</locationY>
+        <locationX>318</locationX>
+        <locationY>53</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -1399,7 +1408,7 @@
             <name>Enabled</name>
             <dataType>Boolean</dataType>
             <defaultValue>
-                <booleanValue>true</booleanValue>
+                <booleanValue>false</booleanValue>
             </defaultValue>
             <fieldText>Enabled</fieldText>
             <fieldType>InputField</fieldType>
@@ -1444,8 +1453,8 @@
     <screens>
         <name>Price_Lists</name>
         <label>Price Lists</label>
-        <locationX>828</locationX>
-        <locationY>623</locationY>
+        <locationX>670</locationX>
+        <locationY>578</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -1464,7 +1473,7 @@
         <showHeader>true</showHeader>
     </screens>
     <startElementReference>Get_Oppurtunity</startElementReference>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <name>ByPassPriceGroupAccountCreation</name>
         <dataType>Boolean</dataType>

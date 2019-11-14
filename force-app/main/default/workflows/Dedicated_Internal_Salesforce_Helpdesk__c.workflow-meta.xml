@@ -46,10 +46,6 @@
             <recipient>mike.smith2@redcross.org</recipient>
             <type>user</type>
         </recipients>
-        <recipients>
-            <recipient>sfdcsudhir@redcross.org</recipient>
-            <type>user</type>
-        </recipients>
         <senderType>CurrentUser</senderType>
         <template>unfiled$public/DISH_Ticket_Created</template>
     </alerts>

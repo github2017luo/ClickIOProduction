@@ -32,7 +32,7 @@
     <aura:registerEvent name="cyberSourceResponse" type="c:phss_cc_CyberSourceResponseEvent"/>
     
     <aura:handler event="c:AccountBalanceToCreditCardEvent" action="{!c.handleABAmount}" includeFacets="true" />
-    
+
     
 
     <!--Form Data for POST-->
@@ -73,7 +73,7 @@
     <aura:attribute name="card_cvn" type="String"/>
     <aura:attribute name="bill_to_address_line1" type="String"/>
     <aura:attribute name="bill_to_address_city" type="String"/>
-    <aura:attribute name="bill_to_address_country" type="String"/>
+    <aura:attribute name="bill_to_address_country" type="String" default="US"/>
     <aura:attribute name="bill_to_address_state" type="String"/>
     <aura:attribute name="bill_to_address_postal_code" type="String"/>
 
@@ -206,9 +206,13 @@
                                          required="true" value="{!v.bill_to_address_state}"/>
                     </div>
                     <div class="slds-col slds-size--6-of-12">
+<!--                        <lightning:select aura:id="payment_form" value="{!v.bill_to_address_country}" label="Country" required = "true" >-->
+<!--                            <option>US</option>-->
+<!--                        </lightning:select>-->
                         <lightning:input aura:id="payment_form" name="bill_to_address_country"
                                          label="Country"
-                                         required="true" value="{!v.bill_to_address_country}"/>
+                                         required="true" value="{!v.bill_to_address_country}"
+                                         maxlength="2"/>
                     </div>
                     <div class="slds-col slds-size--6-of-12">
                         <lightning:input aura:id="payment_form" name="bill_to_address_postal_code"

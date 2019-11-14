@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Do_Nothing</name>
+        <label>Do Nothing</label>
+        <locationX>1173</locationX>
+        <locationY>426</locationY>
+        <actionName>Donothing</actionName>
+        <actionType>apex</actionType>
+    </actionCalls>
     <assignments>
         <name>Add_Catalog_Account_for_Output</name>
         <label>Add Catalog Account for Output</label>
-        <locationX>238</locationX>
-        <locationY>523</locationY>
+        <locationX>316</locationX>
+        <locationY>531</locationY>
         <assignmentItems>
             <assignToReference>outCatalogAccount</assignToReference>
             <operator>Add</operator>
@@ -19,8 +27,8 @@
     <assignments>
         <name>Clear_Achievement_Assignment_Collection</name>
         <label>Clear Achievement Assignment Collection</label>
-        <locationX>229</locationX>
-        <locationY>83</locationY>
+        <locationX>190</locationX>
+        <locationY>305</locationY>
         <assignmentItems>
             <assignToReference>colAchievementAssignment</assignToReference>
             <operator>Assign</operator>
@@ -59,14 +67,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Delete_Expired_Catalog_Account_Records</targetReference>
+            <targetReference>Set_Updated_Achievements_to_Due_Soon</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Reset_Loop_Variables</name>
         <label>Reset Loop Variables</label>
-        <locationX>560</locationX>
-        <locationY>406</locationY>
+        <locationX>655</locationX>
+        <locationY>408</locationY>
         <assignmentItems>
             <assignToReference>outCatalogAccount</assignToReference>
             <operator>Assign</operator>
@@ -88,8 +96,8 @@
     <assignments>
         <name>Set_Learning_Catalog_Account</name>
         <label>Set Learning Catalog Account</label>
-        <locationX>239</locationX>
-        <locationY>237</locationY>
+        <locationX>307</locationX>
+        <locationY>375</locationY>
         <assignmentItems>
             <assignToReference>sCatalogAccount.Expiration_Date__c</assignToReference>
             <operator>Assign</operator>
@@ -158,10 +166,35 @@
         </connector>
     </assignments>
     <decisions>
+        <name>Any_Catalog_Account_Records_to_Delete</name>
+        <label>Any Catalog Account Records to Delete</label>
+        <locationX>1170</locationX>
+        <locationY>283</locationY>
+        <defaultConnector>
+            <targetReference>Do_Nothing</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>isNotEmpty</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>colCatalogAccount</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Delete_Expired_Catalog_Account_Records</targetReference>
+            </connector>
+            <label>isNotEmpty</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Found_Expired_Achievement_Assignments</name>
         <label>Found Expired Achievement Assignments</label>
-        <locationX>480</locationX>
-        <locationY>99</locationY>
+        <locationX>509</locationX>
+        <locationY>98</locationY>
         <defaultConnector>
             <targetReference>Loop_through_Achievement_Assignments</targetReference>
         </defaultConnector>
@@ -183,10 +216,35 @@
         </rules>
     </decisions>
     <decisions>
+        <name>isFound</name>
+        <label>isFound</label>
+        <locationX>44</locationX>
+        <locationY>292</locationY>
+        <defaultConnector>
+            <targetReference>Clear_Achievement_Assignment_Collection</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Records_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>sAchievementAssignmentCheck</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Change_Status_of_Expired_Achievement_Assignment_Records</targetReference>
+            </connector>
+            <label>Records Found</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>LoopCounter1</name>
         <label>LoopCounter1</label>
-        <locationX>366</locationX>
-        <locationY>526</locationY>
+        <locationX>447</locationX>
+        <locationY>536</locationY>
         <defaultConnector>
             <targetReference>Loop_through_Achievement_Assignments</targetReference>
         </defaultConnector>
@@ -207,7 +265,7 @@
             <label>isEqual1960</label>
         </rules>
     </decisions>
-    <description>Add Recertification Expiration Assignments</description>
+    <description>Add Recertification Expiration Assignments - Added Expiration Check</description>
     <formulas>
         <name>Expirationdate90daysfromnow</name>
         <dataType>Date</dataType>
@@ -257,8 +315,8 @@
     <recordCreates>
         <name>Create_Catalog_Account_in_Loop</name>
         <label>Create Catalog Account in Loop</label>
-        <locationX>563</locationX>
-        <locationY>519</locationY>
+        <locationX>662</locationX>
+        <locationY>537</locationY>
         <connector>
             <targetReference>Reset_Loop_Variables</targetReference>
         </connector>
@@ -267,8 +325,8 @@
     <recordCreates>
         <name>Create_Catalog_Account_Records</name>
         <label>Create Catalog Account Records</label>
-        <locationX>564</locationX>
-        <locationY>240</locationY>
+        <locationX>607</locationX>
+        <locationY>214</locationY>
         <connector>
             <targetReference>Clear_Catalog_Account</targetReference>
         </connector>
@@ -277,14 +335,8 @@
     <recordDeletes>
         <name>Delete_Expired_Catalog_Account_Records</name>
         <label>Delete Expired Catalog Account Records</label>
-        <locationX>849</locationX>
-        <locationY>112</locationY>
-        <connector>
-            <targetReference>Set_Updated_Achievements_to_Due_Soon</targetReference>
-        </connector>
-        <faultConnector>
-            <targetReference>Set_Updated_Achievements_to_Due_Soon</targetReference>
-        </faultConnector>
+        <locationX>1359</locationX>
+        <locationY>283</locationY>
         <filters>
             <field>Expiration_Date__c</field>
             <operator>LessThanOrEqualTo</operator>
@@ -295,11 +347,38 @@
         <object>redwing__Learning_Category_Account__c</object>
     </recordDeletes>
     <recordLookups>
+        <name>Get_Achievement_Assignment_Records</name>
+        <label>Get Achievement Assignment Records</label>
+        <locationX>50</locationX>
+        <locationY>162</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>isFound</targetReference>
+        </connector>
+        <filters>
+            <field>redwing__Expiration_Date__c</field>
+            <operator>LessThanOrEqualTo</operator>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>redwing__Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Acquired</stringValue>
+            </value>
+        </filters>
+        <object>redwing__Achievement_Assignment__c</object>
+        <outputReference>sAchievementAssignmentCheck</outputReference>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
+    <recordLookups>
         <description>Search for Certificates expiring in 90 days and add to the Recertification Catalog</description>
         <name>Get_Achievements_Expiring_in_90_Days</name>
         <label>Get Achievements Expiring in 90 Days</label>
-        <locationX>380</locationX>
-        <locationY>23</locationY>
+        <locationX>252</locationX>
+        <locationY>89</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Found_Expired_Achievement_Assignments</targetReference>
@@ -358,12 +437,32 @@
         <queriedFields>redwing__User__c</queriedFields>
         <queriedFields>redwing__Contact__c</queriedFields>
     </recordLookups>
+    <recordLookups>
+        <name>Get_Catalogs_Entries_Expiring_Today</name>
+        <label>Get Catalogs Entries Expiring Today</label>
+        <locationX>1013</locationX>
+        <locationY>280</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Any_Catalog_Account_Records_to_Delete</targetReference>
+        </connector>
+        <filters>
+            <field>Expiration_Date__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>fToday</elementReference>
+            </value>
+        </filters>
+        <object>redwing__Learning_Category_Account__c</object>
+        <outputReference>colCatalogAccount</outputReference>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
     <recordUpdates>
         <description>Searches for Achievement Assignments that have passed the expiration date - May have been replaced by Appinium function</description>
         <name>Change_Status_of_Expired_Achievement_Assignment_Records</name>
         <label>Change Status of Expired Achievement Assignment Records</label>
-        <locationX>50</locationX>
-        <locationY>200</locationY>
+        <locationX>65</locationX>
+        <locationY>506</locationY>
         <connector>
             <targetReference>Clear_Achievement_Assignment_Collection</targetReference>
         </connector>
@@ -398,8 +497,8 @@
     <recordUpdates>
         <name>Set_Updated_Achievements_to_Due_Soon</name>
         <label>Set Updated Achievements to Due Soon</label>
-        <locationX>1020</locationX>
-        <locationY>112</locationY>
+        <locationX>841</locationX>
+        <locationY>111</locationY>
         <connector>
             <targetReference>Update_Expired_Learning_Plan_Assignments</targetReference>
         </connector>
@@ -460,8 +559,11 @@
         <description>Set Learning Plan Assignments to Under Review when past due date</description>
         <name>Update_Expired_Learning_Plan_Assignments</name>
         <label>Update Expired Learning Plan Assignments</label>
-        <locationX>1197</locationX>
-        <locationY>115</locationY>
+        <locationX>1015</locationX>
+        <locationY>120</locationY>
+        <connector>
+            <targetReference>Get_Catalogs_Entries_Expiring_Today</targetReference>
+        </connector>
         <filters>
             <field>redwing__Due_Date__c</field>
             <operator>LessThanOrEqualTo</operator>
@@ -491,7 +593,7 @@
         </inputAssignments>
         <object>redwing__Training_Plan_Assignment__c</object>
     </recordUpdates>
-    <startElementReference>Change_Status_of_Expired_Achievement_Assignment_Records</startElementReference>
+    <startElementReference>Get_Achievement_Assignment_Records</startElementReference>
     <status>Draft</status>
     <variables>
         <name>colAchievementAssignment</name>
@@ -546,6 +648,14 @@
     </variables>
     <variables>
         <name>sAchievementAssignment</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>redwing__Achievement_Assignment__c</objectType>
+    </variables>
+    <variables>
+        <name>sAchievementAssignmentCheck</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>

@@ -1,16 +1,17 @@
 global with sharing class cc_phss_ccLogicCartAddTo extends ccrz.ccLogicCartAddTo
 {
-	private static final String CLASS_UNIT_OF_MEASURE = 'Class';
-	private static final String COMPONENT_KEY = 'component';
-	private static final String COMPOSITE_PRODUCTS_KEY = 'compositeProductsS';
-	private static final String FEE_INVENTORY_TYPE = 'FEE';
-	private static final String ILT_CLASS_FIELD = 'ILT_Class__c';
-	private static final String INSTRUCTOR_UNIT_OF_MEASURE = 'Instructor';
-	private static final String PRODUCT_PRODUCT_TYPE = 'Product';
-	private static final String MAJOR_CART_ITEM_TYPE = 'Major';
-	private static final String MINOR_CART_ITEM_TYPE = 'Minor';
-	private static final String STUDENT_RATIO_KEY = 'studentRatio';
+	@TestVisible private static final String CLASS_UNIT_OF_MEASURE = 'Class';
+	@TestVisible private static final String COMPONENT_KEY = 'component';
+	@TestVisible private static final String COMPOSITE_PRODUCTS_KEY = 'compositeProductsS';
+	@TestVisible private static final String FEE_INVENTORY_TYPE = 'FEE';
+	@TestVisible private static final String ILT_CLASS_FIELD = 'ILT_Class__c';
+	@TestVisible private static final String INSTRUCTOR_UNIT_OF_MEASURE = 'Instructor';
+	@TestVisible private static final String PRODUCT_PRODUCT_TYPE = 'Product';
+	@TestVisible private static final String MAJOR_CART_ITEM_TYPE = 'Major';
+	@TestVisible private static final String MINOR_CART_ITEM_TYPE = 'Minor';
+	@TestVisible private static final String STUDENT_RATIO_KEY = 'studentRatio';
 
+	@TestVisible
 	private static Map<String, Object> productStudentRatioMap = new Map<String, Object>();
 
 	/**
@@ -46,27 +47,21 @@ global with sharing class cc_phss_ccLogicCartAddTo extends ccrz.ccLogicCartAddTo
 			}
 		}
 
-		String unitOfMeasure = cartItem.ccrz__UnitOfMeasure__c;
-		Set<String> validUOMs = new Set<String>{CLASS_UNIT_OF_MEASURE, INSTRUCTOR_UNIT_OF_MEASURE};
-		if (cartItem.ccrz__cartItemType__c == MINOR_CART_ITEM_TYPE
-				&& validUOMs.contains(unitOfMeasure)
-				&& cartItem.ccrz__ProductType__c == PRODUCT_PRODUCT_TYPE)
-		{
-//			ccrz__E_Product__c product = getProduct((String) cartItem.ccrz__Product__c);
-//			if (product.ccrz__InventoryType__c == FEE_INVENTORY_TYPE) {
-//
-//				// Quantity of 1
-//				cartItem.ccrz__Quantity__c = 1;
-//				cartItem.ccrz__SubAmount__c = cartItem.ccrz__Price__c;
-//			}
+		if (cartItem.ccrz__cartItemType__c == MINOR_CART_ITEM_TYPE && cartItem.ccrz__ProductType__c == PRODUCT_PRODUCT_TYPE) {
+			if (cartItem.ccrz__UnitOfMeasure__c == CLASS_UNIT_OF_MEASURE) {
+				ccrz__E_Product__c product = getProduct((String) cartItem.ccrz__Product__c);
+				if (product != null && product.ccrz__InventoryType__c == FEE_INVENTORY_TYPE) {
+					cartItem.ccrz__Quantity__c = 1;
+					cartItem.ccrz__SubAmount__c = cartItem.ccrz__Price__c;
+				}
 
-
-			// Quantity based on student ratio
-			Object studentRatioObject = productStudentRatioMap.get(cartItem.ccrz__Product__c);
-			if (studentRatioObject != null) {
-				Decimal studentRatio = (Decimal) studentRatioObject;
-				cartItem.ccrz__Quantity__c = calculateKitCartItemQuantity(cartItem.ccrz__Quantity__c, studentRatio);
-				cartItem.ccrz__SubAmount__c = calculateSubAmount(cartItem.ccrz__Price__c, cartItem.ccrz__Quantity__c);
+			} else if (cartItem.ccrz__UnitOfMeasure__c == INSTRUCTOR_UNIT_OF_MEASURE) {
+				Object studentRatioObject = productStudentRatioMap.get(cartItem.ccrz__Product__c);
+				if (studentRatioObject != null) {
+					Decimal studentRatio = (Decimal) studentRatioObject;
+					cartItem.ccrz__Quantity__c = calculateKitCartItemQuantity(cartItem.ccrz__Quantity__c, studentRatio);
+					cartItem.ccrz__SubAmount__c = calculateSubAmount(cartItem.ccrz__Price__c, cartItem.ccrz__Quantity__c);
+				}
 			}
 		}
 

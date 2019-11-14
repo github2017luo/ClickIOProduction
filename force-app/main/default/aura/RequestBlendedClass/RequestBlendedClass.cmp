@@ -5,7 +5,9 @@
     <aura:handler event = "aura:doneWaiting" 	action = "{!c.hideSpinner}" />
     
     <aura:handler name = "change" value="{!v.selectedLookUpRecord1}" action = "{!c.accountSelected}" />
-    
+    <!--<aura:handler name = "change" value="{!v.selectedLookUpRecord5}" action = "{!c.classSelected}" />-->
+    <aura:handler name = "change" value="{!v.selectedLookUpRecord5}" action = "{!c.siteSelected}" />
+
     <aura:handler name="incrementProductCount" event="c:phss_cc_ProductCountUpdateClone" action="{!c.productCountIncrement}"/>
     
     <aura:attribute name = "stepNumber"				type = "String" 	default = "Zero" />
@@ -19,6 +21,7 @@
     <aura:attribute name = "selectedLookUpRecord2" 	type = "sObject" 	default = "{}"/>
     <aura:attribute name = "selectedLookUpRecord3" 	type = "sObject" 	default = "{}"/>
 	<aura:attribute name = "selectedLookUpRecord4" 	type = "sObject" 	default = "{}"/>
+    <aura:attribute name = "selectedLookUpRecord5" 	type = "sObject" 	default = "{}"/>
     
     <aura:attribute name = "Account" 				type = "String"  	default = ""/>
     <aura:attribute name = "Course" 				type = "String"  	default = ""/>
@@ -35,6 +38,7 @@
 	<aura:attribute name = "calciinstructor" 		type = "Boolean"	default = "false"/>
     <aura:attribute name = "StudentInstructorRatio" type = "Integer"  	default = ""/>
     <aura:attribute name = "Vouchers" 				type = "Integer"  	default = "0"/>
+    <aura:attribute name = "instructorHasPrerequisites" type="Boolean" default="true"/>
     
     <aura:attribute name = "MaxDate" 				type = "String"  	default = ""/>
 	<aura:attribute name = "SupplementInfo"			type = "String"  	default = ""/>
@@ -64,6 +68,7 @@
     <aura:attribute name = "orgError" 				type = "String" 	default = ""/>
     <aura:attribute name = "crsError" 				type = "String" 	default = ""/>
     <aura:attribute name = "usrError" 				type = "Boolean" 	default = "false"/>
+    <aura:attribute name = "prereqError" 			type = "Boolean" 	default = "false"/>
     
     <aura:attribute name = "message" 				type = "String" 	default = ""/>
     <aura:attribute name = "messageType" 			type = "String" 	default = ""/>
@@ -83,14 +88,28 @@
     
     <aura:attribute name = "storeFrontName" type="String" default = "" />
     
-    <aura:attribute name = "helpText" type = "String" default = " You must complete and submit this request for a blended learning class. The information will not be saved to complete at a later time."/> 
-    
-	<aura:handler name="change" value="{!v.CCProductId}" action="{!c.calculateStudentInstructorRatio}" />
+    <aura:attribute name = "helpText" type = "String" default = " You must complete and submit this request for a blended learning class. The information will not be saved to complete at a later time."/>
+
+    <aura:attribute name = "cpsWrap"			type = "Object" />
+    <aura:attribute name = "initialWrap" 		type = "Object" />
+    <aura:attribute name = "zoneList" type = "List" />
+    <aura:attribute name = "LPName"					type = "String"  	default = ""/>
+    <aura:attribute name = "LPClassroomSetting"		type = "String"  	default = ""/>
+    <aura:attribute name = "LPDuration"				type = "Decimal"  	default = ""/>
+    <aura:attribute name = "ScheduledTime"			type = "Decimal"  	default = "0"/>
+    <aura:attribute name = "todaysDate"			type = "String" />
+    <aura:attribute name = "formattedStartTime" type = "String" />
+    <aura:attribute name = "formattedEndTime" type = "String" />
+
+    <aura:attribute name = "locationId" type="String" description="ILT Location Id return by apex controller's method createIltLocation" />
+
+    <aura:handler name="change" value="{!v.zoneIndex}" action="{!c.zoneUpdate}" />
+    <aura:handler name="change" value="{!v.CCProductId}" action="{!c.calculateStudentInstructorRatio}" />
     <aura:handler name="change" value="{!v.Students}" action="{!c.calculateStudentInstructorRatio}" /> 
     <aura:handler name="change" value="{!v.Vouchers}" action="{!c.calculateStudentInstructorRatio}" />
     
     <aura:handler name="selectionEvent" event="c:CustomLookupSelectionEvent" action="{!c.handleComponentEvent}"/>
-    
+
     <aura:if isTrue="{!v.stepNumber == 'Zero'}" >
         <div> 
             <lightning:button label		= "Request Blended Class"
@@ -193,7 +212,7 @@
                                                                   storeFront="{!v.storeFrontName}"
                                                                   productSpecs="{'Class':'Blended'}"
                                                                   errorMessage="{!v.crsError}"/>
-                           <div class = "slds-size_4-of-8">
+                           <div class = "slds-size_7-of-8">
 						        <div class = "slds-grid slds-wrap">
                                     <div class = "slds-size_1-of-2">
                                         <lightning:input value		=	"{!v.StartDate}"
@@ -215,6 +234,87 @@
                                     </div>
                                 </div>
                                 <br/>
+
+                               <div>
+                                   <label class="slds-form-element__label">Session</label>
+                                   <lightning:helptext content="Please enter the dates and times for each class session." />
+                               </div>
+
+                               <!--
+                               <aura:iteration items="{!v.cpsWrap.sessionList}" var="sess" indexVar="index">
+                               -->
+                               <aura:iteration items="{!v.cpsWrap.sessionList}" var="sess"
+                                               indexVar="index">
+
+                                   <div class="slds-grid slds-gutters_xxx-small">
+                                       <div class="slds-col slds-size_1-of-5">
+                                           <lightning:input value="{!sess.classDate}"
+                                                            label="Date"
+                                                            required="true"
+                                                            type="date"
+                                                            min="{!v.StartDate}"
+                                                            max="{!v.EndDate}"
+                                                            aura:id="field"/>
+                                       </div>
+                                       <div class="slds-col slds-size_1-of-5">
+                                           <lightning:input value="{!sess.startTime}"
+                                                            label="Start Time"
+                                                            required="true"
+                                                            type="time"
+                                                            aura:id="field"
+                                                            max="{!sess.endTime}"/>
+                                       </div>
+                                       <div class="slds-col slds-size_1-of-5">
+                                           <lightning:input value="{!sess.endTime}"
+                                                            label="End Time"
+                                                            required="true"
+                                                            type="time"
+                                                            aura:id="field"
+                                                            min="{!sess.startTime}"/>
+                                       </div>
+
+                                       <div class="slds-col slds-size_1-of-5">
+                                           <label class="slds-required">*</label>
+                                           <label class="slds-form-element__label">Time Zone</label><br/>
+                                           <select aura:id="zoneSelect" data-row-index="{!index}" name="zoneSelect" onchange="{!c.onZoneChange}" class="slds-select">
+                                               <option value=""> Select a Time Zone</option>
+                                               <aura:iteration items="{!v.zoneList}" var="zone" indexVar="key">
+                                                   <option value="{!zone.key}">{!zone.key}</option>
+                                               </aura:iteration>
+                                           </select>
+                                           <div aura:id="zoneError" class="lookupError hide">
+                                               Complete this field.
+                                           </div>
+                                       </div>
+                                       <div class="slds-col slds-size_1-of-5">
+                                           <aura:if isTrue="{!index}">
+                                               <div class="slds-p-horizontal--xxsmall"
+                                                    style="text-align:center;margin-top:1rem;">
+                                                   <lightning:button
+                                                           class="slds-button slds-button_neutral customButton"
+                                                           label="Del" value="{!index}"
+                                                           variant="destructive"
+                                                           onclick="{!c.deleteSession}"/>
+                                               </div>
+                                               <aura:set attribute="else">
+                                                   <div style="width:3.5rem;">
+                                                       &nbsp;
+                                                   </div>
+                                               </aura:set>
+                                           </aura:if>
+                                       </div>
+                                   </div>
+                               </aura:iteration>
+
+
+                               <div class="slds-p-top_small">
+                                   <button class="slds-button slds-button_neutral customButton"
+                                           onclick="{!c.addSession}">
+                                       Add Session
+                                   </button>
+                               </div>
+                               <br/>
+
                                 <div class = "slds-grid slds-wrap">
                                     <div class = "slds-size_1-of-2">
                                         <lightning:input value		=	"{!v.Students}"
@@ -255,7 +355,10 @@
                             <div class = "slds-size_4-of-8">
                                 <aura:if isTrue="{!and(v.isExtUser == true,v.isPartner == false)}">
                                  <div>
-                                        <lightning:input value="{!v.instructor.Name}" label="Instructor" required = "true" readonly="true" /> <br/>                                                
+                                        <lightning:input value="{!v.instructor.Name}" label="Instructor" required = "true" readonly="true" /> <br/>
+                                        <aura:if isTrue="{!v.prereqError}" >
+                                            <div class="lookupError">This instructor does not meet all the prerequisites for this course.</div>
+                                        </aura:if>
                                     </div>
                                             
                                      <aura:set attribute="else"> 
@@ -273,6 +376,9 @@
                                         </div>
                                         <aura:if isTrue="{!v.usrError}" >
                                             <div class="lookupError">Complete this field.</div>
+                                        </aura:if>
+                                        <aura:if isTrue="{!v.prereqError}" >
+                                            <div class="lookupError">This instructor does not meet all the prerequisites for this course.</div>
                                         </aura:if>
                                     </aura:set>
                                 </aura:if>
@@ -321,19 +427,37 @@
                             </div> <br/> 
 							
 							<div class = "slds-box slds-theme_shade" >Training Site Name (select)</div><br/>
+
+                            <br/>
                             <div class = "slds-size_3-of-8">
                                 <div>
                                     <div class = "slds-m-around_x-small">
-                                        <lightning:helptext content= "Enter the Training Site where the course was taught." />
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" >
+                                                Site Search
+                                            </label>
+                                            <lightning:helptext content="Enter a site name to search" />
+
+                                            <c:CustomLookup objectAPIName	=	"redwing__ILT_Location__c"
+                                                            selectedRecord	=	"{!v.selectedLookUpRecord5}"
+                                                            accountId		= 	"{!v.accId}"
+                                                            courseId 		=	"{!v.courseId}"
+                                                            instanceId      =   "Site"
+                                            />
+                                        </div>
                                     </div>
+                                    <div class = "slds-m-around_x-small">
+                                        <lightning:helptext content= "Enter the Training Site where the course will be taught." />
+                                    </div>
+
                                     <div class = "slds-m-around_x-small">
                                         <lightning:input value="{!v.SiteName}" label="Site Name"  required	= "true" aura:id	=	"field"/>
                                     </div>
                                     <div class = "slds-m-around_x-small">
-                                        <lightning:input value="{!v.Address1}" label="Address "  required	= "true" aura:id	=	"field"/>
+                                        <lightning:input value="{!v.Address1}" label="Address Line 1"  required	= "true" aura:id	=	"field"/>
                                     </div>
                                     <div class = "slds-m-around_x-small">
-                                        <lightning:input value="{!v.Address2}" label="Address "/>
+                                        <lightning:input value="{!v.Address2}" label="Address Line 2"/>
                                     </div>
                                     <div class = "slds-grid slds-wrap">
                                         <div class = "slds-col slds-m-around_x-small">
@@ -434,7 +558,7 @@
                                                 <lightning:input value="{!item.LastName}" label="Last Name" required = "true" aura:id="field"/>
                                             </th>
                                             <th scope="row">
-                                                <lightning:input value="{!item.Email}" label="Email" required="true" type = "email" aura:id="field" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*[a-zA-Z_]+?\.[a-zA-Z]{2,3}" messageWhenPatternMismatch = "Must be a valid email address"/>
+                                                <lightning:input value="{!item.Email}" label="Email" required="true" type = "email" aura:id="field" pattern="^[a-zA-Z0-9!#$+-]+([\.-]?\w+)*@\w+([\.-]?\w+)*[a-zA-Z_0-9]+?\.[a-zA-Z]{2,3}" messageWhenPatternMismatch = "Must be a valid email address"/>
                                             </th>
                                             <th scope="row">
                                                 <lightning:input value="{!item.Phone}" label="Phone Number" type = "tel" pattern="[0-9]{10}" aura:id="field" messageWhenPatternMismatch	= "Must be 10-digits only."/>
@@ -523,7 +647,59 @@
                                 </div>
                                 
                             </div>
-                            
+
+                            <div class= "slds-grid slds-wrap slds-p-top_medium">
+                                <div class = "slds-size_2-of-4">
+                                    <label style="color:gray; font-size: .75rem;">Session</label><br/>
+                                    <table class="slds-table slds-table--cell-buffer">
+                                        <thead>
+                                        <tr class="slds-text-title--caps">
+                                            <!--<th scope="col">
+                                                <div class="slds-truncate" title=""></div>
+                                            </th>-->
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="DATE">DATE</div>
+                                            </th>
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="START TIME">START TIME</div>
+                                            </th>
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="END TIME">END TIME</div>
+                                            </th>
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="END TIME">TIME ZONE</div>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <aura:iteration items="{!v.cpsWrap.sessionList}" var="item" indexVar="index">
+                                            <tr>
+                                                <td>
+                                                    <div class="slds-truncate">
+                                                        <ui:outputDate value="{!item.classDate}" format="MM/DD/yyyy"/>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="slds-truncate">
+                                                        {! item.formattedStartTime }
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="slds-truncate">
+                                                        {! item.formattedEndTime }
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="slds-truncate">
+                                                        {! item.timeZone }
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </aura:iteration>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                              
                             
 							<div class= "slds-grid slds-wrap">

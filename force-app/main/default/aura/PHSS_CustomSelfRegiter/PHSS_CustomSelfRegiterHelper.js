@@ -11,7 +11,11 @@
 
         component.set("v.showSpinner", true);
 
-        var accountId = component.get("v.accountId");
+
+        var objResult = component.get("v.objResult");
+        var contactId = objResult.ContactId;
+        var accountId = objResult.AccountId;
+
         var regConfirmUrl = component.get("v.regConfirmUrl");
         var firstname = component.find("firstname").get("v.value");
         var lastname = component.find("lastname").get("v.value");
@@ -29,16 +33,18 @@
                           email:email,
                 		  password:password, 
                           confirmPassword:confirmPassword, 
-                          accountId:accountId, 
+                          accountId:accountId,
+                          contactId:contactId,
                           regConfirmUrl:regConfirmUrl, 
                           extraFields:extraFields, 
                           startUrl:startUrl, 
                           includePassword:includePassword});
 
           action.setCallback(this, function(a){
-              component.set("v.showSpinner", false);
+
               var rtnValue = a.getReturnValue();
               if (rtnValue !== null) {
+                 component.set("v.showSpinner", false);
                  component.set("v.errorMessage",rtnValue);
                  component.set("v.showError",true);
               }
@@ -187,6 +193,35 @@
     showSpinner: function(component) {
         var showSpinner = component.get("v.showSpinner");
         component.set("v.showSpinner", !showSpinner );
+    },
+
+    checkExistingContact: function(component, email) {
+
+        console.log('running checkExistingContact');
+        console.log('email '+email);
+        var action = component.get("c.checkExistingContact");
+
+        action.setParams({ email: email });
+        action.setCallback(this, function(res){
+            var state = res.getState();
+            if (state === "SUCCESS") {
+                if (res.getReturnValue()) {
+                    console.log("matching contact found");
+                    // parse result
+                    var objResult = JSON.parse(res.getReturnValue());
+
+                    component.set("v.objResult", objResult);
+                    component.set("v.firstname", objResult.FirstName);
+                    component.set("v.lastname", objResult.LastName);
+                    console.log('ended value assignment');
+
+                } else {
+                    // do nothing
+                    console.log("matching contact not found");
+                }
+            }
+        });
+        $A.enqueueAction(action);
     }
 
 })

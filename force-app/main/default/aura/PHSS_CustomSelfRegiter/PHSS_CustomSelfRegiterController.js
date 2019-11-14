@@ -5,6 +5,8 @@
         var paramsArray = sPageURL.split('&');
         console.log(paramsArray);
 
+        var email;
+
         paramsArray.forEach(function(item) {
             var nameValPair = item.split('=');
             console.log('nameValPair: '+ nameValPair);
@@ -16,18 +18,12 @@
                 component.set("v.b2cOrigin", nameValPair[1]);
             } else if (nameValPair[0] === 'email') {
                 component.set("v.email", nameValPair[1]);
+                email = nameValPair[1];
             }
         });
 
-//        console.log('b2cOrigin ' + component.get('v.b2cOrigin') );
-//        if (component.get('v.email')) {
-//            var emailInput = component.find('email');
-//            var email_div = component.find('email_div');
-//            emailInput.set('v.disabled', true );
-//            $A.util.addClass(emailInput, 'inputgrey');
-//            $A.util.addClass(email_div, 'inputgrey');
-//
-//        }
+        console.log('email: '+ email);
+        helper.checkExistingContact(component, email);
                 
         $A.get("e.siteforce:registerQueryEventMap").setParams({"qsToEvent" : helper.qsToEventMap}).fire();
         $A.get("e.siteforce:registerQueryEventMap").setParams({"qsToEvent" : helper.qsToEventMap2}).fire();        

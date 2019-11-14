@@ -3,6 +3,15 @@
         
         component.set("v.storeFrontName","CREStore");
         //component.set("v.storeFrontName","GeneralStore");
+        helper.initializeWrapper(component, event, helper);
+        // Get today's date
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+        component.set("v.todaysDate",today);
+
         var addInstru = new Array(1);
         component.set("v.AdditionalInstructors",addInstru);
         
@@ -40,10 +49,45 @@
         today = yyyy + '-' + mm + '-' + dd;
         component.set("v.MaxDate",today);
     },
-    
+
+    validateEmail : function(component, event, helper) {
+        log.console("validateEmail!!!");
+        var isValidEmail = true;
+        var emailField = component.find("emailField");
+        var emailFieldValue = emailField.get("v.value");
+        // Store Regular Expression That 99.99% Works. [ http://emailregex.com/]
+        //var regExpEmailformat = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        var regExpEmailformat = /[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+/;
+        // check if Email field in not blank,
+        // and if Email field value is valid then set error message to null,
+        // and remove error CSS class.
+        // ELSE if Email field value is invalid then add Error Style Css Class.
+        // and set the error Message.
+        // and set isValidEmail boolean flag value to false.
+
+        if(!$A.util.isEmpty(emailFieldValue)){
+            if(emailFieldValue.match(regExpEmailformat)){
+                emailField.set("v.errors", [{message: null}]);
+                $A.util.removeClass(emailField, 'slds-has-error');
+                isValidEmail = true;
+            }else{
+                $A.util.addClass(emailField, 'slds-has-error');
+                log.console("Here!!!");
+                emailField.set("v.errors", [{message: "Please Enter a Valid Email Address"}]);
+                isValidEmail = false;
+            }
+        }
+
+        // if Email Address is valid then execute code
+        if(isValidEmail){
+            // code write here..if Email Address is valid.
+        }
+    },
+
     productCountIncrement: function (component, event, helper) {
         component.set("v.CCProductId",event.getParam('productSfid'));
-        
+        helper.getLearningPlanAttributes(component, event, helper);
+
         var delayInMilliseconds = "8000"; //10 seconds
         window.setTimeout(
             $A.getCallback(function() {
@@ -196,6 +240,7 @@
         var currentSN = component.get("v.stepNumber");
         if(currentSN == "One")
         {
+            helper.formatTime(component,event,helper);
             var vorgId 	= component.get("v.selectedLookUpRecord1").Id;
             var orgBool	= true;
             if(vorgId === undefined){
@@ -222,11 +267,22 @@
             }else{
                 component.set("v.usrError",false);
             }
-            
+            console.log('hello');
+            var instructorHasPrerequisites = component.get('v.instructorHasPrerequisites');
+            if (instructorHasPrerequisites === false && usrBool) {
+                console.log('prereqError: true');
+                component.set("v.prereqError", true);
+            } else {
+                console.log('prereqError: false');
+                component.set("v.prereqError", false);
+            }
+
             var allValid = component.find('field').reduce(function (validSoFar, inputCmp) {
                 inputCmp.reportValidity();
                 return validSoFar && inputCmp.checkValidity();
             }, true);
+
+            allValid &= instructorHasPrerequisites;
 
             if (allValid) {
 
@@ -288,10 +344,12 @@
                     helper.stepOne(component, event);
                 }
             }
+            helper.createIltLocation(component);
         }
         
         else if(currentSN == "Two")
         {
+            helper.formatTime(component,event,helper);
             var allValid = true;
             if(typeof component.find('field') !== "undefined"){ 
                 allValid = component.find('field').reduce(function (validSoFar, inputCmp) {
@@ -314,32 +372,80 @@
         
         else if(currentSN == "Three")
         {
+            helper.formatTime(component,event,helper);
             component.set("v.stepNumber", "Four");
         }
     },
-    
-    handleComponentEvent : function(component, event, helper) {
-      var instanceID = event.getParam('instanceID');
-        if(instanceID.includes('Instructor')){
+
+    handleComponentEvent: function (component, event, helper) {
+        console.log("Here RBCController");
+        var instanceID = event.getParam('instanceID');
+        if (instanceID.includes('Instructor')) {
             var itemNumber = parseInt(instanceID.slice(10));
             var addInstr = component.get("v.AdditionalInstructors");
-            if(event.getParam('isClear')){ 
-            	//addInstr[itemNumber-1] = null; 
-            	delete addInstr[itemNumber-1];
-                //component.set("v.AdditionalInstructors",addInstr); 
+            if (event.getParam('isClear')) {
+                //addInstr[itemNumber-1] = null;
+                delete addInstr[itemNumber - 1];
+                //component.set("v.AdditionalInstructors",addInstr);
                 console.log('OnDelete-->');
                 console.log(component.get("v.AdditionalInstructors"));
-            }
-            else{ 
-                addInstr[itemNumber-1] = event.getParam('SelectedValue');
+            } else {
+                addInstr[itemNumber - 1] = event.getParam('SelectedValue');
                 //component.set("v.AdditionalInstructors",addInstr);
                 console.log('OnAdd-->');
                 console.log(component.get("v.AdditionalInstructors"));
-            }       
+            }
         }
-      	
-	},
-    
+
+    },
+
+    handleTimeZoneEvent: function (component, event, helper) {
+        console.log("Here handleTimeZoneEvent");
+        var instanceID = event.getParam('instanceID');
+        if (instanceID.includes('Instructor')) {
+            var itemNumber = parseInt(instanceID.slice(10));
+            var addInstr = component.get("v.AdditionalInstructors");
+            if (event.getParam('isClear')) {
+                //addInstr[itemNumber-1] = null;
+                delete addInstr[itemNumber - 1];
+                //component.set("v.AdditionalInstructors",addInstr);
+                console.log('OnDelete-->');
+                console.log(component.get("v.AdditionalInstructors"));
+            } else {
+                addInstr[itemNumber - 1] = event.getParam('SelectedValue');
+                //component.set("v.AdditionalInstructors",addInstr);
+                console.log('OnAdd-->');
+                console.log(component.get("v.AdditionalInstructors"));
+            }
+        }
+
+    },
+
+    classSelected : function (component,event) {
+        var classId = component.get("v.selectedLookUpRecord5").Id;
+        var selectedClass = component.get("v.selectedLookUpRecord5");
+        console.log(JSON.stringify(selectedClass));
+        component.set("v.SiteName", selectedClass["Site_Name__c"]);
+        component.set("v.Address1", selectedClass["Site_Address_1__c"]);
+        component.set("v.Address2", selectedClass["Site_Address_2__c"]);
+        component.set("v.City", selectedClass["Site_City__c"]);
+        component.set("v.State", selectedClass["State__c"]);
+        component.set("v.Zip", selectedClass["Site_Postal_Code__c"]);
+    },
+
+    siteSelected : function (component, event) {
+        var siteId = component.get("v.selectedLookUpRecord5").Id;
+        var selectedSite = component.get("v.selectedLookUpRecord5");
+        console.log(JSON.stringify(selectedSite));
+        component.set("v.SiteName", selectedSite["Name"]);
+        component.set("v.Address1", selectedSite["redwing__Address_1__c"]);
+        component.set("v.Address2", selectedSite["redwing__Address_2__c"]);
+        component.set("v.City", selectedSite["redwing__City__c"]);
+        component.set("v.State", selectedSite["redwing__State__c"]);
+        component.set("v.Zip", selectedSite["redwing__Postal_Code__c"]);
+
+    },
+
     accountSelected : function (component,event,helper){
         var orgId 	= component.get("v.selectedLookUpRecord1").Id;
         console.log(orgId);
@@ -427,6 +533,7 @@
         var city  = cmp.get("v.City");
         var state = cmp.get("v.State");
         var zip   = cmp.get("v.Zip");
+        var location = cmp.get("v.locationId");
         
         obj.SiteName    =   siteName; 
         obj.Address1 	= 	add1;
@@ -434,6 +541,7 @@
         obj.City 		= 	city;
         obj.State 		= 	state;
         obj.Zip 		= 	zip;
+        obj.Location    =   location;
         
         obj.OpportunityId = cmp.get("v.oppIdParent");
         obj.CloudCrazeProdId = cmp.get("v.CCProductId");
@@ -458,7 +566,8 @@
         	jsonStr = '{'+'\"Students\": ['+jsonStr+'] } ';
         
         var action = cmp.get("c.invokeMethodswithboolean");
-        action.setParams({ JSON : classDetailJSON, JSON1 : jsonStr, blend1 : true });
+        console.log("cpsWrap: " + JSON.stringify(cmp.get("v.cpsWrap")));
+        action.setParams({ JSON : classDetailJSON, JSON1 : jsonStr, blend1 : true , wrapper: cmp.get("v.cpsWrap")});
         
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -487,8 +596,67 @@
     cancel : function(component, event, helper){
         $A.get("e.force:refreshView").fire();
         component.set("v.stepNumber", "Zero");
+    },
+
+    addSession : function(component, event, helper) {
+        var tempList = component.get("v.cpsWrap.sessionList");
+        console.log("tempList");
+        console.log(tempList);
+        console.log(tempList[0].timeZone);
+        console.log(tempList[0].timeZoneName);
+
+        //console.log(tempList.timeZoneName[0]);
+        tempList.push({'classDate':'',
+            'startTime':'',
+            'endTime':'',
+            'timeZone':tempList[0].timeZone,
+            'timeZoneName':tempList[0].timeZoneName
+            });
+        component.set("v.cpsWrap.sessionList",tempList);
+
+        helper.requiredSchedule(component,event,helper);
+
+    },
+
+    deleteSession : function(component, event, helper) {
+        var del_index = event.getSource().get('v.value');
+        console.log("Delete Record: " + del_index);
+
+        var tempList = component.get("v.cpsWrap.sessionList");
+        tempList.splice( tempList.indexOf(del_index), 1 );
+        component.set("v.cpsWrap.sessionList",tempList);
+
+        helper.requiredSchedule(component,event,helper);
+
+    },
+
+    onZoneChange : function(component, event, helper) {
+        helper.requiredSchedule(component,event,helper);
+
+        var target = event.target;
+        var value = target.value;
+        var sessionIndex = target.getAttribute('data-row-index');
+
+        var cpsWrap = component.get("v.cpsWrap");
+        if (cpsWrap != null) {
+            cpsWrap.sessionList[sessionIndex].timeZone = value;
+            cpsWrap.sessionList[sessionIndex].timeZoneName = (value == '' ? '' : cpsWrap.timeZoneList[value]);
+
+            var errorDivs = component.find('zoneError');
+            if (cpsWrap.sessionList.length == 1) {
+                errorDivs = [errorDivs];        // convert the single div into an array
+            }
+
+            if (cpsWrap.sessionList[sessionIndex].timeZone == '') {
+                $A.util.removeClass(errorDivs[sessionIndex], 'hide');
+            } else {
+                $A.util.addClass(errorDivs[sessionIndex], 'hide');
+            }
+        }
+    },
+
+    zoneUpdate : function(component, event, helper) {
+        console.log('zoneUpdate method');
+
     }
-     
-   
-    
 })

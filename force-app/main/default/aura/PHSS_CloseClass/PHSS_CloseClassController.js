@@ -1,12 +1,18 @@
 ({
-    doInit : function(component, event, helper) {        
+    doInit : function(component, event, helper) {
         helper.fetchClassDetails(component, event, helper);
         helper.isCommunityCls(component);
-        
     },
     
     showStep1 : function(component,event,helper){
-        helper.validateCart(component, event, helper);
+
+        // add logic to differentiate - validateCart or find order
+        var requestType = component.get("v.requestType");
+        //if ((requestType !== "Full Service" && requestType !== "Community")) {
+        if (requestType.indexOf("Full Service") < 0 && requestType !== "Community") {
+            helper.validateCart(component, event, helper);
+        }
+
         component.set("v.stepNumber", "One");
         //component.set("v.isLegalChecked",false);
         var checkCmp = component.find("checkbox");
@@ -63,57 +69,58 @@
             if(component.get("v.allValid")) {
                            // if(isLegalCheckednext){
 
-                var action = component.get("c.updateCartProducts");
-                
-                action.setParams({opportunitySfid : component.get("v.opportunityId"),
-                                 CCProductId : component.get("v.cloudCrazeProdId"),
-                                 noOfStudents : component.get("v.Students")});
-                action.setCallback(this, function(response) {
-                    var state = response.getState();
-                    if (state === "SUCCESS") {
-                        var storeResponse = response.getReturnValue();
-                        console.log("Cart updated"+JSON.stringify(storeResponse));
-                         console.log("Cart updated>>>>>>>>>>>>>>>>>>>>."+storeResponse['encryptedCartId']);
-                        
-                        var encid = component.set("v.cloudCrazeEncryptedId",storeResponse['encryptedCartId']);
-                       
-                        console.log("Cart Encrypted Id value"+component.get("v.cloudCrazeEncryptedId"));
-                         var action2 = component.get("c.Changecartowner");
-                
-                action2.setParams({opportunitySfid : component.get("v.opportunityId"),
-                                  EncryptedId : component.get("v.cloudCrazeEncryptedId")});
-                console.log('Encryptedid>>'+component.get("v.cloudCrazeEncryptedId"));
-				  action2.setCallback(this, function(response) {
-                    var state = response.getState();
-                    if (state === "SUCCESS") {
-                         var storeResponse1 = response.getReturnValue();
-                        console.log("Cartt successfully updated>>>"+JSON.stringify(storeResponse1));
-                    }
-                  });
-                 $A.enqueueAction(action2);
-                    }
-                });
-                $A.enqueueAction(action);
-                
-               
+                var requestType = component.get("v.requestType");
+                //if (requestType != "Full Service" && requestType !== "Community") {
+                if (requestType.indexOf("Full Service") < 0 && requestType !== "Community") {
+                    var action = component.get("c.updateCartProducts");
+
+                    action.setParams({opportunitySfid : component.get("v.opportunityId"),
+                                     CCProductId : component.get("v.cloudCrazeProdId"),
+                                     noOfStudents : component.get("v.Students")});
+                    action.setCallback(this, function(response) {
+                        var state = response.getState();
+                        if (state === "SUCCESS") {
+                            var storeResponse = response.getReturnValue();
+                            console.log("Cart updated"+JSON.stringify(storeResponse));
+                             console.log("Cart updated>>>>>>>>>>>>>>>>>>>>."+storeResponse['encryptedCartId']);
+
+                            var encid = component.set("v.cloudCrazeEncryptedId",storeResponse['encryptedCartId']);
+
+                            console.log("Cart Encrypted Id value"+component.get("v.cloudCrazeEncryptedId"));
+                             var action2 = component.get("c.Changecartowner");
+
+                    action2.setParams({opportunitySfid : component.get("v.opportunityId"),
+                                      EncryptedId : component.get("v.cloudCrazeEncryptedId")});
+                    console.log('Encryptedid>>'+component.get("v.cloudCrazeEncryptedId"));
+                      action2.setCallback(this, function(response) {
+                        var state = response.getState();
+                        if (state === "SUCCESS") {
+                             var storeResponse1 = response.getReturnValue();
+                            console.log("Cartt successfully updated>>>"+JSON.stringify(storeResponse1));
+                        }
+                      });
+                     $A.enqueueAction(action2);
+                        }
+                    });
+                    $A.enqueueAction(action);
 
 
-                
-                // Show/hide credit card info
-                //Will fetch AccountContactRelation record on the basis of loggedin user's ContactId and selected account id
-                //console.log('action1..');
-                var action1 = component.get("c.getDisplayPaymentInfo"); 
-                action1.setParams({ opportunityId : component.get("v.opportunityId")});
-                action1.setCallback(this, function(response) {
-                    var state = response.getState();
-                    if (state === "SUCCESS") {
-                        debugger;
-                        var data = response.getReturnValue();
-                        component.set("v.displayPaymentInfo", data);
-                        console.log('data..'+component.get("v.displayPaymentInfo"));
-                    }
-                });
-                $A.enqueueAction(action1); 
+                    // Show/hide credit card info
+                    //Will fetch AccountContactRelation record on the basis of loggedin user's ContactId and selected account id
+                    //console.log('action1..');
+                    var action1 = component.get("c.getDisplayPaymentInfo");
+                    action1.setParams({ opportunityId : component.get("v.opportunityId")});
+                    action1.setCallback(this, function(response) {
+                        var state = response.getState();
+                        if (state === "SUCCESS") {
+                            debugger;
+                            var data = response.getReturnValue();
+                            component.set("v.displayPaymentInfo", data);
+                            console.log('data..'+component.get("v.displayPaymentInfo"));
+                        }
+                    });
+                    $A.enqueueAction(action1);
+                }
             
                 //Navigate to Step 2
                 component.set("v.stepNumber", "Two");
@@ -149,7 +156,7 @@
     },
     
     closeClass : function(cmp, evt, hlpr)
-    {  
+    {
         cmp.set("v.errorMessage","");
         cmp.set("v.showError",false);
         if(cmp.get("v.allValid")){
@@ -207,8 +214,25 @@
     cancel : function(component, event, helper){    
         component.set("v.stepNumber", "Zero");
     },
+
     closefinalClass : function(cmp, event, helper){
-    	cmp.set("v.stepNumber", "Zero");    
+    	cmp.set("v.stepNumber", "Zero");
+
+    	var requestType = cmp.get("v.requestType");
+    	console.log(requestType);
+    	debugger;
+
+        //if (requestType === "Full Service") {
+        if (requestType.indexOf("Full Service") >= 0) {
+            console.log('running update order FS');
+            helper.updateOrder(cmp, event);
+        }
+        //if (requestType === "Full Service" || requestType === "Community") {
+        if (requestType.indexOf("Full Service") >= 0 || requestType === "Community") {
+            console.log('running close class FS/Community');            
+            helper.closingClass(cmp, event, helper);
+        }
+
     },
     
     updatePaymentComplete : function(component, event, helper) {

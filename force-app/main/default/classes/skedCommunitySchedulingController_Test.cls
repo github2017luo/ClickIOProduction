@@ -262,6 +262,15 @@ private class skedCommunitySchedulingController_Test {
         list<id> jobIds = new list<id>();
         jobIds.add(dispatchjob.id);
         
+        sked__Job__c newJob = dispatchjob.clone();
+        newJob.Is_Queued__c = TRUE;
+        newJob.Job_Month__c = newJob.sked__Start__c.date().toStartOfMonth();
+        newJob.sked__Start__c = newJob.sked__Start__c.addMonths(1);
+        newJob.sked__Finish__c = newJob.sked__Finish__c.addMonths(1);
+        newJob.sked__Recurring_Schedule__c = NULL;
+        insert newJob;
+        jobIds.add(newJob.Id);
+        
         Test.startTest();
         skedCommunitySchedulingController.resolveQueuedJobs(jobIds);
         Test.stopTest();
@@ -271,6 +280,7 @@ private class skedCommunitySchedulingController_Test {
         map<string, sObject> mapTestData = skedDataSetup.setupCommunitySchedulingData();
         sked__Job__c dispatchjob = (sked__Job__c)mapTestData.get('dispatchjob');
         list<id> jobIds = new list<id>();
+        jobIds.add(dispatchjob.id);
         jobIds.add(dispatchjob.id);
         
         Test.startTest();
@@ -288,4 +298,11 @@ private class skedCommunitySchedulingController_Test {
         skedCommunitySchedulingController.cancelJobs(jobIds);
         Test.stopTest();
     }
+    
+    static testmethod void testIsAnyBatchInProcess() {
+        Test.startTest();
+        skedCommunitySchedulingController.isAnyBatchInProcess();
+        Test.stopTest();
+    }
+        
 }

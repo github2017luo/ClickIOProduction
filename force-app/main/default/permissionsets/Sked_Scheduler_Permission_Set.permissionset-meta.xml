@@ -208,6 +208,7 @@
         <apexClass>skedUtils</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <description>Gives delete jobs / classes capability</description>
     <fieldPermissions>
         <editable>true</editable>
         <field>Course_Catalog__c.Break_Duration__c</field>

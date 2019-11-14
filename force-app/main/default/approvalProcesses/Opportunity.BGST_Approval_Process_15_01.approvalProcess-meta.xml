@@ -27,12 +27,12 @@
         <entryCriteria>
             <booleanFilter>1 AND 2</booleanFilter>
             <criteriaItems>
-                <field>Opportunity.Highest_Product_Discount_Value__c</field>
+                <field>Opportunity.Highest_Discount__c</field>
                 <operation>greaterOrEqual</operation>
                 <value>15.00</value>
             </criteriaItems>
             <criteriaItems>
-                <field>Opportunity.Highest_Product_Discount_Value__c</field>
+                <field>Opportunity.Highest_Discount__c</field>
                 <operation>lessOrEqual</operation>
                 <value>20</value>
             </criteriaItems>
@@ -57,7 +57,7 @@
         <entryCriteria>
             <booleanFilter>1</booleanFilter>
             <criteriaItems>
-                <field>Opportunity.Highest_Product_Discount_Value__c</field>
+                <field>Opportunity.Highest_Discount__c</field>
                 <operation>greaterThan</operation>
                 <value>20.00</value>
             </criteriaItems>
@@ -70,20 +70,20 @@
     </approvalStep>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
-        <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
+        <booleanFilter>1 AND (2 OR 3 ) AND 4</booleanFilter>
         <criteriaItems>
-            <field>Opportunity.Highest_Product_Discount_Value__c</field>
+            <field>Opportunity.Highest_Discount__c</field>
             <operation>greaterOrEqual</operation>
             <value>15.01</value>
         </criteriaItems>
         <criteriaItems>
             <field>Opportunity.Owner_Profile__c</field>
-            <operation>equals</operation>
+            <operation>contains</operation>
             <value>ARC BGST Sales User</value>
         </criteriaItems>
         <criteriaItems>
             <field>Opportunity.Owner_Profile__c</field>
-            <operation>equals</operation>
+            <operation>contains</operation>
             <value>ARC BGST Sales Admin</value>
         </criteriaItems>
         <criteriaItems>

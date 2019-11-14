@@ -1,10 +1,11 @@
-<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+<aura:component controller = "CancelOrderItemController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
     
     <aura:attribute name = "isPrompt" 				type = "Boolean" 				default = "false"/>
     <aura:attribute name = "isDisabled" 			type = "Boolean" 				default = "false"/>
     <aura:attribute name = "hasGraterDiscount" 		type = "Boolean" 				default = "false"/>
     <aura:attribute name = "hasGraterPercent" 		type = "Boolean" 				default = "false"/>
     <aura:attribute name = "stepNumber"				type = "String" 				default = "Zero" />
+    <aura:attribute name = "oId"					type = "String"/>
     <aura:attribute name = "percentDiscount"		type = "String"/>
     <aura:attribute name = "adjPercentDiscount"		type = "String"/>
     <aura:attribute name = "adjPercentDiscountOld"	type = "String"/>
@@ -16,8 +17,8 @@
     <aura:attribute name = "method"					type = "Aura.action"/>
     <aura:attribute name = "newPrice"				type = "String" 				access="public"/>
     
-    <aura:handler 	name = "init" 			   value = "{!this}" 				    action = "{!c.doInit}"/>
-    
+    <aura:handler 	name = "init" 			   value = "{!this}" 				    action = "{!c.doInit}"/> 
+	
     <aura:if isTrue = "{!v.stepNumber == 'Zero'}" >
         <lightning:button label		= "Apply Adjustment"
                           title		= "Apply Adjustment"
@@ -54,7 +55,7 @@
                                 <div class="slds-col">
                                     <lightning:input aura:id	= "percentDiscountField"
                                                      name		= "percentDiscount"
-                                                     label		= "Percent Fee"
+                                                     label		= "Percent to refund per unit"
                                                      type		= "number"
                                                      value		= "{!v.percentDiscount}"
                                                      onchange	= "{!c.valueFieldChanged}"/>
@@ -83,7 +84,7 @@
                                 <div class="slds-col">
                                     <lightning:input aura:id	= "unitPriceField"
                                                      name		= "unitPrice"
-                                                     label		= "Price"
+                                                     label		= "Amount to refund per unit"
                                                      value		= "{!v.adjPercentDiscount}"
                                                      onchange	= "{!c.valueFieldChanged}"
                                                      type		= "number"

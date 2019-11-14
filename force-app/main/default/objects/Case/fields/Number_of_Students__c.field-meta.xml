@@ -4,7 +4,7 @@
     <description>To be used in Service Cases with Type Invoicing</description>
     <externalId>false</externalId>
     <inlineHelpText>The number of students indicated on the invoice in question.</inlineHelpText>
-    <label>Current Number of Students</label>
+    <label>Current # of Students</label>
     <precision>10</precision>
     <required>false</required>
     <scale>0</scale>

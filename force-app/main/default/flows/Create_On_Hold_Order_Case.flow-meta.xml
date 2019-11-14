@@ -13,7 +13,7 @@
         <name>Assign_Case_Values</name>
         <label>Assign Case Values</label>
         <locationX>836</locationX>
-        <locationY>45</locationY>
+        <locationY>43</locationY>
         <assignmentItems>
             <assignToReference>sCase.RecordTypeId</assignToReference>
             <operator>Assign</operator>
@@ -33,13 +33,6 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>frmOrder</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>sCase.Order_Number__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>sOrder.Order_Number_Text__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -112,6 +105,13 @@
                 <elementReference>sOrder.ccrz__Account__c</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>sCase.Case_Sub_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Organization Request</stringValue>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Create_NEW_On_Hold_Case</targetReference>
         </connector>
@@ -120,7 +120,7 @@
         <name>Case_Values_for_Invalid_Contract</name>
         <label>Case Values for Invalid Contract</label>
         <locationX>835</locationX>
-        <locationY>207</locationY>
+        <locationY>203</locationY>
         <assignmentItems>
             <assignToReference>sCase.RecordTypeId</assignToReference>
             <operator>Assign</operator>
@@ -140,13 +140,6 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>frmOrder</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>sCase.Order_Number__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>sOrder.Order_Number_Text__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -198,8 +191,54 @@
                 <elementReference>fDescription</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>sCase.AccountId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>sOrder.ccrz__Account__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>sCase.Case_Sub_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Organization Request</stringValue>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Create_NEW_On_Hold_Case</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Invoicing_Record_Type_Value</name>
+        <label>Set Invoicing Record Type Value</label>
+        <locationX>243</locationX>
+        <locationY>434</locationY>
+        <assignmentItems>
+            <assignToReference>rtInvoicing</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>sRecordType.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Record_types</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Sales_Case_Record_Type_Value</name>
+        <label>Set Sales Case Record Type Value</label>
+        <locationX>244</locationX>
+        <locationY>556</locationY>
+        <assignmentItems>
+            <assignToReference>rtSalesCase</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>sRecordType.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Record_types</targetReference>
         </connector>
     </assignments>
     <constants>
@@ -280,13 +319,10 @@
             <conditions>
                 <leftValueReference>sOrder.ccrz__OrderStatus__c</leftValueReference>
                 <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>On Hold</stringValue>
-                </rightValue>
             </conditions>
             <conditions>
                 <leftValueReference>sOrder.Error_Message__c</leftValueReference>
-                <operator>NotEqualTo</operator>
+                <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Over Credit Limit</stringValue>
                 </rightValue>
@@ -297,7 +333,47 @@
             <label>Sales Holds</label>
         </rules>
     </decisions>
-    <description>Create a case for Orders placed on hold</description>
+    <decisions>
+        <name>Type_of_Record</name>
+        <label>Type of Record</label>
+        <locationX>64</locationX>
+        <locationY>522</locationY>
+        <defaultConnector>
+            <targetReference>Loop_through_Record_types</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Invoice_Record_Type</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>sRecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Invoicing</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Invoicing_Record_Type_Value</targetReference>
+            </connector>
+            <label>Is Invoice Record Type</label>
+        </rules>
+        <rules>
+            <name>is_Sales_Case</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>sRecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Sales_Case</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Sales_Case_Record_Type_Value</targetReference>
+            </connector>
+            <label>is Sales Case</label>
+        </rules>
+    </decisions>
+    <description>Create a case for Orders placed on hold - Remove Order Number Text</description>
     <formulas>
         <description>Subject for Case</description>
         <name>fCaseSubject</name>
@@ -307,10 +383,25 @@
     <formulas>
         <name>fDescription</name>
         <dataType>String</dataType>
-        <expression>&quot;Order Number: &quot; &amp; {!sOrder.Order_Number_Text__c} &amp; &quot; has been placed on hold for the following reason: &quot; &amp; {!sOrder.Error_Message__c}</expression>
+        <expression>&quot;Order Number: &quot; &amp; {!sOrder.Name} &amp; &quot; has been placed on hold for the following reason: &quot; &amp; {!sOrder.Error_Message__c}</expression>
     </formulas>
     <interviewLabel>Create On Hold Case {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Create On Hold Order Case</label>
+    <loops>
+        <name>Loop_through_Record_types</name>
+        <label>Loop through Record types</label>
+        <locationX>58</locationX>
+        <locationY>361</locationY>
+        <assignNextValueToReference>sRecordType</assignNextValueToReference>
+        <collectionReference>colRecordTypes</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Type_of_Record</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Check_if_Case_Exists</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -328,15 +419,15 @@
         <description>Create a new on hold case record for On Hold order if Case has not been closed</description>
         <name>Create_NEW_On_Hold_Case</name>
         <label>Create NEW On Hold Case</label>
-        <locationX>993</locationX>
-        <locationY>124</locationY>
+        <locationX>994</locationX>
+        <locationY>125</locationY>
         <inputReference>sCase</inputReference>
     </recordCreates>
     <recordLookups>
         <name>Check_if_Case_Exists</name>
         <label>Check if Case Exists</label>
-        <locationX>177</locationX>
-        <locationY>46</locationY>
+        <locationX>209</locationX>
+        <locationY>157</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Found_Existing_Case_Record</targetReference>
@@ -386,21 +477,14 @@
         <queriedFields>Instructor_Account__c</queriedFields>
     </recordLookups>
     <recordLookups>
-        <name>Get_Invalid_Contract_Record_Type</name>
-        <label>Get Invalid Contract Record Type</label>
-        <locationX>180</locationX>
-        <locationY>218</locationY>
+        <name>Get_Case_Record_Types</name>
+        <label>Get Case Record Types</label>
+        <locationX>50</locationX>
+        <locationY>173</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Check_if_Case_Exists</targetReference>
+            <targetReference>Loop_through_Record_types</targetReference>
         </connector>
-        <filters>
-            <field>DeveloperName</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Sales_Case</stringValue>
-            </value>
-        </filters>
         <filters>
             <field>SobjectType</field>
             <operator>EqualTo</operator>
@@ -409,46 +493,16 @@
             </value>
         </filters>
         <object>RecordType</object>
-        <outputAssignments>
-            <assignToReference>rtSalesCase</assignToReference>
-            <field>Id</field>
-        </outputAssignments>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_On_Hold_Order_Record_type</name>
-        <label>Get On Hold Order Record type</label>
-        <locationX>73</locationX>
-        <locationY>215</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_Invalid_Contract_Record_Type</targetReference>
-        </connector>
-        <filters>
-            <field>DeveloperName</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Invoicing</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>SobjectType</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Case</stringValue>
-            </value>
-        </filters>
-        <object>RecordType</object>
-        <outputAssignments>
-            <assignToReference>rtInvoicing</assignToReference>
-            <field>Id</field>
-        </outputAssignments>
+        <outputReference>colRecordTypes</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>DeveloperName</queriedFields>
     </recordLookups>
     <recordLookups>
         <description>Prepare for setting case information</description>
         <name>Get_Order_Information</name>
         <label>Get Order Information</label>
-        <locationX>516</locationX>
-        <locationY>45</locationY>
+        <locationX>568</locationX>
+        <locationY>7</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Order_Status_On_Hold</targetReference>
@@ -471,11 +525,19 @@
         <queriedFields>ccrz__OrderName__c</queriedFields>
         <queriedFields>ccrz__Order__c</queriedFields>
         <queriedFields>Error_Message__c</queriedFields>
-        <queriedFields>Order_Number_Text__c</queriedFields>
         <queriedFields>ccrz__OrderStatus__c</queriedFields>
+        <queriedFields>Name</queriedFields>
     </recordLookups>
-    <startElementReference>Get_On_Hold_Order_Record_type</startElementReference>
-    <status>Active</status>
+    <startElementReference>Get_Case_Record_Types</startElementReference>
+    <status>Draft</status>
+    <variables>
+        <name>colRecordTypes</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>RecordType</objectType>
+    </variables>
     <variables>
         <name>frmOrder</name>
         <dataType>String</dataType>
@@ -485,6 +547,14 @@
         <value>
             <stringValue/>
         </value>
+    </variables>
+    <variables>
+        <name>frmOrderRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>ccrz__E_Order__c</objectType>
     </variables>
     <variables>
         <name>rtInvoicing</name>
@@ -516,5 +586,13 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>ccrz__E_Order__c</objectType>
+    </variables>
+    <variables>
+        <name>sRecordType</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>RecordType</objectType>
     </variables>
 </Flow>

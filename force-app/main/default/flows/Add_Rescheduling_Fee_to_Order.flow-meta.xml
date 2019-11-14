@@ -3,8 +3,8 @@
     <assignments>
         <name>Set_Order_Fulfillment</name>
         <label>Set Order Fulfillment</label>
-        <locationX>557</locationX>
-        <locationY>343</locationY>
+        <locationX>611</locationX>
+        <locationY>364</locationY>
         <assignmentItems>
             <assignToReference>sFulfillment.Fulfillment_Date__c</assignToReference>
             <operator>Assign</operator>
@@ -123,6 +123,56 @@
             <stringValue>Reschedule Fee</stringValue>
         </value>
     </constants>
+    <decisions>
+        <name>Found_Fee</name>
+        <label>Found Fee</label>
+        <locationX>347</locationX>
+        <locationY>435</locationY>
+        <defaultConnector>
+            <targetReference>Rescheduling_Fee_Missing</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Fee_Known</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Look_Up_Product</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Look_Up_Fee</targetReference>
+            </connector>
+            <label>Fee Known</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Missing_Pricing</name>
+        <label>Missing Pricing</label>
+        <locationX>343</locationX>
+        <locationY>145</locationY>
+        <defaultConnector>
+            <targetReference>Pricing_Not_Found</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Pricing_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Look_Up_Fee</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_ILT_Class</targetReference>
+            </connector>
+            <label>Pricing Found</label>
+        </rules>
+    </decisions>
     <description>Add ILT Class - Removed Offering ID</description>
     <interviewLabel>Add Rescheduling Fee to Order {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Add Rescheduling Fee to Order</label>
@@ -136,8 +186,8 @@
     <recordCreates>
         <name>Add_to_Order_Item</name>
         <label>Add Fee to Order Item</label>
-        <locationX>556</locationX>
-        <locationY>239</locationY>
+        <locationX>623</locationX>
+        <locationY>217</locationY>
         <connector>
             <targetReference>Set_Order_Fulfillment</targetReference>
         </connector>
@@ -156,7 +206,7 @@
         <inputAssignments>
             <field>ccrz__OrderItemStatus__c</field>
             <value>
-                <stringValue>Shipped</stringValue>
+                <stringValue>In Process</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -224,8 +274,8 @@
     <recordCreates>
         <name>Create_Order_Fulfillment</name>
         <label>Create Order Fulfillment</label>
-        <locationX>721</locationX>
-        <locationY>347</locationY>
+        <locationX>757</locationX>
+        <locationY>361</locationY>
         <connector>
             <targetReference>Set_Order_Fulfillment_Item</targetReference>
         </connector>
@@ -241,8 +291,8 @@
     <recordLookups>
         <name>Get_ILT_Class</name>
         <label>Get ILT Class</label>
-        <locationX>457</locationX>
-        <locationY>133</locationY>
+        <locationX>485</locationX>
+        <locationY>116</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Transaction</targetReference>
@@ -282,11 +332,11 @@
     <recordLookups>
         <name>Look_Up_Fee</name>
         <label>Look Up Fee</label>
-        <locationX>381</locationX>
-        <locationY>240</locationY>
+        <locationX>356</locationX>
+        <locationY>262</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_ILT_Class</targetReference>
+            <targetReference>Missing_Pricing</targetReference>
         </connector>
         <filters>
             <field>ccrz__EndDate__c</field>
@@ -320,11 +370,11 @@
     <recordLookups>
         <name>Look_Up_Product</name>
         <label>Look Up Product</label>
-        <locationX>378</locationX>
-        <locationY>342</locationY>
+        <locationX>189</locationX>
+        <locationY>428</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Look_Up_Fee</targetReference>
+            <targetReference>Found_Fee</targetReference>
         </connector>
         <filters>
             <field>Name</field>
@@ -394,6 +444,22 @@
         <queriedFields>CC_Order__c</queriedFields>
     </recordLookups>
     <screens>
+        <name>Pricing_Not_Found</name>
+        <label>Pricing Not Found</label>
+        <locationX>348</locationX>
+        <locationY>26</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>PricingError</name>
+            <fieldText>&lt;p&gt;Pricing NOT FOUND&lt;/p&gt;&lt;p&gt;Please add pricing for item:&lt;/p&gt;&lt;p&gt;&lt;b&gt;{!RescheduleFee}&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Please contact your system administrator&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
         <name>Reschedule_Fee_Screen</name>
         <label>Reschedule Fee Screen</label>
         <locationX>181</locationX>
@@ -414,6 +480,22 @@
             <fieldText>Comments</fieldText>
             <fieldType>LargeTextArea</fieldType>
             <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Rescheduling_Fee_Missing</name>
+        <label>Rescheduling Fee Missing</label>
+        <locationX>359</locationX>
+        <locationY>592</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>ProductError</name>
+            <fieldText>&lt;p&gt;Item: &lt;b&gt;{!RescheduleFee} &lt;/b&gt;&lt;/p&gt;&lt;p&gt;has not been added to the CC Product table&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Please contact the system administrator to add.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>

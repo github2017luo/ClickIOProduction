@@ -39,6 +39,17 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
+                <name>displayMode</name>
+                <value>All</value>
+            </componentInstanceProperties>
+            <componentName>ltui:LearningPlanBuilderCmp</componentName>
+        </componentInstances>
+        <name>Facet-240066f9-36e1-4053-9df8-4563a74fd982</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
                 <name>body</name>
                 <value>relatedTabContent</value>
             </componentInstanceProperties>
@@ -60,6 +71,17 @@
             <componentInstanceProperties>
                 <name>title</name>
                 <value>Standard.Tab.detail</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tab</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>body</name>
+                <value>Facet-240066f9-36e1-4053-9df8-4563a74fd982</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Plan Builder</value>
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>

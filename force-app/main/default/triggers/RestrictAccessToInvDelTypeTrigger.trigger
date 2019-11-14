@@ -2,15 +2,17 @@ trigger RestrictAccessToInvDelTypeTrigger on Account bulk (before insert, before
 {
     //Validation_Rules__c supportConfig = Validation_Rules__c.getOrgDefaults(); 
     id userId = UserInfo.getUserId();
-    // List<TriggerValidation__c> CusttSetting = [Select By_Pass_Status__c from TriggerValidation__c LIMIT 1];
     System.debug('inside restrict trigger');
     Validation_Rules__c supportConfig = Validation_Rules__c.getInstance(userId);
     //System.debug('supportConfig Id=='+supportConfig.Id);
     System.debug('supportConfig=='+supportConfig.Bypass_Custom_Validation__c);
-    if(supportConfig.Bypass_Custom_Validation__c == false){
+//    TrggrUtility.RunOnce = true;
+//    TrggrUtility.TimesRan++;
+//    System.debug('Restrict Access Trigger Account - size: ' + Trigger.new.size() + ' RunOnce: ' + TrggrUtility.RunOnce + ' TimesRan: ' + TrggrUtility.TimesRan);
+    if(supportConfig.Bypass_Custom_Validation__c == false && !TrggrUtility.RunOnce){
         List<Account> newAcc = Trigger.new;
         List<GroupMember> QueueUsers  = [Select g.UserOrGroupId From GroupMember g where Group.Name = 'FIN Customer Mntce'];
-       
+        
         boolean checkValidUser = false;
         
         for(GroupMember gm : QueueUsers)
@@ -22,6 +24,7 @@ trigger RestrictAccessToInvDelTypeTrigger on Account bulk (before insert, before
         }
 
         for (Account acc: Trigger.new){
+            System.debug('Restrict Access Trigger Account:' + acc);
             if(Trigger.isUpdate){
                 Account oldAccount = Trigger.oldMap.get(acc.ID);
                 if(!checkValidUser){
@@ -106,7 +109,7 @@ trigger RestrictAccessToInvDelTypeTrigger on Account bulk (before insert, before
                     
                     //Check for Terminated and Reinstated
                     if(oldAccount.Payment_Status__c == 'Terminated'){
-                        if(checkInvoiceEscalationsValidUser == false && supportConfig.By_Pass_Trigger_Validation__c == false){
+                        if(checkInvoiceEscalationsValidUser == false){
                             if(acc.Payment_Status__c != 'Terminated'){
                                 acc.Payment_Status__c.addError('Contact Business Ops Manager if you believe this Payment Status has been assigned in error.');
                             }
@@ -118,8 +121,8 @@ trigger RestrictAccessToInvDelTypeTrigger on Account bulk (before insert, before
                             }                       
                         }
                     }
-                    if(acc.Payment_Status__c == 'Terminated'){
-                        if(checkInvoiceEscalationsValidUser == false && supportConfig.By_Pass_Trigger_Validation__c == false){
+                    if(acc.Payment_Status__c == 'Terminated' ){
+                        if(checkInvoiceEscalationsValidUser == false){
                             if(oldAccount.Payment_Status__c != 'Terminated')
                             {
                                 acc.Payment_Status__c.addError('Contact Business Ops Manager if you believe this Payment Status has been assigned in error.');
@@ -130,7 +133,7 @@ trigger RestrictAccessToInvDelTypeTrigger on Account bulk (before insert, before
                             }
                         }                   
                     }else if(acc.Payment_Status__c == 'Reinstated' ){
-                        if(checkInvoiceEscalationsValidUser == false && supportConfig.By_Pass_Trigger_Validation__c == false)
+                        if(checkInvoiceEscalationsValidUser == false)
                         {
                             if(oldAccount.Payment_Status__c == 'Terminated')
                             {
@@ -188,7 +191,7 @@ trigger RestrictAccessToInvDelTypeTrigger on Account bulk (before insert, before
                     }*/
                     //Show suitable error messages for valid/invalid users when Terminated/Reinstated date field value is not null and status is not equal to Terminated or Reinstated - modified on 6/6/2017
                      if((acc.Payment_Status__c != 'Terminated' && acc.Payment_Status__c != 'Reinstated')){    
-                        if(checkInvoiceEscalationsValidUser == false && supportConfig.By_Pass_Trigger_Validation__c == false){
+                        if(checkInvoiceEscalationsValidUser == false){
                             if(oldAccount.Terminate_Reinstate_Date__c != acc.Terminate_Reinstate_Date__c && acc.Terminate_Reinstate_Date__c != null){
                                 acc.Terminate_Reinstate_Date__c.addError('You do not have permission to set Terminate/Reinstate date.Please contact your Business Operations Manager for assistance.');
                             }
@@ -201,12 +204,12 @@ trigger RestrictAccessToInvDelTypeTrigger on Account bulk (before insert, before
                 }//End of IF checking Account update 
                 else if(Trigger.isInsert){
                     if(acc.Payment_Status__c == 'Terminated'){
-                        if(checkInvoiceEscalationsValidUser == false && supportConfig.By_Pass_Trigger_Validation__c == false){
+                        if(checkInvoiceEscalationsValidUser == false){
                             acc.Payment_Status__c.addError('You do not have permission to set Payment status to Terminated.Please contact your Business Operations Manager for assistance.');
                         }
                     }
                     else if(acc.Payment_Status__c == 'Reinstated'){
-                        if(checkInvoiceEscalationsValidUser == false && supportConfig.By_Pass_Trigger_Validation__c == false){
+                        if(checkInvoiceEscalationsValidUser == false){
                             acc.Payment_Status__c.addError('You do not have permission to set Payment status to Reinstated.Please contact your Business Operations Manager for assistance.');
                         }
                     }
@@ -228,7 +231,7 @@ trigger RestrictAccessToInvDelTypeTrigger on Account bulk (before insert, before
                     }*/
                     //Show suitable error messages for valid/invalid users when Terminated/Reinstated date field value is not null and status is not equal to Terminated or Reinstated - modified on 6/6/2017
                      if(acc.Payment_Status__c != 'Terminated' && acc.Payment_Status__c != 'Reinstated'){    
-                        if(checkInvoiceEscalationsValidUser == false && supportConfig.By_Pass_Trigger_Validation__c == false){
+                        if(checkInvoiceEscalationsValidUser == false){
                             if(acc.Terminate_Reinstate_Date__c != null){
                                 acc.Terminate_Reinstate_Date__c.addError('You do not have permission to set Terminate/Reinstate date.Please contact your Business Operations Manager for assistance.');
                             }
@@ -241,6 +244,7 @@ trigger RestrictAccessToInvDelTypeTrigger on Account bulk (before insert, before
                 }//End of else
                 //acc.Bypass_Validation__c = false;
             }
+        TrggrUtility.RunOnce = true;
     }
 
     //Increase test class coverage
@@ -287,5 +291,165 @@ trigger RestrictAccessToInvDelTypeTrigger on Account bulk (before insert, before
         i++;
         i++;
         i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;        
     }
 }

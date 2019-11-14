@@ -4,7 +4,7 @@
     <description>Used for Service Cases of Type Invoice</description>
     <externalId>false</externalId>
     <inlineHelpText>Indicate if proof of payment is attached to case.</inlineHelpText>
-    <label>Proof Of Payment Attached</label>
+    <label>Proof of Payment Attached?</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>

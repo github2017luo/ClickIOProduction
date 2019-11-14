@@ -10,7 +10,7 @@
     <valueSet>
         <controllingField>Type</controllingField>
         <valueSetDefinition>
-            <sorted>false</sorted>
+            <sorted>true</sorted>
             <value>
                 <fullName>2017 Rev/Chal Price Change</fullName>
                 <default>false</default>
@@ -25,6 +25,11 @@
                 <fullName>Abandoned in Portal</fullName>
                 <default>false</default>
                 <label>Abandoned in Portal</label>
+            </value>
+            <value>
+                <fullName>Age requirement</fullName>
+                <default>false</default>
+                <label>Age requirement</label>
             </value>
             <value>
                 <fullName>AHA Crossover</fullName>
@@ -55,6 +60,11 @@
                 <fullName>Application Info sent to customer</fullName>
                 <default>false</default>
                 <label>Application Info sent to customer</label>
+            </value>
+            <value>
+                <fullName>Approved</fullName>
+                <default>false</default>
+                <label>Approved</label>
             </value>
             <value>
                 <fullName>AP Scheduling Tool</fullName>
@@ -100,6 +110,16 @@
                 <fullName>Cardio</fullName>
                 <default>false</default>
                 <label>Cardio</label>
+            </value>
+            <value>
+                <fullName>Careers</fullName>
+                <default>false</default>
+                <label>Careers</label>
+            </value>
+            <value>
+                <fullName>Centennial Program</fullName>
+                <default>false</default>
+                <label>Centennial Program</label>
             </value>
             <value>
                 <fullName>Certifications</fullName>
@@ -152,6 +172,16 @@
                 <label>Correct</label>
             </value>
             <value>
+                <fullName>Correction of Cancellation Fee</fullName>
+                <default>false</default>
+                <label>Correction of Cancellation Fee</label>
+            </value>
+            <value>
+                <fullName>Cost of training</fullName>
+                <default>false</default>
+                <label>Cost of training</label>
+            </value>
+            <value>
                 <fullName>Coupons/Promos</fullName>
                 <default>false</default>
                 <label>Coupons/Promos</label>
@@ -167,6 +197,11 @@
                 <label>Course Change</label>
             </value>
             <value>
+                <fullName>Course language offerings</fullName>
+                <default>false</default>
+                <label>Course language offerings</label>
+            </value>
+            <value>
                 <fullName>Course Record Certification</fullName>
                 <default>false</default>
                 <label>Course Record Certification</label>
@@ -180,6 +215,11 @@
                 <fullName>Course Record-  Replacement Cert Request</fullName>
                 <default>false</default>
                 <label>Course Record-  Replacement Cert Request</label>
+            </value>
+            <value>
+                <fullName>Course requirements</fullName>
+                <default>false</default>
+                <label>Course requirements</label>
             </value>
             <value>
                 <fullName>Create Blended Learning Offering</fullName>
@@ -205,6 +245,21 @@
                 <fullName>CRS - Name Correction - TSC</fullName>
                 <default>false</default>
                 <label>CRS - Name Correction - TSC</label>
+            </value>
+            <value>
+                <fullName>Curriculum question</fullName>
+                <default>false</default>
+                <label>Curriculum question</label>
+            </value>
+            <value>
+                <fullName>Denied</fullName>
+                <default>false</default>
+                <label>Denied</label>
+            </value>
+            <value>
+                <fullName>Digital Cert for Online Courses</fullName>
+                <default>false</default>
+                <label>Digital Cert for Online Courses</label>
             </value>
             <value>
                 <fullName>Direct Links</fullName>
@@ -237,6 +292,11 @@
                 <label>Fraud</label>
             </value>
             <value>
+                <fullName>Free/discounted courses</fullName>
+                <default>false</default>
+                <label>Free/discounted courses</label>
+            </value>
+            <value>
                 <fullName>FS – Blended Learning</fullName>
                 <default>false</default>
                 <label>FS – Blended Learning</label>
@@ -262,9 +322,19 @@
                 <label>Granted Grace Period for Expired Base Level Cert</label>
             </value>
             <value>
+                <fullName>Headquarters location</fullName>
+                <default>false</default>
+                <label>Headquarters location</label>
+            </value>
+            <value>
                 <fullName>Health Fairs</fullName>
                 <default>false</default>
                 <label>Health Fairs</label>
+            </value>
+            <value>
+                <fullName>HealthStream</fullName>
+                <default>false</default>
+                <label>HealthStream</label>
             </value>
             <value>
                 <fullName>Incorrect</fullName>
@@ -332,6 +402,11 @@
                 <label>Instructor Profile Update</label>
             </value>
             <value>
+                <fullName>Instructor Supplies</fullName>
+                <default>false</default>
+                <label>Instructor Supplies</label>
+            </value>
+            <value>
                 <fullName>Invalid Delivery Type</fullName>
                 <default>false</default>
                 <label>Invalid Delivery Type</label>
@@ -350,6 +425,11 @@
                 <fullName>Lifeguarding</fullName>
                 <default>false</default>
                 <label>Lifeguarding</label>
+            </value>
+            <value>
+                <fullName>Lifesaving Awards</fullName>
+                <default>false</default>
+                <label>Lifesaving Awards</label>
             </value>
             <value>
                 <fullName>LMS Error</fullName>
@@ -417,6 +497,11 @@
                 <label>MTN</label>
             </value>
             <value>
+                <fullName>MTN Instructor/IT Updates</fullName>
+                <default>false</default>
+                <label>MTN Instructor/IT Updates</label>
+            </value>
+            <value>
                 <fullName>MTN Bridge</fullName>
                 <default>false</default>
                 <label>MTN Instructor Bridge</label>
@@ -425,6 +510,11 @@
                 <fullName>MTN IT Bridge</fullName>
                 <default>false</default>
                 <label>MTN IT Bridge</label>
+            </value>
+            <value>
+                <fullName>NAT Testing</fullName>
+                <default>false</default>
+                <label>NAT Testing</label>
             </value>
             <value>
                 <fullName>New</fullName>
@@ -457,6 +547,11 @@
                 <label>No Certificate Found</label>
             </value>
             <value>
+                <fullName>No classes found in area</fullName>
+                <default>false</default>
+                <label>No classes found in area</label>
+            </value>
+            <value>
                 <fullName>No Coupon Created</fullName>
                 <default>false</default>
                 <label>No Coupon Created</label>
@@ -487,6 +582,11 @@
                 <label>Other</label>
             </value>
             <value>
+                <fullName>Partner Profile Update</fullName>
+                <default>false</default>
+                <label>Partner Profile Update</label>
+            </value>
+            <value>
                 <fullName>PDF of Certs Sent</fullName>
                 <default>false</default>
                 <label>PDF of Certs Sent</label>
@@ -512,9 +612,29 @@
                 <label>Presentation</label>
             </value>
             <value>
+                <fullName>Product complaint</fullName>
+                <default>false</default>
+                <label>Product complaint</label>
+            </value>
+            <value>
+                <fullName>Product question</fullName>
+                <default>false</default>
+                <label>Product question</label>
+            </value>
+            <value>
+                <fullName>Purchase an AED</fullName>
+                <default>false</default>
+                <label>Purchase an AED</label>
+            </value>
+            <value>
                 <fullName>Questions</fullName>
                 <default>false</default>
                 <label>Questions</label>
+            </value>
+            <value>
+                <fullName>Questions about NAT Location Offerings</fullName>
+                <default>false</default>
+                <label>Questions about NAT Location Offerings</label>
             </value>
             <value>
                 <fullName>Questions about NAT Registration Process</fullName>
@@ -587,6 +707,11 @@
                 <label>Registration Fee paid</label>
             </value>
             <value>
+                <fullName>Requested</fullName>
+                <default>false</default>
+                <label>Requested</label>
+            </value>
+            <value>
                 <fullName>Request for Old Version of Code</fullName>
                 <default>false</default>
                 <label>Request for Old Version of Code</label>
@@ -657,6 +782,11 @@
                 <label>Status of Order</label>
             </value>
             <value>
+                <fullName>Story Share</fullName>
+                <default>false</default>
+                <label>Story Share</label>
+            </value>
+            <value>
                 <fullName>Submitted by Email</fullName>
                 <default>false</default>
                 <label>Submitted by Email</label>
@@ -718,6 +848,10 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Aquatics</controllingFieldValue>
+            <valueName>Centennial Program</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Aquatics</controllingFieldValue>
             <valueName>Lifeguarding</valueName>
         </valueSettings>
         <valueSettings>
@@ -749,6 +883,18 @@
             <valueName>Water Safety Instructor Classes</valueName>
         </valueSettings>
         <valueSettings>
+            <controllingFieldValue>Prepayment on Account</controllingFieldValue>
+            <valueName>Approved</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Prepayment on Account</controllingFieldValue>
+            <valueName>Denied</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Prepayment on Account</controllingFieldValue>
+            <valueName>Requested</valueName>
+        </valueSettings>
+        <valueSettings>
             <controllingFieldValue>Course Codes</controllingFieldValue>
             <valueName>Invalid Delivery Type</valueName>
         </valueSettings>
@@ -775,6 +921,19 @@
         <valueSettings>
             <controllingFieldValue>Instructors</controllingFieldValue>
             <valueName>Certifications</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Instructors</controllingFieldValue>
+            <controllingFieldValue>Course Records</controllingFieldValue>
+            <valueName>HealthStream</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Instructors</controllingFieldValue>
+            <valueName>Instructor Supplies</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Instructors</controllingFieldValue>
+            <valueName>MTN Instructor/IT Updates</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Instructors</controllingFieldValue>
@@ -858,6 +1017,7 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Nurse Assistant Training</controllingFieldValue>
+            <controllingFieldValue>CEP</controllingFieldValue>
             <valueName>Application Fee paid</valueName>
         </valueSettings>
         <valueSettings>
@@ -874,15 +1034,24 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Nurse Assistant Training</controllingFieldValue>
+            <valueName>NAT Testing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Nurse Assistant Training</controllingFieldValue>
             <valueName>New Agency Lead</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Nurse Assistant Training</controllingFieldValue>
             <controllingFieldValue>Non PHSS Referral</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
             <controllingFieldValue>Product Sales Referral</controllingFieldValue>
             <controllingFieldValue>Community Course Support</controllingFieldValue>
             <controllingFieldValue>Course Records</controllingFieldValue>
             <valueName>Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Nurse Assistant Training</controllingFieldValue>
+            <valueName>Questions about NAT Location Offerings</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Nurse Assistant Training</controllingFieldValue>
@@ -899,6 +1068,7 @@
         <valueSettings>
             <controllingFieldValue>Nurse Assistant Training</controllingFieldValue>
             <controllingFieldValue>CEP</controllingFieldValue>
+            <controllingFieldValue>AED</controllingFieldValue>
             <valueName>Transfer</valueName>
         </valueSettings>
         <valueSettings>
@@ -929,31 +1099,31 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>CEP</controllingFieldValue>
+            <controllingFieldValue>AED</controllingFieldValue>
             <valueName>Individual Pay</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>CEP</controllingFieldValue>
-            <valueName>Initial Inquiry</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>CEP</controllingFieldValue>
-            <valueName>Questions</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>CEP</controllingFieldValue>
+            <controllingFieldValue>AED</controllingFieldValue>
             <valueName>Refund</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>CEP</controllingFieldValue>
+            <controllingFieldValue>AED</controllingFieldValue>
             <valueName>Retest</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>CEP</controllingFieldValue>
+            <controllingFieldValue>AED</controllingFieldValue>
             <valueName>Sponsored</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Non PHSS Referral</controllingFieldValue>
             <valueName>Blood</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non PHSS Referral</controllingFieldValue>
+            <valueName>Careers</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Non PHSS Referral</controllingFieldValue>
@@ -986,6 +1156,30 @@
         <valueSettings>
             <controllingFieldValue>RCS PO</controllingFieldValue>
             <valueName>RCS PO Inquiry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Headquarters location</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Lifesaving Awards</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Product complaint</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Product question</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Purchase an AED</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Story Share</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Credit Card Dispute</controllingFieldValue>
@@ -1076,6 +1270,14 @@
             <valueName>Use of Portal</valueName>
         </valueSettings>
         <valueSettings>
+            <controllingFieldValue>AED</controllingFieldValue>
+            <valueName>Initial Inquiry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>AED</controllingFieldValue>
+            <valueName>Questions</valueName>
+        </valueSettings>
+        <valueSettings>
             <controllingFieldValue>Certificates</controllingFieldValue>
             <valueName>Course Record - Initial Cert Request</valueName>
         </valueSettings>
@@ -1094,6 +1296,10 @@
         <valueSettings>
             <controllingFieldValue>Certificates</controllingFieldValue>
             <valueName>CRS - Name Correction - TSC</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Certificates</controllingFieldValue>
+            <valueName>Digital Cert for Online Courses</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Certificates</controllingFieldValue>
@@ -1141,6 +1347,10 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Community Course Registration</controllingFieldValue>
+            <valueName>Correction of Cancellation Fee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Community Course Registration</controllingFieldValue>
             <valueName>Course Cancel</valueName>
         </valueSettings>
         <valueSettings>
@@ -1161,7 +1371,35 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Community Course Support</controllingFieldValue>
+            <valueName>Age requirement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Community Course Support</controllingFieldValue>
+            <valueName>Cost of training</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Community Course Support</controllingFieldValue>
+            <valueName>Course language offerings</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Community Course Support</controllingFieldValue>
+            <valueName>Course requirements</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Community Course Support</controllingFieldValue>
+            <valueName>Curriculum question</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Community Course Support</controllingFieldValue>
+            <valueName>Free/discounted courses</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Community Course Support</controllingFieldValue>
             <valueName>Logistics</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Community Course Support</controllingFieldValue>
+            <valueName>No classes found in area</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Course Records</controllingFieldValue>
@@ -1214,6 +1452,10 @@
         <valueSettings>
             <controllingFieldValue>User Account Maintenance</controllingFieldValue>
             <valueName>Learner Profile Update</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>User Account Maintenance</controllingFieldValue>
+            <valueName>Partner Profile Update</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>AP Blended Learning</controllingFieldValue>

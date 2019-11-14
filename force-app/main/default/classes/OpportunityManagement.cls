@@ -73,13 +73,17 @@ public without sharing class OpportunityManagement
            
             //if(opp.owner.profile.name == Constants.BGST_Profile) {if(opp.Pricing_Approval_Level__c == Constants.APPROVAL_LEVEL_SALES_DIRECTOR)
            System.debug('Profile Name1234:'+opp.owner.profile.name+':Owner Profile:'+opp.Owner_Profile__c); 
-            if(opp.Owner_Profile__c == BGSTProfiles.Sales_User__c  || opp.Owner_Profile__c == BGSTProfiles.Sales_Admin__c)
+            if(opp.Owner_Profile__c == BGSTProfiles.Sales_User__c  || opp.Owner_Profile__c == BGSTProfiles.Sales_Admin__c || opp.Owner_Profile__c.contains('BGST') )
             // {if(opp.Pricing_Approval_Level__c == Constants.APPROVAL_LEVEL_SALES_DIRECTOR)
             {
                 //System.debug('Approval level is ' + opp.Pricing_Approval_Level__c + ' , setting Approvals to Management chain');
                 //Modified by Sudhir to change logic as per new requirement - Apr 3rd 2017
-                System.debug('Highest Discount:'+opp.Highest_Product_Discount_Value__c); 
-                if(opp.Highest_Product_Discount_Value__c>= 15.01 && opp.Highest_Product_Discount_Value__c <= 20.00)
+                //SW - System.debug('Highest Discount:'+opp.Highest_Product_Discount_Value__c); 
+                
+                System.debug('Highest Discount:'+opp.Highest_Discount__c);
+                
+                // SW - if(opp.Highest_Product_Discount_Value__c>= 15.01 && opp.Highest_Product_Discount_Value__c <= 20.00)
+                if(opp.Highest_Discount__c>= 15.01 && opp.Highest_Discount__c <= 20.00)
                 {
                     //Hard coded and needs to go into custom settings
                     //opp.Approver_1__c = '005d00000040ghi';
@@ -89,7 +93,8 @@ public without sharing class OpportunityManagement
                     // opp.Approval_Status__c='Submit for Approval';
                     opp.Pricing_Approval_Level__c='Submit for Approval';
                 }
-                else if (opp.Highest_Product_Discount_Value__c > 20.00)
+                //else if (opp.Highest_Product_Discount_Value__c > 20.00)
+                else if (opp.Highest_Discount__c > 20.00)
                 {
                     //Hard coded and needs to go into custom settings
                     //opp.Approver_1__c = '005d00000040ghi';                     
@@ -152,19 +157,22 @@ public without sharing class OpportunityManagement
             {
                 System.debug('Actual++'+ opp.RecordTypeId + 'coming'+Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('AES').getRecordTypeId());
                 
-                if(opp.Highest_Product_Discount_Value__c > 10.01 &&opp.Highest_Product_Discount_Value__c <= 20.00)
+                //if(opp.Highest_Product_Discount_Value__c > 10.01 &&opp.Highest_Product_Discount_Value__c <= 20.00)
+                if(opp.Highest_Discount__c > 10.01 &&opp.Highest_Discount__c <= 20.00)
                 {
                     opp.Approver_1__c = mapUsers.get(opp.OwnerId).ManagerId;
                     System.debug('inside approval1'+opp.Approver_1__c);
                 }
-                else if (opp.Highest_Product_Discount_Value__c > 20.01 &&opp.Highest_Product_Discount_Value__c <= 30.00)
+                //else if (opp.Highest_Product_Discount_Value__c > 20.01 &&opp.Highest_Product_Discount_Value__c <= 30.00)
+                else if (opp.Highest_Discount__c > 20.01 &&opp.Highest_Discount__c <= 30.00)
                 {
                     opp.Approver_1__c = mapUsers.get(opp.OwnerId).ManagerId; 
                     //Assignning "Sara Symanski" the AQ Director as approver 2
                     opp.Approver_2__c =approverForAES.ID_of_Director__c;
                     System.debug('Approver 2 '+opp.Approver_2__c);
                 }
-                else if(opp.Highest_Product_Discount_Value__c > 30.01)
+                //else if(opp.Highest_Product_Discount_Value__c > 30.01)
+                else if(opp.Highest_Discount__c > 30.01)
                 {
                     opp.Approver_1__c = mapUsers.get(opp.OwnerId).ManagerId;
                     //Assignning "Sara Symanski" the AQ Director as approver 2
