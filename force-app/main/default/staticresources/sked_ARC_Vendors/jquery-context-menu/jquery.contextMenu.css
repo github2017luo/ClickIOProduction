@@ -1,61 +1,51 @@
 @charset "UTF-8";
-/*!
- * jQuery contextMenu - Plugin for simple contextMenu handling
- *
- * Version: v2.4.3-dev
- *
- * Authors: Björn Brala (SWIS.nl), Rodney Rehm, Addy Osmani (patches for FF)
- * Web: http://swisnl.github.io/jQuery-contextMenu/
- *
- * Copyright (c) 2011-2017 SWIS BV and contributors
- *
- * Licensed under
- *   MIT License http://www.opensource.org/licenses/mit-license
- *
- * Date: 2017-01-02T09:05:55.135Z
- */
+
 @-webkit-keyframes cm-spin {
   0% {
     -webkit-transform: translateY(-50%) rotate(0deg);
-            transform: translateY(-50%) rotate(0deg);
+    transform: translateY(-50%) rotate(0deg);
   }
+  
   100% {
     -webkit-transform: translateY(-50%) rotate(359deg);
-            transform: translateY(-50%) rotate(359deg);
+    transform: translateY(-50%) rotate(359deg);
   }
 }
+
 @-o-keyframes cm-spin {
   0% {
     -webkit-transform: translateY(-50%) rotate(0deg);
-         -o-transform: translateY(-50%) rotate(0deg);
-            transform: translateY(-50%) rotate(0deg);
+    -o-transform: translateY(-50%) rotate(0deg);
+    transform: translateY(-50%) rotate(0deg);
   }
+  
   100% {
     -webkit-transform: translateY(-50%) rotate(359deg);
-         -o-transform: translateY(-50%) rotate(359deg);
-            transform: translateY(-50%) rotate(359deg);
+    -o-transform: translateY(-50%) rotate(359deg);
+    transform: translateY(-50%) rotate(359deg);
   }
 }
+
 @keyframes cm-spin {
   0% {
     -webkit-transform: translateY(-50%) rotate(0deg);
-         -o-transform: translateY(-50%) rotate(0deg);
-            transform: translateY(-50%) rotate(0deg);
+    -o-transform: translateY(-50%) rotate(0deg);
+    transform: translateY(-50%) rotate(0deg);
   }
+  
   100% {
     -webkit-transform: translateY(-50%) rotate(359deg);
-         -o-transform: translateY(-50%) rotate(359deg);
-            transform: translateY(-50%) rotate(359deg);
+    -o-transform: translateY(-50%) rotate(359deg);
+    transform: translateY(-50%) rotate(359deg);
   }
 }
 
 @font-face {
   font-family: "context-menu-icons";
-  font-style: normal; 
+  font-style: normal;
   font-weight: normal;
-
-  src: url("font/context-menu-icons.eot?11mq6");
-  src: url("font/context-menu-icons.eot?11mq6#iefix") format("embedded-opentype"), url("font/context-menu-icons.woff2?11mq6") format("woff2"), url("font/context-menu-icons.woff?11mq6") format("woff"), url("font/context-menu-icons.ttf?11mq6") format("truetype");
+  src: url("font/context-menu-icons.eot?orgId=00Dd0000000bxKz&11mq6");
+  src: url("font/context-menu-icons.eot?orgId=00Dd0000000bxKz&11mq6#iefix") format("embedded-opentype"), url("font/context-menu-icons.woff2?orgId=00Dd0000000bxKz&11mq6") format("woff2"), url("font/context-menu-icons.woff?orgId=00Dd0000000bxKz&11mq6") format("woff"), url("font/context-menu-icons.ttf?orgId=00Dd0000000bxKz&11mq6") format("truetype");
 }
 
 .context-menu-icon-add:before {
@@ -90,11 +80,11 @@
   content: "\EA08";
 }
 
-.context-menu-icon::before {
+.context-menu-icon:before {
   position: absolute;
   top: 50%;
   left: 0;
-  width: 2em; 
+  width: 2em;
   font-family: "context-menu-icons";
   font-size: 1em;
   font-style: normal;
@@ -103,10 +93,9 @@
   color: #2980b9;
   text-align: center;
   -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-       -o-transform: translateY(-50%);
-          transform: translateY(-50%);
-
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -115,25 +104,26 @@
   color: #fff;
 }
 
-.context-menu-icon.context-menu-disabled::before {
+.context-menu-icon.context-menu-disabled:before {
   color: #bbb;
 }
 
 .context-menu-icon.context-menu-icon-loading:before {
   -webkit-animation: cm-spin 2s infinite;
-       -o-animation: cm-spin 2s infinite;
-          animation: cm-spin 2s infinite;
+  -o-animation: cm-spin 2s infinite;
+  animation: cm-spin 2s infinite;
 }
 
 .context-menu-icon.context-menu-icon--fa {
   display: list-item;
   font-family: inherit;
 }
-.context-menu-icon.context-menu-icon--fa::before {
+
+.context-menu-icon.context-menu-icon--fa:before {
   position: absolute;
   top: 50%;
   left: 0;
-  width: 2em; 
+  width: 2em;
   font-family: FontAwesome;
   font-size: 1em;
   font-style: normal;
@@ -142,22 +132,23 @@
   color: #2980b9;
   text-align: center;
   -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-       -o-transform: translateY(-50%);
-          transform: translateY(-50%);
-
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 .context-menu-icon.context-menu-icon--fa.context-menu-hover:before {
   color: #fff;
 }
-.context-menu-icon.context-menu-icon--fa.context-menu-disabled::before {
+
+.context-menu-icon.context-menu-icon--fa.context-menu-disabled:before {
   color: #bbb;
 }
 
 .context-menu-list {
-  position: absolute; 
+  position: absolute;
   display: inline-block;
   min-width: 13em;
   max-width: 26em;
@@ -170,7 +161,7 @@
   border: 1px solid #bebebe;
   border-radius: .2em;
   -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, .5);
-          box-shadow: 0 2px 5px rgba(0, 0, 0, .5);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .5);
 }
 
 .context-menu-item {
@@ -178,40 +169,39 @@
   padding: .2em 2em;
   color: #2f2f2f;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none; 
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   background-color: #fff;
 }
 
 .context-menu-separator {
-  padding: 0; 
+  padding: 0;
   margin: .35em 0;
   border-bottom: 1px solid #e6e6e6;
 }
 
-.context-menu-item > label > input,
-.context-menu-item > label > textarea {
+.context-menu-item > label > input, .context-menu-item > label > textarea {
   -webkit-user-select: text;
-     -moz-user-select: text;
-      -ms-user-select: text;
-          user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }
 
 .context-menu-item.context-menu-hover {
   color: #fff;
-  cursor: pointer; 
+  cursor: pointer;
   background-color: #2980b9;
 }
 
 .context-menu-item.context-menu-disabled {
   color: #bbb;
-  cursor: default; 
+  cursor: default;
   background-color: #fff;
 }
 
 .context-menu-input.context-menu-hover {
-  color: #2f2f2f; 
+  color: #2f2f2f;
   cursor: default;
 }
 
@@ -219,7 +209,7 @@
   position: absolute;
   top: 50%;
   right: .5em;
-  z-index: 1; 
+  z-index: 1;
   width: 0;
   height: 0;
   content: '';
@@ -227,28 +217,22 @@
   border-style: solid;
   border-width: .25em 0 .25em .25em;
   -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-       -o-transform: translateY(-50%);
-          transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
-/**
- * Inputs
- */
 .context-menu-item.context-menu-input {
   padding: .3em .6em;
 }
 
-/* vertically align inside labels */
 .context-menu-input > label > * {
   vertical-align: top;
 }
 
-/* position checkboxes and radios as icons */
-.context-menu-input > label > input[type="checkbox"],
-.context-menu-input > label > input[type="radio"] {
+.context-menu-input > label > input[type=checkbox], .context-menu-input > label > input[type=radio] {
   position: relative;
-  top: .12em; 
+  top: .12em;
   margin-right: .4em;
 }
 
@@ -256,15 +240,12 @@
   margin: 0;
 }
 
-.context-menu-input > label,
-.context-menu-input > label > input[type="text"],
-.context-menu-input > label > textarea,
-.context-menu-input > label > select {
+.context-menu-input > label, .context-menu-input > label > input[type=text], .context-menu-input > label > textarea, .context-menu-input > label > select {
   display: block;
-  width: 100%; 
+  width: 100%;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .context-menu-input > label > textarea {
@@ -272,8 +253,7 @@
 }
 
 .context-menu-item > .context-menu-list {
-  top: .3em; 
-  /* re-positioned by js */
+  top: .3em;
   right: -.3em;
   display: none;
 }

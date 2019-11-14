@@ -115,6 +115,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Correction of Cancellation Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Course Cancel</fullName>
             <default>false</default>
         </values>
@@ -541,6 +545,17 @@
         </values>
         <values>
             <fullName>See Notes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Intended_form_of_payment__c</picklist>
+        <values>
+            <fullName>Credit Card</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Invoice</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -2057,6 +2072,10 @@
         <picklist>Type</picklist>
         <values>
             <fullName>AED</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Annual Licensing Fee</fullName>
             <default>false</default>
         </values>
         <values>

@@ -1,6 +1,7 @@
 /**
  * Created by dgajwani on 9/20/18.
  */
+ 
 @isTest
 public with sharing class phss_cc_TestDataFactory {
 
@@ -46,10 +47,18 @@ public with sharing class phss_cc_TestDataFactory {
     public static final String TEST_BILLING_CONTACT = 'TestBillingContact';
     public static final String TEST_PRODUCTS = 'TestProducts';
     public static final String TEST_PRICELIST = 'TestPriceList';
+    public static final String TEST_ORDER = 'TestOrder';
+    public static final String TEST_CREDIT_ORDER = 'TestCreditOrder';
+    public static final String TEST_ORDER_WITH_APPLIED_CREDIT = 'TestOrderWithAppliedCredit';
+    public static final String TEST_AUTH_TRANSACTION_PAYMENT = 'TestAuthTransactionPayment';
+    public static final String TEST_CAPTURE_TRANSACTION_PAYMENT = 'TestCaptureTransactionPayment';
+    public static final String TEST_CREDIT_BALANCE_TRANSACTION_PAYMENT = 'TestCreditBalanceTransactionPayment';
+    public static final String TEST_REFUND_TRANSACTION_PAYMENT = 'TestRefundTransactionPayment';
+    public static final String TEST_STORED_PAYMENT = 'TestStoredPayment';
     public static final String TEST_ENCRYPTED_ID_CART = 'encid-';
-    private static final String CART_AUTH_USER_VALIDATED = 'CartAuthUserValidated';
-    private static final String CART_STATUS_OPEN = 'Open';
-    private static final String CART_TYPE = 'Cart';
+    public static final String CART_AUTH_USER_VALIDATED = 'CartAuthUserValidated';
+    public static final String CART_STATUS_OPEN = 'Open';
+    public static final String CART_TYPE = 'Cart';
 
     // Learning-related keys
     public static final String TEST_ILT_CLASS = 'TestILTClass';
@@ -71,6 +80,9 @@ public with sharing class phss_cc_TestDataFactory {
     public static final Integer TEST_COMMUNITY_CLASS_SEARCH_RANGE = 25;
     public static final Date TEST_COMMUNITY_CLASS_SEARCH_START_DATE = Date.today().addDays(-1);
     public static final Date TEST_COMMUNITY_CLASS_SEARCH_END_DATE = Date.today().addDays(1);
+
+    // Test data for transaction payments
+    public static final String TEST_AUTH_TXN_PMT_TOKEN = 'testTokenForAuthTransactionPayment';
 
     /**
      * @description Setups a test storefront.
@@ -100,16 +112,42 @@ public with sharing class phss_cc_TestDataFactory {
         ProfilesList.add(indiv);
         insert ProfilesList;
 
-        Opportunity testOpportunity = new Opportunity(Name = TEST_OPPORTUNITY, CloseDate = System.today(), StageName = 'Closed Won', Type = 'New Business - FS', AccountId = acc.Id);
+        RecordType rt = [SELECT Id FROM RecordType WHERE SobjectType = 'Opportunity' AND DeveloperName = 'Order_Opportunity'];
+        Opportunity testOpportunity = new Opportunity(
+                Name = TEST_OPPORTUNITY,
+                CloseDate = System.today(),
+                StageName = 'Closed Won',
+                Type = 'New Business - FS',
+                AccountId = acc.Id,
+                RecordType = rt
+        );
         insert testOpportunity;
         return testOpportunity;
     }
 
-    /**
-     * @description Returns a test Account.
-     *
-     * @return
-     */
+
+    public static Contract createInsertTestContract(Account account, Opportunity opportunity) {
+        Integer contractTerm = 24;      // 24 months
+        Date startDate = Date.today();
+
+        Contract contract = new Contract(
+                Account__c = account.Id,
+                AccountId = account.Id,
+                StartDate = startDate,
+                ContractTerm = contractTerm,
+                Opportunity__c = opportunity.Id
+        );
+
+        insert contract;
+        return contract;
+    }
+
+
+        /**
+         * @description Returns a test Account.
+         *
+         * @return
+         */
     public static Account createInsertTestAccount(ccrz__E_AccountGroup__c accountGroup) {
         Account testAcc = new Account(
                 Name = TEST_ACC_FIRSTNAME + ' ' + TEST_ACC_LASTNAME,
@@ -193,12 +231,10 @@ public with sharing class phss_cc_TestDataFactory {
                     AP_Code__c = '6200',
                     FCC__c = '32620',
                     OMSProductName__c = '1234'
-
             );
-
             products.add(product);
-
         }
+
         insert products;
         return products;
     }
@@ -327,15 +363,28 @@ public with sharing class phss_cc_TestDataFactory {
      * @param pricelist
      */
     public static List<ccrz__E_StoredPayment__c> createInsertStoredPayment(Integer count, Opportunity testOpportunity) {
+        return createInsertStoredPayment(count, testOpportunity, phss_cc_StoredPaymentUtil.STORED_PAYMENT_TYPE_PO);
+    }
+
+    /**
+     * @description Creates 'count' stored payments on the account of the opportunity with the specified account type.
+     *
+     * @param count
+     * @param testOpportunity
+     * @param accountType
+     *
+     * @return
+     */
+    public static List<ccrz__E_StoredPayment__c> createInsertStoredPayment(Integer count, Opportunity testOpportunity, String accountType) {
 
         List<ccrz__E_StoredPayment__c> sps = new List<ccrz__E_StoredPayment__c>();
 
         for (Integer i = 0; i < count; i++) {
             ccrz__E_StoredPayment__c sp = new ccrz__E_StoredPayment__c();
-            sp.ccrz__AccountType__c = 'po';
+            sp.ccrz__AccountType__c = accountType;
             sp.Original_PO_Amount__c = 1000;
             sp.Remaining_PO_Amount__c = 1000;
-            sp.ccrz__DisplayName__c = 'Test PO ' + i;
+            sp.ccrz__DisplayName__c = 'Test ' + accountType.toUpperCase() + ' ' + i;
             sp.ccrz__Account__c = testOpportunity.AccountId;
             sp.ccrz__Enabled__c = true;
             sp.ccrz__Storefront__c = TEST_STOREFRONT;
@@ -347,11 +396,109 @@ public with sharing class phss_cc_TestDataFactory {
     }
 
     /**
+     * @description Creates orders with transaction payments and a stored payment
+     *
+     * @param account
+     *
+     * @return
+     */
+    public static Map<String, Object> createInsertOrderWithCredit(Account account) {
+        ccrz__E_Order__c order = new ccrz__E_Order__c(
+                ccrz__Account__c = account.Id,
+                NSSCCConnector_SFCC_Order_Number__c = '3114226',
+                NSSCCConnector_from_SFCC__c = true
+        );
+        insert order;
+
+        ccrz__E_TransactionPayment__c authTransactionPayment = new ccrz__E_TransactionPayment__c(
+                ccrz__Account__c = account.Id,
+                ccrz__AccountType__c = phss_cc_OrderUtil.ACCOUNT_TYPE_CREDIT_CARD,
+                ccrz__CCOrder__c = order.Id,
+                ccrz__Token__c = TEST_AUTH_TXN_PMT_TOKEN,
+                ccrz__TransactionType__c = phss_cc_TransactionPaymentUtil.AUTH_TRANSACTION_TYPE
+        );
+        insert authTransactionPayment;
+
+        ccrz__E_TransactionPayment__c captureTransactionPayment = new ccrz__E_TransactionPayment__c(
+                ccrz__Account__c = account.Id,
+                ccrz__AccountType__c = phss_cc_OrderUtil.ACCOUNT_TYPE_CREDIT_CARD,
+                ccrz__CCOrder__c = order.Id,
+                ccrz__Token__c = 'testToken',
+                ccrz__SourceTransactionPayment__c = authTransactionPayment.Id,
+                ccrz__TransactionType__c = phss_cc_TransactionPaymentUtil.CAPTURE_TRANSACTION_TYPE
+        );
+        insert captureTransactionPayment;
+
+        ccrz__E_Order__c creditOrder = new ccrz__E_Order__c(
+                ccrz__Account__c = account.Id,
+                ccrz__OrderId__c = order.Id,
+                NSSCCConnector_SFCC_Order_Number__c = '3114227',
+                NSSCCConnector_from_SFCC__c = true
+        );
+        insert creditOrder;
+
+        ccrz__E_StoredPayment__c storedPayment = new ccrz__E_StoredPayment__c(
+                ccrz__AccountType__c = phss_cc_OrderUtil.ACCOUNT_TYPE_CREDIT_BALANCE,
+                Original_PO_Amount__c = 150.0,
+                Remaining_PO_Amount__c = 150.0
+        );
+        insert storedPayment;
+
+        ccrz__E_TransactionPayment__c creditTransactionPayment = new ccrz__E_TransactionPayment__c(
+                ccrz__Account__c = account.Id,
+                ccrz__AccountType__c = phss_cc_OrderUtil.ACCOUNT_TYPE_CREDIT_BALANCE,
+                ccrz__CCOrder__c = creditOrder.Id,
+                ccrz__ParentTransactionPayment__c = authTransactionPayment.Id,
+                ccrz__StoredPayment__c = storedPayment.Id,
+                ccrz__Token__c = 'testToken'
+        );
+        insert creditTransactionPayment;
+
+        ccrz__E_Order__c appliedCreditOrder = new ccrz__E_Order__c(
+                ccrz__Account__c = account.Id,
+                NSSCCConnector_SFCC_Order_Number__c = '3114228',
+                NSSCCConnector_from_SFCC__c = true
+        );
+        insert appliedCreditOrder;
+
+        ccrz__E_TransactionPayment__c refundTransactionPayment = new ccrz__E_TransactionPayment__c(
+                ccrz__Account__c = account.Id,
+                ccrz__AccountType__c = phss_cc_OrderUtil.ACCOUNT_TYPE_CREDIT_CARD,
+                ccrz__CCOrder__c = appliedCreditOrder.Id,
+                ccrz__Comments__c = phss_cc_OrderUtil.REFUND_COMMENT + storedPayment.Id,
+                ccrz__Token__c = 'testToken'
+        );
+        insert refundTransactionPayment;
+
+        Map<String, Object> outputMap = new Map<String, Object>{
+                TEST_ORDER => order,
+                TEST_CREDIT_ORDER => creditOrder,
+                TEST_ORDER_WITH_APPLIED_CREDIT => appliedCreditOrder,
+                TEST_AUTH_TRANSACTION_PAYMENT => authTransactionPayment,
+                TEST_CAPTURE_TRANSACTION_PAYMENT => captureTransactionPayment,
+                TEST_CREDIT_BALANCE_TRANSACTION_PAYMENT => creditTransactionPayment,
+                TEST_REFUND_TRANSACTION_PAYMENT => refundTransactionPayment,
+                TEST_STORED_PAYMENT => storedPayment
+        };
+        return outputMap;
+    }
+
+    /**
      * @description Creates Account, Account group, Users, PriceLists, Products, PriceListItems.
      *
      * @return
      */
     public static Map<String, Object> setupAccountAndProducts() {
+        return setupAccountAndProducts(4);
+    }
+
+
+    /**
+     * @description Creates Account, Account group, Users, PriceLists, Products, PriceListItems.
+     *
+     * @return
+     */
+    public static Map<String, Object> setupAccountAndProducts(Integer productCount) {
 
         initCCSettings();
         setCyberSourceConfig();
@@ -367,7 +514,7 @@ public with sharing class phss_cc_TestDataFactory {
         createInsertTestAccountGroupPriceList(accountGroup, pricelist);
 
         //Products and PriceListItems
-        List<ccrz__E_Product__c> products = createInsertTestProducts(4);
+        List<ccrz__E_Product__c> products = createInsertTestProducts(productCount);
         createInsertPriceListItems(products, pricelist);
 
         ccrz.cc_CallContext.currAccountId = account.Id;
@@ -603,6 +750,44 @@ public with sharing class phss_cc_TestDataFactory {
         insert location;
 
         return location;
+    }
+
+    public static Case createInsertTestCase(Account testAccount, Contact billingContact, Contact shippingContact) {
+        System.debug('JASON: getting recordTypeId');
+        Id caseRecordTypeId = Schema.SObjectType.Case.RecordTypeInfosByName.get('Service Case Read Only').RecordTypeId;
+        System.debug('JASON: recordTypeId=' + caseRecordTypeId);
+
+        Switch__c  sw = new Switch__c ();
+        sw.Name = 'CaseOwnerHistorySwitch';
+        sw.Switch__c = false;
+        sw.Switch_Description__c = 'Test';
+        insert sw;
+        System.debug('JASON: switch inserted: ' + sw);
+
+        //for Validation rule
+        Validation_Rules__c supportConfig = Validation_Rules__c.getOrgDefaults();
+        supportConfig.Bypass_Rules__c = false;
+        upsert supportConfig Validation_Rules__c.Id;
+        System.debug('JASON: supportConfig=' + supportConfig);
+
+        try {
+            Case testCase = new Case(
+                    ContactId = billingContact.Id,
+                    Status = 'New',
+                    Priority = 'Medium',
+                    Type = 'Certificates',
+                    Origin = 'Phone',
+                    Subject = 'TestCase1',
+                    Description = 'This is a test Case',
+                    RecordTypeId = caseRecordTypeId
+            );
+            insert testCase;
+            return testCase;
+
+        } catch (Exception e) {
+            System.debug('JASON: exception caught: ' + e.getMessage() + ' lineNumber=' + e.getLineNumber() + ' stackTrace=' + e.getStackTraceString());
+            throw e;
+        }
     }
 
     /**

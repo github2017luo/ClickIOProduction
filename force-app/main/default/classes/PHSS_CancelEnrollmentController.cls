@@ -1,6 +1,8 @@
 public without sharing class PHSS_CancelEnrollmentController {
     public Static String keyPrefixlrnas;
     public Static String keyPrefixroster;
+	public Static String keyPrefixvoucher;
+
     @AuraEnabled
     public static String checkIfCancelled(String recId) {
     
@@ -36,19 +38,21 @@ public without sharing class PHSS_CancelEnrollmentController {
             return 'testString';
         }
     }
-        
+
+
+
+	// This method invokes the student cancellation logic using a Roster Id
+	// Student registration is cancelled in the LMS only; the financial side of the transaction is not managed here
     @AuraEnabled
     public static void cancelEnrollment(String recId, String cancelReason) {
-        //for Roster Object(a36) 
-        Schema.DescribeSObjectResult r = redwing__Learning_Assignment__c.sObjectType.getDescribe();
-        keyPrefixlrnas = r.getKeyPrefix();
-        System.debug('Value of roster id' + keyPrefixlrnas );
+        //fGet the value of learning assignment prefix
+        Schema.DescribeSObjectResult l = redwing__Learning_Assignment__c.sObjectType.getDescribe();
+        keyPrefixlrnas = l.getKeyPrefix();
         
-        //Get the value of learning assignent prefix  
-        Schema.DescribeSObjectResult l = redwing__ILT_Roster__c.sObjectType.getDescribe();
-        keyPrefixroster = l.getKeyPrefix();
-        System.debug('Value of learning assignement id' + keyPrefixroster );
-        
+        //Get the value of roster prefix
+        Schema.DescribeSObjectResult r = redwing__ILT_Roster__c.sObjectType.getDescribe();
+        keyPrefixroster = r.getKeyPrefix();
+
         if(recId.startsWith(keyPrefixroster)) {
             List<redwing__ILT_Roster__c> rosterList = [Select Id,redwing__User__c,redwing__Learning_Assignment__c,redwing__ILT_Class__c 
                                                    From redwing__ILT_Roster__c 
@@ -57,7 +61,7 @@ public without sharing class PHSS_CancelEnrollmentController {
 	        // DE822 - Prevent Learning Assignments from being deleted - these are master-detail on roster records
 	        // which are required in order for an email to be generated to student
 	        
-	        List<redwing__Learning_Assignment__c> LearningAssignmentList = [Select Id,redwing__User__c,redwing__Training_Plan__c 
+	        List<redwing__Learning_Assignment__c> LearningAssignmentList = [Select Id,redwing__User__c,redwing__Training_Plan__c, redwing__Progress__c
 	                                                            From redwing__Learning_Assignment__c 
 	                                                            Where Id = :rosterList[0].redwing__Learning_Assignment__c];
 	        
@@ -93,9 +97,10 @@ public without sharing class PHSS_CancelEnrollmentController {
 	                                                                      Learning_Plan__c = :LearningAssignmentList[0].redwing__Training_Plan__c AND 
 	                                                                      ILT_Class__c = :rosterList[0].redwing__ILT_Class__c];
 	        if(!voucherList.isEmpty()) {
-	            // Keep voucher on cancel to retain financial information        	
-	            Voucher__c vouch = voucherList[0];
-	            vouch.Status__c = 'Void';
+	            // Keep voucher on cancel to retain financial information
+				Voucher__c updatedVoucher = new Voucher__c();
+	            updatedVoucher.Id = voucherList[0].Id;
+	            updatedVoucher.Status__c = 'Void';
 	            
 	            /*	           
 	            vouch.User__c = null;
@@ -109,7 +114,7 @@ public without sharing class PHSS_CancelEnrollmentController {
 	            vouch.Opportunity__c = null;
 				*/
 				
-	            update vouch;
+	            update updatedVoucher;
 	            
 	            // Generate replacement voucher for seat that has just opened in class - this will keep inventory valid
 	            Voucher__c newVoucher = new Voucher__c();
@@ -127,7 +132,8 @@ public without sharing class PHSS_CancelEnrollmentController {
 	        roster.redwing__Status__c = 'Cancelled';
 	        roster.Cancellation_Date__c = System.today();
 	        roster.Cancellation_Reason__c = cancelReason;
-	        roster.Voucher_Id__c = null;
+	        // Retain voucher relationship
+			// roster.Voucher_Id__c = null;
 	        
 	        update roster; 
 	        
@@ -138,7 +144,12 @@ public without sharing class PHSS_CancelEnrollmentController {
 	        delete LearningPlanAssignmentList;           
 	        // Deleting the Learning Plan Assignment also results in the deletion of all Learning Plan Section Assignments   
 	        //delete LearningPlanSectionAssignmentList;
-	        delete AchievementAssignmentList;        
+	        delete AchievementAssignmentList;
+
+			// US1555 - 'Cancelled' should appear on Roster (Student) list in the Online Work column is the enrollment was cancelled
+			redwing__Learning_Assignment__c learningAssignment = LearningAssignmentList[0];
+			learningAssignment.redwing__Progress__c = 'Cancelled';
+			update learningAssignment;
 
         }
         

@@ -26,6 +26,7 @@
     <aura:attribute name = "selectedLookUpRecord2" 	type = "sObject" 	default = "{}"/>
     <aura:attribute name = "selectedLookUpRecord3" 	type = "sObject" 	default = "{}"/>
     <aura:attribute name = "selectedLookUpRecord4" 	type = "sObject" 	default = "{}"/>
+    <aura:attribute name = "selectedLookUpRecord5" 	type = "sObject" 	default = "{}"/>
     
     <aura:attribute name = "CCProductId"			type = "String"  	default = ""/>
     <aura:attribute name = "CourseIdByCCProduct"	type = "String"  	default = ""/>
@@ -53,7 +54,8 @@
     <aura:attribute name = "City" 					type = "String"  	default = ""/>
     <aura:attribute name = "State" 					type = "String"  	default = ""/>
     <aura:attribute name = "Zip" 					type = "String"  	default = ""/>
-    
+    <aura:attribute name = "locationId" type="String" description="ILT Location Id return by apex controller's method createIltLocation" />
+
     <aura:attribute name = "courseId" 				type = "String"  	default = ""/>
     <aura:attribute name = "courseName" 			type = "String"  	default = ""/>
     
@@ -69,6 +71,7 @@
     <aura:attribute name = "orgError" 				type = "Boolean" 	default = "false"/>
     <aura:attribute name = "crsError" 				type = "Boolean" 	default = "false"/>
     <aura:attribute name = "usrError" 				type = "Boolean" 	default = "false"/>
+    <aura:attribute name = "prereqError" 			type = "Boolean" 	default = "false"/>
     
     <aura:attribute name = "isSuccess" 				type = "Boolean" 	default = "false"/>
     <aura:attribute name = "isSubmitted" 			type = "Boolean" 	default = "false"/>
@@ -96,6 +99,7 @@
     <aura:attribute name = "displayPaymentInfo" type = "Boolean" default="true"/>
     <aura:attribute name = "isPartner"				type = "Boolean" 	default="false"/>
     <aura:attribute name = "paymentComplete"    type = "Boolean" default = "false"/>
+    <aura:attribute name = "instructorHasPrerequisites" type="Boolean" default="true"/>
 
     <!--Learn to Swim (LTS) related fields-->
     <aura:attribute name="isLearnToSwimProduct" type="Boolean" default="false"/>
@@ -103,12 +107,26 @@
     <aura:attribute name="numberOfUnsuccessfulEvaluations" type="Integer"/>
     <aura:attribute name="numberOfNonEvaluations" type="Integer"/>
 
+    <aura:attribute name = "cpsWrap"			type = "Object" />
+    <aura:attribute name = "initialWrap" 		type = "Object" />
+    <aura:attribute name = "zoneList" type = "List" />
+    <aura:attribute name = "LPName"					type = "String"  	default = ""/>
+    <aura:attribute name = "LPClassroomSetting"		type = "String"  	default = ""/>
+    <aura:attribute name = "LPDuration"				type = "Decimal"  	default = ""/>
+    <aura:attribute name = "ScheduledTime"			type = "Decimal"  	default = "0"/>
+    <aura:attribute name = "todaysDate"			type = "String" />
+    <aura:attribute name = "formattedStartTime" type = "String" />
+    <aura:attribute name = "formattedEndTime" type = "String" />
+    <aura:attribute name = "zoneError"      type = "Boolean"    default = "false"/>
+
     <aura:handler name="change" value="{!v.CCProductId}" action="{!c.calculateStudentInstructorRatio}" />
     <aura:handler name="change" value="{!v.Students}" action="{!c.calculateStudentInstructorRatio}" />
    
     <aura:handler name="selectionEvent" event="c:CustomLookupSelectionEvent" action="{!c.handleComponentEvent}"/>
-     <aura:handler name="notifyPaymentComplete" event="c:PHSS_NotifyPaymentComplete_Event"
+    <aura:handler name="notifyPaymentComplete" event="c:PHSS_NotifyPaymentComplete_Event"
                   action="{!c.updatePaymentComplete}"/>
+
+    <aura:handler name = "change" value="{!v.selectedLookUpRecord5}" action = "{!c.siteSelected}" />
     
     
     <!-- To display CRE as a lightning component tab
@@ -190,7 +208,7 @@
                             
                             <br/>
                             
-                            <div class = "slds-size_3-of-8">
+                            <div class = "slds-size_4-of-8">
                                 <div class = "slds-m-around_x-small">
                                     <!--<lightning:select value="{!v.selectedValue}" >
                                         <aura:iteration items="{!v.acrInfo}" var="account" >
@@ -233,7 +251,7 @@
                                 <c:phss_cc_ProductListComponent_Clone oppId = "{!v.oppIdParent}" storeFront = "{!v.storeFrontName}"/>
                             </div>
 
-                            <div class = "slds-size_3-of-8">
+                            <div class = "slds-size_4-of-8">
                                 <div class = "slds-m-around_x-small">
                                     <!-- <lightning:helptext content = "Input Text to get a listing of matching Courses." /> -->
                                     
@@ -273,11 +291,10 @@
                                     <div >
                                         <!-- <lightning:helptext content = "Enter End date of Course. May not be a future date." /> -->
                                     </div>
-                                    
                                 </div>
-                                
                                 <br/>
-                                
+
+
                                 <div class = "slds-m-around_x-small">
                                     <lightning:input value			=	"{!v.Students}"
                                                      aura:id		=	"field"
@@ -289,7 +306,13 @@
                                                      /> 
                                 </div><br/>  
                                 <div class = "slds-m-around_x-small">
-                                    <lightning:input value="{!v.SupplementInfo}" label="Supplemental Information" pattern="^[a-zA-Z0-9_\s]*" messageWhenPatternMismatch	= "No Special Characters or spaces allowed in the Supplemental info field"  aura:id = "field" fieldLevelHelp = "If your organization requires this field to be completed for invoicing purposes, enter details here"/>
+                                    <lightning:input value="{!v.SupplementInfo}"
+                                                     label="Supplemental Information"
+                                                     pattern="^[a-zA-Z0-9_\s]*"
+                                                     messageWhenPatternMismatch="No Special Characters or spaces allowed in the Supplemental info field"
+                                                     aura:id="field"
+                                                     fieldLevelHelp="If your organization requires this field to be completed for invoicing purposes, enter details here"
+                                                     maxlength="50"/>
                                     </div><br/> 
                             </div>
                             
@@ -299,10 +322,12 @@
                                 <aura:if isTrue="{!and(v.isExtUser == true,v.isPartner == false)}">
                                     
                                             <div class = "slds-m-around_x-small">
-                                                <lightning:input value="{!v.instructor.Name}" label="Instructor" required = "true" readonly="true"/> <br/>                                                
-                                             </div>
-                                        
-                                    
+                                                <lightning:input aura:id="instructorField" value="{!v.instructor.Name}" label="Instructor" required = "true" readonly="true"/> <br/>
+                                            </div>
+                                            <aura:if isTrue="{!v.prereqError}" >
+                                                <div class="lookupError">This instructor does not meet all the prerequisites for this course.</div>
+                                            </aura:if>
+
                                     <aura:set attribute="else"> 
                                         <div class = "slds-m-around_x-small">
                                              <label class="slds-form-element__label" for="text-input-id-1">
@@ -317,6 +342,9 @@
                                         </div>
                                         <aura:if isTrue="{!v.usrError}" >
                                             <div class="lookupError">Complete this field.</div>
+                                        </aura:if>
+                                        <aura:if isTrue="{!v.prereqError}" >
+                                            <div class="lookupError">This instructor does not meet all the prerequisites for this course.</div>
                                         </aura:if>
                                     </aura:set>
                                 </aura:if>
@@ -357,17 +385,35 @@
                             <div class = "slds-box slds-theme_shade" >Training Site</div><br/>
                             <div class = "slds-size_3-of-8">
                                 <div>
+
+                                    <div class = "slds-m-around_x-small">
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" >
+                                                Site Search
+                                            </label>
+                                            <lightning:helptext content="Enter a site name to search" />
+
+                                            <c:CustomLookup objectAPIName	=	"redwing__ILT_Location__c"
+                                                            selectedRecord	=	"{!v.selectedLookUpRecord5}"
+                                                            accountId		= 	"{!v.accId}"
+                                                            courseId 		=	"{!v.courseId}"
+                                                            instanceId      =   "Site"
+                                            />
+                                        </div>
+                                    </div>
+
                                     <div class = "slds-m-around_x-small">
                                         <lightning:helptext content= "Enter the Training Site where the course was taught." />
                                     </div>
+
                                     <div class = "slds-m-around_x-small">
-                                        <lightning:input value="{!v.SiteName}" label="Training Site Name (select)"  required	= "false" aura:id	=	"field"/>
+                                        <lightning:input value="{!v.SiteName}" label="Site Name"  required	= "true" aura:id	=	"field" maxlength="50"/>
                                     </div>
                                     <div class = "slds-m-around_x-small">
-                                        <lightning:input value="{!v.Address1}" label="Address"  required	=	"true" aura:id	=	"field"/>
+                                        <lightning:input value="{!v.Address1}" label="Address Line 1"  required	=	"true" aura:id	=	"field"/>
                                     </div>
                                     <div class = "slds-m-around_x-small">
-                                        <lightning:input value="{!v.Address2}" label="Address"/>
+                                        <lightning:input value="{!v.Address2}" label="Address Line 2"/>
                                     </div>
                                     <div class = "slds-grid slds-wrap">
                                         <div class = "slds-col slds-m-around_x-small">
@@ -562,7 +608,7 @@
                                         </div>
                                         <div class="slds-size_5-of-12 slds-m-around_x-small">
                                             <lightning:input value	= "{!item.AdditionalInfo}"
-                                                             label	= "Additional Information"/>
+                                                             label	= "Additional Information" maxlength="50"/>
                                         </div>
 
                                     </div>
@@ -586,11 +632,12 @@
                             <div class = "slds-box slds-theme_shade">
                                 Payment
                             </div><br/>
-                            
+
                             <!--<c:phss_cc_Cart recordId = "{!v.oppIdParent}" />-->
 							<c:phss_cc_Cart_Clone recordId="{!v.oppIdParent}"
                                                   hideQuantityForLms="true"
                                                   hideCreditCard="{!v.displayPaymentInfo}"
+                                                  showExtendedPrice="{! v.displayPaymentInfo }"
                                                   allowCartReload="false"
                                                   cartContainsLearnToSwimProduct="{! v.isLearnToSwimProduct }" />
                             
@@ -725,7 +772,7 @@
                                     </div>
 
                                     <div class="slds-p-top_small">
-                                        <lightning:input label="Supplemental Information" value="{! v.SupplementInfo }" readonly="true"/>
+                                        <lightning:input label="Supplemental Information" value="{! v.SupplementInfo }" readonly="true" />
                                     </div>
 
                                     <div class="slds-p-top_small">
@@ -944,7 +991,7 @@
                             <aura:set attribute="else">                        
                                 
                                 <div class="slds-col">
-                                  <aura:if isTrue="{!and(v.stepNumber == 'Three', v.tncCheck == false)}" >					       
+                                  <aura:if isTrue="{!and(v.stepNumber == 'Three', v.tncCheck == false)}" >
                                         <button class="slds-button slds-button_neutral"
                                                 onclick="{!c.onclickNext}" disabled="true">
                                             Next

@@ -40,8 +40,8 @@ public without sharing class RCILTClassRosterListCmpCtrl {
                 String recType          = Id.valueOf(classId).getSobjectType().getDescribe().getLocalName();
                 Boolean isInstructor    = RCUtils.isInstructor(classId);
 
-                if(recType == 'redwing__ILT_Class__c' && isInstructor) {
-                    List<redwing__ILT_Roster__c> iltClasses = [SELECT
+                if(recType == 'redwing__ILT_Class__c' && isInstructor) {  
+                   List<redwing__ILT_Roster__c> iltClasses = [SELECT
                             Id
                             ,redwing__User__c
                             ,redwing__User__r.Name
@@ -49,6 +49,7 @@ public without sharing class RCILTClassRosterListCmpCtrl {
                             ,redwing__User__r.Phone
                             ,redwing__Learning_Assignment__c
                             ,redwing__Learning_Assignment__r.redwing__Learning__c
+                            ,redwing__Learning_Assignment__r.redwing__Progress__c
                     FROM redwing__ILT_Roster__c
                     WHERE redwing__User__c != null
                     AND redwing__ILT_Class__c = : classId];
@@ -70,6 +71,8 @@ public without sharing class RCILTClassRosterListCmpCtrl {
                             tempUser.status         = RCConstants.STATUS_NOT_STARTED;
                             if(user_status.containsKey(item.redwing__User__c)){
                                 tempUser.status = user_status.get(item.redwing__User__c);
+                            } else if (item.redwing__Learning_Assignment__r.redwing__Progress__c != null) {
+                                tempUser.status = item.redwing__Learning_Assignment__r.redwing__Progress__c;
                             }
                             userWrapps.put(item.redwing__User__c, tempUser);
                         }

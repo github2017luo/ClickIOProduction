@@ -3,8 +3,8 @@
     <assignments>
         <name>Set_Order_Fulfillment</name>
         <label>Set Order Fulfillment</label>
-        <locationX>558</locationX>
-        <locationY>351</locationY>
+        <locationX>549</locationX>
+        <locationY>382</locationY>
         <assignmentItems>
             <assignToReference>sFulfillment.Fulfillment_Date__c</assignToReference>
             <operator>Assign</operator>
@@ -54,8 +54,8 @@
     <assignments>
         <name>Set_Order_Fulfillment_Item</name>
         <label>Set Order Fulfillment Item</label>
-        <locationX>886</locationX>
-        <locationY>351</locationY>
+        <locationX>893</locationX>
+        <locationY>382</locationY>
         <assignmentItems>
             <assignToReference>sFulfillmentItem.Fulfillment__c</assignToReference>
             <operator>Assign</operator>
@@ -74,7 +74,7 @@
             <assignToReference>sFulfillmentItem.Quantity__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>NegativeOne</elementReference>
+                <numberValue>1.0</numberValue>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -152,10 +152,35 @@
         </value>
     </constants>
     <decisions>
+        <name>Onsite_Fee_Missing</name>
+        <label>Onsite Fee Missing</label>
+        <locationX>48</locationX>
+        <locationY>376</locationY>
+        <defaultConnector>
+            <targetReference>Onsite_Fee_Missing_Screen</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Fee_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Look_Up_Product</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_ILT_Class</targetReference>
+            </connector>
+            <label>Fee Found</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Onsite_Fee_Not_found</name>
         <label>Onsite Fee Not found</label>
-        <locationX>383</locationX>
-        <locationY>245</locationY>
+        <locationX>409</locationX>
+        <locationY>238</locationY>
         <defaultConnector>
             <targetReference>Look_Up_Product</targetReference>
         </defaultConnector>
@@ -176,7 +201,7 @@
             <label>Not Found</label>
         </rules>
     </decisions>
-    <description>Add Onsite Fee Waiver - Added ILT Class Reference - Removed Offering ID</description>
+    <description>Add Onsite Fee Waiver - Changed to Price to be negative and quantity to be positive</description>
     <formulas>
         <name>qtyprice</name>
         <dataType>Currency</dataType>
@@ -195,11 +220,8 @@
     <recordCreates>
         <name>Add_to_Order_Item</name>
         <label>Add Fee to Order Item</label>
-        <locationX>366</locationX>
-        <locationY>358</locationY>
-        <connector>
-            <targetReference>Set_Order_Fulfillment</targetReference>
-        </connector>
+        <locationX>520</locationX>
+        <locationY>549</locationY>
         <inputAssignments>
             <field>ILT_Class__c</field>
             <value>
@@ -215,7 +237,7 @@
         <inputAssignments>
             <field>ccrz__OrderItemStatus__c</field>
             <value>
-                <stringValue>Shipped</stringValue>
+                <stringValue>In Process</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -239,7 +261,7 @@
         <inputAssignments>
             <field>ccrz__OriginalQuantity__c</field>
             <value>
-                <elementReference>NegativeOne</elementReference>
+                <numberValue>1.0</numberValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -251,7 +273,7 @@
         <inputAssignments>
             <field>ccrz__Price__c</field>
             <value>
-                <elementReference>sOrderItem.ccrz__Price__c</elementReference>
+                <elementReference>qtyprice</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -269,7 +291,7 @@
         <inputAssignments>
             <field>ccrz__Quantity__c</field>
             <value>
-                <elementReference>NegativeOne</elementReference>
+                <numberValue>1.0</numberValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -283,8 +305,8 @@
     <recordCreates>
         <name>Create_Fulfillment_Order</name>
         <label>Create Fulfillment Order</label>
-        <locationX>722</locationX>
-        <locationY>353</locationY>
+        <locationX>727</locationX>
+        <locationY>382</locationY>
         <connector>
             <targetReference>Set_Order_Fulfillment_Item</targetReference>
         </connector>
@@ -293,15 +315,15 @@
     <recordCreates>
         <name>Create_Order_Fulfillment_Item</name>
         <label>Create Order Fulfillment Item</label>
-        <locationX>1032</locationX>
-        <locationY>347</locationY>
+        <locationX>1046</locationX>
+        <locationY>382</locationY>
         <inputReference>sFulfillmentItem</inputReference>
     </recordCreates>
     <recordLookups>
         <name>Get_ILT_Class</name>
         <label>Get ILT Class</label>
-        <locationX>184</locationX>
-        <locationY>532</locationY>
+        <locationX>171</locationX>
+        <locationY>552</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Transaction_Payment</targetReference>
@@ -320,8 +342,8 @@
     <recordLookups>
         <name>Get_Transaction_Payment</name>
         <label>Get Transaction Payment</label>
-        <locationX>367</locationX>
-        <locationY>532</locationY>
+        <locationX>362</locationX>
+        <locationY>551</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Add_to_Order_Item</targetReference>
@@ -341,11 +363,11 @@
     <recordLookups>
         <name>Look_Up_Product</name>
         <label>Look Up Product</label>
-        <locationX>180</locationX>
-        <locationY>361</locationY>
+        <locationX>172</locationX>
+        <locationY>236</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_ILT_Class</targetReference>
+            <targetReference>Onsite_Fee_Missing</targetReference>
         </connector>
         <filters>
             <field>ccrz__SKU__c</field>
@@ -361,8 +383,8 @@
     <recordLookups>
         <name>Lookup_Order_Item</name>
         <label>Lookup Order Item</label>
-        <locationX>182</locationX>
-        <locationY>245</locationY>
+        <locationX>416</locationX>
+        <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Onsite_Fee_Not_found</targetReference>
@@ -406,8 +428,8 @@
     <recordLookups>
         <name>Lookup_Training_Event</name>
         <label>Lookup Training Event</label>
-        <locationX>180</locationX>
-        <locationY>134</locationY>
+        <locationX>302</locationX>
+        <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Lookup_Order_Item</targetReference>
@@ -428,8 +450,8 @@
     <screens>
         <name>Error_Message</name>
         <label>Error Message</label>
-        <locationX>577</locationX>
-        <locationY>246</locationY>
+        <locationX>579</locationX>
+        <locationY>240</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -442,10 +464,26 @@
         <showHeader>true</showHeader>
     </screens>
     <screens>
+        <name>Onsite_Fee_Missing_Screen</name>
+        <label>Onsite Fee Missing</label>
+        <locationX>59</locationX>
+        <locationY>548</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>ProductError</name>
+            <fieldText>&lt;p&gt;SKU: &lt;b&gt;{!OnsiteFee}&lt;/b&gt;&lt;/p&gt;&lt;p&gt;has not been added to the CC Product table&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Please contact the system administrator to add.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
         <name>Onsite_Fee_Screen</name>
         <label>Onsite Fee Screen</label>
-        <locationX>180</locationX>
-        <locationY>32</locationY>
+        <locationX>177</locationX>
+        <locationY>50</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -467,7 +505,7 @@
         <showHeader>true</showHeader>
     </screens>
     <startElementReference>Onsite_Fee_Screen</startElementReference>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <name>colProductPrice</name>
         <dataType>SObject</dataType>

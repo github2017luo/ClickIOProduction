@@ -6,6 +6,55 @@ global with sharing class phss_cc_hk_Order extends ccrz.cc_hk_Order {
 
     private static final String VOUCHER_RESERVED_STATUS     = 'Reserved';
 
+    /*
+    
+    global override Map<String, Object> createTransaction(Map<String, Object> inputData) {
+        System.debug('JASON:  phss_cc_hk_Order.createTransaction()');
+
+        System.debug('inputData:');
+        for (String key : inputData.keySet()) {
+            Object value = inputData.get(key);
+            System.debug(key + ': ' + value);
+
+            if (value instanceof Map<String, Object>) {
+                Map<String, Object> m = (Map<String, Object>) value;
+                for (String k : m.keySet()) {
+                    System.debug(key + '.' + k + ': ' + m.get(k));
+                }
+            }
+        }
+        System.debug('inputData [DONE]');
+
+        Map<String, Object> result = super.createTransaction(inputData);
+
+        System.debug('result:');
+        for (String key : result.keySet()) {
+            Object value = result.get(key);
+            System.debug(key + ': ' + value);
+
+            if (value instanceof Map<String, Object>) {
+                Map<String, Object> m = (Map<String, Object>) value;
+                for (String k : m.keySet()) {
+                    System.debug(key + '.' + k + ': ' + m.get(k));
+                }
+            }
+
+            if (value instanceof ccrz__E_TransactionPayment__c) {
+                System.debug('TRANSACTION PAYMENT');
+                ccrz__E_TransactionPayment__c transactionPayment = (ccrz__E_TransactionPayment__c) value;
+                Map<String,Object> fields = transactionPayment.getPopulatedFieldsAsMap();
+                for (String fieldName : fields.keySet()) {
+                    System.debug(fieldName + ': ' + fields.get(fieldName));
+                }
+            }
+        }
+        System.debug('result [DONE]');
+
+        return result;
+    }
+
+     */
+
     /**
      *
      *
@@ -42,7 +91,7 @@ global with sharing class phss_cc_hk_Order extends ccrz.cc_hk_Order {
         // build map of SKU => Cart Item
         final Map<String,ccrz__E_CartItem__c> cartItemsMap = new Map<String, ccrz__E_CartItem__c>();
         List<ccrz__E_CartItem__c> cartItems = [
-                SELECT ccrz__Product__r.ccrz__SKU__c, ILT_Class__c
+                SELECT ccrz__Product__r.ccrz__SKU__c, ILT_Class__c, Coupon__c
                   FROM ccrz__E_CartItem__c
                  WHERE Id IN :cartItemIds
         ];
@@ -81,6 +130,12 @@ global with sharing class phss_cc_hk_Order extends ccrz.cc_hk_Order {
 
         for (ccrz__E_OrderItem__c orderItem : orderItems) {
             ccrz__E_CartItem__c cartItem = cartItemsMap.get(orderItem.ccrz__Product__r.ccrz__SKU__c);
+            
+            if (cartItem != null && cartItem.Coupon__c != null) {
+            	orderItem.Coupon__c	     = cartItem.Coupon__c;
+                orderItem.Coupon_Used__c = true;
+            }
+            
             if (cartItem != null && cartItem.ILT_Class__c != null) {
                 orderItem.ILT_Class__c = cartItem.ILT_Class__c;
 

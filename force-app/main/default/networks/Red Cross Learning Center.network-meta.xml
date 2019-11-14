@@ -2,12 +2,12 @@
 <Network xmlns="http://soap.sforce.com/2006/04/metadata">
     <allowInternalUserLogin>false</allowInternalUserLogin>
     <allowMembersToFlag>false</allowMembersToFlag>
-    <changePasswordTemplate>All/PHSS_IC_Change_Password</changePasswordTemplate>
+    <changePasswordTemplate>All/PHSS_Community_Change_Password</changePasswordTemplate>
     <communityRoles/>
     <disableReputationRecordConversations>true</disableReputationRecordConversations>
     <emailFooterText>© 2019 The American National Red Cross</emailFooterText>
-    <emailSenderAddress>instructorscorner@redcross.org</emailSenderAddress>
-    <emailSenderName>American Red Cross</emailSenderName>
+    <emailSenderAddress>trainingsvcsacct@redcross.org</emailSenderAddress>
+    <emailSenderName>American Red Cross Training Services</emailSenderName>
     <enableCustomVFErrorPageOverrides>false</enableCustomVFErrorPageOverrides>
     <enableDirectMessages>true</enableDirectMessages>
     <enableGuestChatter>false</enableGuestChatter>
@@ -26,6 +26,7 @@
     <enableUpDownVote>true</enableUpDownVote>
     <forgotPasswordTemplate>All/PHSS_IC_Forgot_Password</forgotPasswordTemplate>
     <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
+    <logoutUrl>https://www.redcrosslearningcenter.org/s/</logoutUrl>
     <navigationLinkSet>
         <navigationMenuItem>
             <label>Classes</label>
@@ -50,7 +51,7 @@
                     <label>Classes I&#39;m Teaching</label>
                     <position>2</position>
                     <publiclyAvailable>false</publiclyAvailable>
-                    <target>/classesteaching</target>
+                    <target>/classesteaching-new</target>
                     <type>InternalLink</type>
                 </navigationMenuItem>
                 <navigationMenuItem>
@@ -73,6 +74,20 @@
                     <publiclyAvailable>true</publiclyAvailable>
                     <target>https://www.redcross.org/take-a-class</target>
                     <type>ExternalLink</type>
+                </navigationMenuItem>
+                <navigationMenuItem>
+                    <label>CPS Class Report</label>
+                    <position>6</position>
+                    <publiclyAvailable>false</publiclyAvailable>
+                    <target>/cps-classes</target>
+                    <type>InternalLink</type>
+                </navigationMenuItem>
+                <navigationMenuItem>
+                    <label>Student History Report</label>
+                    <position>7</position>
+                    <publiclyAvailable>false</publiclyAvailable>
+                    <target>/student-report</target>
+                    <type>InternalLink</type>
                 </navigationMenuItem>
             </subMenu>
             <type>MenuLabel</type>
@@ -104,7 +119,7 @@
                     <type>InternalLink</type>
                 </navigationMenuItem>
                 <navigationMenuItem>
-                    <label>Account Affliliation</label>
+                    <label>Account Affiliation</label>
                     <position>3</position>
                     <publiclyAvailable>false</publiclyAvailable>
                     <target>/account-management</target>
@@ -114,28 +129,28 @@
                     <label>Manage Instructors</label>
                     <position>4</position>
                     <publiclyAvailable>false</publiclyAvailable>
-                    <target>/verify-certifications</target>
-                    <type>InternalLink</type>
-                </navigationMenuItem>
-                <navigationMenuItem>
-                    <label>Reports</label>
-                    <position>5</position>
-                    <publiclyAvailable>false</publiclyAvailable>
-                    <target>/report/Report/Recent</target>
+                    <target>/verify-certifications-new</target>
                     <type>InternalLink</type>
                 </navigationMenuItem>
                 <navigationMenuItem>
                     <label>Student Detail Templates</label>
-                    <position>6</position>
+                    <position>5</position>
                     <publiclyAvailable>false</publiclyAvailable>
                     <target>/student-templates</target>
                     <type>InternalLink</type>
                 </navigationMenuItem>
                 <navigationMenuItem>
-                    <label>Learn to Swim/Safety Outreach</label>
+                    <label>Safety Outreach</label>
+                    <position>6</position>
+                    <publiclyAvailable>true</publiclyAvailable>
+                    <target>/learn-to-swim</target>
+                    <type>InternalLink</type>
+                </navigationMenuItem>
+                <navigationMenuItem>
+                    <label>Learn to Swim/ Safety Outreach</label>
                     <position>7</position>
                     <publiclyAvailable>false</publiclyAvailable>
-                    <target>/learn-to-swim</target>
+                    <target>/safety-outreach-learn-to-swim</target>
                     <type>InternalLink</type>
                 </navigationMenuItem>
                 <navigationMenuItem>
@@ -245,12 +260,13 @@
     <networkMemberGroups>
         <profile>Admin</profile>
         <profile>SB ARC Business User Profile</profile>
-        <profile>Learner Community Profile</profile>
-        <profile>SB ARC %2F TSC Manager</profile>
-        <profile>SB PHSS-Partner-Community Plus Login</profile>
+        <profile>Learner Community Profile - OLD</profile>
         <profile>SB ARC %2F TSC Agent</profile>
+        <profile>SB PHSS-Partner-Community Plus Login</profile>
+        <profile>SB ARC %2F TSC Manager</profile>
         <profile>SB PHSS-IC-Community Plus Login</profile>
         <profile>SB ARC Sales User</profile>
+        <profile>Learner Community Profile</profile>
     </networkMemberGroups>
     <networkPageOverrides>
         <changePasswordPageOverrideSetting>Standard</changePasswordPageOverrideSetting>

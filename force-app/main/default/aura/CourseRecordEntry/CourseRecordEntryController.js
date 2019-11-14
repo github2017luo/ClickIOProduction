@@ -2,6 +2,15 @@
     doInit : function(component, event, helper) {
         
         component.set("v.storeFrontName","CREStore");
+
+        // Get today's date
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+        component.set("v.todaysDate",today);
+
         var addInstru = new Array(1);
         component.set("v.AdditionalInstructors",addInstru);
         
@@ -105,12 +114,14 @@
         console.log("productSfid**>>**"+productSfid);
         
         component.set("v.CCProductId",productSfid);
-        
-         var delayInMilliseconds = "8000"; //10 seconds
+
+        //helper.getLearningPlanAttributes(component, event, helper);
+
+        var delayInMilliseconds = "8000"; //10 seconds
         window.setTimeout(
             $A.getCallback(function() {
-        helper.checkPreq(component, event, helper);
-                 }), delayInMilliseconds
+                helper.checkPreq(component, event, helper);
+            }), delayInMilliseconds
         );     
         
         //var prodId = component.get();
@@ -263,7 +274,6 @@
             classDetailJSON = '{'+'\"ClassDetails\": '+classDetailJSON+'}';
             
             console.log("***classDetailJSON***"+classDetailJSON);
-            
             //Calling the server to assign the organization, location and etc in ILT Class & Session
             // Creating Json format and assigning the grades for that student(Passing value to server side controller)
             
@@ -280,7 +290,8 @@
             console.log(jsonStr);
             
             var action = cmp.get("c.invokeMethods");
-            action.setParams({ JSON : classDetailJSON, JSON1 : jsonStr });
+            console.log("cpsWrap: " + JSON.stringify(cmp.get("v.cpsWrap")));
+            action.setParams({ JSON : classDetailJSON, JSON1 : jsonStr, wrapper: cmp.get("v.cpsWrap") });
             action.setCallback(this, function(response) {
                 
                 var state = response.getState();
@@ -524,12 +535,19 @@
             }else{
                 component.set("v.usrError",false);
             }
-            
+            var instructorHasPrerequisites = component.get('v.instructorHasPrerequisites');
+            if (instructorHasPrerequisites === false && usrBool) {
+                component.set("v.prereqError", true);
+            } else {
+                component.set("v.prereqError", false);
+            }
             var allValid = component.find('field').reduce(function (validSoFar, inputCmp) {
                 inputCmp.reportValidity();
                 return validSoFar && inputCmp.checkValidity();
             }, true);
-            
+
+            allValid &= instructorHasPrerequisites;
+
             var extUser = component.get("v.isExtUser");
             //var isParnter = component.get("v.isParnter")
             if(extUser === true)
@@ -561,14 +579,17 @@
                         console.log('data..'+data);
                         component.set("v.displayPaymentInfo", data);
                         console.log('display..'+component.get("v.displayPaymentInfo"));
+                        component.set('v.showExtendedPrice', !data);
                     }
                 });
                 $A.enqueueAction(action); 
             }
+            helper.createIltLocation(component);
         }
         
         else if(currentSN == "Two")
         {
+
             var isLTS = component.get('v.isLearnToSwimProduct');
             if (isLTS) {
                 var isValid = component.get("v.allValid");
@@ -653,7 +674,6 @@
         {
         	component.set("v.stepNumber", "Complete");
         }
-        
     },
     
     accountSelected : function (component,event,helper){
@@ -702,6 +722,18 @@
         
         $A.enqueueAction(action);
         }
+    },
+
+    siteSelected: function(component, event, helper) {
+        var siteId = component.get("v.selectedLookUpRecord5").Id;
+        var selectedSite = component.get("v.selectedLookUpRecord5");
+        console.log(JSON.stringify(selectedSite));
+        component.set("v.SiteName", selectedSite["Name"]);
+        component.set("v.Address1", selectedSite["redwing__Address_1__c"]);
+        component.set("v.Address2", selectedSite["redwing__Address_2__c"]);
+        component.set("v.City", selectedSite["redwing__City__c"]);
+        component.set("v.State", selectedSite["redwing__State__c"]);
+        component.set("v.Zip", selectedSite["redwing__Postal_Code__c"]);
     },
     
     cancel : function(component, event, helper){

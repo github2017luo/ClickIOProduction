@@ -6,6 +6,10 @@
                 <name>collapsed</name>
                 <value>false</value>
             </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>hideChatterActions</name>
+                <value>false</value>
+            </componentInstanceProperties>
             <componentName>force:highlightsPanel</componentName>
         </componentInstances>
         <mode>Replace</mode>
@@ -292,6 +296,139 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>decorate</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>richTextValue</name>
+                <value>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;color: rgb(237, 12, 12); font-size: 18px;&quot;&gt;This is a Return or Replace Order Item&lt;/b&gt;&lt;span style=&quot;color: rgb(237, 12, 12); font-size: 18px;&quot;&gt;﻿&lt;/span&gt;&lt;/p&gt;</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:richText</componentName>
+            <visibilityRule>
+                <criteria>
+                    <leftValue>{!Record.Is_Return__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>true</rightValue>
+                </criteria>
+            </visibilityRule>
+        </componentInstances>
+        <componentInstances>
+            <componentName>CancelOrderItem</componentName>
+            <visibilityRule>
+                <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
+                <criteria>
+                    <leftValue>{!Record.ccrz__OrderItemStatus__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>Reservation</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.ccrz__OrderItemStatus__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>Order Submitted</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.ccrz__OrderItemStatus__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>In Process</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.ccrz__OrderItemStatus__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>Partial Shipped</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.ccrz__OrderItemStatus__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>On Hold</rightValue>
+                </criteria>
+            </visibilityRule>
+        </componentInstances>
+        <componentInstances>
+            <componentName>RefundOrderItem</componentName>
+            <visibilityRule>
+                <booleanFilter>1 OR 2 OR 3</booleanFilter>
+                <criteria>
+                    <leftValue>{!Record.ccrz__OrderItemStatus__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>Partial Shipped</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.ccrz__OrderItemStatus__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>Shipped</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.ccrz__OrderItemStatus__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>Partial Returned</rightValue>
+                </criteria>
+            </visibilityRule>
+        </componentInstances>
+        <componentInstances>
+            <componentName>ReplaceOrderItem</componentName>
+            <visibilityRule>
+                <booleanFilter>(1 OR 2 OR 3 or 5) AND (4 )</booleanFilter>
+                <criteria>
+                    <leftValue>{!Record.ccrz__OrderItemStatus__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>Order Submitted</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.ccrz__OrderItemStatus__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>In Process</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.ccrz__OrderItemStatus__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>Shipped</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.Inventory_Type__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>STANDARD</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.ccrz__OrderItemStatus__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>Partial Shipped</rightValue>
+                </criteria>
+            </visibilityRule>
+        </componentInstances>
+        <componentInstances>
+            <componentName>DropStudent</componentName>
+            <visibilityRule>
+                <booleanFilter>1 AND 2</booleanFilter>
+                <criteria>
+                    <leftValue>{!Record.Inventory_Type__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>COMMUNITY</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.Is_Return__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>false</rightValue>
+                </criteria>
+            </visibilityRule>
+        </componentInstances>
+        <componentInstances>
+            <componentName>RefundOrderItem</componentName>
+            <visibilityRule>
+                <booleanFilter>1 AND 2</booleanFilter>
+                <criteria>
+                    <leftValue>{!Record.ccrz__Order__r.ccrz__OrderStatus__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>Returned</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.ccrz__OrderItemStatus__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>Returned</rightValue>
+                </criteria>
+            </visibilityRule>
+        </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
                 <name>tabs</name>

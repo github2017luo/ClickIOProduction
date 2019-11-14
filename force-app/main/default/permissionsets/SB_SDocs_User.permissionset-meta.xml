@@ -9,6 +9,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>SDOC__SDConfig</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>SDOC__SDCreateController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -108,6 +112,10 @@
         <apexClass>SDOC__SD_XMLUtils</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <classAccesses>
+        <apexClass>SDRelatedListDocumentsController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <description>Allows user to generate and view S-Docs, but not edit S-Docs Template records.</description>
     <fieldPermissions>
         <editable>true</editable>
@@ -201,6 +209,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SDOC__SDJob__c.SDOC__Email_From__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SDOC__SDJob__c.SDOC__Email_Params__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>SDOC__SDJob__c.SDOC__Fid__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -216,6 +234,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SDOC__SDJob__c.SDOC__NetworkId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SDOC__SDJob__c.SDOC__Num_Partitions__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>SDOC__SDJob__c.SDOC__ObjApiName__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -227,6 +255,21 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>SDOC__SDJob__c.SDOC__Oid__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SDOC__SDJob__c.SDOC__Partition_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SDOC__SDJob__c.SDOC__Process_Job_Splitters_Concurrently__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SDOC__SDJob__c.SDOC__RecordData2XML__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -551,6 +594,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SDOC__SDTemplate__c.SDOC__Email_Require_Subject__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>SDOC__SDTemplate__c.SDOC__Email_Restricted_Domains__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -612,6 +660,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>SDOC__SDTemplate__c.SDOC__GD_Enabled__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SDOC__SDTemplate__c.SDOC__GD_Use_Native_Format__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -797,6 +850,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>SDOC__SDTemplate__c.SDOC__Master_Template__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SDOC__SDTemplate__c.SDOC__Num_Splitters__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1195,6 +1253,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>SDOC__SDoc__c.SDOC__Related_ObjectID18__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>SDOC__SDoc__c.SDOC__RelationshipCount__c</field>
         <readable>true</readable>
@@ -1305,6 +1368,10 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>SDOC__SDConfig</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>SDOC__SDCreate1</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -1346,6 +1413,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>SDOC__SDJobDOCX</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>SDOC__SDJobDelete</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -1406,6 +1477,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>SDOC__SDTranslate</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>SDRelatedListDocuments</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
 </PermissionSet>

@@ -94,8 +94,16 @@ public with sharing class RCClassHeaderCmpCtrlTest {
 
         Test.startTest();
         RCClassHeaderCmpCtrl.ResultData result1 = RCClassHeaderCmpCtrl.getItemInfo(String.valueOf(iltClass.Id), String.valueOf(plan.Id));
+        RCClassHeaderCmpCtrl.ResultData result2 = RCClassHeaderCmpCtrl.getItemInfo(String.valueOf(plan.Id), String.valueOf(plan.Id));
+
+        delete inst;
+        RCClassHeaderCmpCtrl.ResultData result3 = RCClassHeaderCmpCtrl.getItemInfo(String.valueOf(iltClass.Id), String.valueOf(plan.Id));
         Test.stopTest();
 
         System.assertEquals(RCConstants.ANSWER_STATUS_SUCCESS, result1.status);
+        System.assertEquals(RCConstants.ANSWER_STATUS_ACCESS_DENIED, result2.status);
+        System.assertEquals(RCConstants.ANSWER_STATUS_ACCESS_DENIED, result3.status);
+
+
     }
 }

@@ -7,6 +7,7 @@ public with sharing class phss_cc_FulfillmentUtil {
     private static final String INVOICE_STATUS_CLOSED = 'Closed';
     private static final String FULFILLMENT_ITEM_STATUS_READY = 'Ready';
     private static final String FULFILLMENT_ITEM_STATUS_COMPLETE = 'Complete';
+    private static final String FULFILLMENT_ITEM_STATUS_IN_PROGRESS = 'In Progress';
 
     //  error messages
     private static final String FAILED_TO_CAPTURE_PAYMENT = 'Failed to capture payment.';
@@ -29,9 +30,16 @@ public with sharing class phss_cc_FulfillmentUtil {
         }
 
         try {
-            ccrz__E_TransactionPayment__c payment = getTransactionPaymentForOrder(fulfillment.Order__c);
-            if (payment != null && payment.ccrz__AccountType__c == phss_cc_TransactionPaymentUtil.CREDIT_CARD_PAYMENT_TYPE && payment.ccrz__Amount__c > 0) {
-                phss_cc_CyberSourceUtil.capturePayment(payment.Id, fulfillment.Id);
+            ccrz__E_TransactionPayment__c authTxnPmt = getTransactionPaymentForOrder(fulfillment.Order__c);
+            if (authTxnPmt != null && authTxnPmt.ccrz__AccountType__c == phss_cc_TransactionPaymentUtil.CREDIT_CARD_PAYMENT_TYPE && authTxnPmt.ccrz__Amount__c > 0) {
+
+                Boolean isIndividualAccount = phss_cc_AccountUtil.isIndividualAccount(authTxnPmt.ccrz__Account__c);
+                if (isIndividualAccount) {
+                    phss_cc_TransactionPaymentUtil.designateContactForTransactionPayment(authTxnPmt);
+                }
+
+                ccrz__E_TransactionPayment__c captureTxnPmt = phss_cc_TransactionPaymentUtil.createCaptureTransactionPaymentFromAuthTransactionPayment(authTxnPmt.Id);
+                phss_cc_CyberSourceUtil.capturePayment(fulfillment.Id, authTxnPmt.Id, captureTxnPmt.Id);
             }
 
         } catch (Exception e) {
@@ -51,7 +59,7 @@ public with sharing class phss_cc_FulfillmentUtil {
         List<Fulfillment_Item__c> updatedItems = new List<Fulfillment_Item__c>();
 
         try {
-            Fulfillment__c fulfillment = getFulfillment(fulfillmentId);
+            Fulfillment__c fulfillment = fetchFulfillment(fulfillmentId);
 
             if (String.isNotBlank(transactionPaymentId)) {
                 fulfillment.CC_Transaction_Payment__c = transactionPaymentId;
@@ -60,7 +68,7 @@ public with sharing class phss_cc_FulfillmentUtil {
 
             for (Fulfillment_Item__c item : fulfillmentItems) {
                 if (item.Status__c == FULFILLMENT_ITEM_STATUS_READY) {
-                    item.Status__c = FULFILLMENT_ITEM_STATUS_COMPLETE;
+                    item.Status__c = FULFILLMENT_ITEM_STATUS_IN_PROGRESS;
                     updatedItems.add(item);
                 }
             }
@@ -124,17 +132,11 @@ public with sharing class phss_cc_FulfillmentUtil {
     }
 
 
-    private static ccrz__E_TransactionPayment__c createCaptureTransactionPayment(Map<String, Object> cyberSourceResponseMap, ccrz__E_TransactionPayment__c srcTransactionPayment, String invoiceId) {
+    private static ccrz__E_TransactionPayment__c completeCaptureTransactionPayment(String transactionPaymentId, String invoiceId, Map<String, Object> cyberSourceResponseMap) {
 
         try {
-            ccrz__E_TransactionPayment__c transactionPayment = new ccrz__E_TransactionPayment__c();
+            ccrz__E_TransactionPayment__c transactionPayment = phss_cc_TransactionPaymentUtil.fetchTransactionPayment(transactionPaymentId);
             transactionPayment.ccrz__InvoiceAppliedFor__c = invoiceId;
-            transactionPayment.ccrz__SourceTransactionPayment__c = srcTransactionPayment.Id;
-            transactionPayment.ccrz__Account__c = srcTransactionPayment.ccrz__Account__c;
-            transactionPayment.ccrz__AccountType__c = srcTransactionPayment.ccrz__AccountType__c;
-            transactionPayment.ccrz__CCOrder__c = srcTransactionPayment.ccrz__CCOrder__c;
-            transactionPayment.ccrz__Storefront__c = srcTransactionPayment.ccrz__Storefront__c;
-            transactionPayment.ccrz__TransactionType__c = phss_cc_TransactionPaymentUtil.CAPTURE_TRANSACTION_TYPE;
 
             String cardTypeCode = (String) cyberSourceResponseMap.get(phss_cc_CyberSourceUtil.CYBER_SOURCE_REQ_CARD_TYPE_KEY);
             if (String.isNotBlank(cardTypeCode)) {
@@ -173,7 +175,7 @@ public with sharing class phss_cc_FulfillmentUtil {
                 transactionPayment.ccrz__RequestAmount__c = amount;
             }
 
-            insert transactionPayment;
+            update transactionPayment;
             return transactionPayment;
 
         } catch (Exception e) {
@@ -188,13 +190,13 @@ public with sharing class phss_cc_FulfillmentUtil {
      * @param paymentId
      * @param fulfillmentId
      */
-    public static void finalizePayment(String transactionPaymentId, String fulfillmentId, Map<String, Object> cyberSourceResponseMap) {
+    public static void finalizePayment(String authTransactionPaymentId, String captureTransactionPaymentId, String fulfillmentId, Map<String, Object> cyberSourceResponseMap) {
         try {
-            ccrz__E_Invoice__c invoice = createInvoiceForPayment(transactionPaymentId);
-            completeFulfillment(fulfillmentId, transactionPaymentId);
+            ccrz__E_Invoice__c invoice = createInvoiceForPayment(authTransactionPaymentId);
+            completeFulfillment(fulfillmentId, captureTransactionPaymentId);
             
-            ccrz__E_TransactionPayment__c authTransactionPayment = completeAuthTransactionPayment(transactionPaymentId, invoice.Id);
-            ccrz__E_TransactionPayment__c captureTransactionPayment = createCaptureTransactionPayment(cyberSourceResponseMap, authTransactionPayment, invoice.Id);
+            ccrz__E_TransactionPayment__c authTransactionPayment = completeAuthTransactionPayment(authTransactionPaymentId, invoice.Id);
+            ccrz__E_TransactionPayment__c captureTransactionPayment = completeCaptureTransactionPayment(captureTransactionPaymentId, invoice.Id, cyberSourceResponseMap);
 
             authTransactionPayment.ccrz__PaymentType__c = captureTransactionPayment.ccrz__PaymentType__c;
             update authTransactionPayment;
@@ -204,12 +206,24 @@ public with sharing class phss_cc_FulfillmentUtil {
         }
     }
 
+	/**
+	 * @description Fetches the fulfillment record for the specified ID
+	 *
+	 * @param fulfillmentId
+	 *
+	 * @return
+	 */
 	@testVisible
-    private static Fulfillment__c getFulfillment(String fulfillmentId) {
+    private static Fulfillment__c fetchFulfillment(String fulfillmentId) {
         return [
-                SELECT Id, Name, CC_Transaction_Payment__c
-                FROM Fulfillment__c
-                WHERE Id = :fulfillmentId
+                SELECT
+                        Id,
+                        Name,
+                        CC_Transaction_Payment__c
+                FROM
+                        Fulfillment__c
+                WHERE
+                        Id = :fulfillmentId
         ];
     }
 
@@ -224,27 +238,48 @@ public with sharing class phss_cc_FulfillmentUtil {
     @testVisible
     private static List<Fulfillment_Item__c> getFulfillmentItems(String fulfillmentId) {
         return [
-                SELECT Id, Order_Item__c, Quantity__c, Status__c
-                FROM Fulfillment_Item__c
-                WHERE Fulfillment__c = :fulfillmentId
+                SELECT
+                        Id,
+                        Order_Item__c,
+                        Quantity__c,
+                        Status__c
+                FROM
+                        Fulfillment_Item__c
+                WHERE
+                        Fulfillment__c = :fulfillmentId
         ];
     }
 
 	@testVisible
     private static List<ccrz__E_OrderItem__c> getItemsForOrder(String orderId) {
         return [
-                SELECT Id, ccrz__AdjustmentAmount__c, ccrz__Quantity__c
-                FROM ccrz__E_OrderItem__c
-                WHERE ccrz__Order__c = :orderId
+                SELECT
+                        Id,
+                        ccrz__AdjustmentAmount__c,
+                        ccrz__Quantity__c
+                FROM
+                        ccrz__E_OrderItem__c
+                WHERE
+                        ccrz__Order__c = :orderId
         ];
     }
 
 	@testVisible
     private static ccrz__E_TransactionPayment__c getTransactionPayment(String transactionPaymentId) {
         ccrz__E_TransactionPayment__c transactionPayment = [
-                SELECT Id, ccrz__Account__c, ccrz__AccountType__c, ccrz__Amount__c, ccrz__CCOrder__c, ccrz__CurrencyISOCode__c, ccrz__PaymentType__c, ccrz__Storefront__c
-                FROM ccrz__E_TransactionPayment__c
-                WHERE Id = :transactionPaymentId
+                SELECT
+                        Id,
+                        ccrz__Account__c,
+                        ccrz__AccountType__c,
+                        ccrz__Amount__c,
+                        ccrz__CCOrder__c,
+                        ccrz__CurrencyISOCode__c,
+                        ccrz__PaymentType__c,
+                        ccrz__Storefront__c
+                FROM
+                        ccrz__E_TransactionPayment__c
+                WHERE
+                        Id = :transactionPaymentId
         ];
         return transactionPayment;
     }
@@ -265,9 +300,12 @@ public with sharing class phss_cc_FulfillmentUtil {
         }
 
         List<ccrz__E_TransactionPayment__c> transactionPayments = [
-                SELECT Id
-                FROM ccrz__E_TransactionPayment__c
-                WHERE ccrz__CCOrder__c = :orderId
+                SELECT
+                        Id
+                FROM
+                        ccrz__E_TransactionPayment__c
+                WHERE
+                        ccrz__CCOrder__c = :orderId
         ];
 
         if (transactionPayments.size() > 0) {

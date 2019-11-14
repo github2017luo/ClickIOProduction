@@ -6,6 +6,11 @@
         <publicGroups>
             <publicGroup>Social_Managers</publicGroup>
         </publicGroups>
+        <users>
+            <user>alyssa.kinney7@redcross.org</user>
+            <user>salesforce-arc@degdigital.com</user>
+            <user>paul.munn@redcross.org</user>
+        </users>
     </queueMembers>
     <queueSobject>
         <sobjectType>Case</sobjectType>

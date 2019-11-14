@@ -19,6 +19,9 @@ public with sharing class phss_cc_CyberSourceUtil {
     // CyberSource transaction types
     private static final String TRANSACTION_TYPE_CAPTURE = 'sale';
 
+    // CyberSource response values
+    private static final String SUCCESS_REASON_CODE = '100';
+
     // Form Data
     private static final String CART_ENCID_KEY = 'cartEncId';
     private static final String UTC_DATE_KEY = 'utcDate';
@@ -61,6 +64,8 @@ public with sharing class phss_cc_CyberSourceUtil {
     public static final String CYBER_SOURCE_REQ_PAYMENT_TOKEN_KEY = 'req_payment_token';
     public static final String CYBER_SOURCE_REQUEST_TOKEN_KEY = 'request_token';
     public static final String CYBER_SOURCE_TRANSACTION_ID_KEY = 'transaction_id';
+    public static final String CYBER_SOURCE_REASON_CODE_KEY = 'reason_code';
+    public static final String CYBER_SOURCE_MESSAGE_KEY = 'message';
 
     // CyberSource Config Keys
     private static final String CYBER_SOURCE_CONFIG_TOKEN_URL_KEY = 'pgcs.urltokencreate';
@@ -82,6 +87,7 @@ public with sharing class phss_cc_CyberSourceUtil {
     private static final String FAILED_TO_CREDIT_TRANSACTION_PAYMENT = 'Failed to credit transaction payment';
     public static final String FAILED_TO_VERIFY_CYBERSOURCE_RESPONSE_SIGNATURE = 'Failed to verify Cybersource response signature.';
     private static final String FAILED_TO_VERIFY_CYBERSOURCE_PAYMENT_CAPTURE_RESPONSE = 'Failed to verify payment capture response';
+    private static final String FAILED_TO_CAPTURE_PAYMENT_WITH_REASON_CODE = 'Failed to capture payment.';
 
     //CyberSource Config Settings.
     @TestVisible private static String ACCESS_KEY;
@@ -118,6 +124,7 @@ public with sharing class phss_cc_CyberSourceUtil {
     @TestVisible private static String BILLING_STATE;
     @TestVisible private static String BILLING_COUNTRY;
     @TestVisible private static String BILLING_POSTAL_CODE;
+    @TestVisible private static Decimal CART_TOTAL_AMOUNT;
 
     // Payment Capture
     public static final String PAYMENT_CAPTURE_RESPONSE = 'payment capture response';
@@ -199,10 +206,19 @@ public with sharing class phss_cc_CyberSourceUtil {
         ACCESS_KEY = (String) configs.get(CYBER_SOURCE_CONFIG_ACCESSKEY_KEY);
         PROFILE_ID = (String) configs.get(CYBER_SOURCE_CONFIG_PROFILE_ID_KEY);
         SECRET = (String) configs.get(CYBER_SOURCE_CONFIG_SECRET_1_KEY) + (String) configs.get(CYBER_SOURCE_CONFIG_SECRET_2_KEY);
-        AUTH_AMOUNT = (String) configs.get(CYBER_SOURCE_CONFIG_AUTH_AMOUNT_KEY);
-        if (AUTH_AMOUNT == null || String.isBlank(AUTH_AMOUNT)) {
-            AUTH_AMOUNT = DEFAULT_AUTH_AMOUNT;
+
+        // Absolute/Percentage amount
+        String amountStr = (String) configs.get(CYBER_SOURCE_CONFIG_AUTH_AMOUNT_KEY);
+        if (String.isBlank(amountStr)) {
+            amountStr = DEFAULT_AUTH_AMOUNT;
+        } else {
+            String percentChar = '%';
+            if (amountStr.endsWith(percentChar) && CART_TOTAL_AMOUNT != null) {
+                Decimal percentage = Decimal.valueOf(amountStr.removeEnd(percentChar)) / 100.0;
+                amountStr = String.valueOf((CART_TOTAL_AMOUNT * percentage).setScale(2));
+            }
         }
+        AUTH_AMOUNT = amountStr;
 
         //Payment Types
         String paymentTypesString = (String) configs.get(CYBER_SOURCE_CONFIG_PAYMENT_TYPES_KEY);
@@ -258,6 +274,7 @@ public with sharing class phss_cc_CyberSourceUtil {
                         ccrz__Account__r.CreatedDate,
                         ccrz__Account__r.LastModifiedDate,
                         ccrz__Storefront__c,
+                        ccrz__TotalAmount__c,
                         ccrz__EncryptedId__c
                 FROM ccrz__E_Cart__c
                 WHERE Opportunity__c = :currOpportunitySfid AND ccrz__ActiveCart__c = true
@@ -277,6 +294,7 @@ public with sharing class phss_cc_CyberSourceUtil {
         BILLING_STATE = currCart.ccrz__Account__r.BillingState;
         BILLING_COUNTRY = currCart.ccrz__Account__r.BillingCountry;
         BILLING_POSTAL_CODE = currCart.ccrz__Account__r.BillingPostalCode;
+        CART_TOTAL_AMOUNT = currCart.ccrz__TotalAmount__c;
 
     }
 
@@ -449,14 +467,15 @@ public with sharing class phss_cc_CyberSourceUtil {
      * @return
      */
     @Future (Callout=true)
-    public static void capturePayment(String transactionPaymentId, String fulfillmentId) {
+    public static void capturePayment(String fulfillmentId, String authTransactionPaymentId, String captureTransactionPaymentId) {
         try {
-            ccrz__E_TransactionPayment__c payment = fetchTransactionPayment(transactionPaymentId);
-            ccrz__E_Order__c order = fetchOrder(payment.ccrz__CCOrder__c);
+            ccrz__E_TransactionPayment__c authTxnPmt = phss_cc_TransactionPaymentUtil.fetchTransactionPayment(authTransactionPaymentId);
+            ccrz__E_TransactionPayment__c captureTxnPmt = phss_cc_TransactionPaymentUtil.fetchTransactionPayment(captureTransactionPaymentId);
+            ccrz__E_Order__c order = fetchOrder(authTxnPmt.ccrz__CCOrder__c);
             ccrz__E_Cart__c cart = fetchCart(order.ccrz__OriginatedCart__c);
 
             getCyberSourceConfigSettings(cart.ccrz__Storefront__c);
-            Map<String, Object> captureData = buildCaptureData(payment.ccrz__Token__c, payment.Name, payment.ccrz__Amount__c);
+            Map<String, Object> captureData = buildCaptureData(authTxnPmt.ccrz__Token__c, captureTxnPmt.Name, captureTxnPmt.ccrz__Amount__c);
             Map<String, Object> captureResult = requestPaymentCapture(captureData);
 
             String status = (String) captureResult.get(PAYMENT_CAPTURE_STATUS);
@@ -467,10 +486,21 @@ public with sharing class phss_cc_CyberSourceUtil {
 
                 Boolean isResponseValid = verifyPaymentCaptureResponse(responseMap);
                 if (isResponseValid) {
-                    phss_cc_FulfillmentUtil.finalizePayment(transactionPaymentId, fulfillmentId, responseMap);
+                    String reasonCode = responseMap.get(CYBER_SOURCE_REASON_CODE_KEY);
+                    if (reasonCode == SUCCESS_REASON_CODE) {
+                        phss_cc_FulfillmentUtil.finalizePayment(authTxnPmt.Id, captureTxnPmt.Id, fulfillmentId, responseMap);
+                    }
+                    else {
+                        String message = (String) responseMap.get(CYBER_SOURCE_MESSAGE_KEY);
+                        if (message == null) {
+                            message = FAILED_TO_CAPTURE_PAYMENT_WITH_REASON_CODE + ' [reason_code=' + reasonCode + ']';
+                        }
+
+                        throw new phss_cc_Exception(message);
+                    }
                 }
                 else {
-                    throw new phss_cc_Exception('Failed to capture payment because of mismatching signatures (fulfillment=' + fulfillmentId + ', transactionPayment=' + transactionPaymentId + ')');
+                    throw new phss_cc_Exception('Failed to capture payment because of mismatching signatures (fulfillment=' + fulfillmentId + ', AUTH=' + authTransactionPaymentId + ', CAPTURE=' + captureTransactionPaymentId + ')');
                 }
 
             } else if (status == PAYMENT_CAPTURE_FAILED) {
@@ -517,8 +547,8 @@ public with sharing class phss_cc_CyberSourceUtil {
 
         Map<String, Object> dataMap = new Map<String, Object>{
                 'access_key' => ACCESS_KEY,
-                'amount' => amount,
                 'bill_trans_ref_no' => referenceNumber,
+                'amount' => amount,
                 'currency' => DEFAULT_CURRENCY_CODE,
                 'ignore_avs' => BOOLEAN_TRUE,
                 'locale' => DEFAULT_LOCALE,
@@ -572,25 +602,6 @@ public with sharing class phss_cc_CyberSourceUtil {
         return order;
     }
 
-
-    /**
-     * @description Fetches a transaction payment for its identifier
-     *
-     * @param transactionPaymentId
-     *
-     * @return
-     */
-    @testVisible
-    private static ccrz__E_TransactionPayment__c fetchTransactionPayment(String transactionPaymentId) {
-        ccrz__E_TransactionPayment__c transactionPayment = [
-                SELECT Id, ccrz__Amount__c, ccrz__CCOrder__c, ccrz__CCOrder__r.Opportunity_Order__c,
-                        ccrz__PaymentType__c, ccrz__Storefront__c, ccrz__Token__c, ccrz__TransactionType__c, Name
-                FROM ccrz__E_TransactionPayment__c
-                WHERE Id = :transactionPaymentId
-        ];
-        return transactionPayment;
-    }
-
 	@testVisible
     private static ccrz__E_TransactionPayment__c fetchTransactionPaymentForToken(String token) {
         ccrz__E_TransactionPayment__c transactionPayment = [
@@ -600,7 +611,7 @@ public with sharing class phss_cc_CyberSourceUtil {
         ];
 
         if (transactionPayment != null) {
-            return fetchTransactionPayment(transactionPayment.Id);
+            return phss_cc_TransactionPaymentUtil.fetchTransactionPayment(transactionPayment.Id);
         }
 
         return null;
@@ -697,7 +708,7 @@ public with sharing class phss_cc_CyberSourceUtil {
         return signableString;
     }
 
-
+    @TestVisible
     private static Map<String, String> getFormDataFromHTML(Dom.XmlNode html) {
         Map<String, String> formData = new Map<String, String>();
 
@@ -742,43 +753,6 @@ public with sharing class phss_cc_CyberSourceUtil {
         }
     }
 
-
-    /******* *
-     *
-     * Credit-related functions
-     */
-    /******* */
-
-
-    /**
-     * @description Creates a credit transaction in CyberSource for a capture payment transaction payment
-     *
-     * @param transactionPaymentId
-     */
-    @testVisible
-    public static void creditTransactionPayment(String transactionPaymentId) {
-
-        if (String.isBlank(transactionPaymentId)) {
-            return;
-        }
-
-        try {
-            ccrz__E_TransactionPayment__c transactionPayment = fetchTransactionPayment(transactionPaymentId);
-            if (phss_cc_TransactionPaymentUtil.isCaptureTransaction(transactionPayment)) {
-                String creditRequst = buildCreditRequestBody(transactionPayment);
-            }
-
-        } catch (Exception e) {
-            throw new phss_cc_Exception(FAILED_TO_CREDIT_TRANSACTION_PAYMENT, e);
-        }
-    }
-
-	@testVisible
-    private static String buildCreditRequestBody(Object obj) {
-
-        return null;
-    }
-	
     @testVisible
     private static void getUserIPAddress() {
         try {

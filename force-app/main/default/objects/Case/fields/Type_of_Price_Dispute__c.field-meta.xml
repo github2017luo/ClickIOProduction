@@ -12,7 +12,7 @@
     <valueSet>
         <controllingField>Dispute_Issue__c</controllingField>
         <valueSetDefinition>
-            <sorted>false</sorted>
+            <sorted>true</sorted>
             <value>
                 <fullName>Account Reconciliation</fullName>
                 <default>false</default>
@@ -289,6 +289,11 @@
                 <label>Portal Billing</label>
             </value>
             <value>
+                <fullName>Portal Posting Request</fullName>
+                <default>false</default>
+                <label>Portal Posting Request</label>
+            </value>
+            <value>
                 <fullName>Prepaid PO Issue</fullName>
                 <default>false</default>
                 <label>Prepaid PO Issue</label>
@@ -437,11 +442,6 @@
                 <fullName>Wrong Price per Student</fullName>
                 <default>false</default>
                 <label>Wrong Price per Student</label>
-            </value>
-            <value>
-                <fullName>Portal Posting Request</fullName>
-                <default>false</default>
-                <label>Portal Posting Request</label>
             </value>
         </valueSetDefinition>
         <valueSettings>
@@ -624,11 +624,11 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Invoice Payments</controllingFieldValue>
-            <valueName>Research Payment</valueName>
+            <valueName>Portal Posting Request</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Invoice Payments</controllingFieldValue>
-            <valueName>Portal Posting Request</valueName>
+            <valueName>Research Payment</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Vendor Forms</controllingFieldValue>

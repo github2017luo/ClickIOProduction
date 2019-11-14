@@ -27,7 +27,7 @@
                tempList[i].Fail_Reason !== "Arrangements to complete course objectives")
             {
                 document.getElementById('reasonErr-'+(i+1)).classList.add('errMsg');
-                component.set("v.allValid",false);
+                  component.set("v.allValid",false);
             }
             else if(document.getElementById('reasonErr-'+(i+1)) != null) {
                 document.getElementById('reasonErr-'+(i+1)).classList.remove('errMsg');
@@ -35,48 +35,44 @@
         }   
     },
 
-     //
-    checkPreq : function(component, event, helper) {
-          console.log('Get in method');
-        var CCProductId = component.get("v.CCProductId");
-         var extUser = component.get("v.isExtUser");
-        var isParnter = component.get("v.isPartner");
-        var Nextbutton = component.get("v.Nextbuttonbool");
-          // Prereq check
-         if(typeof CCProductId !== 'undefined' && extUser===true && isParnter===false)
-         //if(typeof CCProductId !== 'undefined')
-         {
-          console.log('Get in new');
-          var action1 = component.get("c.checkPrereq");
-          action1.setParams({ccProdId : CCProductId});
-		  action1.setCallback(this, function(response) {
-            var state = response.getState();
-              
-            if (state === "SUCCESS") {
-                 var storeResponse = response.getReturnValue();
-			//component.set("v.calciinstructor",true);
-                 if(storeResponse==true) {
-                     component.set("v.Nextbuttonbool",true);
-                 }
-                else
-                {
-                     component.set("v.Nextbuttonbool",false);
 
-                     console.log("Error message: Instructor does not meet the prereq");
-                                var toastEvent = $A.get("e.force:showToast");
-                                toastEvent.setParams({
-                                    "mode": "pester",
-                                    "duration":" 10000",
-                                    "title": "Invalid Instructor",
-                                    "type" : "error",
-                                    "message": "You are not a Certified Instructor"
-                                });
-                                toastEvent.fire();
+    checkPreq: function (component, event, helper) {
+
+        var CCProductId = component.get("v.CCProductId");
+        var extUser = component.get("v.isExtUser");
+        var isPartner = component.get("v.isPartner");
+        // Prereq check
+        if (typeof CCProductId !== 'undefined' && extUser === true && isPartner === false) {
+        //if(typeof CCProductId !== 'undefined') { //for testing
+            var action1 = component.get("c.checkPrereq");
+            action1.setParams({ccProdId: CCProductId});
+            action1.setCallback(this, function (response) {
+                var state = response.getState();
+
+                if (state === "SUCCESS") {
+                    var storeResponse = response.getReturnValue();
+                    component.set("v.calciinstructor", true);
+                    if (storeResponse == true) {
+                        component.set("v.instructorHasPrerequisites", true);
+                        console.log("Instructor has met the prereq");
+                    } else {
+                        component.set("v.instructorHasPrerequisites", false);
+
+                        console.log("Error message: Instructor does not meet the prereq");
+                        var toastEvent = $A.get("e.force:showToast");
+                        toastEvent.setParams({
+                            "mode": "pester",
+                            "duration": " 10000",
+                            "title": "Invalid Instructor",
+                            "type": "error",
+                            "message": "You are not a Certified Instructor"
+                        });
+                        toastEvent.fire();
+                    }
                 }
-            }
-                });
-        $A.enqueueAction(action1);
-         }
+            });
+            $A.enqueueAction(action1);
+        }
     },
     mandateInput : function(component, event, helper) 
     {
@@ -232,7 +228,7 @@
             var Suppinfo = cmp.get("v.SupplementInfo");
             console.log("Supp Info" +Suppinfo);
             //Training Site
-            var tSite = cmp.get("v.Location"); // TODO: Remove this
+//            var tSite = cmp.get("v.Location"); // TODO: Remove this
             
             var siteName  = cmp.get("v.SiteName");
             var add1  = cmp.get("v.Address1");
@@ -240,6 +236,7 @@
             var city  = cmp.get("v.City");
             var state = cmp.get("v.State");
             var zip   = cmp.get("v.Zip");
+            var location = cmp.get("v.locationId");
 
             
             var obj = new Object();
@@ -251,8 +248,9 @@
             obj.SupplementInfo  =   Suppinfo;
             obj.Instructor1 =	user1;
             obj.Instructor2 =	user2;
-            obj.Location	=	tSite;
-            
+//            obj.Location	=	tSite;
+            obj.Location    =   location;
+
             obj.StartDate	= 	startDateFrmtd;
             obj.SiteName    =   siteName;
             obj.Address1 	= 	add1;
@@ -524,5 +522,40 @@
             }
         });
         $A.enqueueAction(action);
+    },
+
+    createIltLocation : function(component) {
+
+        var accountId = component.get('v.accId');
+        var siteName = component.get('v.SiteName');
+        var address1 = component.get('v.Address1');
+        var zip = component.get('v.Zip');
+        var state = component.get('v.State');
+        var city = component.get('v.City');
+
+        if (accountId && siteName && address1 && zip && state && city) {
+            // call apex method with the respective parameters
+            var action = component.get('c.createIltLocation');
+            action.setParams({
+                accountId: accountId,
+                name: siteName,
+                address1: address1,
+                address2: component.get('v.Address2'),
+                postcode: zip,
+                state: state,
+                city: city
+            });
+
+            action.setCallback(this, function(response) {
+                var state = response.getState();
+                if (state === 'SUCCESS') {
+                    var storeResponse = response.getReturnValue();
+                    console.log('response from createIltLocation: '+ storeResponse);
+                    component.set('v.locationId', storeResponse);
+                }
+            });
+            $A.enqueueAction(action);
+        }
     }
+
 })

@@ -520,6 +520,28 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Case_Queue_Update_MTN_Tier_III</fullName>
+        <description>Updates the case owner to MTN Tier III Queue</description>
+        <field>OwnerId</field>
+        <lookupValue>MTN_Tier_III</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Case Queue Update - MTN Tier III</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Case_Queue_Update_Military_Trng_Netwrk</fullName>
+        <description>Updates the case owner to MTN Bridge queue</description>
+        <field>OwnerId</field>
+        <lookupValue>MTN_Bridge</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Case Queue Update - Military Trng Netwrk</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Case_Queue_Update_Outbound</fullName>
         <field>OwnerId</field>
         <lookupValue>Outbound_Group_Queue</lookupValue>
@@ -778,6 +800,16 @@
         <lookupValue>Sales_Case</lookupValue>
         <lookupValueType>RecordType</lookupValueType>
         <name>Change Case Record Type to Sales</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Change_Owner_to_CCO_Specialist</fullName>
+        <field>OwnerId</field>
+        <lookupValue>CCO_Specialist</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Change Owner to CCO Specialist</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
@@ -1193,6 +1225,17 @@
         <lookupValue>Retail_Collections</lookupValue>
         <lookupValueType>Queue</lookupValueType>
         <name>Set owner to Retail Collections Queue</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_to_Finance_Queue</fullName>
+        <description>Set Finance Queue</description>
+        <field>OwnerId</field>
+        <lookupValue>Finance_COE_Billing</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Set to Finance Queue</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
@@ -2138,7 +2181,32 @@ CreatedBy.FirstName = &quot;BillingRequestForm&quot;,
             <operation>equals</operation>
             <value>CRE</value>
         </criteriaItems>
-        <description>Moves CRE cases to Fin Billing queue</description>
+        <criteriaItems>
+            <field>Case.Type_of_Price_Dispute__c</field>
+            <operation>notEqual</operation>
+            <value>Review Available Credit</value>
+        </criteriaItems>
+        <description>Moves CRE cases to CCO Specialist queue</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>CRE Finance</fullName>
+        <actions>
+            <name>Set_to_Finance_Queue</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>equals</operation>
+            <value>CRE</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Type_of_Price_Dispute__c</field>
+            <operation>equals</operation>
+            <value>Review Available Credit</value>
+        </criteriaItems>
+        <description>Moves CRE cases to Fin Queue</description>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -2727,6 +2795,20 @@ ISPICKVAL( Follow_Up_Group__c, &quot;Course Records&quot;) ,
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
+        <fullName>Case route to CCO Specialist</fullName>
+        <actions>
+            <name>Change_Owner_to_CCO_Specialist</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Subject</field>
+            <operation>contains</operation>
+            <value>Community Course Cancellation</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
         <fullName>Case sent to CFS</fullName>
         <active>false</active>
         <criteriaItems>
@@ -3025,9 +3107,15 @@ ISPICKVAL( Follow_Up_Group__c, &quot;Course Records&quot;) ,
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
+        <booleanFilter>1 AND 2</booleanFilter>
         <criteriaItems>
             <field>Case.Offering_ID__c</field>
             <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Offering_ID__c</field>
+            <operation>notContain</operation>
+            <value>CLS</value>
         </criteriaItems>
         <description>Changes the record type to LTP on RCO</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>

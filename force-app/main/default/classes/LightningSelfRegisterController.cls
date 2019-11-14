@@ -27,12 +27,12 @@ global without sharing class LightningSelfRegisterController {
     }
     
     @AuraEnabled
-    public static String selfRegister(String firstname ,String lastname, String email, String password, String confirmPassword, String accountId, String regConfirmUrl, String extraFields, String startUrl, Boolean includePassword) {
+    public static String selfRegister(String firstname ,String lastname, String email, String password, String confirmPassword, String accountId, String contactId, String regConfirmUrl, String extraFields, String startUrl, Boolean includePassword) {
 
         // check if email provided exists already as username
         List<User> users = [SELECT Id FROM User WHERE Username = :email];
         if (users.size() > 0) {
-            return 'A user with this email address already exists. Contact Red Cross Technical Support Team for assistance.';
+            return 'A user with this email address already exists. Click here to contact Red Cross Technical Support Team for assistance.';
         }
 
         Savepoint sp = null;
@@ -53,19 +53,21 @@ global without sharing class LightningSelfRegisterController {
             
             String sysAdminId = [Select id from user where UserRoleId != null and profile.Name = 'System Administrator' and isActive=true limit 1].Id;
             Account acc = new Account();
+            acc.Id = accountId;
             acc.Name = firstname +' '+ lastname;
             acc.OwnerId = sysAdminId;
             acc.DM_External_Id__c = firstname + lastname + email;
             acc.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Individual Account').getRecordTypeId();
-            insert acc;
+            upsert acc;
             
             Contact con = new Contact();
+            con.Id = contactId;
             con.LastName = lastname;
             con.FirstName = firstname;
             con.Email = email;
             con.AccountId = acc.Id;
             con.DM_External_Id__c = firstname + lastname + email;
-            insert con;
+            upsert con;
             
             User u = new User();
 //            u.Username = firstname + lastname + email;
@@ -200,5 +202,32 @@ global without sharing class LightningSelfRegisterController {
             return true;
         }
         return false;
+    }
+
+    @AuraEnabled
+    global static String checkExistingContact(String email) {
+        // checks if contact / account exists with the specified email address
+
+        List<Contact> contacts = [SELECT Id, Email, AccountId, FirstName, LastName FROM Contact WHERE Email = :email];
+        // what to do if multiple contacts found?
+
+        if(contacts.size() > 0) {
+            Contact c = contacts[0];
+
+            JSONGenerator gen = JSON.createGenerator(true);
+            gen.writeStartObject();
+            gen.writeStringField('Email', c.Email);
+            gen.writeStringField('AccountId', c.AccountId);
+            gen.writeStringField('ContactId', c.Id);
+            gen.writeStringField('FirstName', c.FirstName);
+            gen.writeStringField('LastName', c.LastName);
+            gen.writeEndObject();
+
+            String jsonString = gen.getAsString();
+            System.debug('jsonString:' +jsonString);
+            return jsonString;
+        } else {
+            return null;
+        }
     }
 }

@@ -53,17 +53,15 @@
      * @param event
      * @param helper
      */
-    productCountIncrement: function (component, event, helper) {
-        var productQuantityMap = component.get('v.productQuantityMap');
-        var productSfid = event.getParam('productSfid');
-        if (isNaN(productQuantityMap[productSfid])) {
-            productQuantityMap[productSfid] = 1;
+    cartItemQuantityIncrement: function (component, event, helper) {
+        var quantities = component.get('v.cartItemQuantityMap');
+        var cartItemId = event.getParam('cartItemId');
+        var cartItemQty = quantities[cartItemId];
+        if (isNaN(cartItemQty)) {
+            quantities[cartItemId] = 1;
+        } else {
+            quantities[cartItemId] = Number(cartItemQty) + 1;
         }
-        else {
-            productQuantityMap[productSfid] = Number(productQuantityMap[productSfid]) + 1;
-        }
-
-        component.set('v.productQuantityMap', productQuantityMap);
         component.set('v.isCartUpdated', true);
     },
 
@@ -73,16 +71,15 @@
      * @param event
      * @param helper
      */
-    productCountDecrement: function (component, event, helper) {
-        var productQuantityMap = component.get('v.productQuantityMap');
-        var productSfid = event.getParam('productSfid');
-        if (isNaN(productQuantityMap[productSfid]) || productQuantityMap[productSfid] == 0) {
-            productQuantityMap[productSfid] = 0;
+    cartItemQuantityDecrement: function (component, event, helper) {
+        var quantities = component.get('v.cartItemQuantityMap');
+        var cartItemId = event.getParam('cartItemId');
+        var cartItemQty = quantities[cartItemId];
+        if (isNaN(cartItemQty)) {
+            quantities[cartItemId] = 0;
+        } else {
+            quantities[cartItemId] = Number(cartItemQty) - 1;
         }
-        else {
-            productQuantityMap[productSfid] = Number(productQuantityMap[productSfid]) - 1;
-        }
-        component.set('v.productQuantityMap', productQuantityMap);
         component.set('v.isCartUpdated', true);
     },
 
@@ -104,7 +101,7 @@
      */
     handleCyberSourceResponse: function (component, event, helper) {
         var cyberSourceResponse = event.getParam('responseString');
-        helper.doPlaceOrderCC(component,event,helper,cyberSourceResponse);
+        helper.doPlaceOrderCC(component, event, helper, cyberSourceResponse);
     },
 
     /**
@@ -123,6 +120,8 @@
         var updatePO = event.getParam('updatePO');
         var updatedPOAmount = event.getParam('updatedPOAmount');
 
+        var storedPayments = helper.getStoredPaymentIDs(component);
+
         if (POSfid === 'NoPORequired') {
             helper.doPlaceOrderPO(component,event,helper,null);
         }
@@ -140,13 +139,36 @@
                 PODetailsMap['newPODoSave'] = newPODoSave;
             }
 
-            helper.doPlaceOrderPO(component,event,helper,PODetailsMap);
+            helper.doPlaceOrderPO(component, event, helper, PODetailsMap);
         }
     },
-    
+
+    /**
+     * @description Receive the response from the On Account Balance component with the selected stored payments
+     * @param component
+     * @param event
+     * @param helper
+     */
     handleCBPayment: function (component, event, helper) {
-        console.log("$$$handleCBPayment$$$");
-        helper.doPlaceOrderCB(component,event,helper,null);
+        console.log("phss_cc_Cart.handleCBPayment()");
+        var storedPayments = event.getParam('storedPayments');
+        helper.doPlaceOrderCB(component, event, helper, storedPayments);
+    },
+
+    handleCartPaymentNavigationEvent: function (component, event, helper) {
+        var selectedTabName = event.getParam('selectedTab');
+        var tabset = component.find('paymentTabset');
+        if (selectedTabName != null && tabset != null) {
+            if (selectedTabName == 'Credit Card') {
+                tabset.set('v.selectedTabId', '1');
+            } else if (selectedTabName == 'Invoice') {
+                tabset.set('v.selectedTabId', '2');
+            } else if (selectedTabName == 'Account Balance') {
+                tabset.set('v.selectedTabId', '3');
+            } else {
+                console.log('Unknown tab [name=' + selectedTabName + ']');
+            }
+        }
     },
 
     /**
@@ -161,9 +183,33 @@
             var showEvent = $A.get('e.c:phss_cc_ShowPriceOverrideModalEvent');
             showEvent.setParams({
                 'opportunitySfid': component.get('v.recordId'),
-                'productSfid': event.getParam('productSfid')
+                'cartItemId': event.getParam('cartItemId')
             });
             showEvent.fire();
         }
+    },
+
+    handleToggleStoredPaymentSelection: function (component, event, helper) {
+        var storedPayments = event.getParam('storedPayments');
+        if (storedPayments != null) {
+
+            // sum up amounts
+            var totalAmount = 0.0;
+            storedPayments.forEach(function (payment) {
+                totalAmount += payment.remainingPOAmount;
+            });
+
+            // format label text
+            var labelText = 'Account Balance';
+            if (totalAmount > 0.0) {
+                labelText += ':  $' + totalAmount + ' to be applied';
+            }
+
+            // set label text for Account Balance tab
+            var label = component.find('onAccountBalanceTab').get('v.label');
+            label[0].set('v.value', labelText);
+        }
+
+        component.set('v.storedPayments', storedPayments);
     }
 })

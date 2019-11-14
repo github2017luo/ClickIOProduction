@@ -226,7 +226,7 @@ public class skedUtils {
         return mapResult;
     }
 
-    public static Set<Id> getResourceIdsByRadius(Set<Id> resourceIds, integer radius, Location destination) {
+    public static Set<Id> getResourceIdsByRadius(Set<Id> resourceIds, decimal radius, Location destination) {
         List<sked__Resource__c> resources = [SELECT Id, Name, sked__GeoLocation__c
                                              FROM sked__Resource__c
                                              WHERE Id IN :resourceIds
@@ -267,6 +267,12 @@ public class skedUtils {
             }
         }
         return result;
+    }
+    
+    public static Map<Id, Account> getChildAccountsInHierarchy(Id accountId) {
+        Account acc = [SELECT Id, HQ_Account__c FROM Account WHERE Id = :accountId];
+        Id hqAccountId = acc.HQ_Account__c != NULL ? acc.HQ_Account__c : accountId;
+        return new Map<Id, Account>([SELECT Id FROM Account WHERE Id = :hqAccountId OR HQ_Account__c = :hqAccountId]);
     }
 
 }

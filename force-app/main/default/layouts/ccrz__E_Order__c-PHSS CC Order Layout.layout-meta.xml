@@ -19,10 +19,6 @@
                 <field>ccrz__OriginatedCart__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ccrz__PaymentMethod__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>ccrz__TotalAmount__c</field>
             </layoutItems>
@@ -41,6 +37,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ccrz__AdjustmentReason__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Coupon_Codes__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -64,10 +64,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NSSCCConnector_SFCC_Order_Total__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>NSSCCConnector_SFCC_Order_Number__c</field>
             </layoutItems>
             <layoutItems>
@@ -76,11 +72,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NSSCCConnector_isContactIdExist__c</field>
+                <field>NSSCCConnector_from_SFCC__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NSSCCConnector_from_SFCC__c</field>
+                <field>CRE_Request_Processed__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -400,9 +396,14 @@
             <sortOrder>11</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Print_Order</actionName>
+            <actionName>Add_NAT_Student_Name</actionName>
             <actionType>CustomButton</actionType>
             <sortOrder>12</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>Print_Order</actionName>
+            <actionType>CustomButton</actionType>
+            <sortOrder>13</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <quickActionList>
@@ -434,9 +435,8 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>ccrz__Product__c</fields>
-        <fields>ccrz__Price__c</fields>
-        <fields>ccrz__SubAmount__c</fields>
         <fields>ccrz__OrderItemStatus__c</fields>
+        <fields>ccrz__Price__c</fields>
         <fields>ccrz__Quantity__c</fields>
         <fields>ccrz__ItemTotal__c</fields>
         <relatedList>ccrz__E_OrderItem__c.ccrz__Order__c</relatedList>
@@ -460,8 +460,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>ccrz__AccountNumber__c</fields>
-        <fields>ccrz__PaymentType__c</fields>
+        <fields>ccrz__AccountType__c</fields>
         <fields>ccrz__StoredPayment__c</fields>
         <fields>ccrz__Amount__c</fields>
         <relatedList>ccrz__E_TransactionPayment__c.ccrz__CCOrder__c</relatedList>
@@ -561,15 +560,29 @@
         <fields>CONTACT.ACCOUNT</fields>
         <relatedList>Case.CC_Order__c</relatedList>
     </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>redwing__ILT_Class__c.CPS_Order__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>
     <showInteractionLogPanel>true</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1k000000N5KR</masterLabel>
-        <sizeX>4</sizeX>
-        <sizeY>0</sizeY>
+        <masterLabel>00h21000000S90f</masterLabel>
+        <sizeX>3</sizeX>
+        <sizeY>1</sizeY>
+        <summaryLayoutItems>
+            <field>NSSCCConnector_from_SFCC__c</field>
+            <posX>0</posX>
+            <posY>0</posY>
+        </summaryLayoutItems>
+        <summaryLayoutItems>
+            <field>NSSCCConnector_SFCC_Order_Number__c</field>
+            <posX>1</posX>
+            <posY>0</posY>
+        </summaryLayoutItems>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
     </summaryLayout>
 </Layout>

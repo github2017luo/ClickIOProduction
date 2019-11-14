@@ -594,7 +594,33 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>NAT_Types__c</picklist>
+        <values>
+            <fullName>Nurse Assistant Testing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nurse Assistant Training</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Pre_Approval__c</picklist>
+        <values>
+            <fullName>Guaranteed Date</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-Standard Course</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Scheduling_Status__c</picklist>
+        <values>
+            <fullName>Canceled</fullName>
+            <default>false</default>
+        </values>
         <values>
             <fullName>Completed</fullName>
             <default>false</default>
@@ -616,11 +642,23 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>In-Discussion</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Open</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Requested</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Rescheduling</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Sent Addendum</fullName>
+            <fullName>Reserved</fullName>
             <default>false</default>
         </values>
         <values>

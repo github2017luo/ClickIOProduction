@@ -1,4 +1,6 @@
 public class PHSS_CpsWrapper {
+    @AuraEnabled
+    public String offeringId {get;set;}
 	@AuraEnabled
     public String accName {get;set;}
     @AuraEnabled
@@ -6,9 +8,19 @@ public class PHSS_CpsWrapper {
     @AuraEnabled
     public String accId {get;set;}
     @AuraEnabled
-    public String courseId {get;set;}
+    public String ccProductId {get;set;}
+    @AuraEnabled
+    public String courseId {get;set;}    
+    @AuraEnabled
+    public String oppId {get;set;}
+    @AuraEnabled
+    public String locationId {get;set;}
     @AuraEnabled
     public String classFormat {get;set;}
+    @AuraEnabled
+    public String classDuration {get;set;}
+    @AuraEnabled
+    public String quantity {get;set;}
     @AuraEnabled
     public List<String> classFormatList {get;set;}
     @AuraEnabled
@@ -28,6 +40,10 @@ public class PHSS_CpsWrapper {
     @AuraEnabled
     public String zip {get;set;}
     @AuraEnabled
+    public String geoLat {get;set;}
+    @AuraEnabled
+    public String geoLng {get;set;}
+    @AuraEnabled
     public String regType {get;set;}
     @AuraEnabled
     public Decimal regFee {get;set;}
@@ -35,18 +51,24 @@ public class PHSS_CpsWrapper {
     public String regUrl {get;set;}
     @AuraEnabled
     public String regPhone {get;set;}
+    @AuraEnabled
+    public OfferingInformation accountInformation {get;set;}
 	
     public PHSS_CpsWrapper() {
-        this.courseName = '';
+        this.offeringId = '0';
         this.courseName = '';
         this.classFormat = '';
+        this.locationId = '';
         this.siteName = '';
         this.address1 = '';
         this.address2 = '';
         this.city = '';
         this.state = '';
         this.zip = '';
+        this.geoLat = '';
+        this.geoLng = '';
         this.regType = '';
+        this.quantity = '1';
     }    
     
     public class SessionWrapper {
@@ -64,6 +86,18 @@ public class PHSS_CpsWrapper {
             this.startTime = '';
             this.endTime = '';
             this.timeZone = '';
+        }
+    }
+    
+    public class OfferingInformation {
+        @AuraEnabled
+        public sObject selectedAccount {get;set;}
+        @AuraEnabled
+        public sObject selectedFacility {get;set;}
+   		
+        public OfferingInformation() {
+            this.selectedAccount 	= null;
+            this.selectedFacility 	= null;
         }
     }
 }

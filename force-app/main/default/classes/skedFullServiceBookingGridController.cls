@@ -98,16 +98,26 @@ global class skedFullServiceBookingGridController {
     global static skedRemoteResultModel searchContacts(string accountId, string query) {
         skedRemoteResultModel result = new skedRemoteResultModel();
         try {
+            Map<Id, Account> mapAllAccount = skedUtils.getChildAccountsInHierarchy(accountId);
             query = '%' + query + '%';
-            List<Contact> matchContacts = [SELECT Id, FirstName, LastName, Email, Phone, AccountId
-                                           FROM Contact
-                                           WHERE AccountId = :accountId
-                                           AND (FirstName LIKE :query OR LastName LIKE :query)
-                                           ORDER BY Name ASC];
             
             List<contactModel> options = new List<contactModel>();
+            List<Contact> matchContacts = [SELECT Id, FirstName, LastName, Email, Phone, AccountId
+                                           FROM Contact
+                                           WHERE AccountId IN :mapAllAccount.keySet()
+                                           AND (FirstName LIKE :query OR LastName LIKE :query)
+                                           ORDER BY Name ASC];
             for (Contact matchContact : matchContacts) {
                 contactModel option = new ContactModel(matchContact);
+                options.add(option);
+            }
+            List<AccountContactRelation> accountContactRelations = [SELECT Id, Contact.FirstName, Contact.LastName, Contact.Email, 
+                                                                    Contact.Phone, Contact.AccountId
+                                                                    FROM AccountContactRelation
+                                                                    WHERE AccountId IN :mapAllAccount.keySet()
+                                                                    AND (Contact.FirstName LIKE :query OR Contact.LastName LIKE :query)];
+            for (AccountContactRelation accountContactRelation : accountContactRelations) {
+                contactModel option = new ContactModel(accountContactRelation.Contact);
                 options.add(option);
             }
             result.data = options;
@@ -314,7 +324,8 @@ global class skedFullServiceBookingGridController {
                                                          WHERE sked__Status__c != :skedConstants.JOB_ALLOCATION_STATUS_DELETED)
                                                         FROM sked__Job__c
                                                         WHERE sked__Region__c = :queryModel.regionId
-                                                        AND sked__Type__c = :skedConstants.JOB_TYPE_FULL_SERVICE
+                                                        AND (sked__Type__c = :skedConstants.JOB_TYPE_FULL_SERVICE
+                                                             OR sked__Type__c = :skedConstants.JOB_TYPE_COMMUNITY)
                                                         AND sked__Job_Status__c = :skedConstants.JOB_STATUS_PENDING_ALLOCATION
                                                         AND sked__Start__c < :queryModel.endTime
                                                         AND sked__Finish__c > : queryModel.startTime
@@ -708,7 +719,7 @@ global class skedFullServiceBookingGridController {
             jobDateStart = skedDateTimeUtils.toTimezone(jobDateStart, model.timezoneSidId);
             integer startTimeInMinutes = skedDateTimeUtils.convertTimeNumberToMinutes(job.startTime);
             job.start = skedDateTimeUtils.addMinutes(jobDateStart, startTimeInMinutes, model.timezoneSidId);
-            job.finish = skedDateTimeUtils.addMinutes(job.start, model.classDuration, model.timezoneSidId);
+            job.finish = job.start.addMinutes(model.classDuration);
 
             job.tags = new List<skedBaseModels.tag>();
             for (string tagId : model.tagIds) {
@@ -727,7 +738,6 @@ global class skedFullServiceBookingGridController {
         skedJob.sked__Region__c = model.regionId;
         skedJob.sked__Account__c = model.accountId;
         skedJob.sked__Contact__c = model.contactId;
-        skedJob.sked__Description__c = model.courseCatalogName;
         skedJob.sked__Start__c = job.start;
         skedJob.sked__Finish__c = job.finish;
         skedJob.sked__Duration__c = model.classDuration;
@@ -1226,7 +1236,7 @@ global class skedFullServiceBookingGridController {
         public List<string> tagIds {get;set;}
         public integer jobDuration {get;set;}
         public integer timeslotStep {get;set;}
-        public integer radius {get;set;}
+        public decimal radius {get;set;}
         public decimal lat {get;set;}
         public decimal lng {get;set;}
         public integer beforeClassDuration {get;set;}

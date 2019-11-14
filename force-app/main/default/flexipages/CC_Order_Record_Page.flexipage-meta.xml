@@ -372,6 +372,27 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
+            <componentName>SubmitOrder</componentName>
+            <visibilityRule>
+                <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                <criteria>
+                    <leftValue>{!Record.Is_Submitted__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>false</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.ccrz__OrderStatus__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>Return Submitted</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.Is_Return_Order__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>true</rightValue>
+                </criteria>
+            </visibilityRule>
+        </componentInstances>
+        <componentInstances>
             <componentInstanceProperties>
                 <name>decorate</name>
                 <value>true</value>

@@ -1,7 +1,74 @@
 public without sharing class PHSS_eCommerceIntegrationFiles {
     public Boolean exportAllClasses = false;
     public DateTime RunTime = DateTime.Now();
-    
+
+    public static long convertLocalDateTimeToEpochTime(Date classDate, String classTimeString, String classTimeZone, Boolean returnAsGMT) {
+        Integer localClassHour;
+        Integer localClassMinute;
+        DateTime localDateTime;
+        Long epochTime = 0;
+
+        List<String> localTimeComponents = new List<String>();
+
+        try {
+            if (String.isNotBlank(classTimeString) && String.isNotBlank(classTimeZone) && classTimeString.contains(':')) {
+                localTimeComponents = classTimeString.split(':');
+
+                if (localTimeComponents.size() == 2) {
+                    localClassHour = Integer.valueOf(localTimeComponents[0]);
+                    localClassMinute = Integer.valueOf(localTimeComponents[1]);
+
+                    Time localClassTime = Time.newInstance(localClassHour, localClassMinute, 0, 0);
+
+                    // classDateTime is stored internally as UTC but time reflects system time not class local time
+                    // This field is used solely to compute a delta of local/system timezone to UTC (offsets).
+                    // It is important to use the class date (not current date) in the calls to getTimeZone
+                    // as the calculations of offsets will then properly reflect adjustments for DST (if applicable).
+
+                    // Note: DateTime.newInstance does not accept a time zone, hence this method was developed
+                    // classDateTime is created relative to the system time zone
+
+                    if (returnAsGMT) {
+                        // If returnAsGMT=true, return the local class date/time as raw GMT
+
+                        // Artificial adjustment (for Saba export file compatibility):
+                        // When rendered to the user as raw UTC, this value actually represents the
+                        // local time of the class (if that doesn't make any sense,
+                        // don't feel bad, just accept it)
+                        localDateTime = Datetime.newInstanceGmt(classDate, localClassTime);
+                        epochTime = localDateTime.getTime();
+                    } else {
+                        // classDateTime now represents system time zone
+                        Datetime classDateTime = Datetime.newInstance(classDate, localClassTime);
+
+                        if (classDateTime != null) {
+                            // Get system timezone as delta from UTC
+                            TimeZone systemTimezone = UserInfo.getTimeZone();
+                            Integer systemOffset = systemTimezone.getOffset(classDateTime);
+
+                            // Get local timezone as delta from UTC
+                            TimeZone localTimezone = TimeZone.getTimeZone(classTimeZone);
+                            Integer classOffset = localTimezone.getOffset(classDateTime);
+
+                            // Get delta between local time zone and system time zone
+                            Integer offsetDifference = systemOffset - classOffset;
+
+                            // The following statement adjusts the classDateTime to a proper UTC time
+                            // reflecting the true local time of class.
+                            // classDateTime is shifted from system to local timezone
+                            localDateTime = classDateTime.addSeconds(offsetDifference / 1000);
+                            epochTime = localDateTime.getTime();
+                        } else return epochTime;
+                    }
+                } else return epochTime;
+            } else return epochTime;
+
+            return epochTime;
+        } catch (exception e) {
+            return epochTime;
+        }
+    }
+
     public class CustomAttributes {
         String   CourseID;
         String   FacilityID;
@@ -9,7 +76,6 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
         String   CourseFormat;
         String   CourseLanguage;
         Long     CourseSortDate;   // *** Note: These two dates tie to the date of the first session for the course
-                                   // *** For LTP CPS, value is start date
         Long     offeringDropDate; 
         String   CourseDates;      
         String   CourseDaysOfWeek; 
@@ -32,7 +98,7 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
         
         Map<String, String> customAttributeValueMap;
     
-        CustomAttributes(Boolean CPS, redwing__Training_Plan__c theLearningPlan, redwing__ILT_Class__c theClass, List<redwing__ILT_Session__c> theSessionList, redwing__ILT_Session__c theFirstSession) {                 
+        CustomAttributes(Boolean CPS, Long classOnlineToEpoch, redwing__Training_Plan__c theLearningPlan, redwing__ILT_Class__c theClass, List<redwing__ILT_Session__c> theSessionList, redwing__ILT_Session__c theFirstSession) {
             String sessionDateList = '';
             String sessionDayOfWeekList = '';
             String sessionMonthList = '';
@@ -40,17 +106,26 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
             String sessionStartTimeList = '';
             String sessionEndTimeList = '';
 
-            String locationKeyPrefix = redwing__ILT_Location__c.SObjectType.getDescribe().getKeyPrefix();   
-            
+            Long sessionStartEpoch;
+            Long sessionEndEpoch;
+
+            String classTimeZone  = (String.isNotBlank(theClass.redwing__Timezone__c)) ?
+                    theClass.redwing__Timezone__c : 'America/New_York';
+
+            Boolean returnAsGmt = true;
+
+            // String locationKeyPrefix = redwing__ILT_Location__c.SObjectType.getDescribe().getKeyPrefix();
+
             for (redwing__ILT_Session__c theClassSession : theSessionList) {
-        
-                String startDateTimeString = String.valueOf(theClassSession.redwing__Date__c) + ' ' + theClassSession.redwing__Start_Time__c + ':00';
-                String endDateTimeString   = String.valueOf(theClassSession.redwing__Date__c) + ' ' + theClassSession.redwing__End_Time__c + ':00';             
-                
+                //String startDateTimeString = String.valueOf(theClassSession.redwing__Date__c) + ' ' + theClassSession.redwing__Start_Time__c + ':00';
+                //String endDateTimeString   = String.valueOf(theClassSession.redwing__Date__c) + ' ' + theClassSession.redwing__End_Time__c + ':00';
+                sessionStartEpoch = convertLocalDateTimeToEpochTime(theClassSession.redwing__Date__c, theClassSession.redwing__Start_Time__c, classTimeZone, returnAsGmt);
+                sessionEndEpoch = convertLocalDateTimeToEpochTime(theClassSession.redwing__Date__c, theClassSession.redwing__End_Time__c, classTimeZone, returnAsGmt);
+
                 if (sessionDateList.length() > 0) sessionDateList += ';';
-                sessionDateList += String.valueOf(DateTime.valueOf(startDateTimeString).getTime());
+                sessionDateList += String.valueOf(sessionStartEpoch);
                 if (sessionDayOfWeekList.length() > 0) sessionDayOfWeekList += ';';                
-                sessionDayOfWeekList += String.valueOf(DateTime.valueOf(startDateTimeString).format('EEEE'));
+                sessionDayOfWeekList += DateTime.newInstance(sessionStartEpoch).format('EEEE');
                 if (sessionMonthList.length() > 0) sessionMonthList += ';';                
                 sessionMonthList += String.valueOf(theClassSession.redwing__Date__c.month());
                 if (sessionDayOfMonthList.length() > 0) sessionDayOfMonthList += ';';                
@@ -58,20 +133,17 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
                 if (sessionStartTimeList.length() > 0) sessionStartTimeList += ';';                
                 sessionStartTimeList += theClassSession.redwing__Start_Time__c;
                 if (sessionEndTimeList.length() > 0) sessionEndTimeList += ';';                
-                sessionEndTimeList += String.valueOf(DateTime.valueOf(endDateTimeString).getTime());
+                sessionEndTimeList += String.valueOf(sessionEndEpoch);
             }                                                       
         
-            String firstDateTimeString = String.valueOf(theFirstSession.redwing__Date__c) + ' ' + theFirstSession.redwing__Start_Time__c + ':00';               
-            Long firstSessionDateEpochTime = DateTime.valueOf(firstDateTimeString).getTime();                               
+            //String firstDateTimeString = String.valueOf(theFirstSession.redwing__Date__c) + ' ' + theFirstSession.redwing__Start_Time__c + ':00';
+            //Long firstSessionDateEpochTime = DateTime.valueOf(firstDateTimeString).getTime();
                                 
             CourseID        = theLearningPlan.Id;
             // Note: NAT and other multi-session classes can be delivered at multiple locations
             // We are selecting the location of the first session for this class
-            if (CPS) {
-                FacilityID = locationKeyPrefix+String.valueOf(theFirstSession.redwing__ILT_Class__c).substring(3,15);
-            } else {
-                FacilityID = theFirstSession.redwing__Location__c; 
-            }
+            FacilityID      = theFirstSession.redwing__Location__c;
+
             SabaOfferingId   = theClass.Id;
             // Trim whitespace to be compatible with DemandWare values
             CourseFormat     = (theLearningPlan.Classroom_Setting__c != null) ? 
@@ -80,8 +152,9 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
             // Default language to English, translate ANSI codes to literals to be compatible with DemandWare
             CourseLanguage = (theLearningPlan.redwing__Language__c != null
                 && theLearningPlan.redwing__Language__c == 'es') ? 'Spanish' : 'English';
-            CourseSortDate   = firstSessionDateEpochTime; 
-            offeringDropDate = firstSessionDateEpochTime;
+            CourseSortDate   = convertLocalDateTimeToEpochTime(theFirstSession.redwing__Date__c, theFirstSession.redwing__Start_Time__c, classTimeZone, returnAsGmt);
+            // DE1676/DE1677 - use class online to date for offering drop date
+            offeringDropDate = classOnlineToEpoch;
             CourseDates      = sessionDateList; // Epoch Time Values 
             CourseDaysOfWeek = sessionDayOfWeekList;
             NumberSessions   = theSessionList.size();
@@ -92,7 +165,6 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
             DayOfWeek        = sessionDayOfWeekList;
             UnitCode         = '07038';              // Hard-coded, still in use?
             ChapterName      = 'American Red Cross'; // Hard-coded, are chapters even related to courses any more?
-            productType      = 'offering';           // Hard-coded as we are migrating classes (offerings)
             IsCourse         = true;                 // Hard-coded as we are migrating classes (offerings)
             attachmentID     = '';
             attachmentName   = '';
@@ -101,10 +173,16 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
             
             if (CPS) {
                 ltpName      = theClass.Skedulo_Account__r.Name;
-                ltpUrl       = theClass.CPS_Registration_URL__c;
+                if (!String.isBlank(theClass.CPS_Registration_URL__c)) {
+                    ltpUrl = theClass.CPS_Registration_URL__c;
+                } else {
+                    ltpUrl = '';
+                }
+                productType  = 'ltp';
             } else {
                 ltpName      = '';
                 ltpUrl       = '';
+                productType  = 'offering';
             }
                   
             customAttributeValueMap = new Map<String, String>{
@@ -153,24 +231,19 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
         String   attachmentID;
         Boolean  isDistributor;
         Long     offeringDropDate;  
-        String   productType;   
-        
+        String   productType;
+
+        Long sessionEndEpoch;
+        Long sessionEndEpochMinusOneDay;
+
         Map<String, String> customAttributeValueMap;
     
-        OnlineCustomAttributes(redwing__Training_Plan__c theLearningPlan, redwing__Learning__c theLearningObject) {                 
+        OnlineCustomAttributes(redwing__Training_Plan__c theLearningPlan, redwing__Learning__c theLearningObject, Long classOnlineToEpoch) {
             String courseDateList = '';
             String attachmentCategoryList = '';                                                      
-        
-            String startDateTimeString = (theLearningPlan.redwing__Start_Date__c != null) ? 
-                String.valueOf(theLearningPlan.redwing__Start_Date__c) + ' ' + '00:00:00':String.valueOf(Date.Today()) + ' ' + '00:00:00';
-                  
-            String endDateTimeString = (theLearningPlan.redwing__End_Date__c != null) ?
-                String.valueOf(theLearningPlan.redwing__End_Date__c) + ' ' + '00:00:00':String.valueOf(Date.Today()) + ' ' + '00:00:00';
-                                        
-            Long startDateEpochTime = DateTime.valueOf(startDateTimeString).getTime();   
-            Long endDateEpochTime = DateTime.valueOf(endDateTimeString).getTime();  
-            Long endDateEpochTimeMinus1 = DateTime.valueOf(endDateTimeString).addDays(-1).getTime();  // Cause Kalpan said so
-                   
+
+            sessionEndEpochMinusOneDay = classOnlineToEpoch - (24*60*60*1000); // Number of milliseconds in one day
+
             CourseID         = theLearningPlan.Id;
             FacilityID       = 'online';
             SabaOfferingId   = theLearningObject.Id;
@@ -179,9 +252,9 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
             // Default language to English, translate ANSI codes to literals to be compatible with DemandWare
             CourseLanguage = (theLearningPlan.redwing__Language__c != null
                 && theLearningPlan.redwing__Language__c == 'es') ? 'Spanish' : 'English';
-            CourseDates      = String.valueOf(endDateEpochTime);
-            CourseSortDate   = endDateEpochTimeMinus1; 
-            offeringDropDate = endDateEpochTimeMinus1;
+            CourseDates      = String.valueOf(sessionEndEpoch);
+            CourseSortDate   = sessionEndEpochMinusOneDay;
+            offeringDropDate = sessionEndEpochMinusOneDay;
             UnitCode         = '00000';              // Hard-coded, still in use?
             ChapterName      = 'American Red Cross'; // Hard-coded, are chapters even related to courses any more?
             productType      = 'offering';           // Hard-coded as we are migrating classes (offerings)
@@ -228,7 +301,7 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
         List<redwing__Training_Plan_Section_Item__c> activeOnlineClasses = new List<redwing__Training_Plan_Section_Item__c>();  
         List<redwing__ILT_Session__c> activeCommunitySessions = new List<redwing__ILT_Session__c>();
         List<redwing__ILT_Location__c> activeCommunityLocations = new List<redwing__ILT_Location__c>();
-        List<Geo_Location__c> activeCommunityGeoCodes = new List<Geo_Location__c>();
+        //List<Geo_Location__c> activeCommunityGeoCodes = new List<Geo_Location__c>();
         
         List<String> classXMLList = new List<String>();
         List<String> onlineClassXMLList = new List<String>();
@@ -239,10 +312,10 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
         Map<Id, String> siteCatalogXMLMap = new Map<Id, String>(); 
         Map<Id, String> courseXMLMap = new Map<Id, String>();
         Map<Id, String> locationXMLMap = new Map<Id, String>();    
-        Map<Id, String> CPSLocationXMLMap = new Map<Id, String>();  
+        //Map<Id, String> CPSLocationXMLMap = new Map<Id, String>();
         Map<Id, Integer> classInventoryMap = new Map<Id, Integer>();
         Map<Id, Double> classPriceMap = new Map<Id, Double>();
-        Map<String, Location> geocodeMap = new Map<String, Location>();       
+        //Map<String, Location> geocodeMap = new Map<String, Location>();
         
         List<redwing__ILT_Event_Class__c> ILTEventClassList = new List<redwing__ILT_Event_Class__c>();
         List<redwing__Training_Plan_Section_Item__c> ILTTrainingPlanSectionItemList = new List<redwing__Training_Plan_Section_Item__c>();
@@ -262,6 +335,8 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
         Map<Id, redwing__ILT_Location__c> CPSLocationMap = new Map<Id, redwing__ILT_Location__c>();        
         Map<Id, List<redwing__ILT_Session__c>> classSessionMap  = new Map<Id, List<redwing__ILT_Session__c>>();          
         Map<Id, redwing__ILT_Session__c> classFirstSessionMap  = new Map<Id, redwing__ILT_Session__c>();
+        // DE1816 - Support the population of the LTP/CPS registration phone in the location record
+        Map<Id, String> locationCPSPhoneMap = new Map<Id, String>();
                     
         Set<Id> eCommerceClassSet = new Set<Id>();  
         Set<Id> activeCommunityClassSet = new Set<Id>(); 
@@ -306,18 +381,20 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
         }
                     
         // Build list of active community classes and CPS requests to be displayed on eCommerce site
+        // US1562 - Include cancelled community classes in export to DemandWare (to enable visibility flags to be reset)
             
         String theClassQuery = 'Select Id, CreatedDate, redwing__Learning__c, Learning_Plan__r.Id, Learning_Plan__r.Name, ';
             theClassQuery += 'Learning_Plan__r.CreatedDate, Learning_Plan__r.redwing__End_Date__c, Class_Online__c, Class_Online_From__c, ';
-            theClassQuery += 'Class_Online_To__c, Class_Searchable__c, Class_Searchable_If_Unavailable__c, ';
-            theClassQuery += 'Request_Type__c, Registration_Fee__c, CPS_Registration_Phone__c, redwing__Start_Date__c, ';
+            theClassQuery += 'Class_Online_To__c, Class_Searchable__c, Class_Searchable_If_Unavailable__c, Classroom_Setting__c, ';
+            theClassQuery += 'Request_Type__c, Registration_Fee__c, CPS_Registration_Phone__c, redwing__Location__c, ';
             theClassQuery += 'CPS_Registration_URL__c, Skedulo_Account__r.Name, Learning_Plan__r.Classroom_Setting__c, ';
-            // The following fields are used only to dynamically create location records for LTP CPS listings            
-            theClassQuery += 'Site_Name__c, Site_Address_1__c, Site_Address_2__c, Site_City__c, State__c, Site_Postal_Code__c ';
+            theClassQuery += 'redwing__Start_Date__c, redwing__Start_Time__c, redwing__End_Time__c, redwing__Timezone__c ';
             theClassQuery += 'From redwing__ILT_Class__c ';
             theClassQuery += 'Where ((Request_Type__c = \'Community\' And Skedulo_Job_Active__c = true) ';
             theClassQuery += 'OR (Request_Type__c = \'Nurse Assistant Testing\' And Skedulo_Job_Active__c = true And ((Is_Stacked_Class__c = false) OR (Is_Stacked_Class__c = true And Is_Master_Class__c = true))) '; 
-            theClassQuery += 'OR (Request_Type__c = \'CPS\'))';
+            theClassQuery += 'OR (Request_Type__c = \'CPS\') ';
+            // US1562 - Export community class if cancelled so DemandWare product can be updated appropriately
+            theClassQuery += 'OR (Request_Type__c IN (\'Community\',\'Nurse Assistant Testing\') And Skedulo_Job_Status__c = \'Cancelled\')) ';
             theClassQuery += incrementalExport;
         
         activeCommunityClasses = Database.query(theClassQuery);
@@ -354,35 +431,54 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
             classLearningMap.put(theILTClass.Id, theILTClass.redwing__Learning__c); 
             classMap.put(theILTClass.Id, theILTClass);
             activeCommunityClassSet.add(theILTClass.Id); 
+            /*
             if (theILTClass.Site_Postal_Code__c != null) {
                 activeCommunityPostalCodeSet.add(theILTClass.Site_Postal_Code__c.substring(0,5));   
             }
+            */
         }        
 
         activeCommunitySessions = [Select Id, redwing__ILT_Class__c,
-            redwing__Location__c, redwing__Date__c, redwing__Start_Time__c, redwing__End_Time__c 
+            redwing__Location__c, redwing__Date__c, redwing__Start_Time__c, redwing__End_Time__c,
+            redwing__ILT_Class__r.Request_Type__c, redwing__ILT_Class__r.CPS_Registration_Phone__c
             From redwing__ILT_Session__c
             Where redwing__Date__c >= Today And redwing__ILT_Class__c In :activeCommunityClassSet];
 
         for (redwing__ILT_Session__c theSession : activeCommunitySessions) {
             if (!sessionClassMap.containsKey(theSession.Id)) {
                 sessionClassMap.put(theSession.Id, classMap.get(theSession.redwing__ILT_Class__c));  
-            }           
+            }
+
+            // DE1816 - Update the phone number in the Location record for LTP/CPS sessions that
+            // have a registration phone number defined in the ILT Class record
+            if (theSession.redwing__Location__c != null && theSession.redwing__ILT_Class__r.Request_Type__c == 'CPS'
+                && theSession.redwing__ILT_Class__r.CPS_Registration_Phone__c != null) {
+                if (!locationCPSPhoneMap.containsKey(theSession.redwing__Location__c)) {
+                    locationCPSPhoneMap.put(theSession.redwing__Location__c, theSession.redwing__ILT_Class__r.CPS_Registration_Phone__c);
+                }
+            }
         }
-        
+system.debug(locationCPSPhoneMap);
+        // **** No longer required - CPS provides physical location records (was used for zip-code based GPS coords)
+        /*
         activeCommunityGeoCodes = [Select Id, Postal_Code__c, Coordinates__c From Geo_Location__c
             Where Postal_Code__c In :activeCommunityPostalCodeSet];
 
         For (Geo_Location__c theGeoLocation : activeCommunityGeoCodes) {
             geocodeMap.put(theGeoLocation.Postal_Code__c, theGeoLocation.Coordinates__c);
         }
+        */
 
         // Build Map of locations referenced by active community sessions
         
         for (redwing__ILT_Session__c theSession : activeCommunitySessions) {
             if (theSession.redwing__Location__c != null) {
                 locationSet.add(theSession.redwing__Location__c);
-            } else {
+            }
+
+            /* The following block is no longer required - CPS classes now use Location lookup defined in Session record
+
+            else {
                 // Dynamically create location records for LTP CPS classes which lack location Ids
                 redwing__ILT_Class__c theClass = sessionClassMap.get(theSession.Id);
                 if (theClass != null) {             
@@ -399,20 +495,23 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
                     CPSLocationXMLMap.put(theSession.Id, getLocationXML(theCPSLocation, String.valueOf(theClass.Id), thePhoneNumber, theGeoLocation));
                 }
             }
+            */
         }
 
         activeCommunityLocations = [Select Id, Name, redwing__Address_1__c, redwing__Address_2__c, redwing__City__c,
             redwing__State__c, redwing__Postal_Code__c, redwing__Country__c, Skedulo_Location__r.sked__GeoLocation__c,
-            Skedulo_Location__r.sked__Account__r.Billing_Contact_email__c, Skedulo_Location__r.sked__Account__r.Billing_Contact_phone__c
+            Skedulo_Location__r.sked__Account__r.Billing_Contact_email__c, Skedulo_Location__r.sked__Account__r.Billing_Contact_phone__c,
+            GeoLocation__c
             From redwing__ILT_Location__c
             Where Id IN :locationSet];  
             
         for (redwing__ILT_Location__c theLocation : activeCommunityLocations) {
             if (!locationXMLMap.containsKey(theLocation.Id)) {
-                String thePhoneNumber = ''; // ILT Location records lack a phone number
-                Location theGeoLocation = null; // ILT Location records inherit geo coordinates from Skedulo location
-                locationXMLMap.put(theLocation.Id, getLocationXML(theLocation, '', thePhoneNumber, theGeoLocation));            
-            }   
+                String thePhoneNumber = '';
+                if (locationCPSPhoneMap.containsKey(theLocation.Id)) thePhoneNumber = locationCPSPhoneMap.get(theLocation.Id);
+                system.debug(thePhoneNumber);
+                locationXMLMap.put(theLocation.Id, getLocationXML(theLocation, thePhoneNumber));
+            }
         }
         //System.debug('locationXMLMap='+locationXMLMap);   
         
@@ -466,9 +565,11 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
             }                                
         } 
         //System.debug('classFirstSessionMap='+classFirstSessionMap);      
-        
+
+        // ***************************************************************************
         // Iterate Through Each Active ILT Community Class to Generate XML Definitions     
-    
+        // ***************************************************************************
+
         for (redwing__ILT_Class__c theClass : activeCommunityClasses) {
             Boolean CPS;
             
@@ -477,7 +578,7 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
             
             // If the ILT Class record lacks a lookup to the Learning Plan we will have to derive from maps
 
-            if (theClass.Learning_Plan__c == null) {
+            if (theClass.Learning_Plan__c == null || !trainingPlanMap.containsKey(theClass.Learning_Plan__c)) {
                 theLearningPlan = 
                     trainingPlanMap.get(eventLearningTrainingPlanMap.get(classLearningEventLearningMap.get(
                         classLearningMap.get(theClass.Id))));
@@ -485,6 +586,10 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
                 theLearningPlan = trainingPlanMap.get(theClass.Learning_Plan__c);
             }
 
+            // If no learning plan available for this Class, then completely omit this class from output file(s)
+            if (theLearningPlan == null) continue;
+
+            // If this class has no session defined, then completely omit this class from output file(s)
             theSessionList = classSessionMap.get(theClass.Id);
             if (theSessionList == null) continue;
             
@@ -501,6 +606,8 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
             
             // Generate master catalog (community ILT course/class)    
             CPS = (theClass.Request_Type__c == 'CPS') ? true : false;
+            // Throw out CPS without location (data issue)
+            if (CPS && theSessionList[0].redwing__Location__c == null) continue;
             
             if (CPS) {
                 CPSXMLList.add(getClassXml(CPS, theLearningPlan, theClass, theSessionList, classFirstSessionMap.get(theClass.Id)));
@@ -514,12 +621,16 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
             if (CPS) {
                 pricebookXMLList.add(getPricebookXml(theClass, Double.valueOf(theClass.Registration_Fee__c)));              
             } else {
-                pricebookXMLList.add(getPricebookXml(theClass, classPriceMap.get(theClass.Id)));
+                if (classPriceMap.containsKey(theClass.Id)) {
+                    pricebookXMLList.add(getPricebookXml(theClass, classPriceMap.get(theClass.Id)));
+                }
             }
-        }                         
-        
+        }
+
+        // ***************************************************************************
         // Iterate Through Each Active Online Class to Generate XML Definitions   
-        
+        // ***************************************************************************
+
         List<Id> onlineLearningIds = new List<Id>();
         List<Id> onlineLearningPlanIds = new List<Id>();
         Map<Id, redwing__Learning__c> onlineLearningMap = new Map<Id, redwing__Learning__c>();
@@ -563,13 +674,16 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
          
             siteCatalogXMLMap.put(theLearningObject.Id, getSiteCatalogXml(theLearningObject));
             inventoryXMLList.add(getInventoryXml(theLearningObject, 9999999, true));
-            pricebookXMLList.add(getPricebookXml(theLearningObject, classPriceMap.get(theLearningObject.Id)));
+            if (classPriceMap.containsKey(theLearningObject.Id)) {
+                pricebookXMLList.add(getPricebookXml(theLearningObject, classPriceMap.get(theLearningObject.Id)));
+            }
         }                              
         
         // Generate and Upload XML files to platform
         generateCourseClassXmlFile(courseXMLMap.values(), classXMLList, onlineClassXMLList);
-        generateCPSXmlFile(CPSXMLList);        
-        generateLocationXmlFile(locationXMLMap.values(), CPSLocationXMLMap.values());
+        generateCPSXmlFile(CPSXMLList);
+        generateLocationXmlFile(locationXMLMap.values());
+        //generateLocationXmlFile(locationXMLMap.values(), CPSLocationXMLMap.values());
         generateSiteCatalogXmlFile(siteCatalogXMLMap.values());
         generateInventoryXmlFile(inventoryXMLList);
         generatePricebookXmlFile(pricebookXMLList);    
@@ -664,7 +778,11 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
         }
         return communityPrices;
     }
-    
+
+    // *****************************************************************************************************************
+    // Deprecated - CPS requests now leverage the ILT Location object rather than address fields in the ILT Class object
+    // *****************************************************************************************************************
+    /*
     private redwing__ILT_Location__c createCPSLocation(redwing__ILT_Class__c theClass) {
         redwing__ILT_Location__c theCPSLocation = new redwing__ILT_Location__c();
         
@@ -680,81 +798,121 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
         
         return theCPSLocation;      
     }    
-    
+    */
+
     private void generateCourseClassXmlFile(List<String> courseXMLList, List<String> classXmlList, List<String> onlineClassXMLList) {
         // Define master list to create file export to Integration Files object
         List<Integration_Files__c> exportedXMLRecords = new List<Integration_Files__c>();
-        
-        String exportFileName = 'ARC_LMS_Master_' + RunTime.format('MMddyyyyhhmma') + '.xml';  
-        String targetSystem = 'RCO';    
+
+        String exportFileName = 'ARC_LMS_Master_' + RunTime.format('MMddyyyyhhmma') + '.xml';
+        String targetSystem = 'RCO';
         Integer theSequenceNumber = 0;
-        
+
         String serializedCourseXMLList = '';
         String serializedClassXMLList = '';
-        
+
         // Write header line to integration file custom object
-        Integration_Files__c integrationFileHeader = new Integration_Files__c();              
+        Integration_Files__c integrationFileHeader = new Integration_Files__c();
         integrationFileHeader.Record_Data__c = getCourseXmlHeader(false);
         integrationFileHeader.File_Name__c = exportFileName;
-        integrationFileHeader.Target_System__c = targetSystem;     
+        integrationFileHeader.Target_System__c = targetSystem;
         integrationFileHeader.Sequence_Number__c = ++theSequenceNumber;
-        exportedXMLRecords.add(integrationFileHeader);            
-        
+        exportedXMLRecords.add(integrationFileHeader);
+
         for (String theCourseXML : courseXmlList) {
-            serializedCourseXMLList += theCourseXml;
+            //serializedCourseXMLList += theCourseXml;
             // Write line to integration file custom object
-            Integration_Files__c integrationFileRecord = new Integration_Files__c();              
+            Integration_Files__c integrationFileRecord = new Integration_Files__c();
             integrationFileRecord.Record_Data__c = theCourseXML;
             integrationFileRecord.File_Name__c = exportFileName;
-            integrationFileRecord.Target_System__c = targetSystem;              
+            integrationFileRecord.Target_System__c = targetSystem;
             integrationFileRecord.Sequence_Number__c = ++theSequenceNumber;
             exportedXMLRecords.add(integrationFileRecord);
         }
 
         for (String theClassXML : classXMLList) {
-            serializedClassXMLList += theClassXml;
+            //serializedClassXMLList += theClassXml;
             // Write line to integration file custom object
-            Integration_Files__c integrationFileRecord = new Integration_Files__c();              
+            Integration_Files__c integrationFileRecord = new Integration_Files__c();
             integrationFileRecord.Record_Data__c = theClassXML;
             integrationFileRecord.File_Name__c = exportFileName;
-            integrationFileRecord.Target_System__c = targetSystem;              
+            integrationFileRecord.Target_System__c = targetSystem;
             integrationFileRecord.Sequence_Number__c = ++theSequenceNumber;
-            exportedXMLRecords.add(integrationFileRecord);            
-        }   
+            exportedXMLRecords.add(integrationFileRecord);
+        }
 
         for (String theOnlineClassXML : onlineClassXMLList) {
-            serializedClassXMLList += theOnlineClassXML;
+            //serializedClassXMLList += theOnlineClassXML;
             // Write line to integration file custom object
-            Integration_Files__c integrationFileRecord = new Integration_Files__c();              
+            Integration_Files__c integrationFileRecord = new Integration_Files__c();
             integrationFileRecord.Record_Data__c = theOnlineClassXML;
             integrationFileRecord.File_Name__c = exportFileName;
-            integrationFileRecord.Target_System__c = targetSystem;              
+            integrationFileRecord.Target_System__c = targetSystem;
             integrationFileRecord.Sequence_Number__c = ++theSequenceNumber;
-            exportedXMLRecords.add(integrationFileRecord);            
-        }           
-        
+            exportedXMLRecords.add(integrationFileRecord);
+        }
+
         // Write trailer line to integration file custom object
-        Integration_Files__c integrationFileTrailer = new Integration_Files__c();              
+        Integration_Files__c integrationFileTrailer = new Integration_Files__c();
         integrationFileTrailer.Record_Data__c = getCourseXmlTrailer();
         integrationFileTrailer.File_Name__c = exportFileName;
-        integrationFileTrailer.Target_System__c = targetSystem;          
+        integrationFileTrailer.Target_System__c = targetSystem;
         integrationFileTrailer.Sequence_Number__c = ++theSequenceNumber;
-        exportedXMLRecords.add(integrationFileTrailer);        
-        
-        // Comment out the following block to disable writing file as internal Salesforce file
-        ContentVersion v = new ContentVersion();
-        v.versionData = Blob.valueOf(getCourseXmlHeader(false)+serializedCourseXMLList+serializedClassXMLList+getCourseXmlTrailer());
-        v.title = 'Active Community Classes '+String.valueOf(Date.today());
-        v.PathOnClient = '/ActiveCommunityClasses.xml';
-        insert v;
-        
+        exportedXMLRecords.add(integrationFileTrailer);
+
         // Write export records to Integration Files object
         try {
             insert(exportedXMLRecords);
         } catch (exception e) {
-            
-        }        
-        
+        }
+
+        // Comment out the following block to disable writing file as internal Salesforce file
+        // Clear out Apex heap
+        Integer totalExportXMLRecords = exportedXMLRecords.size();
+        system.debug('*** totalExportXMLRecords for course/class='+totalExportXMLRecords);
+
+        // ***********************************************************************************************************************
+        // Deprecated - The following block results in heap overflows; unable to write output file(s) to Salesforce file object(s)
+        // ***********************************************************************************************************************
+
+        /*
+        // Read course and class records from Integration Files object to create output string for Salesforce file
+        List<Integration_Files__c> classCourseXMLRecordSet = new List<Integration_Files__c>();
+        String serializedClassCourseXML = '';
+        Integer setNumber = 1;
+        Integer minRecord = 501;
+        Integer maxRecord = 1000;
+
+        do {
+            system.debug('*** exporting records '+minRecord+' to '+maxRecord);
+            // Clear Apex Heap
+            classCourseXMLRecordSet.clear();
+            serializedClassCourseXML = '';
+            System.debug('*** Heap Size='+Limits.getHeapSize());
+
+            classCourseXMLRecordSet = [
+                    Select Id, Sequence_Number__c, Record_Data__c
+                    From Integration_Files__c
+                    Where Target_System__c = :targetSystem And File_Name__c = :exportFileName
+                    And Sequence_Number__c >= :minRecord And Sequence_Number__c <= :maxRecord
+                    Order by Sequence_Number__c
+            ];
+
+            For (Integer record = 0; record < classCourseXMLRecordSet.size(); record++) {
+                serializedClassCourseXML += classCourseXMLRecordSet[record].Record_Data__c;
+            }
+            ContentVersion v = new ContentVersion();
+            v.versionData = Blob.valueOf(serializedClassCourseXML);
+            //v.versionData = Blob.valueOf(getCourseXmlHeader(false)+serializedCourseXMLList+serializedClassXMLList+getCourseXmlTrailer());
+            v.title = 'Active Community Classes [' + String.valueOf(setNumber) + '] ' + String.valueOf(Date.today());
+            v.PathOnClient = '/ActiveCommunityClasses.xml';
+            insert v;
+
+            minRecord = minRecord + 500;
+            maxRecord = Math.min(maxRecord+500, totalExportXMLRecords);
+            setNumber++;
+        } while (minRecord <= totalExportXMLRecords);
+        */
         return;
     }
     
@@ -812,7 +970,10 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
         return;
     }
 
-    private void generateLocationXmlFile(List<String> locationXMLList, List<String> CPSLocationXMLList) {
+    // CPS Locations now leverage standard ILT Location object
+
+    private void generateLocationXmlFile(List<String> locationXMLList) {
+    //private void generateLocationXmlFile(List<String> locationXMLList, List<String> CPSLocationXMLList) {
         // Define master list to create file export to Integration Files object
         List<Integration_Files__c> exportedXMLRecords = new List<Integration_Files__c>();
         
@@ -840,6 +1001,7 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
             integrationFileRecord.Sequence_Number__c = ++theSequenceNumber;
             exportedXMLRecords.add(integrationFileRecord);            
         }
+        /*
         for (String theLocationXML : CPSLocationXMLList) {
             serializedLocationXMLList += theLocationXML;
             // Write line to integration file custom object
@@ -850,7 +1012,8 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
             integrationFileRecord.Sequence_Number__c = ++theSequenceNumber;
             exportedXMLRecords.add(integrationFileRecord);              
         }        
-        
+        */
+
         // Write trailer line to integration file custom object
         Integration_Files__c integrationFileTrailer = new Integration_Files__c();              
         integrationFileTrailer.Record_Data__c = getLocationXmlTrailer();
@@ -1043,55 +1206,79 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
    private  Map<Id, Double> getClassPrice(List<redwing__ILT_Class__c> communityClassList,
             List<redwing__Training_Plan_Section_Item__c> onlineClassList) {
        Set<Id> communityCourseSet = new Set<Id>();
-       Map<Id, Id> classcourseMap = new Map<Id, Id>();
-       
+       Map<Id, Id> classCourseMap = new Map<Id, Id>();
+       Map<Id, Double> coursePriceMap = new Map<Id, Double>();
+       Map<Id, Double> theCommunityPriceList = new Map<Id, Double>();
+
+       // Add community courses (blended and classroom only) to communityCourseSet and classCourseMap
        for (redwing__ILT_Class__c theClass : communityClassList) {
-            if (theClass.Request_Type__c != 'CPS') communityCourseSet.add(theClass.Learning_Plan__c);
+            if (theClass.Request_Type__c != 'CPS') {
+                communityCourseSet.add(theClass.Learning_Plan__c);
+            }
             classCourseMap.put(theClass.Id, theClass.Learning_Plan__c);
        }
-       
-       // Fetch price overrides (if defined) for each community course
-       Map<Id, Double> theCommunityPriceList = new Map<Id, Double>();
-       
+       system.debug('*** communityCourseSet.size='+communityCourseSet.size());
+       system.debug('*** classCourseMap.size='+classCourseMap.size());
+
+       // Fetch price overrides (if defined) for each community class (overrides are by class)
+
        theCommunityPriceList = getPriceOverrides(communityCourseSet, communityClassList);
-       
+       system.debug('*** price override.sizes='+theCommunityPriceList.size());
+
        // Remove classes with price overrides from communityCourseSet
        for (Id theClass : theCommunityPriceList.keySet()) {
-          if (classCourseMap.get(theClass) != null) communityCourseSet.remove(classCourseMap.get(theClass));
+            if (classCourseMap.containsKey(theClass)) communityCourseSet.remove(classCourseMap.get(theClass));
        }
-       
+       system.debug('*** remove price override *** communityCourseSet.size='+communityCourseSet.size());
+
+       // Add community classes (online) to communityCourseSet and classCourseMap
+       // Note: online classes use Learning Id as the class Id
        for (redwing__Training_Plan_Section_Item__c theTPSI : onlineClassList) {
             communityCourseSet.add(theTPSI.redwing__Training_Plan_Section__r.redwing__Training_Plan__c);
+            classCourseMap.put(theTPSI.redwing__Learning__c, theTPSI.redwing__Training_Plan_Section__r.redwing__Training_Plan__c);
        }
-       
+
+       // Fetch retail pricing and write to coursePriceMap (retail pricing is by product (course))
        List<ccrz__E_PriceListItem__c> priceItemList = [Select Id, ccrz__Price__c, ccrz__Product__r.LMS_Learning_Plan__c
-            From ccrz__E_PriceListItem__c 
-            Where ccrz__Pricelist__r.Name = 'Retail Price List' // Change to retail price group??? (DD-Feb 26)
+            From ccrz__E_PriceListItem__c
+            Where ccrz__Pricelist__r.Name = 'Retail Price List'
             And ccrz__Product__r.LMS_Learning_Plan__c In :communityCourseSet];
+       system.debug('*** priceItemList.size='+priceItemList.size());
 
        for (ccrz__E_PriceListItem__c thePriceListItem : priceItemList) {
-            theCommunityPriceList.put(thePriceListItem.ccrz__Product__r.LMS_Learning_Plan__c, thePriceListItem.ccrz__Price__c);
+           coursePriceMap.put(thePriceListItem.ccrz__Product__r.LMS_Learning_Plan__c, thePriceListItem.ccrz__Price__c);
+           // theCommunityPriceList.put(thePriceListItem.ccrz__Product__r.LMS_Learning_Plan__c, thePriceListItem.ccrz__Price__c);
        }
+       system.debug('*** coursePriceMap.size()'+coursePriceMap.size());
+
+       // Create pricing map by class (online, classroom, and blended)
+       for (Id theClassId: classCourseMap.keySet()) {
+           if (coursePriceMap.containsKey(classCourseMap.get(theClassId))) {
+               theCommunityPriceList.put(theClassId, coursePriceMap.get(classCourseMap.get(theClassId)));
+           }
+       }
+       system.debug('*** theCommunityPriceList.size()='+theCommunityPriceList.size());
 
        return theCommunityPriceList;
    }
    
    private  Map<Id, Integer> getClassInventory(List<redwing__ILT_Class__c> communityClassList) {
        Set<Id> theClassSet = new Set<Id>();
+       Map<Id, Integer> classInventory = new Map<Id, Integer>();
+       Integer classVoucherCount;
        
        // Exclude Class Posting Service (CPS) classes from dynamic inventory calculations (exclude CPS)
        for (redwing__ILT_Class__c theClass : communityClassList) {
             if (theClass.Request_Type__c != 'CPS') theClassSet.add(theClass.Id);
        }
-    
+
+       // *** Rework this - levearage SOQL group by/iterate over aggregate result set for inventory values
+
        // Determine number of available (unsold) seats in each class represented by 'Issued' vouchers
        List<Voucher__c> theVoucherList = [Select Id, Name, Status__c, Learning_Plan__c, ILT_Class__c
             From Voucher__c Where Status__c = 'Issued' And ILT_Class__c IN :theClassSet];
-                              
-       Map<Id, Integer> classInventory = new Map<Id, Integer>();
-       Integer classVoucherCount;
        
-       // Calculate inventory for each no-CPS class as number of vouchers in 'Issued' (unsold) status
+       // Calculate inventory for each non-CPS class as number of vouchers in 'Issued' (unsold) status
        for (Voucher__c theVoucher : theVoucherList) {
             if (classInventory.containsKey(theVoucher.ILT_Class__c)) {
                 classVoucherCount = classInventory.get(theVoucher.ILT_Class__c);    
@@ -1475,6 +1662,60 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
         Boolean  nonInventoryFlag = true;
         Boolean  nonDiscountableFlag = true;
 
+        //String classStartTime;
+        String classOnlineFromTime;
+        String classOnlineToTime;
+        Date classOnlineFrom;
+        Date classOnlineTo;
+        Long epochOnlineFrom;
+        Long epochOnlineTo;
+        String onlineFromTimeZone;
+        String onlineToTimeZone;
+
+        // DE1676 - Implement new business rules for defining online from/to dates
+        // The online from date is in *system* time zone
+        if (theClass.Class_Online_From__c != null) {
+            classOnlineFrom = theClass.Class_Online_From__c;
+            classOnlineFromTime = '00:00';
+            onlineFromTimeZone = 'America/New_York';
+        } else {
+            classOnlineFrom = Date.valueOf(theClass.CreatedDate);
+            classOnlineFromTime = theClass.CreatedDate.format('HH:mm');
+            onlineFromTimeZone = 'America/New_York';
+        }
+        if (theClass.Class_Online_To__c != null) {
+            classOnlineTo = theClass.Class_Online_To__c;
+            classOnlineToTime = '00:00';
+            onlineToTimeZone = 'America/New_York';
+        } else {
+            classOnlineTo = theFirstSession.redwing__Date__c;
+            classOnlineToTime = theFirstSession.redwing__Start_Time__c;
+            // DE1677 - Correct formula to calculate online to (epoch value) for blended learning classes
+            // Adjust online to field back by one calendar day if this is a blended class
+            // Retracted - SJC - 9-23-2019
+            /*
+            if (theClass.Classroom_Setting__c == 'Online + Classroom') {
+                classOnlineTo = classOnlineTo.addDays(-1); // Subtract one day if blended class and no explicit end date supplied
+            }
+            */
+            if (String.isNotBlank(theClass.redwing__Timezone__c)) {
+                onlineToTimeZone = theClass.redwing__Timezone__c;
+            } else {
+                onlineToTimeZone = 'America/New_York';
+            }
+        }
+
+        /*
+        if (String.isNotBlank(theFirstSession.redwing__Start_Time__c)) {
+            classStartTime = theFirstSession.redwing__Start_Time__c;
+        } else {
+            classStartTime = '00:00';
+        }
+        */
+
+        Boolean returnAsGmt = false;
+        String exportFileTimeZone = 'UTC';
+
         XmlStreamWriter xmlW = new XmlStreamWriter();
         xmlW.writeStartElement(null,'product', null);
             xmlW.writeAttribute(null,null,'product-id',String.valueOf(theClass.Id).subString(0,15));
@@ -1497,21 +1738,14 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
             xmlW.writeEndElement(); // Close online-flag    
             xmlW.writeCharacters('\n');
             xmlW.writeStartElement(null,'online-from', null);
-                Date classOnlineFrom = (theClass.Class_Online_From__c != null) ? theClass.Class_Online_From__c : Date.valueOf(theClass.CreatedDate);
-                String dateTimeOnlineFrom = String.valueOf(classOnlineFrom)+'T00:00:00Z';
+                epochOnlineFrom = convertLocalDateTimeToEpochTime(classOnlineFrom, classOnlineFromTime, onlineFromTimeZone, returnAsGmt);
+                String dateTimeOnlineFrom = DateTime.newInstance(epochOnlineFrom).format('yyyy-MM-dd\'T\'HH:mm:ss\'Z\'',exportFileTimeZone);
                 xmlW.writeCharacters(String.valueOf(dateTimeOnlineFrom));
             xmlW.writeEndElement(); // Close online-from
             xmlW.writeCharacters('\n');
             xmlW.writeStartElement(null,'online-to', null);
-                Date classOnlineTo;
-                if (theClass.Class_Online_To__c != null) {
-                    classOnlineTo = theClass.Class_Online_To__c;
-                } else if (theClass.Request_Type__c == 'Online + Classroom') {
-                    classOnlineTo = theFirstSession.redwing__Date__c.addDays(-1);
-                } else {
-                    classOnlineTo = theFirstSession.redwing__Date__c;
-                }
-                String dateTimeOnlineTo = String.valueOf(classOnlineTo)+'T00:00:00Z';
+                epochOnlineTo = convertLocalDateTimeToEpochTime(classOnlineTo, classOnlineToTime, onlineToTimeZone, returnAsGmt);
+                String dateTimeOnlineTo = DateTime.newInstance(epochOnlineTo).format('yyyy-MM-dd\'T\'HH:mm:ss\'Z\'',exportFileTimeZone);
                 xmlW.writeCharacters(String.valueOf(dateTimeOnlineTo));
             xmlW.writeEndElement(); // Close online-to
             xmlW.writeCharacters('\n');
@@ -1530,9 +1764,12 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
                  xmlW.writeCharacters(siteMapIncludedFlag);
             xmlW.writeEndElement(); // Close sitemap-included-flag  
             xmlW.writeCharacters('\n');  
-            */                         
-            
-            CustomAttributes theCustomAttributes = new CustomAttributes(CPS, theLearningPlan, theClass, theSessionList, theFirstSession);
+            */
+
+            returnAsGmt = true;
+            Long adjustedEpochOnlineTo = convertLocalDateTimeToEpochTime(classOnlineTo, classOnlineToTime, onlineToTimeZone, returnAsGmt);
+
+            CustomAttributes theCustomAttributes = new CustomAttributes(CPS, adjustedEpochOnlineTo, theLearningPlan, theClass, theSessionList, theFirstSession);
             
             xmlW = getCustomAttributesXML(CPS, xmlW, theCustomAttributes);
             
@@ -1575,6 +1812,31 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
         Boolean  nonInventoryFlag = true;
         Boolean  nonRevenueFlag = false;
         Boolean  nonDiscountableFlag = true;
+
+        //String classStartTime;
+        Date classOnlineFrom;
+        Date classOnlineTo;
+        String classOnlineFromTime;
+        String classOnlineToTime;
+
+        if (theLearningPlan.redwing__Start_Date__c != null) {
+            classOnlineFrom = theLearningPlan.redwing__Start_Date__c;
+            classOnlineFromTime = '00:00';
+        } else {
+            classOnlineFrom = Date.valueOf(theLearningPlan.CreatedDate);
+            classOnlineFromTime = theLearningPlan.CreatedDate.format('HH:mm');
+        }
+        if (theLearningPlan.redwing__End_Date__c != null) {
+            classOnlineTo = theLearningPlan.redwing__End_Date__c;
+            classOnlineToTime = '00:00';
+        } else {
+            classOnlineTo = Date.valueOf('2099-12-31');
+            classOnlineToTime = '00:00';
+        }
+        String classTimeZone  = 'America/New_York';
+        String exportFileTimeZone = 'UTC';
+
+        Boolean returnAsGmt = false;
 
         XmlStreamWriter xmlW = new XmlStreamWriter();
         xmlW.writeStartElement(null,'product', null);
@@ -1637,14 +1899,14 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
             xmlW.writeEndElement(); // Close online-flag    
             xmlW.writeCharacters('\n');
             xmlW.writeStartElement(null,'online-from', null);
-                Date classOnlineFrom = (theLearningPlan.redwing__Start_Date__c != null) ? theLearningPlan.redwing__Start_Date__c : Date.valueOf(theLearningPlan.CreatedDate);
-                String dateTimeOnlineFrom = String.valueOf(classOnlineFrom)+'T00:00:00Z';
+                Long epochOnlineFrom = convertLocalDateTimeToEpochTime(classOnlineFrom, classOnlineFromTime, classTimeZone, returnAsGmt);
+                String dateTimeOnlineFrom = DateTime.newInstance(epochOnlineFrom).format('yyyy-MM-dd\'T\'HH:mm:ss\'Z\'',exportFileTimeZone);
                 xmlW.writeCharacters(String.valueOf(dateTimeOnlineFrom));
             xmlW.writeEndElement(); // Close online-from
             xmlW.writeCharacters('\n');
             xmlW.writeStartElement(null,'online-to', null);
-                Date classOnlineTo = (theLearningPlan.redwing__End_Date__c != null) ? theLearningPlan.redwing__End_Date__c : Date.valueOf('2099-12-31');
-                String dateTimeOnlineTo = String.valueOf(classOnlineTo)+'T00:00:00Z';
+                Long epochOnlineTo = convertLocalDateTimeToEpochTime(classOnlineTo, classOnlineToTime, classTimeZone, returnAsGmt);
+                String dateTimeOnlineTo = DateTime.newInstance(epochOnlineTo).format('yyyy-MM-dd\'T\'HH:mm:ss\'Z\'',exportFileTimeZone);
                 xmlW.writeCharacters(String.valueOf(dateTimeOnlineTo));
             xmlW.writeEndElement(); // Close online-to
             xmlW.writeCharacters('\n');
@@ -1665,9 +1927,12 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
             xmlW.writeCharacters('\n'); 
             xmlW.writeStartElement(null,'page-attributes', null);
             xmlW.writeEndElement();     
-            xmlW.writeCharacters('\n');             
+            xmlW.writeCharacters('\n');
 
-            OnlineCustomAttributes theOnlineCustomAttributes = new OnlineCustomAttributes(theLearningPlan, theLearningObject);
+            returnAsGmt = true;
+            Long adjustedEpochOnlineTo = convertLocalDateTimeToEpochTime(classOnlineTo, classOnlineToTime, classTimeZone, returnAsGmt);
+
+            OnlineCustomAttributes theOnlineCustomAttributes = new OnlineCustomAttributes(theLearningPlan, theLearningObject, adjustedEpochOnlineTo);
             
             xmlW = getOnlineCustomAttributesXML(xmlW, theOnlineCustomAttributes);
             
@@ -1776,24 +2041,18 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
         return xmlW;
     }     
     
-    private String getLocationXml(redwing__ILT_Location__c theLocation, String syntheticId, String thePhoneNumber, Location theGeoLocation) {
+    private String getLocationXml(redwing__ILT_Location__c theLocation, String thePhoneNumber) {
         // Hard-code values for unmapped attributes for now
         Boolean  storeLocatorEnabledFlag = true;
         Boolean  demandwarePosEnabledFlag = true;
         Boolean  posEnabledFlag = true;
         String   inventoryListId = '1';
-        
-        Boolean  syntheticKey = (theLocation.Id == null) ? true : false;
+
         String   locationKeyPrefix = redwing__ILT_Location__c.SObjectType.getDescribe().getKeyPrefix();     
         
         XmlStreamWriter xmlW = new XmlStreamWriter();
         xmlW.writeStartElement(null,'store', null);
-            String locationId;
-            if (syntheticKey) {
-                locationId = locationKeyPrefix+(syntheticId.substring(3,15));
-            } else {
-                locationId = String.valueOf(theLocation.Id).subString(0,15);
-            }
+            String locationId = String.valueOf(theLocation.Id).subString(0,15);
             xmlW.writeAttribute(null,null,'store-id',locationId);
             xmlW.writeCharacters('\n');
             if (String.isNotEmpty(theLocation.Name)) {
@@ -1839,7 +2098,7 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
                     xmlW.writeCharacters(theLocation.redwing__Country__c.substring(0,2));
                 xmlW.writeEndElement(); // Close country-code  
                 xmlW.writeCharacters('\n');  
-            if (!syntheticKey && theLocation.Skedulo_Location__c != null
+            if (theLocation.Skedulo_Location__c != null
                 && theLocation.Skedulo_Location__r.sked__Account__c != null
                 && theLocation.Skedulo_Location__r.sked__Account__r.Billing_Contact_email__c != null) {
                 xmlW.writeStartElement(null,'email', null);
@@ -1847,24 +2106,40 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
                 xmlW.writeEndElement(); // Close email  
                 xmlW.writeCharacters('\n');     
             }
-            if (!syntheticKey && theLocation.Skedulo_Location__c != null
-                && theLocation.Skedulo_Location__r.sked__Account__c != null
-                && String.isNotEmpty(theLocation.Skedulo_Location__r.sked__Account__r.Billing_Contact_phone__c)) {          
-                xmlW.writeStartElement(null,'phone', null);
+            if (String.isNotBlank(thePhoneNumber)) {
+                String formattedPhone = '';
+                String unformattedPhone = thePhoneNumber.replaceAll('[^0-9]', '');
+                if (unformattedPhone.length() == 10) {
+                    formattedPhone = unformattedPhone.substring(0, 3) + '-' + unformattedPhone.substring(3, 6) + '-' + unformattedPhone.substring(6);
+                } else if (unformattedPhone.length() == 11 && unformattedPhone.substring(0,1) == '1') {
+                    formattedPhone = unformattedPhone.substring(1, 4) + '-' + unformattedPhone.substring(4, 7) + '-' + unformattedPhone.substring(7);
+                }
+                system.debug(unformattedPhone);
+                system.debug(formattedPhone);
+                if (String.isNotBlank(formattedPhone)) {
+                    xmlW.writeStartElement(null, 'phone', null);
+                    xmlW.writeCharacters(formattedPhone);
+                    xmlW.writeEndElement(); // Close phone
+                    xmlW.writeCharacters('\n');
+                }
+            } else {
+                if (theLocation.Skedulo_Location__c != null
+                        && theLocation.Skedulo_Location__r.sked__Account__c != null
+                        && String.isNotEmpty(theLocation.Skedulo_Location__r.sked__Account__r.Billing_Contact_phone__c)) {
+                    xmlW.writeStartElement(null, 'phone', null);
                     xmlW.writeCharacters(theLocation.Skedulo_Location__r.sked__Account__r.Billing_Contact_phone__c);
-                xmlW.writeEndElement(); // Close phone  
-                xmlW.writeCharacters('\n'); 
+                    xmlW.writeEndElement(); // Close phone
+                    xmlW.writeCharacters('\n');
+                }
             }
             xmlW.writeStartElement(null,'store-hours', null);        
             xmlW.writeEndElement(); // Close store-hours
             xmlW.writeCharacters('\n'); 
              
             String geoLatitude = '';
-            if (!syntheticKey && theLocation.Skedulo_Location__c != null
+            if (theLocation.Skedulo_Location__c != null
                 && theLocation.Skedulo_Location__r.sked__GeoLocation__c != null) {
                 geoLatitude = String.valueOf(theLocation.Skedulo_Location__r.sked__GeoLocation__c.getLatitude());
-            } else if (syntheticKey && theGeoLocation != null) {
-                geoLatitude = String.valueOf(theGeoLocation.getLatitude());
             }
             if (String.isNotEmpty(geoLatitude)) {
                 xmlW.writeStartElement(null,'latitude', null);
@@ -1874,11 +2149,9 @@ public without sharing class PHSS_eCommerceIntegrationFiles {
             }
             
             String geoLongitude = '';
-            if (!syntheticKey && theLocation.Skedulo_Location__c != null
+            if (theLocation.Skedulo_Location__c != null
                 && theLocation.Skedulo_Location__r.sked__GeoLocation__c != null) {
                 geoLongitude = String.valueOf(theLocation.Skedulo_Location__r.sked__GeoLocation__c.getLongitude());
-            } else if (syntheticKey && theGeoLocation != null) {
-                geoLongitude = String.valueOf(theGeoLocation.getLongitude());
             }
             if (String.isNotEmpty(geoLongitude)) {
                 xmlW.writeStartElement(null,'longitude', null);

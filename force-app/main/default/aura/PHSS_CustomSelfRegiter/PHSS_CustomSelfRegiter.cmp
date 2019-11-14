@@ -28,6 +28,9 @@
 
     <aura:attribute name="b2cOrigin" type="Boolean" />
     <aura:attribute name="email" type="String" />
+    <aura:attribute name="objResult" type="Object" default="{Email: '', AccountId: '', ContactId: '', FirstName: '', LastName: ''}" />
+    <aura:attribute name="firstname" type="String" />
+    <aura:attribute name="lastname" type="String" />
 
     <aura:attribute name="showSpinner" type="Boolean" default="false" />
     <aura:attribute name="hasErrors" type="Boolean" default="false" />
@@ -40,19 +43,20 @@
         </aura:if>
 
         <aura:renderIf isTrue="{!v.showError}">
-            <div id="error" class="slds-p-vertical_x-large">
-                <ui:outputRichText value="{!v.errorMessage}"/>
+            <div id="error" class="technicalsupport slds-p-vertical_x-large"  >
+                <a href="https://www.redcross.org/take-a-class/customers-service"  >{!v.errorMessage}</a>
             </div>
+
         </aura:renderIf>
 
         <div id="sfdc_username_container" aura:id="firstname_div" class="sfdc inputfield" >
             <span id="sfdc_user" class="login-icon" data-icon="a"></span>
-            <ui:inputText value="" aura:id="firstname" placeholder="{!v.firstnameLabel}" keyup="{!c.onKeyUp}" class="input sfdc_usernameinput sfdc" />
+            <ui:inputText value="{!v.firstname}" aura:id="firstname" placeholder="{!v.firstnameLabel}" keyup="{!c.onKeyUp}" class="input sfdc_usernameinput sfdc" />
         </div>
 
         <div id="sfdc_nickname_container" aura:id="lastname_div" class="sfdc inputfield">
             <span id="sfdc_user" class="login-icon" data-icon="a"></span>
-            <ui:inputText value="" aura:id="lastname" placeholder="{!v.lastnameLabel}" keyup="{!c.onKeyUp}" class="input sfdc_usernameinput sfdc"/>
+            <ui:inputText value="{!v.lastname}" aura:id="lastname" placeholder="{!v.lastnameLabel}" keyup="{!c.onKeyUp}" class="input sfdc_usernameinput sfdc"/>
         </div>
 
         <div id="sfdc_email_container" aura:id="email_div" class="sfdc inputfield">
@@ -89,16 +93,9 @@
         <div style="border-top: 1px solid lightgrey; margin-top: 50px; margin-bottom:50px; padding-top: 10px">
             <ui:outputText value="Already have an account?" class="link_label" />
 
-            <!--aura:if isTrue="{!v.b2cOrigin}" -->
-                <span>
-                    <span class="sfdc link" onclick="{!c.navigateToLoginScreen}">Go to Login</span>
-                </span>
-                <!--
-                <aura:set attribute="else" >
-                    <a href="https://transdev1-americanredcross.cs52.force.com/learner/s/login/" class="sfdc link" >Go to Login</a>
-                </aura:set>
-				-->
-            <!--/aura:if-->
+            <span>
+                <span class="sfdc link" onclick="{!c.navigateToLoginScreen}">Go to Login</span>
+            </span>
 
         </div>
 

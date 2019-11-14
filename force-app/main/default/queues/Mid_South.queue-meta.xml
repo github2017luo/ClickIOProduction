@@ -9,6 +9,9 @@
             <role>PHSS_Sales_Mgr_Aquatics_Southeast</role>
             <role>PHSS_Sales_Mgr_Mid_South</role>
         </roles>
+        <users>
+            <user>mike.smith2@redcross.org</user>
+        </users>
     </queueMembers>
     <queueSobject>
         <sobjectType>Lead</sobjectType>

@@ -44,6 +44,7 @@
     </actionOverrides>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>false</enableFeeds>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <searchLayouts>
         <customTabListAdditionalFields>VersionNumber</customTabListAdditionalFields>
         <customTabListAdditionalFields>Survey</customTabListAdditionalFields>
