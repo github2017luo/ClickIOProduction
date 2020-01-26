@@ -8,7 +8,8 @@
             <field>Training_Contact__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>support@redcrosstraining.org</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>ccrz__Ecommerce/Training_Event_Cancelation</template>
     </alerts>
     <alerts>
@@ -19,7 +20,8 @@
             <field>Training_Contact__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>support@redcrosstraining.org</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>ccrz__Ecommerce/SB_Training_Event_Schedule_Confirmation</template>
     </alerts>
     <fieldUpdates>
@@ -37,7 +39,7 @@
             <name>Email_Alert_Training_Event_Reserved_or_Completed</name>
             <type>Alert</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <booleanFilter>1 OR 2</booleanFilter>
         <criteriaItems>
             <field>Training_Events__c.Scheduling_Status__c</field>

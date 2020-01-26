@@ -13,17 +13,15 @@
             <value>null</value>
         </criteriaItems>
     </sharingCriteriaRules>
-    <sharingCriteriaRules>
+    <sharingOwnerRules>
         <fullName>Access_to_Community_Users</fullName>
         <accessLevel>Read</accessLevel>
         <label>Access to Community Users</label>
         <sharedTo>
             <allCustomerPortalUsers/>
         </sharedTo>
-        <criteriaItems>
-            <field>CreatedById</field>
-            <operation>notEqual</operation>
-            <value>null</value>
-        </criteriaItems>
-    </sharingCriteriaRules>
+        <sharedFrom>
+            <allInternalUsers/>
+        </sharedFrom>
+    </sharingOwnerRules>
 </SharingRules>

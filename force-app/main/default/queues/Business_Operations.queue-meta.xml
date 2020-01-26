@@ -5,8 +5,11 @@
     <name>Customer Ops</name>
     <queueMembers>
         <users>
+            <user>debbie.merritt@redcross.org</user>
             <user>jim.thornberg@redcross.org</user>
             <user>lajuanya.jones@redcross.org</user>
+            <user>martin.mullins@redcross.org</user>
+            <user>monisha.slater@redcross.org</user>
             <user>rose.albert@redcross.org</user>
             <user>wendy.firdman@redcross.org</user>
         </users>

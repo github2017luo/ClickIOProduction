@@ -27,6 +27,10 @@
                 <behavior>Edit</behavior>
                 <field>ccrz__SubProdTerm__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Product_SKU__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

@@ -44,6 +44,7 @@ public with sharing class phss_cc_CyberSourceCreditUtil {
     private static final Integer HTTP_STATUS_CODE_CREATED = 201;
 
     // Response keys
+    @TestVisible private static final String CURRENCY_KEY = 'currency';
     @TestVisible private static final String REFUND_AMOUNT_DETAILS_KEY = 'refundAmountDetails';
     @TestVisible private static final String REFUND_AMOUNT_KEY = 'refundAmount';
     @TestVisible private static final String TRANSACTION_ID_KEY = 'id';
@@ -147,17 +148,15 @@ public with sharing class phss_cc_CyberSourceCreditUtil {
         }
     }
 
-	@testVisible
+	@TestVisible
     private static void saveRefundCapture(Map<String, Object> data, String authTxnPmtId, String captureTxnPmtId) {
         try {
             Map<String, Object> refundAmountDetails = (Map<String, Object>) data.get(REFUND_AMOUNT_DETAILS_KEY);
             Decimal refundAmount = Decimal.valueOf((String) refundAmountDetails.get(REFUND_AMOUNT_KEY));
-
-            ccrz__E_TransactionPayment__c authTxn = phss_cc_TransactionPaymentUtil.fetchTransactionPayment(authTxnPmtId);
-            authTxn.ccrz__TransactionType__c = phss_cc_TransactionPaymentUtil.AUTH_TRANSACTION_TYPE;
-            update authTxn;
+            String currencyCode = (String) refundAmountDetails.get(CURRENCY_KEY);
 
             ccrz__E_TransactionPayment__c captureTxn = phss_cc_TransactionPaymentUtil.fetchTransactionPayment(captureTxnPmtId);
+            captureTxn.ccrz__CurrencyISOCode__c = currencyCode;
             captureTxn.ccrz__RequestAmount__c = refundAmount;
             captureTxn.ccrz__TransactionPaymentId__c = (String) data.get(TRANSACTION_ID_KEY);
             captureTxn.ccrz__TransactionTS__c = DatetimeUtil.parse((String) data.get(SUBMIT_TIME_UTC_KEY), DatetimeUtil.format.YYYY_MM_DDTHH_MM_SSZ);
@@ -451,6 +450,9 @@ public with sharing class phss_cc_CyberSourceCreditUtil {
         Map<String, Object> messageBody = new Map<String, Object>{
                 'clientReferenceInformation' => new Map<String, String>{
                         'code' => transactionPaymentName
+                },
+                'processingInformation' => new Map<String, String>{
+                        'reconciliationId' => transactionPaymentName.replaceAll('-', '')        // remove dash (-) per DE2025
                 },
                 'orderInformation' => new Map<String, Object>{
                         'amountDetails' => new Map<String, Object>{

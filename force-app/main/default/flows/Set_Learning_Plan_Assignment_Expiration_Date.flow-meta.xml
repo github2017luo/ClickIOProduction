@@ -176,7 +176,7 @@
         <inputReference>sLearningPlanAssignment</inputReference>
     </recordUpdates>
     <startElementReference>Get_Learning_Plan_Assignment</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>frmLearningPlanAssignmentID</name>
         <dataType>String</dataType>

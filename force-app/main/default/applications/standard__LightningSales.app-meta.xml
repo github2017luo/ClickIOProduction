@@ -95,7 +95,7 @@
         <pageOrSobjectType>Case</pageOrSobjectType>
         <recordType>Case.RBC_Case</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -212,7 +212,7 @@
         <pageOrSobjectType>Case</pageOrSobjectType>
         <recordType>Case.CRE_Case</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -416,7 +416,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.SB_Household_Account</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -560,7 +560,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.SB_Organization_Account</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -731,7 +731,7 @@
         <pageOrSobjectType>Case</pageOrSobjectType>
         <recordType>Case.Learn_to_Swim_Facility_Registration</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -902,7 +902,7 @@
         <pageOrSobjectType>Opportunity</pageOrSobjectType>
         <recordType>Opportunity.Sales_Opportunity</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -1037,7 +1037,7 @@
         <pageOrSobjectType>Opportunity</pageOrSobjectType>
         <recordType>Opportunity.Order_Opportunity</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -1096,5 +1096,6 @@
     <tabs>Job_Attendee__c</tabs>
     <tabs>sked__Availability__c</tabs>
     <tabs>Resource_Activity_Report</tabs>
+    <tabs>Channel_Compensation__c</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>

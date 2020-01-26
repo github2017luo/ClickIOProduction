@@ -4,7 +4,6 @@
     <name>Special Processes</name>
     <queueMembers>
         <roleAndSubordinatesInternal>
-            <roleAndSubordinateInternal>Invoice_Resolution_Task_Force</roleAndSubordinateInternal>
             <roleAndSubordinateInternal>Training_Support_Center</roleAndSubordinateInternal>
         </roleAndSubordinatesInternal>
     </queueMembers>

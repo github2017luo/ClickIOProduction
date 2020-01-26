@@ -12,6 +12,7 @@ public with sharing class phss_cc_CommunityClassSearchCtrlTest {
     public static Geo_Location__c testLocation;
     public static redwing__ILT_Class__c testIltClass;
     public static List<ccrz__E_Product__c> testProducts;
+    public static sked__Job__c job;
 
     /**
      * @description Set up for tests
@@ -35,7 +36,7 @@ public with sharing class phss_cc_CommunityClassSearchCtrlTest {
         catalog.Number_of_Students__c = 5;
         insert catalog;
 
-        sked__Job__c job = (sked__Job__c) learningData.get(phss_cc_TestDataFactory.TEST_SKEDULO_JOB);
+        job = (sked__Job__c) learningData.get(phss_cc_TestDataFactory.TEST_SKEDULO_JOB);
         job.Temp_Course__c = catalog.Name;
 
         testProducts = (List<ccrz__E_Product__c>) testData.get(phss_cc_TestDataFactory.TEST_PRODUCTS);
@@ -82,6 +83,9 @@ public with sharing class phss_cc_CommunityClassSearchCtrlTest {
 
         Id [] fixedSearchResults= new Id[1];
         fixedSearchResults[0] = testProduct.Id;
+        
+        List<redwing__ILT_Class__c> tILTClass = new List<redwing__ILT_Class__c>();
+        tILTClass.add(testIltClass);
 
         Test.startTest();
         Test.setFixedSearchResults(fixedSearchResults);
@@ -114,10 +118,113 @@ public with sharing class phss_cc_CommunityClassSearchCtrlTest {
         Map<String, Object> result = phss_cc_CommunityClassSearchController.addClassesToCart(testOpportunityId, json);
         Test.stopTest();
     }
+    
+    @isTest
+    static void testGetDatetime()
+    {   
+        
+        date d = date.today();
+        String timeStr = '12:00';
+            
+        Test.startTest();
+        	phss_cc_CommunityClassSearchController.getDatetime(d,timeStr);
+        Test.stopTest();
+    }
+    
+    @isTest
+    static void testFormatDuration()
+    {
+        Integer duration = 10;
+        
+        Test.startTest();
+        	phss_cc_CommunityClassSearchController.FormatDuration(duration);
+        Test.stopTest();
+        
+    }
+    
+    @isTest
+    static void testFormatDuration1()
+    {
+        Integer duration = 1441;
+        
+        Test.startTest();
+        	phss_cc_CommunityClassSearchController.FormatDuration(duration);
+        Test.stopTest();
+        
+    }
+    
+    @isTest
+    static void testFormatDuration2()
+    {
+        Integer duration = 61;
+        
+        Test.startTest();
+        	phss_cc_CommunityClassSearchController.FormatDuration(duration);
+        Test.stopTest();
+        
+    }
+    
+    @isTest
+    static void testGetCoordinates()
+    {
+        //getCoordinates(String city, String state, String postalCode)
+        string postalCode = '07004';
+        Test.startTest();
+        	phss_cc_CommunityClassSearchController.getCoordinates('','',postalCode);
+        Test.stopTest();
+    }
+    
+    @isTest
+    static void testGetCoordinates1()
+    {
+        string postalCode = '07004';
+        Test.startTest();
+        	phss_cc_CommunityClassSearchController.getCoordinates('','NJ',postalCode);
+        Test.stopTest();
+    }
+    
+    @isTest
+    static void testGetCoordinates2()
+    {
+        string postalCode = '07004';
+        Test.startTest();
+        	phss_cc_CommunityClassSearchController.getCoordinates('Fairfield','NJ',postalCode);
+        Test.stopTest();
+    }
+    
+    @isTest
+    static void testBuildClassCourses()
+    {
+        
+        setup();
+        
+        List<redwing__ILT_Class__c> tILTClass = new List<redwing__ILT_Class__c>();
+        tILTClass.add(testIltClass);
+        
+        Map<Id, sked__Job__c> jobMap = new Map<Id, sked__Job__c>();
+            
+        jobMap.put(job.Id,job);
+        
+        Map<String, Object> testMap = new Map<String, Object>();
+        
+        Map<Id, Id> idMap = new Map<Id, Id>();
+        
+        Map<Id, Integer> idMap2 = new Map<Id, Integer>();
+        
+        //Skedulo_Job_Id_External__c
+        
+        //public static List<Object> buildClassCourses(List<redwing__ILT_Class__c> classes, Map<Id, sked__Job__c> jobs, Map<String, Object> courses, Map<Id, Id> jobCourses, Map<Id, Integer> seatsAvailable) {
+        Test.startTest();
+        	 phss_cc_CommunityClassSearchController.buildClassCourses(tILTClass,jobMap,testMap,idMap,idMap2);
+        Test.stopTest();
+        
+    }
+        
+    
 
     /**
      * @description Tests evaluate search
-     */
+     
     @isTest
     static void testEvaluateSearch() {
 
@@ -133,5 +240,5 @@ public with sharing class phss_cc_CommunityClassSearchCtrlTest {
         Test.setFixedSearchResults(fixedSearchResults);
         phss_cc_CommunityClassSearchController.evaluateSearch(testSearchTerm, testIltClassId, testOpportunityId);
         Test.stopTest();
-    }
+    }*/
 }

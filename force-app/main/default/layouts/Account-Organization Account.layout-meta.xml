@@ -376,6 +376,10 @@
                 <behavior>Edit</behavior>
                 <field>Bankruptcy_Type__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>nk_billto_org_id__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -469,6 +473,9 @@
         <layoutColumns>
             <layoutItems>
                 <customLink>GoogleMaps</customLink>
+            </layoutItems>
+            <layoutItems>
+                <customLink>Account_Revenue_LEX</customLink>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -564,14 +571,14 @@
             <sortOrder>15</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>WebsiteHighlightAction</actionName>
-            <actionType>ProductivityAction</actionType>
-            <sortOrder>16</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
             <actionName>LogACall</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>17</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>WebsiteHighlightAction</actionName>
+            <actionType>ProductivityAction</actionType>
+            <sortOrder>16</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>NewTask</actionName>

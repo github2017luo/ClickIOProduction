@@ -71,7 +71,7 @@
         <pageOrSobjectType>Case</pageOrSobjectType>
         <recordType>Case.Invoicing</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -162,6 +162,22 @@
         <recordType>Opportunity.Sales_Opportunity</recordType>
         <type>Flexipage</type>
         <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>CC_Order_Record_Page2</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>ccrz__E_Order__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>SB ARC Finance Credit Card  Team</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>CC_Order_Record_Page2</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>ccrz__E_Order__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>ARC Finance Credit Card Team</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -979,7 +995,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.SB_Household_Account</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -1231,7 +1247,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.SB_Organization_Account</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -1250,6 +1266,54 @@
         <recordType>Account.SB_Organization_Account</recordType>
         <type>Flexipage</type>
         <profile>SB ARC NAT Team</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>CC_Order_Record_Page2</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>ccrz__E_Order__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>CC_Order_Record_Page2</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>ccrz__E_Order__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>SB ARC Invoice Task Force</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>CC_Order_Record_Page2</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>ccrz__E_Order__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>SB ARC / TSC Manager</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>CC_Order_Record_Page2</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>ccrz__E_Order__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>SB ARC / TSC Agent</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>CC_Order_Record_Page2</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>ccrz__E_Order__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>SB ARC SCC User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>CC_Order_Record_Page2</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>ccrz__E_Order__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>SB ARC Business User Profile</profile>
     </profileActionOverrides>
     <setupExperience>service</setupExperience>
     <tabs>standard-home</tabs>

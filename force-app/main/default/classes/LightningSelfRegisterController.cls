@@ -1,5 +1,5 @@
 global without sharing class LightningSelfRegisterController {
-
+    private static final String CC_INTEGRATION_USER_NAME = 'SCCIntegration User';
     private static final String DUPLICATE_VALUE_ERROR = 'DUPLICATE_VALUE';
     private static final String EXTERNAL_ID_FIELD = 'DM_External_Id__c';
 
@@ -50,101 +50,134 @@ global without sharing class LightningSelfRegisterController {
             
             // Create new account and contact record to associate with the user record
             Profile learnerProfile = [SELECT Id, Name FROM Profile WHERE Name = 'Learner Community Profile' LIMIT 1];
-            
-            String sysAdminId = [Select id from user where UserRoleId != null and profile.Name = 'System Administrator' and isActive=true limit 1].Id;
-            Account acc = new Account();
-            acc.Id = accountId;
-            acc.Name = firstname +' '+ lastname;
-            acc.OwnerId = sysAdminId;
-            acc.DM_External_Id__c = firstname + lastname + email;
-            acc.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Individual Account').getRecordTypeId();
-            upsert acc;
-            
-            Contact con = new Contact();
-            con.Id = contactId;
-            con.LastName = lastname;
-            con.FirstName = firstname;
-            con.Email = email;
-            con.AccountId = acc.Id;
-            con.DM_External_Id__c = firstname + lastname + email;
-            upsert con;
-            
-            User u = new User();
-//            u.Username = firstname + lastname + email;
-            u.Username = email; // changed on 5th June as rep US1470
-            u.put('Email',email);
-            
-            u.FirstName = firstname;
-            u.LastName = lastname;
-            u.ProfileId = learnerProfile.Id;
 
-            // Associate contact with the user record
-            u.ContactId = con.Id;
-            
-            String networkId = Network.getNetworkId();
+            // When creating a new community user, the owner of the account/contact/user records must be a system admin user
+            // which has been assigned a role.  It does not matter which sys admin user is selected for the initial creation;
+            // we will change this subsequent to the insert (integrationUser does NOT have a role, can't use it initially)
+            //String sysAdminId = [Select id from user where UserRoleId != null and profile.Name = 'System Administrator' and isActive=true limit 1].Id;
 
-            // If using site to host the community the user should not hit s1 after logging in from mobile.
-            if(networkId != null && siteAsContainerEnabled(Network.getLoginUrl(networkId))) {
-                u.put('UserPreferencesHideS1BrowserUI',true);
+            // DE2096 - Owner of new Account, Contact, and User records must be 'SCCIntegration User'
+            String ownerId = '';
+            String ownerUserName = '';
+
+            PHSS_System_Integration__mdt[] systemIntegrationMetadata = [SELECT Value__c FROM PHSS_System_Integration__mdt
+                WHERE DeveloperName = 'Commerce_Cloud_Integration_User' LIMIT 1];
+
+            if (systemIntegrationMetadata.size() >= 1 && String.isNotBlank(systemIntegrationMetadata[0].Value__c)) {
+                ownerUserName = systemIntegrationMetadata[0].Value__c;
+            } else {
+                ownerUserName = CC_INTEGRATION_USER_NAME;
             }
-            
-            String nickname = ((firstname != null && firstname.length() > 0) ? firstname.substring(0,1) : '' ) + lastname.substring(0,1);
-            nickname += String.valueOf(Crypto.getRandomInteger()).substring(1,7);
-            u.put('CommunityNickname', nickname);
-                     
-            if (extraFields != null) {
-                List<Object> extraFieldsList = (List<Object>) JSON.deserializeUntyped(extraFields);        
-                for (Object thisFieldObject : extraFieldsList) {
-                    Map<String,Object> thisField = (Map<String,Object>) thisFieldObject;
-                    Schema.SObjectField sof = Schema.SObjectType.User.fields.getMap().get((String) thisField.get('fieldPath'));
-                    u.put(sof, thisField.get('value'));
+
+            if (String.isNotBlank(ownerUserName)) {
+                User[] integrationUser = [SELECT Id FROM User WHERE Name = :ownerUserName LIMIT 1];
+                If (integrationUser.size() >= 1 && String.isNotBlank(integrationUser[0].Id)) {
+                    ownerId = integrationUser[0].Id;
                 }
             }
-                        
-            if (includePassword) {    
-                if (!isValidPassword(password, confirmPassword)) {
-                    return Label.site.passwords_dont_match;
+
+            if (String.isNotBlank(ownerId)) {
+                Account acc = new Account();
+                acc.Id = accountId;
+                // DE2315 - Modify name of new individual account created and specify default payment type
+                acc.Name = 'The ' + firstname + ' ' + lastname + ' Account';
+                acc.Preferred_Payment_type__c = 'Credit/Debit Card';
+                //acc.Name = firstname + ' ' + lastname;
+                acc.OwnerId = ownerId;
+                acc.DM_External_Id__c = firstname + lastname + email;
+                acc.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Individual Account').getRecordTypeId();
+                upsert acc;
+
+                Contact con = new Contact();
+                con.Id = contactId;
+                con.LastName = lastname;
+                con.FirstName = firstname;
+                con.Email = email;
+                con.AccountId = acc.Id;
+                con.OwnerId = ownerId;
+                con.DM_External_Id__c = firstname + lastname + email;
+                upsert con;
+
+                User u = new User();
+                //u.Username = firstname + lastname + email;
+                u.Username = email; // changed on 5th June as rep US1470
+                u.put('Email', email);
+                u.FirstName = firstname;
+                u.LastName = lastname;
+                u.ProfileId = learnerProfile.Id;
+                // Associate user record with contact previously created
+                u.ContactId = con.Id;
+
+                String networkId = Network.getNetworkId();
+
+                // If using site to host the community the user should not hit s1 after logging in from mobile.
+                if (networkId != null && siteAsContainerEnabled(Network.getLoginUrl(networkId))) {
+                    u.put('UserPreferencesHideS1BrowserUI', true);
                 }
-             validatePassword(u, password, confirmPassword);
-            }
-            else {
-                password = null;
-            }
-            
-            // lastName is a required field on user, but if it isn't specified, we'll default it to the username
-            String userId = Site.createPortalUser(u, acc.Id, password);
-            
-            // Assign permission set
-            List<Id> userList = new List<Id>();
-            userList.add(userId);
-            
-            if(!Test.isRunningTest()) {
-            	ILTInstructorCommunity.assignUserPermission(userList);
-            }
-            
-            // create a fake userId for test.
-            if (Test.isRunningTest()) {
-                userId = 'fakeUserId';           
-            }
-            if (userId != null) {
-                if (password != null && password.length() > 1) {
-                    Network myNetwork = [SELECT Id FROM Network WHERE Name ='Red Cross Learning Center'];
-                    String loginUrl = Network.getLoginUrl(myNetwork.Id);
-                    System.debug('about to redirect');
-                    ApexPages.PageReference lgn = Site.login(u.Username, password, startUrl);
-                    if(!Test.isRunningTest()) {
-                        aura.redirect(lgn);
+
+                String nickname = ((firstname != null && firstname.length() > 0) ? firstname.substring(0, 1) : '') + lastname.substring(0, 1);
+                nickname += String.valueOf(Crypto.getRandomInteger()).substring(1, 7);
+                u.put('CommunityNickname', nickname);
+
+                if (extraFields != null) {
+                    List<Object> extraFieldsList = (List<Object>) JSON.deserializeUntyped(extraFields);
+                    for (Object thisFieldObject : extraFieldsList) {
+                        Map<String, Object> thisField = (Map<String, Object>) thisFieldObject;
+                        Schema.SObjectField sof = Schema.SObjectType.User.fields.getMap().get((String) thisField.get('fieldPath'));
+                        u.put(sof, thisField.get('value'));
                     }
                 }
-                else {
-                    ApexPages.PageReference confirmRef = new PageReference(regConfirmUrl);
-                    if(!Test.isRunningTest()) {
-                    aura.redirect(confirmRef);
-                   }
 
+                if (includePassword) {
+                    if (!isValidPassword(password, confirmPassword)) {
+                        return Label.site.passwords_dont_match;
+                    }
+                    validatePassword(u, password, confirmPassword);
+                } else {
+                    password = null;
                 }
+
+                // lastName is a required field on user, but if it isn't specified, we'll default it to the username
+                String userId = Site.createPortalUser(u, acc.Id, password);
+
+                // Assign permission set
+                List<Id> userList = new List<Id>();
+                userList.add(userId);
+
+                if (!Test.isRunningTest()) {
+                    ILTInstructorCommunity.assignUserPermission(userList);
+                }
+
+                // create a fake userId for test.
+                if (Test.isRunningTest()) {
+                    userId = 'fakeUserId';
+                }
+                if (userId != null) {
+                    if (password != null && password.length() > 1) {
+                        Network myNetwork = [SELECT Id FROM Network WHERE Name = 'Red Cross Learning Center'];
+                        String loginUrl = Network.getLoginUrl(myNetwork.Id);
+                        System.debug('about to redirect');
+                        ApexPages.PageReference lgn = Site.login(u.Username, password, startUrl);
+                        if (!Test.isRunningTest()) {
+                            aura.redirect(lgn);
+                        }
+                    } else {
+                        ApexPages.PageReference confirmRef = new PageReference(regConfirmUrl);
+                        if (!Test.isRunningTest()) {
+                            aura.redirect(confirmRef);
+                        }
+
+                    }
+                }
+
+                return null;
+
+            } else {
+                String errorMessage = 'Unable to determine Commerce Cloud integration user name';
+                System.debug('errorMessage '+errorMessage);
+
+                return errorMessage;
             }
-            return null;
         }
         catch (Exception ex) {
             Database.rollback(sp);
@@ -208,7 +241,8 @@ global without sharing class LightningSelfRegisterController {
     global static String checkExistingContact(String email) {
         // checks if contact / account exists with the specified email address
 
-        List<Contact> contacts = [SELECT Id, Email, AccountId, FirstName, LastName FROM Contact WHERE Email = :email];
+        List<Contact> contacts = [SELECT Id, Email, AccountId, FirstName, LastName FROM Contact WHERE Email = :email AND Account.RecordType.Name = 'Individual Account']; // DE2113
+        //List<Contact> contacts = [SELECT Id, Email, AccountId, FirstName, LastName FROM Contact WHERE Email = :email];
         // what to do if multiple contacts found?
 
         if(contacts.size() > 0) {

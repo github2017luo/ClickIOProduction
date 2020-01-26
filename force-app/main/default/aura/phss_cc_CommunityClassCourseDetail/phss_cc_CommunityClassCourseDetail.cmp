@@ -6,7 +6,7 @@
     <div class="{! 'slds-p-around_medium slds-border_bottom ' + if(equals(mod(v.rowIdx, 2), 0), 'slds-theme_shade', '') }">
         <div class="slds-grid slds-p-bottom_xx-small">
             <div class="slds-col slds-size_10-of-12" title="{! v.class.iltClassId }">
-                <div class="slds-text-heading_small"><b>{! v.course.sfdcName }</b></div>
+                <div class="slds-text-heading_small"><b><a href="{! '/lightning/r/redwing__ILT_Class__c/' + v.class.iltClassId + '/view'}">{! v.course.sfdcName }</a></b></div>
                 <div class="slds-text-title_caps">{! v.course.SKU }</div>
             </div>
             <div class="slds-col slds-size_2-of-12 slds-text-align_right">

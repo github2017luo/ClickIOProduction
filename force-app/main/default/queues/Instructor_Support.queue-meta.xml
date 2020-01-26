@@ -17,6 +17,14 @@
             <role>Tier_III</role>
             <role>Trainer</role>
         </roles>
+        <users>
+            <user>adriennekovell@redcross.org</user>
+            <user>hana.kennedy@redcross.org</user>
+            <user>john.mccallum@redcross.org</user>
+            <user>kaylah.adkins@redcross.org</user>
+            <user>kelly.martin@redcross.org</user>
+            <user>lisa.mussleh@redcross.org</user>
+        </users>
     </queueMembers>
     <queueSobject>
         <sobjectType>Case</sobjectType>

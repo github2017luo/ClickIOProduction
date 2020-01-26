@@ -205,13 +205,13 @@
     onclickNext : function(component,event,helper){
         
         var currentSN = component.get("v.stepNumber");
-        var timeOut = '2000';
+        var timeOut = '3000';
         
         if(currentSN == "One")            
         {
-            helper.updateGeoLatLong(component,event,helper);
             helper.requiredSchedule(component,event,helper);
             helper.formatTime(component,event,helper);
+            helper.updateGeoLatLong(component,event,helper);
             helper.validateFields(component,event,helper);
             helper.createIltLocation(component);
             
@@ -231,7 +231,7 @@
             
         	setTimeout(function(){
                 document.getElementById("Accspinner").style.display = "none";
-                //alert("Location ID " + component.get('v.cpsWrap.locationId'));
+                //alert("Location ID " + component.get('v.cpsWrap.locationId'));                
 
                 var vorgId 	= component.get("v.selectedLookUpRecord1").Id
                 if(vorgId === undefined){
@@ -384,12 +384,18 @@
         component.set("v.pMethod", "billSprt");
     },
     
-    onclickAddToCart : function(component, event, helper) { 
-            helper.updateGeoLatLong(component,event,helper);
+    onclickAddToCart : function(component, event, helper) {
+        	var timeOut = '3000';
             helper.requiredSchedule(component,event,helper);
             helper.formatTime(component,event,helper);
+        	helper.updateGeoLatLong(component,event,helper);
             helper.validateFields(component,event,helper);
             helper.createIltLocation(component);
+        	
+        
+            if(component.get('v.cpsWrap.locationId') != ""){
+                var timeOut = '0';
+            }
 
             if(component.get("v.allValid") == true){
                 document.getElementById("Accspinner").style.display = "block";
@@ -398,7 +404,7 @@
         	setTimeout(function(){
                 document.getElementById("Accspinner").style.display = "none";
                 //alert("Location ID " + component.get('v.cpsWrap.locationId'));
-                
+        
                 var vorgId 	= component.get("v.selectedLookUpRecord1").Id
                 if(vorgId === undefined){
                     component.set("v.orgError",true);
@@ -439,7 +445,7 @@
                     helper.clearForm(component,event,helper);
                     component.set("v.stepNumber", "One");    
                 }
-            },2000);
+            },timeOut);
     },
     
     createClass : function(component, event, helper) {
@@ -494,9 +500,12 @@
     
 	accountSelected : function (component,event,helper){
         console.log("account Selected");
-        var orgId 	= component.get("v.selectedLookUpRecord1").Id
+        
+        var orgId 	= component.get("v.selectedLookUpRecord1").Id;
+        var orgName = component.get("v.selectedLookUpRecord1").Name;
         
         component.set("v.cpsWrap.accId",orgId);
+        component.set("v.cpsWrap.accName",orgName);
         
         console.log("***orgId***"+orgId);
         if(orgId != null || orgId != undefined){

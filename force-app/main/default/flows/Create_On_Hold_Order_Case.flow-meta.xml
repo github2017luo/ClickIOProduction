@@ -529,7 +529,7 @@
         <queriedFields>Name</queriedFields>
     </recordLookups>
     <startElementReference>Get_Case_Record_Types</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>colRecordTypes</name>
         <dataType>SObject</dataType>

@@ -9,7 +9,12 @@
     <type>Picklist</type>
     <valueSet>
         <valueSetDefinition>
-            <sorted>false</sorted>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Account Affiliation</fullName>
+                <default>false</default>
+                <label>Account Affiliation</label>
+            </value>
             <value>
                 <fullName>ARC Management Escalations</fullName>
                 <default>false</default>
@@ -26,6 +31,11 @@
                 <label>ATG - On Hold</label>
             </value>
             <value>
+                <fullName>Bridging – Ready to Work</fullName>
+                <default>false</default>
+                <label>Bridging – Ready to Work</label>
+            </value>
+            <value>
                 <fullName>CCO Specialist</fullName>
                 <default>false</default>
                 <label>CCO Specialist</label>
@@ -39,6 +49,11 @@
                 <fullName>Certificate Support</fullName>
                 <default>false</default>
                 <label>Certificate Support</label>
+            </value>
+            <value>
+                <fullName>Contact Record Update</fullName>
+                <default>false</default>
+                <label>Contact Record Update</label>
             </value>
             <value>
                 <fullName>Course Records</fullName>
@@ -111,9 +126,19 @@
                 <label>Outbound Group Queue</label>
             </value>
             <value>
+                <fullName>Password Reset</fullName>
+                <default>false</default>
+                <label>Password Reset</label>
+            </value>
+            <value>
                 <fullName>Payment Policy</fullName>
                 <default>false</default>
                 <label>Payment Policy</label>
+            </value>
+            <value>
+                <fullName>﻿Pending Closure</fullName>
+                <default>false</default>
+                <label>﻿Pending Closure</label>
             </value>
             <value>
                 <fullName>Pending Field Request</fullName>
@@ -131,9 +156,34 @@
                 <label>Quick Start</label>
             </value>
             <value>
+                <fullName>RCLC Callbacks</fullName>
+                <default>false</default>
+                <label>RCLC Callbacks</label>
+            </value>
+            <value>
+                <fullName>RCLC Escalations</fullName>
+                <default>false</default>
+                <label>RCLC Escalations</label>
+            </value>
+            <value>
+                <fullName>RCLC Refunds on Hold</fullName>
+                <default>false</default>
+                <label>RCLC Refunds on Hold</label>
+            </value>
+            <value>
+                <fullName>RCLC Resolved Issues</fullName>
+                <default>false</default>
+                <label>RCLC Resolved Issues</label>
+            </value>
+            <value>
                 <fullName>RDC Queue</fullName>
                 <default>false</default>
                 <label>RDC Queue</label>
+            </value>
+            <value>
+                <fullName>Receipt Requests</fullName>
+                <default>false</default>
+                <label>Receipt Requests</label>
             </value>
             <value>
                 <fullName>Red Cross Store</fullName>

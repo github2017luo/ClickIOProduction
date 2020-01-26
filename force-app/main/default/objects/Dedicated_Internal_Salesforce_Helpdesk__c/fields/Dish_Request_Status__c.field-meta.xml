@@ -53,6 +53,11 @@
                 <default>false</default>
                 <label>Requester comment pending</label>
             </value>
+            <value>
+                <fullName>TSC Status Update</fullName>
+                <default>false</default>
+                <label>TSC Status Update</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

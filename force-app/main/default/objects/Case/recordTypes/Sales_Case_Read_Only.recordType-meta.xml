@@ -91,6 +91,10 @@
     <picklistValues>
         <picklist>Case_Sub_Type__c</picklist>
         <values>
+            <fullName>Application %26 Registration Fees Paid</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Blended Learning</fullName>
             <default>false</default>
         </values>
@@ -136,6 +140,10 @@
         </values>
         <values>
             <fullName>Donations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Expedited Certificate Fee Charged</fullName>
             <default>false</default>
         </values>
         <values>
@@ -191,11 +199,23 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Retest</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>SAF</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>Shop StayWell</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sponsored</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Standard Certificate Fee Charged</fullName>
             <default>false</default>
         </values>
         <values>
@@ -2111,6 +2131,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>LTS-Registration Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Lifeline</fullName>
             <default>false</default>
         </values>
@@ -2151,6 +2175,21 @@
         </values>
         <values>
             <fullName>Product%2FDelivery</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Tier_III_Disposition__c</picklist>
+        <values>
+            <fullName>Business as Usual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Functionality Issue - DISH Ticket Created</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Functionality Issue - Resolved by Agent</fullName>
             <default>false</default>
         </values>
     </picklistValues>

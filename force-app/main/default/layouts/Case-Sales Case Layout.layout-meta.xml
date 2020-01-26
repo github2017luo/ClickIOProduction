@@ -363,6 +363,9 @@
         <quickActionListItems>
             <quickActionName>Case._LightningUpdateCase</quickActionName>
         </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>Case.Standard_Order</quickActionName>
+        </quickActionListItems>
     </quickActionList>
     <relatedLists>
         <customButtons>Related_Sales_Case</customButtons>

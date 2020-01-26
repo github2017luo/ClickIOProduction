@@ -3,7 +3,7 @@
     <fullName>Multi_Jurisdictional_Type__c</fullName>
     <externalId>false</externalId>
     <inlineHelpText>FS Opportunities ONLY. Do not complete for AP/LTP</inlineHelpText>
-    <label>Multi-Jurisdictional Type</label>
+    <label>Multi-Location Type</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>true</trackHistory>

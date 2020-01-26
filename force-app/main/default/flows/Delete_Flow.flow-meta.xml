@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <interviewLabel>Delete Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Delete Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordDeletes>
+        <name>Delete_Paused_Flow</name>
+        <label>Delete Paused Flow</label>
+        <locationX>311</locationX>
+        <locationY>118</locationY>
+        <filters>
+            <field>CreatedDate</field>
+            <operator>LessThan</operator>
+            <value>
+                <elementReference>MaxDateAndHour</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>InterviewLabel</field>
+            <operator>Contains</operator>
+            <value>
+                <elementReference>FlowAPIName</elementReference>
+            </value>
+        </filters>
+        <object>FlowInterview</object>
+    </recordDeletes>
+    <startElementReference>Delete_Paused_Flow</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>FlowAPIName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>MaxDate</name>
+        <dataType>Date</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>MaxDateAndHour</name>
+        <dataType>DateTime</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

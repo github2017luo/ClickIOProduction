@@ -29,7 +29,7 @@
         <formula>AND(IsOutbound =TRUE,
 ISPICKVAL(Provider,&quot;Facebook&quot;), 
 OR(
-CONTAINS(LOWER(&quot; &quot;&amp; Content &amp; &quot; &quot;),&quot;ass&quot;),
+CONTAINS(LOWER(&quot; &quot;&amp; Content &amp; &quot; &quot;),&quot; ass &quot;),
 CONTAINS(LOWER(&quot; &quot;&amp; Content &amp; &quot; &quot;),&quot;asslick&quot;),
 CONTAINS(LOWER(&quot; &quot;&amp; Content &amp; &quot; &quot;),&quot;asshole&quot;),
 CONTAINS(LOWER(&quot; &quot;&amp; Content &amp; &quot; &quot;),&quot;asskisser&quot;),

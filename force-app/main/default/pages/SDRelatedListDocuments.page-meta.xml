@@ -6,7 +6,7 @@
     <label>SDRelatedListDocuments</label>
     <packageVersions>
         <majorNumber>4</majorNumber>
-        <minorNumber>13</minorNumber>
+        <minorNumber>24</minorNumber>
         <namespace>SDOC</namespace>
     </packageVersions>
 </ApexPage>

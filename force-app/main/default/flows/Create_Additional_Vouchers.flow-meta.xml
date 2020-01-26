@@ -107,7 +107,7 @@
     <decisions>
         <name>Can_Add_to_Class</name>
         <label>Can Add to Class</label>
-        <locationX>369</locationX>
+        <locationX>370</locationX>
         <locationY>49</locationY>
         <defaultConnector>
             <targetReference>Unable_to_Add_Vouchers</targetReference>
@@ -363,7 +363,7 @@
         <showHeader>true</showHeader>
     </screens>
     <startElementReference>Get_ILT_Class_ID</startElementReference>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <name>collVoucher</name>
         <dataType>SObject</dataType>

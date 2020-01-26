@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>RCLC Resolved Issues</name>
+    <queueMembers>
+        <publicGroups>
+            <publicGroup>BGST_Mgmt</publicGroup>
+            <publicGroup>BGST_Sales</publicGroup>
+            <publicGroup>Training_Specialists</publicGroup>
+            <publicGroup>Service_Delivery</publicGroup>
+            <publicGroup>TSC_Back_Office_TLs</publicGroup>
+            <publicGroup>TSC_Management</publicGroup>
+            <publicGroup>TSC_Ops_Agents</publicGroup>
+            <publicGroup>TSC_Team_Leads</publicGroup>
+        </publicGroups>
+        <roleAndSubordinatesInternal>
+            <roleAndSubordinateInternal>Front_Office</roleAndSubordinateInternal>
+        </roleAndSubordinatesInternal>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

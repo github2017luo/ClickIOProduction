@@ -95,7 +95,7 @@
         <pageOrSobjectType>Opportunity</pageOrSobjectType>
         <recordType>Opportunity.Order_Opportunity</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -239,7 +239,7 @@
         <pageOrSobjectType>Opportunity</pageOrSobjectType>
         <recordType>Opportunity.Sales_Opportunity</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>

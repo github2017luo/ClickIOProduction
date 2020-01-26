@@ -826,7 +826,7 @@
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>SFDC_Budget__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>

@@ -135,7 +135,7 @@
         <pageOrSobjectType>Case</pageOrSobjectType>
         <recordType>Case.RBC_Case</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -270,7 +270,7 @@
         <pageOrSobjectType>Case</pageOrSobjectType>
         <recordType>Case.CRE_Case</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -424,6 +424,22 @@
         <recordType>Opportunity.Order_Opportunity</recordType>
         <type>Flexipage</type>
         <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>CC_Order_Record_Page2</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>ccrz__E_Order__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>SB ARC Finance Credit Card  Team</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>CC_Order_Record_Page2</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>ccrz__E_Order__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>ARC Finance Credit Card Team</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -672,7 +688,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.SB_Household_Account</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -816,7 +832,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.SB_Organization_Account</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -969,7 +985,7 @@
         <pageOrSobjectType>Case</pageOrSobjectType>
         <recordType>Case.Learn_to_Swim_Facility_Registration</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -1252,7 +1268,7 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>ARC_Case_Record_Sales</content>
+        <content>ARC_TSC_Case_Record_Page</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Case</pageOrSobjectType>
         <recordType>Case.Sales_Case</recordType>
@@ -1360,7 +1376,7 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>ARC_Case_Record_Sales</content>
+        <content>ARC_TSC_Case_Record_Page</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Case</pageOrSobjectType>
         <recordType>Case.Sales_Case_Read_Only</recordType>
@@ -1406,6 +1422,307 @@
         <pageOrSobjectType>Contact</pageOrSobjectType>
         <type>Flexipage</type>
         <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>CC_Order_Record_Page2</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>ccrz__E_Order__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>CC_Order_Record_Page2</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>ccrz__E_Order__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>SB ARC Invoice Task Force</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>CC_Order_Record_Page2</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>ccrz__E_Order__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>SB ARC / TSC Manager</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>CC_Order_Record_Page2</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>ccrz__E_Order__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>SB ARC / TSC Agent</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>CC_Order_Record_Page2</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>ccrz__E_Order__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>SB ARC Business User Profile</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Sales_Case</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC Business User Profile</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Service_Cases</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC BGST Sales User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Service_Cases</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC BGST Sales Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Service_Cases</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC Business User Old</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Service_Cases</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC Business User Profile</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Service_Cases</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC RSG Agent</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Service_Case_Read_Only</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC BGST Sales Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Service_Case_Read_Only</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC BGST Sales User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Service_Case_Read_Only</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC Business User Old</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Service_Case_Read_Only</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC Business User Profile</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Service_Case_Read_Only</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC RSG Agent</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Sales_Case_Read_Only</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC / TSC Agent</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Sales_Case_Read_Only</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC / TSC Manager</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Sales_Case_Read_Only</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC BGST Sales Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Sales_Case_Read_Only</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC BGST Sales User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Sales_Case_Read_Only</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC Business User Old</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Sales_Case_Read_Only</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC Business User Profile</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Sales_Case_Read_Only</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC RSG Agent</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Sales_Case</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC Business User Old</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Sales_Case</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC / TSC Agent</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Sales_Case</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC / TSC Manager</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Sales_Case</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC BGST Sales Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Sales_Case</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC BGST Sales User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_Case_Record_Sales</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Sales_Case</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC NAT Sales User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_Case_Record_Sales</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Sales_Case</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC NAT Team</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_Case_Record_Sales</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Sales_Case</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC NAT Team Adv</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Sales_Case</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC RSG Agent</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Sales_Case</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC Sales BI User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ARC_TSC_Case_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Sales_Case</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC Sales User</profile>
     </profileActionOverrides>
     <setupExperience>service</setupExperience>
     <tabs>standard-home</tabs>
@@ -1419,11 +1736,15 @@
     <tabs>Long_Article__kav</tabs>
     <tabs>redwing__ILT_Class__c</tabs>
     <tabs>ccrz__E_Order__c</tabs>
+    <tabs>Student_Bulk_Upload__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>ARC_Service_Console_UtilityBar</utilityBar>
     <workspaceConfig>
         <mappings>
             <tab>Long_Article__kav</tab>
+        </mappings>
+        <mappings>
+            <tab>Student_Bulk_Upload__c</tab>
         </mappings>
         <mappings>
             <tab>ccrz__E_Order__c</tab>

@@ -2902,27 +2902,15 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Blended Learning</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Certificates</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Concerns%2FKuddos</fullName>
+            <fullName>Class Support</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>First Aid and CPR</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Instructor Certification</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Online Completion Report and Roster</fullName>
+            <fullName>Customer Feedback</fullName>
             <default>false</default>
         </values>
         <values>
@@ -2930,7 +2918,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Submission of Class Paperwork</fullName>
+            <fullName>Program Information</fullName>
             <default>false</default>
         </values>
         <values>
@@ -5950,6 +5938,21 @@
         </values>
         <values>
             <fullName>SHIP TO</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Tier_III_Disposition__c</picklist>
+        <values>
+            <fullName>Business as Usual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Functionality Issue - DISH Ticket Created</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Functionality Issue - Resolved by Agent</fullName>
             <default>false</default>
         </values>
     </picklistValues>

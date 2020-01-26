@@ -52,6 +52,11 @@
                 <label>AP/LTP – Classroom</label>
             </value>
             <value>
+                <fullName>Application &amp; Registration Fees Paid</fullName>
+                <default>false</default>
+                <label>Application &amp; Registration Fees Paid</label>
+            </value>
+            <value>
                 <fullName>Application Fee paid</fullName>
                 <default>false</default>
                 <label>Application Fee paid</label>
@@ -272,9 +277,19 @@
                 <label>Disaster</label>
             </value>
             <value>
+                <fullName>Discount not on account</fullName>
+                <default>false</default>
+                <label>Discount not on account</label>
+            </value>
+            <value>
                 <fullName>Donations</fullName>
                 <default>false</default>
                 <label>Donations</label>
+            </value>
+            <value>
+                <fullName>Expedited Certificate Fee Charged</fullName>
+                <default>false</default>
+                <label>Expedited Certificate Fee Charged</label>
             </value>
             <value>
                 <fullName>Extend Existing Coupon</fullName>
@@ -390,6 +405,11 @@
                 <fullName>Initial Inquiry</fullName>
                 <default>false</default>
                 <label>Initial Inquiry</label>
+            </value>
+            <value>
+                <fullName>Instructor</fullName>
+                <default>false</default>
+                <label>Instructor</label>
             </value>
             <value>
                 <fullName>Instructor&#39;s Corner</fullName>
@@ -557,6 +577,11 @@
                 <label>No Coupon Created</label>
             </value>
             <value>
+                <fullName>No Issue found</fullName>
+                <default>false</default>
+                <label>No Issue found</label>
+            </value>
+            <value>
                 <fullName>No Show Instructor</fullName>
                 <default>false</default>
                 <label>No Show Instructor</label>
@@ -610,6 +635,11 @@
                 <fullName>Presentation</fullName>
                 <default>false</default>
                 <label>Presentation</label>
+            </value>
+            <value>
+                <fullName>Pricing not on account</fullName>
+                <default>false</default>
+                <label>Pricing not on account</label>
             </value>
             <value>
                 <fullName>Product complaint</fullName>
@@ -777,6 +807,11 @@
                 <label>Sponsored</label>
             </value>
             <value>
+                <fullName>Standard Certificate Fee Charged</fullName>
+                <default>false</default>
+                <label>Standard Certificate Fee Charged</label>
+            </value>
+            <value>
                 <fullName>Status of Order</fullName>
                 <default>false</default>
                 <label>Status of Order</label>
@@ -785,6 +820,11 @@
                 <fullName>Story Share</fullName>
                 <default>false</default>
                 <label>Story Share</label>
+            </value>
+            <value>
+                <fullName>Student</fullName>
+                <default>false</default>
+                <label>Student</label>
             </value>
             <value>
                 <fullName>Submitted by Email</fullName>
@@ -911,6 +951,14 @@
             <valueName>Presentation</valueName>
         </valueSettings>
         <valueSettings>
+            <controllingFieldValue>Achievement Assignment Issue</controllingFieldValue>
+            <valueName>Instructor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Achievement Assignment Issue</controllingFieldValue>
+            <valueName>Student</valueName>
+        </valueSettings>
+        <valueSettings>
             <controllingFieldValue>Instructors</controllingFieldValue>
             <valueName>AHA Crossover</valueName>
         </valueSettings>
@@ -984,6 +1032,18 @@
             <valueName>No Coupon Created</valueName>
         </valueSettings>
         <valueSettings>
+            <controllingFieldValue>RCLC Account Inquiry</controllingFieldValue>
+            <valueName>Discount not on account</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>RCLC Account Inquiry</controllingFieldValue>
+            <valueName>No Issue found</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>RCLC Account Inquiry</controllingFieldValue>
+            <valueName>Pricing not on account</valueName>
+        </valueSettings>
+        <valueSettings>
             <controllingFieldValue>Special Processes</controllingFieldValue>
             <valueName>Annual AP/LTP Price Increase</valueName>
         </valueSettings>
@@ -1014,6 +1074,10 @@
         <valueSettings>
             <controllingFieldValue>Field Request</controllingFieldValue>
             <valueName>Organization Request</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Nurse Assistant Training</controllingFieldValue>
+            <valueName>Application &amp; Registration Fees Paid</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Nurse Assistant Training</controllingFieldValue>
@@ -1303,6 +1367,10 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Certificates</controllingFieldValue>
+            <valueName>Expedited Certificate Fee Charged</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Certificates</controllingFieldValue>
             <valueName>Granted Grace Period for Expired Base Level Cert</valueName>
         </valueSettings>
         <valueSettings>
@@ -1344,6 +1412,10 @@
         <valueSettings>
             <controllingFieldValue>Certificates</controllingFieldValue>
             <valueName>S/H Email Sent</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Certificates</controllingFieldValue>
+            <valueName>Standard Certificate Fee Charged</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Community Course Registration</controllingFieldValue>
@@ -1419,6 +1491,7 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Course Records</controllingFieldValue>
+            <controllingFieldValue>AP Blended Learning</controllingFieldValue>
             <valueName>Portal Payment</valueName>
         </valueSettings>
         <valueSettings>

@@ -530,6 +530,13 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>redwing__End_Date__c</fields>
+        <fields>redwing__Start_Date__c</fields>
+        <fields>CPS_Registration_URL__c</fields>
+        <fields>CPS_Registration_Email__c</fields>
+        <fields>CPS_Registration_Phone__c</fields>
+        <fields>Site_City__c</fields>
+        <fields>State__c</fields>
         <relatedList>redwing__ILT_Class__c.CPS_Order__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>

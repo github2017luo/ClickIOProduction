@@ -400,7 +400,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>AR_121_180_Days__c</field>
+                <field>AR_121_150_Days__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>AR_151_180_Days__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -514,6 +518,10 @@
                 <behavior>Edit</behavior>
                 <field>Customer_PO_Required_on_Invoice__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Restrict_Order_Confirmation_Email__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -587,6 +595,9 @@
         <layoutColumns>
             <layoutItems>
                 <customLink>GoogleMaps</customLink>
+            </layoutItems>
+            <layoutItems>
+                <customLink>Account_Revenue_LEX</customLink>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -691,6 +702,11 @@
             <sortOrder>15</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
+            <actionName>NewEvent</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>24</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
             <actionName>AccountHierarchy</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>16</sortOrder>
@@ -711,6 +727,11 @@
             <sortOrder>19</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
+            <actionName>SendEmail</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>25</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
             <actionName>SmsHighlightAction</actionName>
             <actionType>ProductivityAction</actionType>
             <sortOrder>20</sortOrder>
@@ -729,16 +750,6 @@
             <actionName>NewTask</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>23</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>NewEvent</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>24</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>SendEmail</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>25</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>LogACall</actionName>
@@ -772,8 +783,10 @@
         <fields>NAME</fields>
         <fields>ccrz__OrderDate__c</fields>
         <fields>Opportunity_Order__c</fields>
-        <fields>OWNER.ALIAS</fields>
         <fields>ccrz__OrderStatus__c</fields>
+        <fields>ccrz__TotalAmount__c</fields>
+        <fields>ccrz__Storefront__c</fields>
+        <fields>OWNER.ALIAS</fields>
         <relatedList>ccrz__E_Order__c.ccrz__Account__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -902,7 +915,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h0V00000mYahN</masterLabel>
+        <masterLabel>00h21000000SL0f</masterLabel>
         <sizeX>1</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

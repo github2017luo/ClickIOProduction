@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentAsset xmlns="http://soap.sforce.com/2006/04/metadata">
+    <isVisibleByExternalUsers>true</isVisibleByExternalUsers>
+    <language>en_US</language>
+    <masterLabel>prnamericanredcrosslogo28121y111hig</masterLabel>
+    <versions>
+        <version>
+            <number>1</number>
+            <pathOnClient>prn-american-red-cross-logo2812-1y-1-1-1high-1.jpg</pathOnClient>
+        </version>
+    </versions>
+</ContentAsset>

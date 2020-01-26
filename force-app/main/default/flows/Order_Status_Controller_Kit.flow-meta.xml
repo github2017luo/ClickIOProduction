@@ -208,7 +208,7 @@
                 <leftValueReference>myVariable_current.ccrz__OrderItemStatus__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>In Process</stringValue>
+                    <stringValue>Shipped</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -350,7 +350,7 @@
                 <leftValueReference>myVariable_current.ccrz__OrderItemStatus__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>In Process</stringValue>
+                    <stringValue>Shipped</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -482,14 +482,14 @@
                 <leftValueReference>myVariable_old.ccrz__OrderItemStatus__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>In Process</stringValue>
+                    <stringValue>Shipped</stringValue>
                 </rightValue>
             </conditions>
             <label>Previously Met - Prev</label>
         </rules>
     </decisions>
     <description>For after order kit</description>
-    <interviewLabel>Order_Status_Controller_Kit-2_InterviewLabel</interviewLabel>
+    <interviewLabel>Order_Status_Controller_Kit-4_InterviewLabel</interviewLabel>
     <label>Order Status Controller - Kit</label>
     <processMetadataValues>
         <name>ObjectType</name>

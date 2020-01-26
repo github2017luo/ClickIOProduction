@@ -11,7 +11,7 @@
     <description>Website for Instructors to stream &amp; download course materials, collaborate in the forum and get online support.</description>
     <disableReputationRecordConversations>true</disableReputationRecordConversations>
     <emailFooterLogo>Communities_Shared_Document_Folder/American_Red_Cross.png</emailFooterLogo>
-    <emailFooterText>© 2018 The American National Red Cross</emailFooterText>
+    <emailFooterText>© 2019 The American National Red Cross</emailFooterText>
     <emailSenderAddress>InstructorsCorner@redcross.org</emailSenderAddress>
     <emailSenderName>American Red Cross</emailSenderName>
     <enableCustomVFErrorPageOverrides>false</enableCustomVFErrorPageOverrides>
@@ -171,6 +171,7 @@
         <profile>SB ARC %2F TSC Agent</profile>
         <profile>SB ARC %2F TSC Manager</profile>
         <profile>SB PHSS-IC-Community Plus Login</profile>
+        <profile>SB PHSS-Partner-Community Plus Login</profile>
     </networkMemberGroups>
     <networkPageOverrides>
         <changePasswordPageOverrideSetting>VisualForce</changePasswordPageOverrideSetting>
@@ -343,7 +344,7 @@
         </pointsRule>
     </reputationPointsRules>
     <selfRegistration>false</selfRegistration>
-    <sendWelcomeEmail>true</sendWelcomeEmail>
+    <sendWelcomeEmail>false</sendWelcomeEmail>
     <site>Instructor_s_Corner</site>
     <status>Live</status>
     <tabs>

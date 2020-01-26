@@ -17,9 +17,13 @@ $User.Id != &quot;005d0000001WGtI&quot;, /*Kwesida Rhoney*/
 $User.Id != &quot;005d0000001Vmik&quot;, /*Wendy Firdman*/
 $User.Id != &quot;0050V000006lVNt&quot;, /*Craig Terrell*/
 $User.Id != &quot;005d0000001Wyup&quot;, /*Kara Desmaris*/
-$User.Id != &quot;0050V000006jKNy&quot;, /*Nyle Grimes*/
 $User.Id != &quot;0050V000007sCtK&quot;, /*Margaret Pionzio*/
 $User.Id != &quot;005d0000001WGrq&quot;, /*Mandy Skomorucha*/
+$User.Id != &quot;005d0000001WLvx&quot;, /*Jane McInerney*/
+$User.Id != &quot;005d0000001Wyuz&quot;, /*John Thompson*/
+$User.Id != &quot;005d0000001VFkj&quot;, /*Joy Zukauskas*/
+$User.Id != &quot;005d0000001VdIm&quot;, /*Loretta Stahl*/
+$User.Id != &quot;005d0000001WGr2&quot;, /*Lancer Delashment*/
 $User.Id != &quot;005d00000040uDS&quot;, /*Gita Borovsky*/
 $User.Id != &quot;005d0000005I9dx&quot; /*Mike A Smith*/
 ),

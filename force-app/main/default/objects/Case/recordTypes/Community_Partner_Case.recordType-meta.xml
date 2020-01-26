@@ -2902,27 +2902,23 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Blended Learning</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Certificates</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Concerns%2FKuddos</fullName>
+            <fullName>Class Support</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>First Aid and CPR</fullName>
+            <fullName>Customer Feedback</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Instructor Certification</fullName>
+            <fullName>Instructors</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Online Completion Report and Roster</fullName>
+            <fullName>List classes on RedCross%2Eorg</fullName>
             <default>false</default>
         </values>
         <values>
@@ -2930,7 +2926,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Submission of Class Paperwork</fullName>
+            <fullName>Program Information</fullName>
             <default>false</default>
         </values>
         <values>
@@ -5491,8 +5487,64 @@
     <picklistValues>
         <picklist>Type</picklist>
         <values>
+            <fullName>Aquatics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Certificates</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Class Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer Feedback</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instructors</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Invoicing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>List classes on RedCross%2Eorg</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Non-Training</fullName>
-            <default>true</default>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nurse Assistant Training</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RCS PO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Red Cross Store</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Technical Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Troubleshooting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>User Account Maintenance</fullName>
+            <default>false</default>
         </values>
     </picklistValues>
     <picklistValues>
@@ -5850,6 +5902,21 @@
         </values>
         <values>
             <fullName>SHIP TO</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Tier_III_Disposition__c</picklist>
+        <values>
+            <fullName>Business as Usual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Functionality Issue - DISH Ticket Created</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Functionality Issue - Resolved by Agent</fullName>
             <default>false</default>
         </values>
     </picklistValues>

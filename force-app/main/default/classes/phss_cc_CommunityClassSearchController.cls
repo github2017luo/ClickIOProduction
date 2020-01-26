@@ -1,45 +1,42 @@
 public with sharing class phss_cc_CommunityClassSearchController {
 
     public static final String COMMUNITY_INVENTORY_TYPE     = 'COMMUNITY';
-    public static final String ILT_EVENT_RECORD_TYPE_NAME   = 'ILT EVENT';
 
     public static final String COURSES_KEY                  = 'courses';
-    private static final String INVENTORY_TYPE_KEY          = 'inventoryType';
-    private static final String DISTANCE_IN_MILES_KEY       = 'mi';
-    private static final String PRODUCTS_KEY                = 'productMap';
-    private static final String SFID_KEY                    = 'sfid';
+    @testVisible private static final String INVENTORY_TYPE_KEY          = 'inventoryType';
+    @testVisible private static final String DISTANCE_IN_MILES_KEY       = 'mi';
+    @testVisible private static final String PRODUCTS_KEY                = 'productMap';
+    @testVisible private static final String SFID_KEY                    = 'sfid';
 
-    private static final Integer MINUTES_PER_DAY            = 1440;
-    private static final Integer MINUTES_PER_HOUR           = 60;
+    @testVisible private static final Integer MINUTES_PER_DAY            = 1440;
+    @testVisible private static final Integer MINUTES_PER_HOUR           = 60;
 
     /* Class/Course Field Keys */
-    private static final String ADDRESS_KEY                 = 'address';
-    private static final String COURSE_KEY                  = 'course';
-    private static final String DURATION_KEY                = 'duration';
-    private static final String ID_KEY                      = 'id';
-    private static final String ILT_CLASS_ID                = 'iltClassId';
-    private static final String LOCATION_NAME_KEY           = 'locationName';
-    private static final String NAME_KEY                    = 'name';
-    private static final String PRICE_OVERRIDE_KEY          = 'priceOverride';
-    private static final String SEATS_AVAILABLE_KEY         = 'seatsAvailable';
-    private static final String START_DATETIME_KEY          = 'startDatetime';
-    private static final String START_MONTH_KEY             = 'startMonth';
-    private static final String START_DAY_KEY               = 'startDay';
-    private static final String START_WEEKDAY_KEY           = 'startWeekday';
-    private static final String START_WEEKDAY_ABBREV_KEY    = 'startWeekdayAbbreviation';
-    private static final String START_TIME_KEY              = 'startTime';
-    private static final String START_TIME_AM_PM_KEY        = 'startTimeAMPM';
+    @testVisible private static final String ADDRESS_KEY                 = 'address';
+    @testVisible private static final String COURSE_KEY                  = 'course';
+    @testVisible private static final String DURATION_KEY                = 'duration';
+    @testVisible private static final String ID_KEY                      = 'id';
+    @testVisible private static final String ILT_CLASS_ID                = 'iltClassId';
+    @testVisible private static final String LOCATION_NAME_KEY           = 'locationName';
+    @testVisible private static final String NAME_KEY                    = 'name';
+    @testVisible private static final String PRICE_OVERRIDE_KEY          = 'priceOverride';
+    @testVisible private static final String SEATS_AVAILABLE_KEY         = 'seatsAvailable';
+    @testVisible private static final String START_DATETIME_KEY          = 'startDatetime';
+    @testVisible private static final String START_MONTH_KEY             = 'startMonth';
+    @testVisible private static final String START_DAY_KEY               = 'startDay';
+    @testVisible private static final String START_WEEKDAY_KEY           = 'startWeekday';
+    @testVisible private static final String START_WEEKDAY_ABBREV_KEY    = 'startWeekdayAbbreviation';
+    @testVisible private static final String START_TIME_KEY              = 'startTime';
+    @testVisible private static final String START_TIME_AM_PM_KEY        = 'startTimeAMPM';
 
-    private static final String REQUIRES_DATE_ACKNOWLEDGEMENT_KEY   = 'requiresDateAcknowledgement';
+    @testVisible private static final String REQUIRES_DATE_ACKNOWLEDGEMENT_KEY   = 'requiresDateAcknowledgement';
 
-    private static final String FAILED_TO_GET_AVAILABILITY_FOR_ILT_CLASSES  = 'Failed to get the availability for ILT classes.';
-    private static final String FAILED_TO_GET_ILT_CLASSES = 'Failed to get the ILT classes';
-    private static final String FAILED_TO_GET_ILT_EVENT_CLASSES = 'Failed to get the ILT event classes.';
-    private static final String FAILED_TO_GET_LEARNING_OBJECTS = 'Failed to get the learning objects.';
-    private static final String FAILED_TO_GET_LEARNING_PLANS = 'Failed to get the learning plans.';
-    private static final String FAILED_TO_GET_LOCATION_COORDINATES = 'Failed to get the location coordinates';
-    private static final String FAILED_TO_GET_SKEDULO_JOB_IDENTIFIERS = 'Failed to get the Skedulo job IDs.';
-    private static final String FAILED_TO_GET_SKEDULO_JOBS = 'Failed to get the Skedulo jobs.';
+    //  error messages
+    @testVisible private static final String FAILED_TO_FETCH_TRAINING_CLASSES = 'Failed to fetch training classes.';
+    @testVisible private static final String FAILED_TO_GET_AVAILABILITY_FOR_ILT_CLASSES  = 'Failed to get the availability for ILT classes.';
+    @testVisible private static final String FAILED_TO_GET_ILT_CLASSES = 'Failed to get the ILT classes';
+    @testVisible private static final String FAILED_TO_GET_LOCATION_COORDINATES = 'Failed to get the location coordinates';
+    @testVisible private static final String FAILED_TO_GET_SKEDULO_JOBS = 'Failed to get the Skedulo jobs.';
 
 
     /**
@@ -97,15 +94,21 @@ public with sharing class phss_cc_CommunityClassSearchController {
             Date endDate = (Date) JSON.deserialize(endDateStr, Date.class);
 
             Map<String, Object> courses = searchCommunityCourses(opportunityId, searchTerm);
-            Set<String> courseIdentifiers = courses.keySet();
-            Map<Id, Id> jobCourses = getCoursesKeyedToJobs(courseIdentifiers);
-            List<redwing__ILT_Class__c> classes = getILTClasses(jobCourses.keySet(), startDate, endDate);
-            Map<Id, Integer> seatsAvailable = getAvailabilityForClasses(new Map<Id, redwing__ILT_Class__c>(classes).keySet());
+            List<redwing__ILT_Class__c> trainingClasses = fetchTrainingClasses(courses.keySet(), startDate, endDate);
+
+            Map<Id, Id> jobCourses = new Map<Id, Id>();
+            if (trainingClasses != null) {
+                for (redwing__ILT_Class__c trainingClass : trainingClasses) {
+                    jobCourses.put(trainingClass.Skedulo_Job_Id_External__c, trainingClass.Cloud_Craze_Product__c);
+                }
+            }
+
+            Map<Id, Integer> seatsAvailable = getAvailabilityForClasses(new Map<Id, redwing__ILT_Class__c>(trainingClasses).keySet());
 
             Map<Id, sked__Job__c> jobs = getSkeduloJobs(jobCourses.keySet());
             jobs = getNearbyJobs(jobs, city, state, postalCode, range);
 
-            List<Object> classCourses = buildClassCourses(classes, jobs, courses, jobCourses, seatsAvailable);
+            List<Object> classCourses = buildClassCourses(trainingClasses, jobs, courses, jobCourses, seatsAvailable);
             result.put(COURSES_KEY, classCourses);
 
         } catch (Exception e) {
@@ -115,6 +118,46 @@ public with sharing class phss_cc_CommunityClassSearchController {
         return result;
     }
 
+
+    @testVisible 
+    private static List<redwing__ILT_Class__c> fetchTrainingClasses(Set<String> productIds, Date startDate, Date endDate) {
+        if (productIds == null || productIds.size() == 0 || startDate == null || endDate == null) {
+            return null;
+        }
+
+        List<redwing__ILT_Class__c> trainingClasses;
+
+        try {
+            trainingClasses = [
+                    SELECT
+                            Cloud_Craze_Product__c,
+                            Id,
+                            redwing__End_Date__c,
+                            redwing__End_Time__c,
+                            redwing__Learning__c,
+                            redwing__Max_Seats__c,
+                            redwing__Start_Date__c,
+                            redwing__Start_Time__c,
+                            Skedulo_Job_Id_External__c,
+                            Price_Override__c
+                    FROM
+                            redwing__ILT_Class__c
+                    WHERE
+                            Cloud_Craze_Product__c IN :productIds
+                            AND redwing__Start_Date__c >= :startDate
+                            AND redwing__Start_Date__c <= :endDate
+                    ORDER BY
+                            redwing__Start_Date__c
+            ];
+
+        } catch (Exception e) {
+            throw new phss_cc_Exception(FAILED_TO_FETCH_TRAINING_CLASSES, e);
+        }
+
+        return trainingClasses;
+    }
+
+
     /**
      * @description Searches for courses matching the specified search term
      *
@@ -123,6 +166,7 @@ public with sharing class phss_cc_CommunityClassSearchController {
      *
      * @return
      */
+    @testVisible 
     private static Map<String, Object> searchCommunityCourses(String opportunityId, String searchTerm) {
 
         Map<String, Object> searchResult = phss_cc_ProductUtil.productSearch(opportunityId, searchTerm);
@@ -148,6 +192,7 @@ public with sharing class phss_cc_CommunityClassSearchController {
      *
      * @return
      */
+    @testVisible 
     private static Map<Id, Integer> getAvailabilityForClasses(Set<Id> classIdentifiers) {
 
         Map<Id, Integer> availabilityMap = new Map<Id, Integer>();
@@ -173,175 +218,13 @@ public with sharing class phss_cc_CommunityClassSearchController {
     }
 
     /**
-     * @description Returns a map of ILT class IDs to course IDs
-     *
-     * @param courseIdentifiers
-     *
-     * @return
-     */
-    private static Map<Id, Id> getCoursesKeyedToJobs(Set<String> courseIdentifiers) {
-
-        Map<String, Id> learningPlans = getLearningPlansKeyedToCourses(courseIdentifiers);
-        Map<Id, Id> learningObjects = getLearningObjectsKeyedToPlans(learningPlans.values());
-        Map<Id, Object> eventClasses = getILTEventClassesKeyedToLearning(learningObjects.values());
-        Map<Id, Id> jobs = getJobsKeyedToLearning(eventClasses);
-
-        Map<Id, Id> classCourseMap = new Map<Id, Id>();
-
-        for (String courseId : learningPlans.keySet()) {
-            Id learningPlanId = learningPlans.get(courseId);
-            Id learningObjectId = learningObjects.get(learningPlanId);
-            List<Id> eventClassList = (List<Id>) eventClasses.get(learningObjectId);
-            if (eventClassList != null) {
-                for (Id eventClassId : eventClassList) {
-                    Id jobId = jobs.get(eventClassId);
-                    if (jobId != null) {
-                        classCourseMap.put(jobId, courseId);
-                    }
-                }
-            }
-        }
-
-        return classCourseMap;
-    }
-
-    /**
-     * @description Fetches learning plans for the specified courses
-     *
-     * @param courseIdentifiers
-     *
-     * @return
-     */
-    private static Map<String, Id> getLearningPlansKeyedToCourses(Set<String> courseIdentifiers) {
-
-        Map<String, Id> learningPlanMap = new Map<String, Id>();
-
-        try {
-            List<ccrz__E_Product__c> courses = [
-                    SELECT Id, LMS_Learning_Plan__c
-                    FROM ccrz__E_Product__c
-                    WHERE Id IN :courseIdentifiers
-            ];
-
-            for (ccrz__E_Product__c course : courses) {
-                learningPlanMap.put(course.Id, course.LMS_Learning_Plan__c);
-            }
-
-        } catch (Exception e) {
-            throw new phss_cc_Exception(FAILED_TO_GET_LEARNING_PLANS, e);
-        }
-
-        return learningPlanMap;
-    }
-
-    /**
-     * @description Fetches learning objects for learning plans
-     *
-     * @param planIdentifiers
-     *
-     * @return
-     */
-    private static Map<Id, Id> getLearningObjectsKeyedToPlans(List<Id> planIdentifiers) {
-
-        Map<Id, Id> learningObjectMap = new Map<Id, Id>();
-
-        try {
-            List<redwing__Training_Plan_Section_Item__c> items = [
-                    SELECT redwing__Learning__c, redwing__Training_Plan_Section__r.redwing__Training_Plan__c
-                    FROM redwing__Training_Plan_Section_Item__c
-                    WHERE redwing__Training_Plan_Section__r.redwing__Training_Plan__c IN :planIdentifiers
-                    AND redwing__Learning__r.RecordType.Name = :ILT_EVENT_RECORD_TYPE_NAME
-            ];
-
-            for (redwing__Training_Plan_Section_Item__c item : items) {
-                learningObjectMap.put(item.redwing__Training_Plan_Section__r.redwing__Training_Plan__c, item.redwing__Learning__c);
-            }
-
-        } catch (Exception e) {
-            throw new phss_cc_Exception(FAILED_TO_GET_LEARNING_OBJECTS, e);
-        }
-
-        return learningObjectMap;
-    }
-
-    /**
-     * @description Fetches ILT event classes for learning objects
-     *
-     * @param learningIdentifiers
-     *
-     * @return
-     */
-    private static Map<Id, Object> getILTEventClassesKeyedToLearning(List<Id> learningIdentifiers) {
-
-        Map<Id, Object> classMap = new Map<Id, Object>();
-
-        try {
-            List<redwing__ILT_Event_Class__c> classes = [
-                    SELECT redwing__ILT_Event__r.redwing__Learning__c, redwing__Learning__c
-                    FROM redwing__ILT_Event_Class__c
-                    WHERE redwing__ILT_Event__r.redwing__Learning__c IN :learningIdentifiers
-                    AND redwing__Learning__c != NULL
-            ];
-
-            for (redwing__ILT_Event_Class__c eClass : classes) {
-                Id id = eClass.redwing__ILT_Event__r.redwing__Learning__c;
-                List<Id> classList = (List<Id>) classMap.get(id);
-                if (classList == null) {
-                    classList = new List<Id>();
-                    classMap.put(id, classList);
-                }
-                classList.add(eClass.redwing__Learning__c);
-            }
-
-        } catch (Exception e) {
-            throw new phss_cc_Exception(FAILED_TO_GET_ILT_EVENT_CLASSES, e);
-        }
-
-        return classMap;
-    }
-
-    /**
-     * @description Fetches jobs for learning objects
-     *
-     * @param learningObjects
-     *
-     * @return
-     */
-    private static Map<Id, Id> getJobsKeyedToLearning(Map<Id, Object> learningObjects) {
-
-        Map<Id, Id> classMap = new Map<Id, Id>();
-
-        try {
-            Set<Id> learningIdentifiers = new Set<Id>();
-            for (Id id : learningObjects.keySet()) {
-                List<Id> identifiers = (List<Id>) learningObjects.get(id);
-                learningIdentifiers.addAll(identifiers);
-            }
-
-            List<redwing__ILT_Class__c> classes = [
-                    SELECT redwing__Learning__c, Skedulo_Job_Id_External__c
-                    FROM redwing__ILT_Class__c
-                    WHERE redwing__Learning__c IN :learningIdentifiers
-            ];
-
-            for (redwing__ILT_Class__c c : classes) {
-                classMap.put(c.redwing__Learning__c, c.Skedulo_Job_Id_External__c);
-            }
-
-        } catch (Exception e) {
-            throw new phss_cc_Exception(FAILED_TO_GET_SKEDULO_JOB_IDENTIFIERS, e);
-        }
-
-        return classMap;
-    }
-
-    /**
      * @description Fetches Skedulo jobs
      *
      * @param jobIdentifiers
      *
      * @return
      */
+    @testVisible 
     private static Map<Id, sked__Job__c> getSkeduloJobs(Set<Id> jobIdentifiers) {
 
         Map<Id, sked__Job__c> jobMap = new Map<Id, sked__Job__c>();
@@ -373,6 +256,7 @@ public with sharing class phss_cc_CommunityClassSearchController {
      *
      * @return
      */
+    @testVisible 
     private static Map<Id, sked__Job__c> getNearbyJobs(Map<Id, sked__Job__c> jobs, String city, String state, String postalCode, Integer range) {
 
         Map<Id, sked__Job__c> nearbyJobs = new Map<Id, sked__Job__c>();
@@ -403,6 +287,7 @@ public with sharing class phss_cc_CommunityClassSearchController {
      *
      * @return
      */
+    @testVisible
     private static Set<Location> getCoordinates(String city, String state, String postalCode) {
 
         Set<Location> coordinates = new Set<Location>();
@@ -458,37 +343,6 @@ public with sharing class phss_cc_CommunityClassSearchController {
     }
 
     /**
-     * @description Fetches ILT classes
-     *
-     * @param jobIdentifiers
-     *
-     * @return
-     */
-    public static List<redwing__ILT_Class__c> getILTClasses(Set<Id> jobIdentifiers, Date startDate, Date endDate) {
-
-        try {
-            return [
-                    SELECT Id,
-                           redwing__End_Date__c,
-                           redwing__End_Time__c,
-                           redwing__Max_Seats__c,
-                           redwing__Start_Date__c,
-                           redwing__Start_Time__c,
-                           Skedulo_Job_Id_External__c,
-                           Price_Override__c
-                      FROM redwing__ILT_Class__c
-                     WHERE Skedulo_Job_Id_External__c IN :jobIdentifiers
-                       AND redwing__Start_Date__c >= :startDate
-                       AND redwing__Start_Date__c <= :endDate
-                     ORDER BY redwing__Start_Date__c
-            ];
-
-        } catch (Exception e) {
-            throw new phss_cc_Exception(FAILED_TO_GET_ILT_CLASSES, e);
-        }
-    }
-
-    /**
      * @description Builds a map of ILT class- and course-related data
      *
      * @param classes
@@ -501,6 +355,7 @@ public with sharing class phss_cc_CommunityClassSearchController {
     public static List<Object> buildClassCourses(List<redwing__ILT_Class__c> classes, Map<Id, sked__Job__c> jobs, Map<String, Object> courses, Map<Id, Id> jobCourses, Map<Id, Integer> seatsAvailable) {
 
         List<Object> classCourses = new List<Object>();
+        system.debug('***classes***'+classes);
 
         for (redwing__ILT_Class__c iClass : classes) {
             sked__Job__c job = jobs.get(iClass.Skedulo_Job_Id_External__c);
@@ -574,6 +429,7 @@ public with sharing class phss_cc_CommunityClassSearchController {
      *
      * @return
      */
+    @testVisible
     private static String formatDuration(Integer duration) {
         String result = '';
 
@@ -604,6 +460,7 @@ public with sharing class phss_cc_CommunityClassSearchController {
      *
      * @return
      */
+    @testVisible
     private static Datetime getDatetime(Date d, String timeStr) {
         Datetime dt;
 
@@ -634,6 +491,7 @@ public with sharing class phss_cc_CommunityClassSearchController {
      *
      * @return
      */
+    @testVisible
     private static Map<String, Object> parseClassCourseQuantities(String input) {
         if (String.isBlank(input)) {
             return null;
@@ -666,51 +524,5 @@ public with sharing class phss_cc_CommunityClassSearchController {
         };
 
         return result;
-    }
-
-
-    public static void evaluateSearch(String searchStr, String iltClassId, String opportunityId) {
-        System.debug('***  Community Class Search (searchStr=' + searchStr + ', iltClassId=' + iltClassId + ', opportunityId=' + opportunityId + ')  ***');
-
-        try {
-            Map<String, Object> searchResults = phss_cc_ProductUtil.productSearch(opportunityId, searchStr);
-            Map<String, Object> products = (Map<String, Object>) searchResults.get(PRODUCTS_KEY);
-            System.debug('Number of search results from CloudCraze Product Search API: ' + products.keySet().size());
-
-            if (products.keySet().size() > 0) {
-                Map<String, Object> communityProducts = new Map<String, Object>();
-                for (String productId: products.keySet()) {
-                    Map<String, Object> product = (Map<String, Object>) products.get(productId);
-                    if (product.get(INVENTORY_TYPE_KEY) == COMMUNITY_INVENTORY_TYPE) {
-                        communityProducts.put((String) product.get(SFID_KEY), product);
-                    }
-                }
-                System.debug('Number of community courses: ' + communityProducts.keySet().size());
-
-                if (communityProducts.keySet().size() > 0) {
-                    Map<Id, Id> jobCourses = getCoursesKeyedToJobs(communityProducts.keySet());
-
-                    Date today = Date.today();
-                    Date startDate = today.addYears(-1);
-                    Date endDate = today.addYears(1);
-
-                    List<redwing__ILT_Class__c> classes = getILTClasses(jobCourses.keySet(), startDate, endDate);
-                    System.debug('Number of ILT classes: ' + classes.size());
-
-                    Map<Id, Integer> seatsAvailable = getAvailabilityForClasses(new Map<Id, redwing__ILT_Class__c>(classes).keySet());
-
-                    Map<Id, sked__Job__c> jobs = getSkeduloJobs(jobCourses.keySet());
-//                    jobs = getNearbyJobs(jobs, city, state, postalCode, range);
-
-                    List<Object> classCourses = buildClassCourses(classes, jobs, communityProducts, jobCourses, seatsAvailable);
-                    for (Object obj: classCourses) {
-                        System.debug('class: ' + obj);
-                    }
-                }
-            }
-
-        } catch (Exception e) {
-            System.debug('Community Class Search: exception caught: ' + e.getMessage());
-        }
     }
 }

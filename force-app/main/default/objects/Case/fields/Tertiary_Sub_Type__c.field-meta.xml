@@ -391,6 +391,31 @@
                 <default>false</default>
                 <label>Remove Portal Access</label>
             </value>
+            <value>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+                <label>On Hold</label>
+            </value>
+            <value>
+                <fullName>Voided</fullName>
+                <default>false</default>
+                <label>Voided</label>
+            </value>
+            <value>
+                <fullName>Extended</fullName>
+                <default>false</default>
+                <label>Extended</label>
+            </value>
+            <value>
+                <fullName>Expired</fullName>
+                <default>false</default>
+                <label>Expired</label>
+            </value>
+            <value>
+                <fullName>Eligible</fullName>
+                <default>false</default>
+                <label>Eligible</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Granted Grace Period for Expired Base Level Cert</controllingFieldValue>
@@ -470,6 +495,7 @@
             <controllingFieldValue>Instructor Profile Update</controllingFieldValue>
             <controllingFieldValue>RedCross.org</controllingFieldValue>
             <controllingFieldValue>Learner Profile Update</controllingFieldValue>
+            <controllingFieldValue>Learning Center</controllingFieldValue>
             <valueName>Password Reset</valueName>
         </valueSettings>
         <valueSettings>
@@ -489,6 +515,7 @@
             <controllingFieldValue>Blended Learning</controllingFieldValue>
             <controllingFieldValue>Direct Links</controllingFieldValue>
             <controllingFieldValue>Register Deep Link</controllingFieldValue>
+            <controllingFieldValue>Learning Center</controllingFieldValue>
             <valueName>Log in Issue</valueName>
         </valueSettings>
         <valueSettings>
@@ -496,6 +523,7 @@
             <controllingFieldValue>Blended Learning</controllingFieldValue>
             <controllingFieldValue>Direct Links</controllingFieldValue>
             <controllingFieldValue>Register Deep Link</controllingFieldValue>
+            <controllingFieldValue>Learning Center</controllingFieldValue>
             <valueName>Launch Issue</valueName>
         </valueSettings>
         <valueSettings>
@@ -524,6 +552,7 @@
             <controllingFieldValue>Blended Learning</controllingFieldValue>
             <controllingFieldValue>Direct Links</controllingFieldValue>
             <controllingFieldValue>Register Deep Link</controllingFieldValue>
+            <controllingFieldValue>Learning Center</controllingFieldValue>
             <valueName>Progress not saved</valueName>
         </valueSettings>
         <valueSettings>
@@ -552,6 +581,7 @@
             <controllingFieldValue>Blended Learning</controllingFieldValue>
             <controllingFieldValue>Direct Links</controllingFieldValue>
             <controllingFieldValue>Register Deep Link</controllingFieldValue>
+            <controllingFieldValue>Learning Center</controllingFieldValue>
             <valueName>Performance</valueName>
         </valueSettings>
         <valueSettings>
@@ -568,6 +598,7 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>RedCross.org</controllingFieldValue>
+            <controllingFieldValue>Learning Center</controllingFieldValue>
             <valueName>Modify Account</valueName>
         </valueSettings>
         <valueSettings>
@@ -598,18 +629,21 @@
             <controllingFieldValue>Application Fee paid</controllingFieldValue>
             <controllingFieldValue>Registration Fee paid</controllingFieldValue>
             <controllingFieldValue>Refund Issued</controllingFieldValue>
+            <controllingFieldValue>Application &amp; Registration Fees Paid</controllingFieldValue>
             <valueName>Individual Pay</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Application Fee paid</controllingFieldValue>
             <controllingFieldValue>Registration Fee paid</controllingFieldValue>
             <controllingFieldValue>Refund Issued</controllingFieldValue>
+            <controllingFieldValue>Application &amp; Registration Fees Paid</controllingFieldValue>
             <valueName>Sponsored</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Application Fee paid</controllingFieldValue>
             <controllingFieldValue>Registration Fee paid</controllingFieldValue>
             <controllingFieldValue>Refund Issued</controllingFieldValue>
+            <controllingFieldValue>Application &amp; Registration Fees Paid</controllingFieldValue>
             <valueName>Grant Funded</valueName>
         </valueSettings>
         <valueSettings>
@@ -618,10 +652,12 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>New Instructors Corner</controllingFieldValue>
+            <controllingFieldValue>Learning Center</controllingFieldValue>
             <valueName>Navigation/Content</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>New Instructors Corner</controllingFieldValue>
+            <controllingFieldValue>Learning Center</controllingFieldValue>
             <valueName>Technical</valueName>
         </valueSettings>
         <valueSettings>
@@ -702,6 +738,31 @@
         <valueSettings>
             <controllingFieldValue>Gov Shutdown</controllingFieldValue>
             <valueName>Coast Guard</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Instructor</controllingFieldValue>
+            <controllingFieldValue>Student</controllingFieldValue>
+            <valueName>On Hold</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Instructor</controllingFieldValue>
+            <controllingFieldValue>Student</controllingFieldValue>
+            <valueName>Voided</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Instructor</controllingFieldValue>
+            <controllingFieldValue>Student</controllingFieldValue>
+            <valueName>Extended</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Instructor</controllingFieldValue>
+            <controllingFieldValue>Student</controllingFieldValue>
+            <valueName>Expired</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Instructor</controllingFieldValue>
+            <controllingFieldValue>Student</controllingFieldValue>
+            <valueName>Eligible</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>MTN</controllingFieldValue>

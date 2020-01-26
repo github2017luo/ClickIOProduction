@@ -43,6 +43,11 @@
                 <default>false</default>
                 <label>Void</label>
             </value>
+            <value>
+                <fullName>Pending Cancellation</fullName>
+                <default>false</default>
+                <label>Pending Cancellation</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

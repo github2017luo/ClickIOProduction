@@ -5423,6 +5423,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>CRE or Community Order</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Change CFS Customer Class</fullName>
             <default>false</default>
         </values>
@@ -5623,6 +5627,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>RBC Order</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>RTS %28Col%2E Letter%29</fullName>
             <default>false</default>
         </values>
@@ -5723,6 +5731,21 @@
         </values>
         <values>
             <fullName>SHIP TO</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Tier_III_Disposition__c</picklist>
+        <values>
+            <fullName>Business as Usual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Functionality Issue - DISH Ticket Created</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Functionality Issue - Resolved by Agent</fullName>
             <default>false</default>
         </values>
     </picklistValues>

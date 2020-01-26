@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Contact Record Update</name>
+    <queueMembers>
+        <publicGroups>
+            <publicGroup>Registration_Support_Queue</publicGroup>
+            <publicGroup>Training_Specialists</publicGroup>
+        </publicGroups>
+        <roleAndSubordinatesInternal>
+            <roleAndSubordinateInternal>Back_Office</roleAndSubordinateInternal>
+            <roleAndSubordinateInternal>BGST_Sales_Program</roleAndSubordinateInternal>
+            <roleAndSubordinateInternal>Front_Office</roleAndSubordinateInternal>
+        </roleAndSubordinatesInternal>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

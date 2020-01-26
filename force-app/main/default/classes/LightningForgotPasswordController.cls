@@ -47,7 +47,9 @@ global class LightningForgotPasswordController {
 
         // URL TO BE CHANGED TO DYNAMIC
         //String resetPasswdUrl = 'https://transdev1-americanredcross.cs52.force.com/learner/s/set-new-password-b2c?startURL='+ startUrl + '&src=' + encryptedUrlEncoded;
-        String resetPasswdUrl = 'https://' + baseUrl + '/learner/s/set-new-password-b2c?startURL='+ startUrl + '&src=' + encryptedUrlEncoded;
+        //String resetPasswdUrl = 'https://' + baseUrl + '/learner/s/set-new-password-b2c?startURL='+ startUrl + '&src=' + encryptedUrlEncoded;
+        String resetPasswdUrl = 'https://' + baseUrl + '/s/set-new-password-b2c?startURL='+ startUrl + '&src=' + encryptedUrlEncoded;
+
 
         List<EmailTemplate> emailTemplates = [SELECT Id, Subject, HtmlValue, Body FROM EmailTemplate WHERE DeveloperName = 'PHSS_ICommunity_Forgot_Password_B2C'];
         EmailTemplate template = emailTemplates[0];
@@ -61,6 +63,10 @@ global class LightningForgotPasswordController {
         String htmlBody = template.HtmlValue;
         htmlBody = htmlBody.replace('{!resetPasswdUrl}', resetPasswdUrl);
         htmlBody = htmlBody.replace('{!FirstName}', firstName);
+        
+        // filter out spurious HTML inserted by Salesforce (appears to be a platform bug!!)
+        htmlBody = htmlBody.replace('<![CDATA[','');        
+        htmlBody = htmlBody.replace(']]>','');
 
         String plainBody = template.Body;
         plainBody = plainBody.replace('{!resetPasswdUrl}', resetPasswdUrl);

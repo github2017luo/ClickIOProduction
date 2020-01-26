@@ -1473,7 +1473,7 @@
         <showHeader>true</showHeader>
     </screens>
     <startElementReference>Get_Oppurtunity</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>ByPassPriceGroupAccountCreation</name>
         <dataType>Boolean</dataType>

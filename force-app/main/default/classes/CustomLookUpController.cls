@@ -85,10 +85,10 @@ public without sharing class CustomLookUpController {
                         ADMINISTRATOR_ROLE, INSTRUCTOR_ROLE
                 };
                 if (u.Profile.Name == SB_PARTNER_COMMUNITY_LOGIN_PROFILE) {
-                    sQuery = 'SELECT Id, Name FROM User WHERE ContactId IN (SELECT ContactId FROM AccountContactRelation WHERE AccountId = \'' + accId + '\' AND Roles IN :ListRolesName) AND Name LIKE :searchKey ORDER BY CreatedDate DESC LIMIT 20';
+                    sQuery = 'SELECT Id, Name FROM User WHERE ContactId IN (SELECT ContactId FROM AccountContactRelation WHERE AccountId = \'' + accId + '\' AND Roles IN :ListRolesName) AND Name LIKE :searchKey ORDER BY Name ASC';
 
                 } else {
-                    sQuery = 'SELECT Id, Name FROM User WHERE Id != \'' + UserInfo.getUserId() + '\' AND ContactId IN (SELECT ContactId FROM AccountContactRelation WHERE AccountId = \'' + accId + '\' AND Roles IN: ListRolesName) AND Name LIKE :searchKey ORDER BY CreatedDate DESC LIMIT 20';
+                    sQuery = 'SELECT Id, Name FROM User WHERE Id != \'' + UserInfo.getUserId() + '\' AND ContactId IN (SELECT ContactId FROM AccountContactRelation WHERE AccountId = \'' + accId + '\' AND Roles IN: ListRolesName) AND Name LIKE :searchKey ORDER BY Name ASC';
                 }
             }
 
