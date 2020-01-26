@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <interviewLabel>Migration of Users and Roles {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Migration of Users and Roles</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Parm 1 = Contact
+Parm2 = OwnerID</description>
+        <name>Get_Records_from_Zconversion_Table</name>
+        <label>Get Records from Zconversion Table</label>
+        <locationX>179</locationX>
+        <locationY>51</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_the_Contact_Record</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>frmProcessID</elementReference>
+            </value>
+        </filters>
+        <object>zConversion__c</object>
+        <outputReference>sConversion</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>Parameter1__c</queriedFields>
+        <queriedFields>Processed__c</queriedFields>
+        <queriedFields>Parameter2__c</queriedFields>
+        <queriedFields>Type__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <description>Get Contact</description>
+        <name>Get_the_Contact_Record</name>
+        <label>Get the Contact Record</label>
+        <locationX>341</locationX>
+        <locationY>50</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_Account_Record</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>sConversion.Parameter1__c</elementReference>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>AccountId</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_User</name>
+        <label>Get User</label>
+        <locationX>662</locationX>
+        <locationY>49</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_User_Portal_Role</targetReference>
+        </connector>
+        <filters>
+            <field>ContactId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_the_Contact_Record.Id</elementReference>
+            </value>
+        </filters>
+        <object>User</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>PortalRole</queriedFields>
+    </recordLookups>
+    <recordUpdates>
+        <description>Set New OwnerID</description>
+        <name>Update_Account_Record</name>
+        <label>Update Account Record</label>
+        <locationX>509</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>Get_User</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_the_Contact_Record.AccountId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>sConversion.Parameter2__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Account</object>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Set Portal role = PersonAccount</description>
+        <name>Update_User_Portal_Role</name>
+        <label>Update User Portal Role</label>
+        <locationX>818</locationX>
+        <locationY>46</locationY>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_User.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>PortalRole</field>
+            <value>
+                <stringValue>PersonAccount</stringValue>
+            </value>
+        </inputAssignments>
+        <object>User</object>
+    </recordUpdates>
+    <startElementReference>Get_Records_from_Zconversion_Table</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>frmProcessID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>sConversion</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>zConversion__c</objectType>
+    </variables>
+</Flow>

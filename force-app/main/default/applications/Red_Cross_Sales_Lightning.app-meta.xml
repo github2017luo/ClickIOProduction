@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Contact_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Contact</pageOrSobjectType>
+    </actionOverrides>
     <brand>
         <headerColor>#ED0B0E</headerColor>
         <logo>Training_Services_Logo5</logo>
@@ -73,7 +82,7 @@
         <pageOrSobjectType>Case</pageOrSobjectType>
         <recordType>Case.RBC_Case</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -163,7 +172,7 @@
         <pageOrSobjectType>Case</pageOrSobjectType>
         <recordType>Case.CRE_Case</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -265,6 +274,22 @@
         <profile>SB ARC Business User Profile</profile>
     </profileActionOverrides>
     <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default1</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>ARC Sales User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default1</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>SB ARC Sales User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
         <actionName>View</actionName>
         <content>CRE_Case_Record_Page</content>
         <formFactor>Large</formFactor>
@@ -299,6 +324,15 @@
         <recordType>Case.CRE_Case</recordType>
         <type>Flexipage</type>
         <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Order_Opportunity_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.Order_Opportunity</recordType>
+        <type>Flexipage</type>
+        <profile>SB ARC NAT Sales User</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>Tab</actionName>
@@ -475,7 +509,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.SB_Household_Account</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -574,7 +608,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.SB_Organization_Account</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -628,7 +662,7 @@
         <pageOrSobjectType>Case</pageOrSobjectType>
         <recordType>Case.Learn_to_Swim_Facility_Registration</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -767,7 +801,7 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>Sales_Opportunity_Record_Page2</content>
+        <content>Order_Opportunity_Record_Page</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Opportunity</pageOrSobjectType>
         <recordType>Opportunity.Order_Opportunity</recordType>
@@ -830,7 +864,7 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>Sales_Opportunity_Record_Page2</content>
+        <content>Order_Opportunity_Record_Page</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Opportunity</pageOrSobjectType>
         <recordType>Opportunity.Order_Opportunity</recordType>
@@ -898,7 +932,7 @@
         <pageOrSobjectType>Opportunity</pageOrSobjectType>
         <recordType>Opportunity.Sales_Opportunity</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -974,7 +1008,7 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>Sales_Opportunity_Record_Page2</content>
+        <content>Order_Opportunity_Record_Page</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Opportunity</pageOrSobjectType>
         <recordType>Opportunity.Sales_Opportunity</recordType>
@@ -1042,7 +1076,7 @@
         <pageOrSobjectType>Opportunity</pageOrSobjectType>
         <recordType>Opportunity.Order_Opportunity</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <tabs>standard-home</tabs>
     <tabs>standard-Feed</tabs>
@@ -1064,5 +1098,7 @@
     <tabs>Job_Attendee__c</tabs>
     <tabs>sked__Availability__c</tabs>
     <tabs>Resource_Activity_Report</tabs>
+    <tabs>Student_Bulk_Upload__c</tabs>
+    <tabs>Channel_Compensation__c</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>

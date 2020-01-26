@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Price_Global_Share</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Price-Global Share</label>
+        <sharedTo>
+            <group>Price_Global</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Private__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Price_Private_Share</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Price-Private Share</label>
+        <sharedTo>
+            <group>Price_Private</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Private__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

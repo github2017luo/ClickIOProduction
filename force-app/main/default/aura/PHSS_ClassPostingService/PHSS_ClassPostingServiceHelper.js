@@ -325,6 +325,8 @@
                 else if (state === "ERROR") {
                     var errors = response.getError();
                     //component.set("v.offeringsPosted", false);
+                    alert("Error " + state + "\n" + errors[0].message);
+                    
                     if (errors) {
                         if (errors[0] && errors[0].message) {
                             console.log("Error message: " + errors[0].message);
@@ -498,6 +500,7 @@
                         document.getElementById('geoCodeLng').value = lng;
 						console.log("Lat: " + document.getElementById('geoCodeLat').value + " Lng: " + document.getElementById('geoCodeLng').value);
                         //console.log("Returned GEO Codes Lat: " + component.get("v.geoLat") + " Long:" + component.get("v.geoLong") );
+						this.updateGeoLatLong(component,event,helper);
                     }
 
 		        }

@@ -371,7 +371,7 @@ Include this element if you want the new contract to be Activated.</description>
         <inputReference>oOppty</inputReference>
     </recordUpdates>
     <startElementReference>Get_Opportunity_Fields</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>frmOpptyID</name>
         <dataType>String</dataType>

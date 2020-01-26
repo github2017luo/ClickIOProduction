@@ -40,6 +40,10 @@
                 <behavior>Edit</behavior>
                 <field>Learning_Plan__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Contact_Hours__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -211,6 +215,31 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>redwing__Training_Plan__c</fields>
+        <fields>redwing__Prerequisite__c</fields>
+        <fields>redwing__Learning__c</fields>
+        <relatedList>redwing__Learning_Prerequisite__c.redwing__Achievement__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>redwing__Prerequisite__c</fields>
+        <fields>redwing__Training_Track__c</fields>
+        <fields>redwing__Training_Plan__c</fields>
+        <fields>redwing__Learning__c</fields>
+        <fields>redwing__Optional__c</fields>
+        <fields>redwing__Required_Status__c</fields>
+        <relatedList>redwing__Prerequisite_Item__c.redwing__Achievement__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>redwing__Learning__c</fields>
+        <fields>redwing__Learning_Name__c</fields>
+        <fields>CREATEDBY_USER</fields>
+        <fields>CREATED_DATE</fields>
+        <relatedList>redwing__Training_Activity__c.redwing__Achievement__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <fields>Skill__c</fields>
         <fields>CREATED_DATE</fields>
         <relatedList>Skills_Achievement__c.Achievement__c</relatedList>
@@ -234,7 +263,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h5B000000XXhr</masterLabel>
+        <masterLabel>00h0V00000mYahs</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

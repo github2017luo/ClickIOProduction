@@ -33,7 +33,7 @@
             <assignToReference>sOrderItem.ccrz__OrderItemStatus__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>In Process</stringValue>
+                <stringValue>Shipped</stringValue>
             </value>
         </assignmentItems>
         <connector>
@@ -153,9 +153,16 @@
             <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>sOrderItem.ccrz__OrderItemStatus__c</leftValueReference>
-                <operator>IsNull</operator>
+                <operator>EqualTo</operator>
                 <rightValue>
-                    <booleanValue>true</booleanValue>
+                    <stringValue>Order Submitted</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>sOrderItem.ccrz__OrderItemStatus__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>In Process</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -200,8 +207,8 @@
     <recordLookups>
         <name>Get_Available_Vouchers</name>
         <label>Get Available Vouchers</label>
-        <locationX>587</locationX>
-        <locationY>52</locationY>
+        <locationX>591</locationX>
+        <locationY>53</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Set_Loop_Counter</targetReference>
@@ -214,10 +221,45 @@
             </value>
         </filters>
         <filters>
+            <field>Online_Class__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
             <field>Status__c</field>
             <operator>EqualTo</operator>
             <value>
                 <stringValue>Issued</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Reserved</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Temp Hold</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Blocked</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Void</stringValue>
             </value>
         </filters>
         <object>Voucher__c</object>
@@ -313,8 +355,8 @@
         <name>collVoucher</name>
         <dataType>SObject</dataType>
         <isCollection>true</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
         <objectType>Voucher__c</objectType>
     </variables>
     <variables>
@@ -344,59 +386,27 @@
         <objectType>Voucher__c</objectType>
     </variables>
     <variables>
-        <name>sILTClass</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-        <objectType>redwing__ILT_Class__c</objectType>
-    </variables>
-    <variables>
-        <name>sJob</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-        <objectType>sked__Job__c</objectType>
-    </variables>
-    <variables>
-        <name>sLearningPlan</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>redwing__Training_Plan__c</objectType>
-    </variables>
-    <variables>
         <name>sOrderItem</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
-        <isOutput>true</isOutput>
+        <isOutput>false</isOutput>
         <objectType>ccrz__E_OrderItem__c</objectType>
     </variables>
     <variables>
         <name>sProduct</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
         <objectType>ccrz__E_Product__c</objectType>
-    </variables>
-    <variables>
-        <name>sTrainingEvent</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-        <objectType>Training_Events__c</objectType>
     </variables>
     <variables>
         <name>sVoucher</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
         <objectType>Voucher__c</objectType>
     </variables>
 </Flow>

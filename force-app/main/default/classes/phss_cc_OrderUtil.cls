@@ -7,9 +7,11 @@ public with sharing class phss_cc_OrderUtil {
     //CyberSource Response message keys.
     private static final String CYBER_SOURCE_RESPONSE_PAYMENT_TOKEN = 'payment_token';
     private static final String CYBER_SOURCE_RESPONSE_CARD_EXPIRATION_KEY = 'req_card_expiry_date';
+    private static final String CYBER_SOURCE_RESPONSE_CARD_TYPE_KEY = 'req_card_type';
     private static final String CYBER_SOURCE_RESPONSE_BILL_TO_POSTAL_CODE_KEY = 'req_bill_to_address_postal_code';
     private static final String CYBER_SOURCE_TRANSACTION_DECISION_KEY = 'decision';
     private static final String CYBER_SOURCE_DECISION_ACCEPT = 'ACCEPT';
+    private static final String CYBER_SOURCE_TRANSACTION_ID_KEY = 'transaction_id';
     @TestVisible private static final String CYBER_SOURCE_AUTH_RESPONSE_CODE_KEY = 'auth_response';
 
     //CyberSource Error Codes
@@ -40,6 +42,7 @@ public with sharing class phss_cc_OrderUtil {
     public static final String ACCOUNT_TYPE_CREDIT_CARD = 'cc';
     public static final String ACCOUNT_TYPE_PURCHASE_ORDER = 'po';
     public static final String REFUND_COMMENT = 'Refund for Stored Payment. Id=';
+    public static final String TRANSACTION_PAYMENT_ID_KEY = 'transactionPaymentId';
     @TestVisible private static final String SUCCESS_KEY = 'success';
 
     // Credit response keys
@@ -127,11 +130,21 @@ public with sharing class phss_cc_OrderUtil {
                     expYear = Decimal.valueOf(cardExpirationSplit[1]);
                 }
 
+                String cardType = (String) inputData.get(CYBER_SOURCE_RESPONSE_CARD_TYPE_KEY);
+                if (String.isNotBlank(cardType)) {
+                    cardType = phss_cc_CyberSourceUtil.getCardTypes().get(cardType);
+                }
+
+                String transactionId = (String) inputData.get(CYBER_SOURCE_TRANSACTION_ID_KEY);
+
                 paymentDataMap = new Map<String, Object>{
                         PAYMENT_TOKEN_KEY => inputData.get(CYBER_SOURCE_RESPONSE_PAYMENT_TOKEN),
                         EXPIRATION_MONTH_KEY => expMonth,
                         EXPIRATION_YEAR_KEY => expYear,
-                        ACCOUNT_TYPE_KEY => ACCOUNT_TYPE_CREDIT_CARD
+                        PAYMENT_TYPE_KEY => cardType,
+                        ACCOUNT_TYPE_KEY => ACCOUNT_TYPE_CREDIT_CARD,
+                        TRANSACTION_PAYMENT_ID_KEY => transactionId,
+                        TRANSACTION_TYPE_KEY => phss_cc_TransactionPaymentUtil.AUTH_TRANSACTION_TYPE
                 };
 
             } else if (inputData.containsKey(ACCOUNT_TYPE_KEY) && inputData.get(ACCOUNT_TYPE_KEY) == ACCOUNT_TYPE_CREDIT_BALANCE) {
@@ -320,6 +333,8 @@ public with sharing class phss_cc_OrderUtil {
         try {
             if (cyberSourcePaymentResponse != null) {
                 Map<String, Object> cyberSourceResponseMap = (Map<String, Object>) JSON.deserializeUntyped(cyberSourcePaymentResponse);
+                
+                system.debug('***cyberSourceResponseMap***'+cyberSourceResponseMap);
 
                 String ccPostalCode = (String) cyberSourceResponseMap.get(CYBER_SOURCE_RESPONSE_BILL_TO_POSTAL_CODE_KEY);
                 captureBillingDataForPayment(encryptedCartId, ccPostalCode);
@@ -364,7 +379,6 @@ public with sharing class phss_cc_OrderUtil {
                 if (POSfid != null && !String.isEmpty(POSfid)) {
                     Boolean shouldUpdatePOAmount = (Boolean) PODetailsMap.get(UPDATE_PO_KEY);
                     String updatedPOAmount = (String) PODetailsMap.get(UPDATED_PO_AMOUNT_KEY);
-                    System.debug('shouldUpdatePOAmount ' + shouldUpdatePOAmount);
                     if (shouldUpdatePOAmount) {
                         updateRemainingPOAmount(POSfid, updatedPOAmount);
                     }
@@ -586,7 +600,8 @@ public with sharing class phss_cc_OrderUtil {
                             ccrz__AccountType__c = ACCOUNT_TYPE_CREDIT_BALANCE,
                             ccrz__CCOrder__c = orderId,
                             ccrz__Amount__c = storedPayment.Remaining_PO_Amount__c,
-                            ccrz__StoredPayment__c = storedPayment.Id
+                            ccrz__StoredPayment__c = storedPayment.Id,
+                            ccrz__TransactionType__c = phss_cc_TransactionPaymentUtil.CREDIT_TRANSACTION_TYPE
                     );
                     transactionPayments.add(transactionPayment);
 
@@ -626,7 +641,8 @@ public with sharing class phss_cc_OrderUtil {
                                 ccrz__ParentTransactionPayment__c = txnPayments[0].Id,
                                 ccrz__StoredPayment__c = storedPayment.Id,
                                 ccrz__Storefront__c = txnPayments[0].ccrz__Storefront__c,
-                                ccrz__Token__c = storedPayment.ccrz__Token__c
+                                ccrz__Token__c = storedPayment.ccrz__Token__c,
+                                ccrz__TransactionType__c = phss_cc_TransactionPaymentUtil.CREDIT_TRANSACTION_TYPE
                         );
                         transactionPayments.add(transactionPayment);
                     }
@@ -743,8 +759,39 @@ public with sharing class phss_cc_OrderUtil {
         Map<String, Object> response;
         String message = '';
         try {
-            String failureCode = (String) cyberSourceResponseMap.get(CYBER_SOURCE_AUTH_RESPONSE_CODE_KEY);
-            if (failureCode == CYBER_SOURCE_ERROR_INSUFFICIENT_FUNDS) {
+            //String failureCode = (String) cyberSourceResponseMap.get(CYBER_SOURCE_AUTH_RESPONSE_CODE_KEY);
+            
+            String failureCode = (String) cyberSourceResponseMap.get('reason_code');
+            
+            String failureField = (String) cyberSourceResponseMap.get('invalid_fields');
+            
+            String failureMessage = (String) cyberSourceResponseMap.get('message');
+            
+            system.debug('***failureCode***'+failureCode);
+            system.debug('***failureField***'+failureField);
+            system.debug('***failureMessage***'+failureMessage);
+            
+            List<CyberSourceErrorCodes__mdt > errorMdt = [SELECT Id,
+                                                          		 Error_Code__c,
+                                                          		 UI_Error_Message__c  
+                                                            FROM CyberSourceErrorCodes__mdt
+                                                           WHERE Error_Code__c =: failureCode LIMIT 1];
+            
+            
+            if(errorMdt.size() > 0)
+            {
+                message = errorMdt[0].UI_Error_Message__c;
+            }
+            else if(failureCode == '102')
+            {
+                message = 'Error Code: ' + failureCode + ' ' + '. Please check' + ' ' + failureField + '.';
+            }
+            else
+            {
+                message = 'Error Code: ' + failureCode + ' ' + failureField + ' ' + failureMessage;
+            }
+            
+            /*if (failureCode == CYBER_SOURCE_ERROR_INSUFFICIENT_FUNDS) {
                 message = ERROR_MESSAGE_INSUFFICIENT_FUNDS;
             } else if (failureCode == CYBER_SOURCE_ERROR_INVALID_ADDRESS) {
                 message = ERROR_MESSAGE_INVALID_BILLING_ADDRESS;
@@ -752,7 +799,8 @@ public with sharing class phss_cc_OrderUtil {
                 message = ERROR_MESSAGE_INVALID_CARD_DETAILS;
             } else {
                 message = ERROR_MESSAGE_CARD_DECLINED_UNKNOWN_REASON;
-            }
+            }*/
+            
             response = new Map<String, Object>{
                     SUCCESS_KEY => false,
                     RETURN_MESSAGE => message

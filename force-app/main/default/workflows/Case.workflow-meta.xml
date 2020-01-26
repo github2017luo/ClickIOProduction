@@ -66,6 +66,26 @@
         <template>All/Case_with_No_priority</template>
     </alerts>
     <alerts>
+        <fullName>LTS_Registration_Using_Credit_Card</fullName>
+        <description>LTS Registration Using Credit Card</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>All/LTS_Registration_using_credit_card</template>
+    </alerts>
+    <alerts>
+        <fullName>LTS_Registration_Using_Invoice</fullName>
+        <description>LTS Registration Using Invoice</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>All/LTS_Registration_using_Invoice</template>
+    </alerts>
+    <alerts>
         <fullName>Send_Closed_Case_Survey</fullName>
         <description>Send Closed Case Survey</description>
         <protected>false</protected>
@@ -1449,6 +1469,17 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Spam_email</fullName>
+        <field>OwnerId</field>
+        <lookupValue>AutoCloseQueue</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Spam email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>Status_Update_Escalated</fullName>
@@ -4213,7 +4244,7 @@ $Setup.Workflow_Rules__c.Bypass_Rules__c = FALSE  )</formula>
             <name>Social_No_Action_Queue</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Status</field>
             <operation>equals</operation>
@@ -4345,6 +4376,21 @@ $Setup.Workflow_Rules__c.Bypass_Rules__c = FALSE  )</formula>
             <timeLength>1</timeLength>
             <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Spam Email</fullName>
+        <actions>
+            <name>Spam_email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.SuppliedEmail</field>
+            <operation>equals</operation>
+            <value>noreply@seholo.com</value>
+        </criteriaItems>
+        <description>Deletes Spam email to case</description>
+        <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
         <fullName>TSC NAT - Self pay queue Close</fullName>

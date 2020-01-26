@@ -100,7 +100,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.SB_Household_Account</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -298,7 +298,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.SB_Organization_Account</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>Tab</actionName>
@@ -385,7 +385,7 @@
         <pageOrSobjectType>Opportunity</pageOrSobjectType>
         <recordType>Opportunity.Order_Opportunity</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -529,7 +529,7 @@
         <pageOrSobjectType>Opportunity</pageOrSobjectType>
         <recordType>Opportunity.Sales_Opportunity</recordType>
         <type>Flexipage</type>
-        <profile>SB ARC Finance Credit Card Team</profile>
+        <profile>SB ARC Finance Credit Card Team-OLD</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>

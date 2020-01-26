@@ -12,7 +12,7 @@
     
     <aura:attribute name="employeesUrl" type="String" required="false" />
     <aura:attribute name="selfRegisterLabel" type="String" required="false" default="Sign Me Up"/>
-    <aura:attribute name="forgotPasswordUrl" type="String" required="false" default="/learner/s/ForgotPassword"/>
+    <aura:attribute name="forgotPasswordUrl" type="String" required="false" default="/s/ForgotPassword"/>
     <aura:attribute name="selfRegisterUrl" type="String" required="false" default="/learner/s/SelfRegister" />
     <aura:attribute name="learningCenterUrl" type="String" required="false" />
     

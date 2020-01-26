@@ -14,7 +14,7 @@
             <sorted>false</sorted>
             <value>
                 <fullName>NET 30</fullName>
-                <default>false</default>
+                <default>true</default>
                 <label>NET 30</label>
             </value>
             <value>

@@ -343,6 +343,21 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>SDOC__SDRelationship__c.Achievement_Assignment__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SDOC__SDRelationship__c.CC_Order_Item__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SDOC__SDRelationship__c.CC_Order__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>SDOC__SDRelationship__c.SDOC__Account__c</field>
         <readable>true</readable>
@@ -1149,6 +1164,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>SDOC__SDoc__c.SDOC__Document_Format__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>SDOC__SDoc__c.SDOC__Document_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1483,4 +1503,8 @@
         <apexPage>SDRelatedListDocuments</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>SelectFilesFromSalesforce</name>
+    </userPermissions>
 </PermissionSet>

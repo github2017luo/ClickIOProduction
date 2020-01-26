@@ -1046,6 +1046,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>sked__Job__c.Cancellation_Detail__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>sked__Job__c.Cancellation_Reason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>sked__Job__c.Class_Sub_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1116,7 +1126,42 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>sked__Job__c.Grid_Setting_Employment_Types__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>sked__Job__c.Grid_Setting_Interval__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>sked__Job__c.Grid_Setting_Radius__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>sked__Job__c.Grid_Setting_Scheduled_Hours__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>sked__Job__c.Grid_Setting_Show_24_Hours__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>sked__Job__c.Grid_Setting_Subconstractor__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>sked__Job__c.Is_Master_Class__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>sked__Job__c.Is_Previously_Cancelled__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1177,6 +1222,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>sked__Job__c.Number_of_Students__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>sked__Job__c.Ready_to_Publish__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1261,6 +1311,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>sked__Job__c.sked__Customer_Confirmation_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>sked__Job__c.sked__Customer_Job_No__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1300,6 +1355,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>sked__Job__c.sked__Is_Group_Event__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>sked__Job__c.sked__Job_Allocation_Count__c</field>
         <readable>true</readable>
@@ -1326,6 +1386,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>sked__Job__c.sked__Max_Attendees__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>sked__Job__c.sked__Min_Attendees__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>sked__Job__c.sked__Notes_Comments__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1342,6 +1412,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>sked__Job__c.sked__Parent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>sked__Job__c.sked__Quantity__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

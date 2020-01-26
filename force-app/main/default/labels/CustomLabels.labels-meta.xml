@@ -707,6 +707,13 @@ Select a voucher(s) with a status of &#39;Issued&#39;. Copy and paste the self-r
         <value>Product Search</value>
     </labels>
     <labels>
+        <fullName>ProfileUpdateURL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ProfileUpdateURL</shortDescription>
+        <value>https://arc-phss.lightning.force.com/</value>
+    </labels>
+    <labels>
         <fullName>Reported</fullName>
         <categories>Custom RC UI</categories>
         <language>en_US</language>
@@ -735,7 +742,21 @@ Select a voucher(s) with a status of &#39;Issued&#39;. Copy and paste the self-r
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Sked Job trigger - eligible profiles - Enter names separated by semi-colons</shortDescription>
-        <value>ARC Service Delivery; SB ARC Service Delivery; ARC NAT Team; SB ARC NAT Team</value>
+        <value>ARC Service Delivery; SB ARC Service Delivery; ARC NAT Team; SB ARC NAT Team; System Administrator</value>
+    </labels>
+    <labels>
+        <fullName>SDocsDoclistId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SDocsDoclistId</shortDescription>
+        <value>a3W0V000004U5cRUAS,a3W3o000002J87eEAC,a3W0V000004U5cgUAC</value>
+    </labels>
+    <labels>
+        <fullName>SDocsRunAsUserName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SDocsRunAsUserName</shortDescription>
+        <value>implementationadmin@salesforce.com</value>
     </labels>
     <labels>
         <fullName>Search_by</fullName>
@@ -854,6 +875,13 @@ Select a voucher(s) with a status of &#39;Issued&#39;. Copy and paste the self-r
         <protected>false</protected>
         <shortDescription>UserID</shortDescription>
         <value>Salesforce Automation Account</value>
+    </labels>
+    <labels>
+        <fullName>VISUAL_FORCE_DOMAIN</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VISUAL_FORCE_DOMAIN</shortDescription>
+        <value>.na118.visual.force.com</value>
     </labels>
     <labels>
         <fullName>Yes</fullName>

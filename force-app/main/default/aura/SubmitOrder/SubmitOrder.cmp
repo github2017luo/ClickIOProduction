@@ -43,10 +43,10 @@
                            Confirm Submit Order Credit
                            
                            <br/><br/>
-                           
+                           <!-- 
                            <aura:if isTrue="{!v.showCreditOnAccount}">
                            		<lightning:input type="checkbox" label="Save Credit On Account" name="options" checked = "{!v.CreditOnAccount}"/>
-                           </aura:if>
+                           </aura:if>-->
                                 
                             
                        </div>
@@ -75,6 +75,13 @@
             </section>
             <div class="slds-backdrop slds-backdrop_open"></div>
         </div>
+        
+    </aura:if>
+    <aura:if isTrue="{!v.stepNumber == 'Two'}" >
+        
+        <lightning:button label		= "Submit Order Credit"
+                          title		= "Submit Order Credit"
+                          class		= "slds-button_brand afterSubmitted"/>
         
     </aura:if>
 </aura:component>

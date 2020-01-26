@@ -1619,6 +1619,22 @@
     <picklistValues>
         <picklist>Type</picklist>
         <values>
+            <fullName>CEP Existing Business %E2%80%93 Community</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CEP Existing Business - FS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CEP New Business - Community</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CEP New Business - FS</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Existing Business - AP</fullName>
             <default>false</default>
         </values>
@@ -1628,6 +1644,38 @@
         </values>
         <values>
             <fullName>Existing Business-LTP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NAT Existing Business - AP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NAT Existing Business - Community</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NAT Existing Business - FS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NAT Existing Business - LTP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NAT New Business - AP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NAT New Business - Community</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NAT New Business - FS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NAT New Business - LTP</fullName>
             <default>false</default>
         </values>
         <values>

@@ -1,10 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <assignments>
+        <name>Set_Count_to_0</name>
+        <label>Set Count to 0</label>
+        <locationX>219</locationX>
+        <locationY>250</locationY>
+        <assignmentItems>
+            <assignToReference>vCount</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>outFulfillmentItem</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>colEmptyFulfillmentItems</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Invoiced_Records</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Set_Output</name>
         <label>Set Output</label>
-        <locationX>353</locationX>
-        <locationY>183</locationY>
+        <locationX>545</locationX>
+        <locationY>394</locationY>
         <assignmentItems>
             <assignToReference>outFulfillmentItem</assignToReference>
             <operator>Add</operator>
@@ -13,14 +36,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Loop_through_Invoiced_Records</targetReference>
+            <targetReference>Count_Records</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Set_Status</name>
         <label>Set Status</label>
-        <locationX>476</locationX>
-        <locationY>184</locationY>
+        <locationX>546</locationX>
+        <locationY>220</locationY>
         <assignmentItems>
             <assignToReference>sFulfillmentItem.Status__c</assignToReference>
             <operator>Assign</operator>
@@ -28,15 +51,54 @@
                 <stringValue>Complete</stringValue>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vCount</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fCount</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Set_Output</targetReference>
         </connector>
     </assignments>
+    <constants>
+        <name>cErrorMessage</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Create Training Event did not process correctly - check to see if items are in Invoiced Status - status should be Complete</stringValue>
+        </value>
+    </constants>
+    <decisions>
+        <name>Count_Records</name>
+        <label>Count Records</label>
+        <locationX>358</locationX>
+        <locationY>395</locationY>
+        <defaultConnector>
+            <targetReference>Loop_through_Invoiced_Records</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Not_Done</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>fCount</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <numberValue>50.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Fulfillment_Items_0</targetReference>
+            </connector>
+            <label>Not Done</label>
+        </rules>
+    </decisions>
     <decisions>
         <name>Items_to_Write</name>
         <label>Items to Write</label>
-        <locationX>648</locationX>
-        <locationY>48</locationY>
+        <locationX>649</locationX>
+        <locationY>46</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Output_Not_Null</name>
@@ -55,13 +117,19 @@
         </rules>
     </decisions>
     <description>Sets Invoiced Fulfillment Items to Completed to trigger Create Training Revenue process builder</description>
+    <formulas>
+        <name>fCount</name>
+        <dataType>Number</dataType>
+        <expression>{!vCount} + 1</expression>
+        <scale>2</scale>
+    </formulas>
     <interviewLabel>Prepare Training Revenue Creatuib {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prepare Training Revenue Creation</label>
     <loops>
         <name>Loop_through_Invoiced_Records</name>
         <label>Loop through Invoiced Records</label>
-        <locationX>352</locationX>
-        <locationY>54</locationY>
+        <locationX>351</locationX>
+        <locationY>51</locationY>
         <assignNextValueToReference>sFulfillmentItem</assignNextValueToReference>
         <collectionReference>colFullfilmentItems</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -85,11 +153,36 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Interface_Error</name>
+        <label>Interface Error</label>
+        <locationX>836</locationX>
+        <locationY>211</locationY>
+        <inputAssignments>
+            <field>Error_Details__c</field>
+            <value>
+                <elementReference>cErrorMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Source__c</field>
+            <value>
+                <stringValue>Scheduler</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Open</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Integration_Error_Log__c</object>
+    </recordCreates>
     <recordLookups>
         <name>Get_Fulfillment_Items</name>
         <label>Get Fulfillment Items</label>
         <locationX>183</locationX>
-        <locationY>54</locationY>
+        <locationY>53</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_through_Invoiced_Records</targetReference>
@@ -109,12 +202,36 @@
     <recordUpdates>
         <name>Update_Fulfillment_Items</name>
         <label>Update Fulfillment Items</label>
-        <locationX>829</locationX>
-        <locationY>55</locationY>
+        <locationX>843</locationX>
+        <locationY>45</locationY>
+        <faultConnector>
+            <targetReference>Interface_Error</targetReference>
+        </faultConnector>
+        <inputReference>outFulfillmentItem</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Fulfillment_Items_0</name>
+        <label>Update Fulfillment Items</label>
+        <locationX>218</locationX>
+        <locationY>388</locationY>
+        <connector>
+            <targetReference>Set_Count_to_0</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Set_Count_to_0</targetReference>
+        </faultConnector>
         <inputReference>outFulfillmentItem</inputReference>
     </recordUpdates>
     <startElementReference>Get_Fulfillment_Items</startElementReference>
     <status>Active</status>
+    <variables>
+        <name>colEmptyFulfillmentItems</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Fulfillment_Item__c</objectType>
+    </variables>
     <variables>
         <name>colFullfilmentItems</name>
         <dataType>SObject</dataType>
@@ -138,5 +255,24 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Fulfillment_Item__c</objectType>
+    </variables>
+    <variables>
+        <name>sInterfaceError</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Integration_Error_Log__c</objectType>
+    </variables>
+    <variables>
+        <name>vCount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
     </variables>
 </Flow>

@@ -307,6 +307,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Discount not on account</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Donations</fullName>
             <default>false</default>
         </values>
@@ -392,6 +396,10 @@
         </values>
         <values>
             <fullName>Initial Inquiry</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instructor</fullName>
             <default>false</default>
         </values>
         <values>
@@ -495,6 +503,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>No Issue found</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>No Show Instructor</fullName>
             <default>false</default>
         </values>
@@ -540,6 +552,10 @@
         </values>
         <values>
             <fullName>Presentation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pricing not on account</fullName>
             <default>false</default>
         </values>
         <values>
@@ -640,6 +656,10 @@
         </values>
         <values>
             <fullName>Status of Order</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Student</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1014,6 +1034,10 @@
     <picklistValues>
         <picklist>Follow_Up_Group__c</picklist>
         <values>
+            <fullName>%EF%BB%BFPending Closure</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>ARC Management Escalations</fullName>
             <default>false</default>
         </values>
@@ -1023,6 +1047,14 @@
         </values>
         <values>
             <fullName>ATG - On Hold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Account Affiliation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bridging %E2%80%93 Ready to Work</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1039,6 +1071,10 @@
         </values>
         <values>
             <fullName>Certificate Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contact Record Update</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1094,6 +1130,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Password Reset</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Payment Policy</fullName>
             <default>false</default>
         </values>
@@ -1110,7 +1150,27 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>RCLC Callbacks</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RCLC Escalations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RCLC Refunds on Hold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RCLC Resolved Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>RDC Queue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Receipt Requests</fullName>
             <default>false</default>
         </values>
         <values>
@@ -2986,11 +3046,23 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Eligible</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Email Sent</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>Error Message</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Expired</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Extended</fullName>
             <default>false</default>
         </values>
         <values>
@@ -3079,6 +3151,10 @@
         </values>
         <values>
             <fullName>Normal Shipping</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>On Hold</fullName>
             <default>false</default>
         </values>
         <values>
@@ -3182,6 +3258,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Voided</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Waiting on AHA Certification</fullName>
             <default>false</default>
         </values>
@@ -3239,6 +3319,10 @@
         <picklist>Type</picklist>
         <values>
             <fullName>AP Blended Learning</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Achievement Assignment Issue</fullName>
             <default>false</default>
         </values>
         <values>
@@ -3307,6 +3391,10 @@
         </values>
         <values>
             <fullName>Pro Bono Requests</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RCLC Account Inquiry</fullName>
             <default>false</default>
         </values>
         <values>
@@ -3594,6 +3682,21 @@
         </values>
         <values>
             <fullName>Wrong Price per Student</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Tier_III_Disposition__c</picklist>
+        <values>
+            <fullName>Business as Usual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Functionality Issue - DISH Ticket Created</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Functionality Issue - Resolved by Agent</fullName>
             <default>false</default>
         </values>
     </picklistValues>

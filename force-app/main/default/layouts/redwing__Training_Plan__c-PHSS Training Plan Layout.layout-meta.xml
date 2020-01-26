@@ -14,6 +14,10 @@
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Learning_Plan_Id__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>redwing__Description__c</field>
             </layoutItems>
@@ -371,14 +375,24 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>CC_Order__c</fields>
+        <fields>CC_Order_Item__c</fields>
+        <fields>ILT_Class__c</fields>
+        <fields>Online_Class__c</fields>
+        <fields>Class_Location__c</fields>
         <relatedList>Voucher__c.Learning_Plan__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Skedulo_Account__c</fields>
+        <fields>redwing__Start_Date__c</fields>
+        <fields>Available_Seats__c</fields>
         <relatedList>redwing__ILT_Class__c.Learning_Plan__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>redwing__Learning__c</fields>
+        <fields>redwing__Material__c</fields>
         <relatedList>redwing__Learning_Material__c.redwing__Training_Plan__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -387,7 +401,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h21000000S914</masterLabel>
+        <masterLabel>00h0V00000mYYNz</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

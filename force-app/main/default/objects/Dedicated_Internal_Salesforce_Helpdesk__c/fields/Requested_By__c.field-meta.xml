@@ -3,6 +3,7 @@
     <fullName>Requested_By__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
+    <inlineHelpText>Please do not input the external users.</inlineHelpText>
     <label>Requested By</label>
     <referenceTo>User</referenceTo>
     <relationshipName>Dedicated_Internal_Salesforce_Helpdesk</relationshipName>

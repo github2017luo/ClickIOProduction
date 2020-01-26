@@ -8,6 +8,14 @@
         <actionName>Donothing</actionName>
         <actionType>apex</actionType>
     </actionCalls>
+    <actionCalls>
+        <name>Min_Qty_Already_Exists</name>
+        <label>Min Qty Already Exists</label>
+        <locationX>304</locationX>
+        <locationY>560</locationY>
+        <actionName>Donothing</actionName>
+        <actionType>apex</actionType>
+    </actionCalls>
     <assignments>
         <name>Set_Greatest_Quantity</name>
         <label>Set Greatest Quantity</label>
@@ -198,6 +206,31 @@
                 <targetReference>Add_New_Order_Item</targetReference>
             </connector>
             <label>Add Min Product</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Min_Quantity_Previously_Set</name>
+        <label>Min Quantity Previously Set</label>
+        <locationX>289</locationX>
+        <locationY>408</locationY>
+        <defaultConnector>
+            <targetReference>Min_Qty_Already_Exists</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Min_Balance_Does_not_Exist</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>sMinItemCheck</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_ILT_Class</targetReference>
+            </connector>
+            <label>Min Balance Does not Exist</label>
         </rules>
     </decisions>
     <decisions>
@@ -478,6 +511,33 @@
         <object>ccrz__E_OrderItem__c</object>
     </recordCreates>
     <recordLookups>
+        <name>Check_if_Previously_Processed</name>
+        <label>Check if Previously Processed</label>
+        <locationX>295</locationX>
+        <locationY>234</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Min_Quantity_Previously_Set</targetReference>
+        </connector>
+        <filters>
+            <field>ccrz__ParentOrderItem__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>sOrderItem.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>ccrz__Product__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>sProduct.Id</elementReference>
+            </value>
+        </filters>
+        <object>ccrz__E_OrderItem__c</object>
+        <outputReference>sMinItemCheck</outputReference>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Composite_Item</name>
         <label>Get Composite Item</label>
         <locationX>599</locationX>
@@ -507,8 +567,8 @@
     <recordLookups>
         <name>Get_ILT_Class</name>
         <label>Get ILT Class</label>
-        <locationX>295</locationX>
-        <locationY>247</locationY>
+        <locationX>440</locationX>
+        <locationY>396</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Job</targetReference>
@@ -547,7 +607,7 @@
     <recordLookups>
         <name>Get_Minor_Order_Items</name>
         <label>Get Minor Order Items</label>
-        <locationX>445</locationX>
+        <locationX>441</locationX>
         <locationY>49</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -664,11 +724,11 @@
     <recordLookups>
         <name>Get_Product</name>
         <label>Get Product</label>
-        <locationX>294</locationX>
-        <locationY>52</locationY>
+        <locationX>297</locationX>
+        <locationY>48</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_ILT_Class</targetReference>
+            <targetReference>Check_if_Previously_Processed</targetReference>
         </connector>
         <filters>
             <field>ccrz__ProductId__c</field>
@@ -683,7 +743,7 @@
         <queriedFields>ccrz__SKU__c</queriedFields>
     </recordLookups>
     <startElementReference>Get_Order_Item</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>colComposite</name>
         <dataType>SObject</dataType>
@@ -730,6 +790,14 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>ccrz__E_CompositeProduct__c</objectType>
+    </variables>
+    <variables>
+        <name>sMinItemCheck</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>ccrz__E_OrderItem__c</objectType>
     </variables>
     <variables>
         <name>sOrderItem</name>

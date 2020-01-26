@@ -112,6 +112,15 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Payment_Terms</fullName>
+        <field>Payment_Terms__c</field>
+        <literalValue>NET 30</literalValue>
+        <name>Payment Terms</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Prefered_Payment_Type</fullName>
         <description>Prefered Payment type = null if Payment Status &quot;Terminated&quot;</description>
         <field>Preferred_Payment_type__c</field>
@@ -374,7 +383,7 @@
             <name>Update_Saba_LMS_Code</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Account.SABA_LMS_Code__c</field>
             <operation>equals</operation>

@@ -46,6 +46,10 @@
             <recipient>mike.smith2@redcross.org</recipient>
             <type>user</type>
         </recipients>
+        <recipients>
+            <recipient>ravi.nippuleti@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
         <senderType>CurrentUser</senderType>
         <template>unfiled$public/DISH_Ticket_Created</template>
     </alerts>
@@ -135,6 +139,242 @@
         <senderType>CurrentUser</senderType>
         <template>unfiled$public/DISH_User_Access_Request_IC_and_Sharepoint</template>
     </alerts>
+    <alerts>
+        <fullName>RCLC_DISH_Ticket_Created_Email</fullName>
+        <description>RCLC DISH Ticket Created Email</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>aimeesummers@redcrosssales.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>anitra.dues@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>anthony.altieri@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>casandracostello@redcrosssales.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>denise.mcguire3@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>destiny.johnson@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>elizabeth.butt@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>gina.gunn@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>gita.borovsky@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>gregory.fulton@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>hope.brown@redcrosssales.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jatinkumar.acharya@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>joy.zukauskas@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>larry.luzier@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>laura.machesky@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>loretta.stahl@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>mary.leslie@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>melinda.watts@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>mike.smith2@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>mindy.dephillips@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>nicole.provance@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>paul.shavers@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>rachel.williams@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>ravi.nippuleti@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>robert.satterfield@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>shweta.kohli@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>susan.colbert@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>tara.phillips@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>tia.vanbremen@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>tracy.moore@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>All/RCLC_DISH_Ticket_Created</template>
+    </alerts>
+    <alerts>
+        <fullName>RCLC_DISH_Ticket_TSC_Team_Lead_Update_Email</fullName>
+        <description>RCLC DISH Ticket TSC Team Lead Update Email</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>aimeesummers@redcrosssales.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>anitra.dues@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>casandracostello@redcrosssales.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>denise.mcguire3@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>destiny.johnson@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>elizabeth.butt@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>gina.gunn@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>gregory.fulton@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>hope.brown@redcrosssales.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>joy.zukauskas@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>larry.luzier@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>laura.machesky@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>loretta.stahl@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>mary.leslie@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>melinda.watts@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>nicole.provance@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>paul.shavers@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>rachel.williams@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>ravi.nippuleti@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>robert.satterfield@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>susan.colbert@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>tara.phillips@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>tia.vanbremen@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>tracy.moore@redcross.org</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>TSC_Auto_Reply_Templates/RCLC_DISH_Ticket_Status_Update_For_TSC</template>
+    </alerts>
     <fieldUpdates>
         <fullName>Dish_Owner</fullName>
         <field>OwnerId</field>
@@ -166,7 +406,7 @@
             <name>DISH_Skedulo_Issue</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 AND 2</booleanFilter>
         <criteriaItems>
             <field>Dedicated_Internal_Salesforce_Helpdesk__c.RecordTypeId</field>
@@ -252,6 +492,11 @@
             <operation>equals</operation>
             <value>TODAY</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>Dedicated_Internal_Salesforce_Helpdesk__c.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>RCLC</value>
+        </criteriaItems>
         <description>Send email Alert when ticket is created</description>
         <triggerType>onCreateOnly</triggerType>
     </rules>
@@ -295,6 +540,46 @@
             <value>Created</value>
         </criteriaItems>
         <description>Send email Alert when User Access is Saba LMS.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>RCLC DISH Ticket Created</fullName>
+        <actions>
+            <name>RCLC_DISH_Ticket_Created_Email</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Dedicated_Internal_Salesforce_Helpdesk__c.CreatedDate</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Dedicated_Internal_Salesforce_Helpdesk__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>RCLC</value>
+        </criteriaItems>
+        <description>Send email Alert when an RCLC ticket is created</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>RCLC DISH Ticket Updated</fullName>
+        <actions>
+            <name>RCLC_DISH_Ticket_TSC_Team_Lead_Update_Email</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Dedicated_Internal_Salesforce_Helpdesk__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>RCLC</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Dedicated_Internal_Salesforce_Helpdesk__c.Dish_Request_Status__c</field>
+            <operation>equals</operation>
+            <value>TSC Status Update</value>
+        </criteriaItems>
+        <description>Send email Alert when an RCLC ticket is updated</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>

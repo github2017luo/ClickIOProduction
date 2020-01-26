@@ -12,6 +12,13 @@
                 <elementReference>oProfileID</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>sUser.UserRoleId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>oRole</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Set_Is_Appinium_to_True</targetReference>
         </connector>
@@ -48,6 +55,13 @@
             <targetReference>Get_User_Record</targetReference>
         </connector>
     </assignments>
+    <constants>
+        <name>oRole</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>00E3o000001zT9B</stringValue>
+        </value>
+    </constants>
     <decisions>
         <name>Found_User_Record</name>
         <label>Found User Record</label>

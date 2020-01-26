@@ -80,7 +80,8 @@ public with sharing class phss_cc_CyberSourceUtil {
     //Misc
     private static final String NA_EMAIL = 'NA@NA.com';
     private static final String SALESFORCE_CLASSIC_DOMAIN = '.my.salesforce.com';
-    private static final String VISUAL_FORCE_DOMAIN = '.visual.force.com';
+    //private static final String VISUAL_FORCE_DOMAIN = '.visual.force.com';
+    private static final String VISUAL_FORCE_DOMAIN = System.Label.VISUAL_FORCE_DOMAIN;
     private static final String LIGHTNING_DOMAIN_NAME = '.lightning.force.com';
     private static final String CYBER_SOURCE_RESPONSE_SIGNED_FIELD_NAMES_KEY = 'signed_field_names';
     private static final String CYBER_SOURCE_RESPONSE_SIGNATURE_KEY = 'signature';
@@ -170,6 +171,25 @@ public with sharing class phss_cc_CyberSourceUtil {
     public static void getCyberSourceConfigSettings(String storefront) {
         final Map<String, Object> configs = getConfigurations('pgcs', storefront);
 
+        /*
+            SAMPLE DATA for 'configs'
+
+            pgcs.urltransaction = https://testsecureacceptance.cybersource.com/silent/pay
+            pgcs.bridgepost     = CybersourcePostback
+            pgcs.bridgeform     = CyberSourceiFrameForm
+            pgcs.paymenttypes   = 001,002,003,004
+            pgcs.authcapture    = FALSE
+            pgcs.authamount     = 100%
+            pgcs.authamounttype = percentage
+            pgcs.secret2        = a0b1c2d3e4f5g6h7i8j9...
+            pgcs.secret1        = ...q0r1s2t3u4v5w6x7y8z9
+            pgcs.accesskey      = 7b96d38...
+            pgcs.urltokencreate = https://testsecureacceptance.cybersource.com/silent/pay
+            pgcs.urlsoap1       = ccpgcs_soap_test
+            pgcs.profile        = 3F011C2F-952A-4135-A43D-B7562CB686FA
+
+         */
+
         // URL to POST the form data to.
         POST_URL = (String) configs.get(CYBER_SOURCE_CONFIG_TOKEN_URL_KEY);
         if (String.isBlank(POST_URL)) {
@@ -187,9 +207,12 @@ public with sharing class phss_cc_CyberSourceUtil {
             iFRAME_URL = commUrl + vfPageUrl.substringAfter('/apex');
         }
         else {
-        	iFRAME_URL = Url.getSalesforceBaseUrl().toExternalForm() + Page.phss_cc_CyberSourceCCProcessorIframeForm.getUrl();
+        	iFRAME_URL = Url.getOrgDomainUrl().toExternalForm() + Page.phss_cc_CyberSourceCCProcessorIframeForm.getUrl();
+            system.debug('***iFRAME_URL1***'+iFRAME_URL);
             iFRAME_URL = iFRAME_URL.replaceFirst('[.]', '--c.');  //TODO: This is a hack. This will be fixed in Spring 2019.
+            system.debug('***iFRAME_URL2***'+iFRAME_URL);
             iFRAME_URL = iFRAME_URL.replaceFirst(SALESFORCE_CLASSIC_DOMAIN, VISUAL_FORCE_DOMAIN);
+            system.debug('***iFRAME_URL3***'+iFRAME_URL);
         }
         
         if(userType != 'Standard') {
@@ -198,8 +221,11 @@ public with sharing class phss_cc_CyberSourceUtil {
         }
         else {
             RETURN_URL = Url.getSalesforceBaseUrl().toExternalForm() + Page.phss_cc_CyberSourceCCProcessorPostBack.getUrl();
+            system.debug('***RETURN_URL1***'+RETURN_URL);
             RETURN_URL = RETURN_URL.replaceFirst('[.]', '--c.');  //TODO: This is a hack. This will be fixed in Spring 2019.
+            system.debug('***RETURN_URL2***'+RETURN_URL);
             RETURN_URL = RETURN_URL.replaceFirst(SALESFORCE_CLASSIC_DOMAIN, VISUAL_FORCE_DOMAIN);
+            system.debug('***RETURN_URL3***'+RETURN_URL);
         }
         
         // Access Key/Profile ID/ Secret/Auth Amount
@@ -248,6 +274,20 @@ public with sharing class phss_cc_CyberSourceUtil {
             }
         }
         return translatedPaymentTypes;
+    }
+
+    /**
+     * @description Returns a map of card type codes to card type names
+     *
+     * @return
+     */
+    public static Map<String, String> getCardTypes() {
+        return new Map<String, String>{
+                PAYMENT_TYPE_AMERICAN_EXPRESS => AMERICAN_EXPRESS,
+                PAYMENT_TYPE_DISCOVER => DISCOVER,
+                PAYMENT_TYPE_MASTERCARD => MASTER_CARD,
+                PAYMENT_TYPE_VISA => VISA
+        };
     }
 
     /**
@@ -459,63 +499,6 @@ public with sharing class phss_cc_CyberSourceUtil {
 
 
     /**
-     * @description Captures payment for a specific transaction payment
-     *
-     * @param transactionPaymentId
-     * @param amount
-     *
-     * @return
-     */
-    @Future (Callout=true)
-    public static void capturePayment(String fulfillmentId, String authTransactionPaymentId, String captureTransactionPaymentId) {
-        try {
-            ccrz__E_TransactionPayment__c authTxnPmt = phss_cc_TransactionPaymentUtil.fetchTransactionPayment(authTransactionPaymentId);
-            ccrz__E_TransactionPayment__c captureTxnPmt = phss_cc_TransactionPaymentUtil.fetchTransactionPayment(captureTransactionPaymentId);
-            ccrz__E_Order__c order = fetchOrder(authTxnPmt.ccrz__CCOrder__c);
-            ccrz__E_Cart__c cart = fetchCart(order.ccrz__OriginatedCart__c);
-
-            getCyberSourceConfigSettings(cart.ccrz__Storefront__c);
-            Map<String, Object> captureData = buildCaptureData(authTxnPmt.ccrz__Token__c, captureTxnPmt.Name, captureTxnPmt.ccrz__Amount__c);
-            Map<String, Object> captureResult = requestPaymentCapture(captureData);
-
-            String status = (String) captureResult.get(PAYMENT_CAPTURE_STATUS);
-            if (status == PAYMENT_CAPTURE_SUCCEEDED) {
-                Dom.Document response = (Dom.Document) captureResult.get(PAYMENT_CAPTURE_RESPONSE);
-                Dom.XmlNode html = response.getRootElement();
-                Map<String, String> responseMap = getFormDataFromHTML(html);
-
-                Boolean isResponseValid = verifyPaymentCaptureResponse(responseMap);
-                if (isResponseValid) {
-                    String reasonCode = responseMap.get(CYBER_SOURCE_REASON_CODE_KEY);
-                    if (reasonCode == SUCCESS_REASON_CODE) {
-                        phss_cc_FulfillmentUtil.finalizePayment(authTxnPmt.Id, captureTxnPmt.Id, fulfillmentId, responseMap);
-                    }
-                    else {
-                        String message = (String) responseMap.get(CYBER_SOURCE_MESSAGE_KEY);
-                        if (message == null) {
-                            message = FAILED_TO_CAPTURE_PAYMENT_WITH_REASON_CODE + ' [reason_code=' + reasonCode + ']';
-                        }
-
-                        throw new phss_cc_Exception(message);
-                    }
-                }
-                else {
-                    throw new phss_cc_Exception('Failed to capture payment because of mismatching signatures (fulfillment=' + fulfillmentId + ', AUTH=' + authTransactionPaymentId + ', CAPTURE=' + captureTransactionPaymentId + ')');
-                }
-
-            } else if (status == PAYMENT_CAPTURE_FAILED) {
-                String requestStatus = (String) captureResult.get(REQUEST_STATUS);
-                Integer requestStatusCode = (Integer) captureResult.get(REQUEST_STATUS_CODE);
-                throw new phss_cc_Exception(requestStatus + ' [code=' + requestStatusCode + ']');
-            }
-
-        } catch (Exception e) {
-            System.debug('Failed to capture payment: ' + e.getMessage());
-        }
-    }
-
-
-    /**
      * @description Builds a map of data related to capturing a payment
      *
      * @param paymentToken
@@ -679,6 +662,7 @@ public with sharing class phss_cc_CyberSourceUtil {
 
             if (obj instanceof Decimal) {
                 body = body + EncodingUtil.urlEncode(String.valueOf((Decimal) obj), 'UTF-8');
+//                System.debug(key + '=' + EncodingUtil.urlEncode(String.valueOf((Decimal) obj), 'UTF-8'));
             } else if (obj instanceof Boolean) {
                 Boolean b = (Boolean) obj;
                 String boolStr = 'false';
@@ -686,10 +670,13 @@ public with sharing class phss_cc_CyberSourceUtil {
                     boolStr = 'false';
                 }
                 body = body + boolStr;
+//                System.debug(key + '=' + boolStr);
             } else if (obj instanceof String) {
                 body = body + EncodingUtil.urlEncode((String) obj, 'UTF-8');
+//                System.debug(key + '=' + EncodingUtil.urlEncode((String) obj, 'UTF-8'));
             } else {
                 body = body + EncodingUtil.urlDecode(String.valueOf(obj), 'UTF-8');
+//                System.debug(key + '=' + EncodingUtil.urlDecode(String.valueOf(obj), 'UTF-8'));
             }
         }
 

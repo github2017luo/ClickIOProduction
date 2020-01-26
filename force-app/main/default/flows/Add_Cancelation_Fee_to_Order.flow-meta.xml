@@ -968,7 +968,7 @@
         <showHeader>true</showHeader>
     </screens>
     <startElementReference>Cancellation_Fee_Notes</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>colMinOrderItem</name>
         <dataType>SObject</dataType>

@@ -50,6 +50,14 @@
                 <behavior>Readonly</behavior>
                 <field>FCC_of_CC_Product__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Merchant_Reference_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>B2B_Transaction_Reference__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

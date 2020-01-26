@@ -590,7 +590,7 @@
         <object>ccrz__E_Order__c</object>
     </recordUpdates>
     <startElementReference>Lookup_Order2</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>cAccountID</name>
         <dataType>String</dataType>

@@ -594,7 +594,7 @@
         <object>redwing__Training_Plan_Assignment__c</object>
     </recordUpdates>
     <startElementReference>Get_Achievement_Assignment_Records</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>colAchievementAssignment</name>
         <dataType>SObject</dataType>

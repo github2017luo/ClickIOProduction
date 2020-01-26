@@ -65,6 +65,7 @@ public class PHSS_CreateOrderRestServiceTest {
         clsRecord.Name = 'Test';
         clsRecord.Learning_Plan__c = lPlan2.Id;
         clsRecord.redwing__Learning__c = learning.Id;
+        clsRecord.Cloud_Craze_Product__c = product1.Id;
         insert clsRecord;
         
          //create ccOrder

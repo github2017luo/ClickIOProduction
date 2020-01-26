@@ -227,6 +227,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>AssignVouchersToBulkStudentBatch</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AssignVouchersToBulkStudentBatchTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>AssignmentRulesonCaseTrigger_TEST</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -255,6 +263,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BulkStudentUpdateTriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BulkStudentUpdateTriggerHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CCOrderItemTriggerHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -280,6 +296,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CancelOrderItemControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CaptureCCPaymentOnFulfillmentInsertTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -392,6 +412,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>ContactTriggerHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ConvertLearnerToInstructorController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ConvertLearnerToInstructorControllerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -835,6 +863,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>PHSS_PriceListItemTriggerHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>PHSS_ProcessCertProvisioning_BATCH</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -860,6 +892,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_PublishCertificates</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PHSS_PublishCertificatesBatch</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PHSS_PublishCertificatesBatchSchedulable</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -967,6 +1007,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>PHSS_eCommerceIntegrationFilesBatch</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>PHSS_eCommerceIntegrationFilesTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -1007,6 +1051,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>PHSS_tickleJobRecords</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PHSS_tickleJobRecordsTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Phss_myCertificationstest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -1016,6 +1068,22 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PluckTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PriceLineItemTrigger_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ProfileUpdate</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ProfileUpdateMock</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ProfileUpdateTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -1100,6 +1168,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SDRelatedListDocumentsTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SDocJobTriggerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -1507,11 +1579,39 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>phss_cc_CyberSourceCaptureUtil</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>phss_cc_CyberSourceCaptureUtilTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>phss_cc_CyberSourceCreditUtil</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_CyberSourceCreditUtilTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>phss_cc_CyberSourceRestApiUtil</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>phss_cc_CyberSourceRestApiUtilTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>phss_cc_CyberSourceRestRequest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>phss_cc_CyberSourceRestRequestMock</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>phss_cc_CyberSourceRestRequestTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -2724,6 +2824,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Restrict_Order_Confirmation_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Account.SABA_BillingCity__c</field>
         <readable>false</readable>
@@ -2894,7 +2999,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Special_Invoicing__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3036,7 +3141,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.nk_billto_org_id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -5479,6 +5584,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.Date_Closed__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Case.Day_of_the_Week__c</field>
         <readable>true</readable>
@@ -6115,6 +6225,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.RCLC__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.RCO_Order__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -6471,6 +6586,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.Third_Response_Time_minutes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Tier_III_Disposition__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -7379,6 +7499,16 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.User__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.Usercontact__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Contact.ccrz__CompanyName__c</field>
         <readable>true</readable>
@@ -7402,6 +7532,11 @@
         <editable>true</editable>
         <field>Contact.ccrz__SelfRegistered__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.contactuser__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -8035,6 +8170,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CyberSourceErrorCodes__mdt.UI_Error_Message__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>DFSS_Permissions__c.Data__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -8264,6 +8404,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Dedicated_Internal_Salesforce_Helpdesk__c.Follow_Up_SLA_Time__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Dedicated_Internal_Salesforce_Helpdesk__c.In_UAT_Sandbox_for_Approval__c</field>
         <readable>true</readable>
@@ -8321,6 +8466,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Dedicated_Internal_Salesforce_Helpdesk__c.Priority__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Dedicated_Internal_Salesforce_Helpdesk__c.RCLC_Issue__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -8890,6 +9040,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Fulfillment_Item__c.Opportunity_Owner_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Fulfillment_Item__c.Opportunity_Profile__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Fulfillment_Item__c.Order_Item__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -8975,8 +9135,13 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Fulfillment__c.Channel_Formula__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Fulfillment__c.FOCIS_Category__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -9017,6 +9182,16 @@
         <editable>false</editable>
         <field>Fulfillment__c.Supplemental_Information__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Fulfillment__c.Test_Focus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Fulfillment__c.Transaction_Reference_ID__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -9076,6 +9251,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Geo_Location__c.State_UC__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Geo_Location__c.TS_Loc__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -10397,6 +10577,41 @@
         <editable>true</editable>
         <field>Offering__c.No_of_Attendees__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Open_Order_Processing__c.CC_Order__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Open_Order_Processing__c.CFS_InvoiceCredit__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Open_Order_Processing__c.Error_Message__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Open_Order_Processing__c.Invoice_Amount__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Open_Order_Processing__c.Invoice_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Open_Order_Processing__c.SFDC_Account__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Open_Order_Processing__c.Status__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -13484,6 +13699,101 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Student_Bulk_Upload__c.Appinium_Class_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Student_Bulk_Upload__c.Batch_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Student_Bulk_Upload__c.Error_Message__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Student_Bulk_Upload__c.Has_Error__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Student_Bulk_Upload__c.ILT_Cass_Start_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Student_Bulk_Upload__c.ILT_Class_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Student_Bulk_Upload__c.ILT_Class__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Student_Bulk_Upload__c.Is_Processed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Student_Bulk_Upload__c.Learning__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Student_Bulk_Upload__c.Saba_Class_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Student_Bulk_Upload__c.Skedulo_Job_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Student_Bulk_Upload__c.Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Student_Bulk_Upload__c.Student_Email_Address__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Student_Bulk_Upload__c.Student_First_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Student_Bulk_Upload__c.Student_Last_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Student_Bulk_Upload__c.Student_Phone_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Student_Bulk_Upload__c.Voucher_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Student_Bulk_Upload__c.Voucher_User_Email__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Student_Bulk_Upload__c.Voucher__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Sub_class_Setting__c.Course_Catalog__c</field>
         <readable>true</readable>
@@ -13854,6 +14164,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Training_Events__c.Customer_Contact_2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Training_Events__c.Customer_Contact__c</field>
         <readable>true</readable>
@@ -13971,6 +14286,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Training_Events__c.Last_Date_for_a_Site_Visit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Training_Events__c.Local_Customer_Contact__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -14240,6 +14560,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Training_Events__c.Vouchers_Created__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Training_Events__c.Written_Test__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -14337,6 +14662,11 @@
         <editable>false</editable>
         <field>User.SABA_Person_Number__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User.Send_Welcome_Email__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -14480,8 +14810,18 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Voucher__c.Is_Assigned__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Voucher__c.Is_My_Voucher__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Voucher__c.Learner_Community_Class_URL__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -14629,24 +14969,24 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>zConversion__c.Parameter1__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>zConversion__c.Parameter2__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>zConversion__c.Processed__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>zConversion__c.Type__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <layoutAssignments>
         <layout>Account-Account_Admin layout</layout>
@@ -14708,6 +15048,15 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>AuthorizationForm-Authorization Form Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AuthorizationFormConsent-Authorization Form Consent Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AuthorizationFormDataUse-Authorization Form Data Use Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AuthorizationFormText-Authorization Form Text Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>B2CCommerceCloud_Internal_SF_Helpdesk__c-Demandware User Creation Request</layout>
@@ -14976,6 +15325,9 @@
         <layout>ChannelProgram-Channel Program Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>ChannelProgramLevel-Channel Program Level Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Channel_Compensation__c-Channel Compensation Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -14992,6 +15344,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Contact-SB Organization Contact Page Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ContactPointTypeConsent-Contact Point Type Consent Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Contact_Address_Detail__c-Contact Address Detail Layout</layout>
@@ -15039,6 +15394,9 @@
         <layout>Course__c-Course Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>CyberSourceErrorCodes__mdt-CyberSourceErrorCode Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>DFSS_Permissions__c-SnapShot Permissions Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -15046,6 +15404,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>DFSS_SnapShot_Push__c-SnapShot Push Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DataUseLegalBasis-Data Use Legal Basis Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Dedicated_Internal_Salesforce_Helpdesk__c-Account Merge</layout>
@@ -15057,6 +15418,10 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Dedicated_Internal_Salesforce_Helpdesk__c-New User Request</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Dedicated_Internal_Salesforce_Helpdesk__c-RCLC</layout>
+        <recordType>Dedicated_Internal_Salesforce_Helpdesk__c.RCLC</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Dedicated_Internal_Salesforce_Helpdesk__c-Report Request</layout>
@@ -15132,6 +15497,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Idea-Idea Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>IframeWhiteListUrl-Whitelisted Domain for Visualforce Inline Frames Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Individual-Individual Layout</layout>
@@ -15527,12 +15895,11 @@
         <layout>Offering__c-Offering Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Opportunity-AED Device</layout>
-        <recordType>Opportunity.AED</recordType>
+        <layout>Open_Order_Processing__c-Open Order Processing Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Opportunity-Aquatic Examiner Service</layout>
-        <recordType>Opportunity.Aquatics_Examiner_Service</recordType>
+        <layout>Opportunity-AED Device</layout>
+        <recordType>Opportunity.AED</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Opportunity-Opportunity Layout</layout>
@@ -15541,6 +15908,10 @@
     <layoutAssignments>
         <layout>Opportunity-Order Opportunity Layout</layout>
         <recordType>Opportunity.Order_Opportunity</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-SB Aquatic Examiner Service</layout>
+        <recordType>Opportunity.Aquatics_Examiner_Service</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Opportunity-SB Opportunity Layout</layout>
@@ -15698,7 +16069,7 @@
         <recordType>SFDC_Budget_Entry__c.Accrual</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>SFDC_Budget_Entry__c-Budget Entry Layout</layout>
+        <layout>SFDC_Budget_Entry__c-Standard Layout</layout>
         <recordType>SFDC_Budget_Entry__c.Standard</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -15744,6 +16115,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Solution-Solution Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Student_Bulk_Upload__c-Student Bulk Upload Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Sub_class_Setting__c-Sub-class Setting Layout</layout>
@@ -15818,6 +16192,9 @@
         <layout>WorkBadgeDefinition-Badge Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>ccrz__E_AccountSetting__c-PHSS CC Account Setting Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>ccrz__E_CartItem__c-PHSS CC Cart Item Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -15885,6 +16262,12 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>redwing__ILT_Session__c-PHSS ILT Session Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>redwing__Learning_Assignment__c-PHSS Learning Assignment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>redwing__Training_Plan_Assignment__c-PHSS Training Plan Assignment Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>redwing__Training_Plan__c-PHSS Training Plan Layout</layout>
@@ -16234,6 +16617,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>ConfirmContactInformation</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>ConvertLearnerToInstructor</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -16619,8 +17006,12 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Dedicated_Internal_Salesforce_Helpdesk__c.RCLC</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
         <recordType>Dedicated_Internal_Salesforce_Helpdesk__c.Report_Request</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -17249,6 +17640,10 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>Channel_Compensation__c</tab>
+        <visibility>DefaultOff</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Chat_Supervisor_Console</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
@@ -17361,6 +17756,10 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>Open_Order_Processing__c</tab>
+        <visibility>DefaultOff</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>PHSS_Certification_Provisioning_Clone__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
@@ -17449,6 +17848,10 @@
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>Student_Bulk_Upload__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Survey__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
@@ -17507,6 +17910,10 @@
     <tabVisibilities>
         <tab>ccrz__E_Invoice__c</tab>
         <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>ccrz__E_OrderItem__c</tab>
+        <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>ccrz__E_OrderShipment__c</tab>
@@ -17775,6 +18182,10 @@
     <tabVisibilities>
         <tab>standard-WorkBadgeDefinition</tab>
         <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zConversion__c</tab>
+        <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <userLicense>Salesforce</userLicense>
 </Profile>

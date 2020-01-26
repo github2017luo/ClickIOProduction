@@ -9,6 +9,10 @@
             <access>VIEWER</access>
             <name>Instructor&#39;s Corner</name>
         </network>
+        <network>
+            <access>VIEWER</access>
+            <name>Red Cross Learning Center</name>
+        </network>
         <workspace>
             <access>INFERRED</access>
             <isManagingWorkspace>true</isManagingWorkspace>

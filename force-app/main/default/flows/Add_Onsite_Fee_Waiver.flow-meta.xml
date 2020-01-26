@@ -505,7 +505,7 @@
         <showHeader>true</showHeader>
     </screens>
     <startElementReference>Onsite_Fee_Screen</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>colProductPrice</name>
         <dataType>SObject</dataType>

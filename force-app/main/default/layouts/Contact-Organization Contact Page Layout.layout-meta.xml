@@ -337,24 +337,24 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-            <actionName>Contact.Sales_Case</actionName>
+            <actionName>SendEmail</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>0</sortOrder>
+            <sortOrder>20</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Contact.Service_Case_New</actionName>
+            <actionName>NewTask</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>1</sortOrder>
+            <sortOrder>21</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Contact.Invoicing_Case</actionName>
+            <actionName>NewEvent</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>2</sortOrder>
+            <sortOrder>22</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Edit</actionName>
-            <actionType>StandardButton</actionType>
-            <sortOrder>3</sortOrder>
+            <actionName>Validation_Report</actionName>
+            <actionType>CustomButton</actionType>
+            <sortOrder>23</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>ChangeOwnerOne</actionName>
@@ -365,6 +365,11 @@
             <actionName>Submit</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>5</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>Convert_to_Invdividual_Account</actionName>
+            <actionType>CustomButton</actionType>
+            <sortOrder>24</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>LoginToPortalAsUser</actionName>
@@ -437,19 +442,24 @@
             <sortOrder>19</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>SendEmail</actionName>
+            <actionName>Contact.Sales_Case</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>20</sortOrder>
+            <sortOrder>0</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>NewTask</actionName>
+            <actionName>Contact.Service_Case_New</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>21</sortOrder>
+            <sortOrder>1</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>NewEvent</actionName>
+            <actionName>Contact.Invoicing_Case</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>22</sortOrder>
+            <sortOrder>2</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>Edit</actionName>
+            <actionType>StandardButton</actionType>
+            <sortOrder>3</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <quickActionList>
