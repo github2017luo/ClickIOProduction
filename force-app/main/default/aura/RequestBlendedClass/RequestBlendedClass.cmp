@@ -39,6 +39,7 @@
     <aura:attribute name = "StudentInstructorRatio" type = "Integer"  	default = ""/>
     <aura:attribute name = "Vouchers" 				type = "Integer"  	default = "0"/>
     <aura:attribute name = "instructorHasPrerequisites" type="Boolean" default="true"/>
+    <aura:attribute name = "dupInsError" 			type = "Boolean" 	default = "false"/>
     
     <aura:attribute name = "MaxDate" 				type = "String"  	default = ""/>
 	<aura:attribute name = "SupplementInfo"			type = "String"  	default = ""/>
@@ -352,6 +353,11 @@
                             
                             
                             <div class = "slds-box slds-theme_shade">Instructors</div><br/>
+                            <aura:if isTrue="{!v.dupInsError}" >
+                                <div class="slds-text-heading_Large slds-text-title_bold" style = "color:red;"> 
+                                    You are not allowed to enter the same instructor multiple times. Please check for duplicate instructors below.
+                                </div>
+                            </aura:if>
                             <div class = "slds-size_4-of-8">
                                 <aura:if isTrue="{!and(v.isExtUser == true,v.isPartner == false)}">
                                  <div>

@@ -427,6 +427,18 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CreateTrainingRevenueBatch</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CreateTrainingRevenueBatchTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CreateTrainingRevenueSchedule</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CustomLookUpController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -588,6 +600,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>JSONWrapper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>LearningPlanAssignmentTriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>LearningPlanAssignmentTriggerHandlerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -1380,6 +1400,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>TestupdateTrainingEventFacilityAddress</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TransactionPaymentTriggerHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TransactionPaymentTriggerHelperTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -6926,6 +6954,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Channel_Compensation__c.FI_State_Formula__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Channel_Compensation__c.FI_Zip_Formula__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Channel_Compensation__c.FOCIS_Category__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -6963,6 +7001,16 @@
         <editable>false</editable>
         <field>Channel_Compensation__c.Fulfillment_Item__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Channel_Compensation__c.Has_Matching_State__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Channel_Compensation__c.Has_Matching_Zip__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -8495,9 +8543,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Dedicated_Internal_Salesforce_Helpdesk__c.SF_Case_Number__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -9387,6 +9435,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Integration_Error_Log__c.Fixed_by__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Integration_Error_Log__c.Fulfillment_Current_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -14221,6 +14274,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Training_Events__c.FS_Licensing_Customer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Training_Events__c.Facility_Address_1__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -15300,7 +15358,7 @@
         <layout>CommunityMemberLayout-Community Member Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Contact-Organization Contact Page Layout</layout>
+        <layout>Contact-SB Organization Contact Page Layout No Login</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>ContactPointTypeConsent-Contact Point Type Consent Layout</layout>
@@ -16150,6 +16208,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>ccrz__E_AccountSetting__c-PHSS CC Account Setting Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ccrz__E_TransactionPayment__c-PHSS CC Transaction Payment Layout - READ ONLY</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>items_Quip__x-items_Quip Layout</layout>

@@ -18,9 +18,9 @@
     </assignments>
     <assignments>
         <name>Set_Minor_Item_Values</name>
-        <label>Set Minor Item Values</label>
-        <locationX>718</locationX>
-        <locationY>296</locationY>
+        <label>Set Minor Item Class</label>
+        <locationX>905</locationX>
+        <locationY>634</locationY>
         <assignmentItems>
             <assignToReference>sMinOrderItem.ccrz__ParentOrderItem__c</assignToReference>
             <operator>Assign</operator>
@@ -33,6 +33,57 @@
             <operator>Assign</operator>
             <value>
                 <stringValue>Order Submitted</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>sMinOrderItem.ccrz__UnitOfMeasure__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Class</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_to_Order</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Minor_Item_Values_0</name>
+        <label>Set Minor Item - Student</label>
+        <locationX>508</locationX>
+        <locationY>600</locationY>
+        <assignmentItems>
+            <assignToReference>sMinOrderItem.ccrz__ParentOrderItem__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>vOrderItem</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>sMinOrderItem.ccrz__OrderItemStatus__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Order Submitted</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>sMinOrderItem.ccrz__Quantity__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Number_of_Students_in_Class</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>oMinorItemStudent.ccrz__Quantity__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fRemainingQuantity</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>oMinorItemStudent.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>sMinOrderItem.Id</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -241,14 +292,30 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Create_Training_Events</targetReference>
+            <targetReference>Update_Initial_Item</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Initial_Item</name>
+        <label>Update Initial Item</label>
+        <locationX>1235</locationX>
+        <locationY>34</locationY>
+        <assignmentItems>
+            <assignToReference>sMajOrderItem.ccrz__Quantity__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fRemainingQuantity</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Minor_Student_Item</targetReference>
         </connector>
     </assignments>
     <decisions>
         <name>Add_to_Order</name>
         <label>Add to Order</label>
-        <locationX>822</locationX>
-        <locationY>296</locationY>
+        <locationX>942</locationX>
+        <locationY>320</locationY>
         <defaultConnector>
             <targetReference>Loop_through_Minor_Items</targetReference>
         </defaultConnector>
@@ -308,7 +375,60 @@
             <label>Continue Process</label>
         </rules>
     </decisions>
-    <description>Adds new training event and order items</description>
+    <decisions>
+        <name>Type_of_Minor_Product</name>
+        <label>Type of Minor Product</label>
+        <locationX>611</locationX>
+        <locationY>407</locationY>
+        <defaultConnector>
+            <targetReference>Add_to_Order</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Student</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>sMinOrderItem.ccrz__UnitOfMeasure__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Student</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Minor_Item_Values_0</targetReference>
+            </connector>
+            <label>Is Student</label>
+        </rules>
+        <rules>
+            <name>Is_Class</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>sMinOrderItem.ccrz__UnitOfMeasure__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Class</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>sMinOrderItem.ccrz__UnitOfMeasure__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Instructor</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Minor_Item_Values</targetReference>
+            </connector>
+            <label>Is Class</label>
+        </rules>
+    </decisions>
+    <description>Adds new training event and order items - Added Quantity</description>
+    <formulas>
+        <name>fRemainingQuantity</name>
+        <dataType>Number</dataType>
+        <expression>{!sMajOrderItem.ccrz__Quantity__c} - {!Number_of_Students_in_Class}</expression>
+        <scale>2</scale>
+    </formulas>
     <interviewLabel>Schedule New Training Event {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Schedule New Training Event</label>
     <loops>
@@ -320,7 +440,7 @@
         <collectionReference>colMinOrderItems</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Set_Minor_Item_Values</targetReference>
+            <targetReference>Type_of_Minor_Product</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Create_Minor_Items</targetReference>
@@ -346,8 +466,8 @@
     <recordCreates>
         <name>Create_new_Major_Line_Item</name>
         <label>Create new Major Line Item</label>
-        <locationX>582</locationX>
-        <locationY>254</locationY>
+        <locationX>496</locationX>
+        <locationY>282</locationY>
         <assignRecordIdToReference>vOrderItem</assignRecordIdToReference>
         <connector>
             <targetReference>Loop_through_Minor_Items</targetReference>
@@ -499,7 +619,7 @@
         <inputAssignments>
             <field>ccrz__OriginalQuantity__c</field>
             <value>
-                <elementReference>sMajOrderItem.ccrz__OriginalQuantity__c</elementReference>
+                <elementReference>Number_of_Students_in_Class</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -553,7 +673,7 @@
         <inputAssignments>
             <field>ccrz__Quantity__c</field>
             <value>
-                <numberValue>1.0</numberValue>
+                <elementReference>Number_of_Students_in_Class</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -663,7 +783,7 @@
         <name>Get_Minor_Order_Items</name>
         <label>Get Minor Order Items</label>
         <locationX>583</locationX>
-        <locationY>47</locationY>
+        <locationY>46</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_new_Major_Line_Item</targetReference>
@@ -796,7 +916,6 @@
         <queriedFields>Course_Record_Processed_Date__c</queriedFields>
         <queriedFields>CRS__c</queriedFields>
         <queriedFields>Customer_Notes__c</queriedFields>
-        <queriedFields>DocuSign_Status__c</queriedFields>
         <queriedFields>End_Date__c</queriedFields>
         <queriedFields>End_Time__c</queriedFields>
         <queriedFields>Entry_Method__c</queriedFields>
@@ -856,6 +975,27 @@
         <queriedFields>Training_Event_Age_Detail__c</queriedFields>
         <queriedFields>Name</queriedFields>
     </recordLookups>
+    <recordUpdates>
+        <description>Reduce quantity by new line item</description>
+        <name>Update_Major_Item</name>
+        <label>Update Major Item</label>
+        <locationX>1353</locationX>
+        <locationY>137</locationY>
+        <connector>
+            <targetReference>Create_Training_Events</targetReference>
+        </connector>
+        <inputReference>sMajOrderItem</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Minor_Student_Item</name>
+        <label>Update Minor Student Item</label>
+        <locationX>1457</locationX>
+        <locationY>54</locationY>
+        <connector>
+            <targetReference>Update_Major_Item</targetReference>
+        </connector>
+        <inputReference>oMinorItemStudent</inputReference>
+    </recordUpdates>
     <screens>
         <name>Cancel_Processing</name>
         <label>Cancel Processing</label>
@@ -921,6 +1061,17 @@
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
+            <name>Number_of_Students_in_Class</name>
+            <dataType>Number</dataType>
+            <defaultValue>
+                <numberValue>0.0</numberValue>
+            </defaultValue>
+            <fieldText>Number of Students in Class</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+            <scale>0</scale>
+        </fields>
+        <fields>
             <name>ProcessorCancel</name>
             <dataType>Boolean</dataType>
             <defaultValue>
@@ -956,6 +1107,14 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>oMinorItemStudent</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>ccrz__E_OrderItem__c</objectType>
     </variables>
     <variables>
         <name>outMinOrderItem</name>

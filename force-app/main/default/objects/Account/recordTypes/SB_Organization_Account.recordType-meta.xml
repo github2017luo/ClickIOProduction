@@ -678,7 +678,7 @@
         <picklist>Payment_Terms__c</picklist>
         <values>
             <fullName>NET 30</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
         <values>
             <fullName>NET 45</fullName>

@@ -20,11 +20,22 @@ public class PHSS_VoucherTriggerHandler {
     /************************************************************************************************************************************
     ** Author: Salesforce Services
     ** Description: This method is used to insure there are a minimum number of open (Issued) vouchers for an online class
-    ** It uses a floor and ceiling of 5 and 10 by default (insure that there are at least 10 open vouchers when the total drops below 5)
+    ** It uses a floor and ceiling of 25 and 100 by default (insure that there are at least 100 open vouchers when the total drops below 25)
     ************************************************************************************************************************************/
     public void CheckTotalAvailableOnlineVouchers(list<Voucher__c> newVouchers, List<Voucher__c> oldVouchers, Map<ID,Voucher__c> newVoucherMap , Map<ID,Voucher__c> oldVoucherMap){
         Integer voucherFloor = 25;
-        Integer voucherCeiling = 75;
+        Integer voucherCeiling = 100;
+        Integer customVoucherFloor = voucherFloor;
+        Integer customVoucherCeiling = voucherCeiling;
+
+        if (PHSS_TriggerSettings__c.getOrgDefaults().VoucherTriggerOnlineHighWatermark__c != null) {
+            customVoucherCeiling = (Integer)PHSS_TriggerSettings__c.getOrgDefaults().VoucherTriggerOnlineHighWatermark__c;
+        }
+        if (PHSS_TriggerSettings__c.getOrgDefaults().VoucherTriggerOnlineLowWatermark__c != null) {
+            customVoucherFloor = (Integer)PHSS_TriggerSettings__c.getOrgDefaults().VoucherTriggerOnlineLowWatermark__c;
+        }
+        if (customVoucherCeiling > customVoucherFloor) voucherCeiling = customVoucherCeiling;
+        if (customVoucherFloor < customVoucherCeiling) voucherFloor = customVoucherFloor;
         
         Set<id> onlineClasses = new Set<id>();
         Map<Id, Id> classLearningPlan = new Map<Id,Id>();
@@ -130,14 +141,8 @@ public class PHSS_VoucherTriggerHandler {
                 ILT_Class__r.Skedulo_Parent_Job__r.sked__Job_Status__c
             FROM Voucher__c
             WHERE Id IN :setNewVouchers
-            AND ((ILT_Class__r.Is_Stacked_Class__c = false AND ILT_Class__r.Skedulo_Job_Status__c != 'Cancelled') OR
-                 (ILT_Class__r.Is_Stacked_Class__c = true  AND
-                    ((ILT_Class__r.Is_Master_Class__c = true AND ILT_Class__r.Skedulo_Job_Status__c != 'Cancelled') OR
-                     (ILT_Class__r.Is_Master_Class__c = false AND ILT_Class__r.Skedulo_Parent_Job__c != null AND
-                        ILT_Class__r.Skedulo_Parent_Job__r.sked__Job_Status__c != 'Cancelled'))))]) {
-            system.debug('*** Voucher:'+theVoucher.Id+':'+theVoucher.ILT_Class__c+':'+theVoucher.ILT_Class__r.Skedulo_Job_Status__c
-                    +':'+theVoucher.ILT_Class__r.Is_Master_Class__c+':'+theVoucher.ILT_Class__r.Is_Stacked_Class__c
-                    +':'+theVoucher.ILT_Class__r.Skedulo_Parent_Job__r.sked__Job_Status__c);
+            AND ILT_Class__r.Skedulo_Job_Status__c != 'Cancelled']) {
+
             setUpdatedVoucherClassIds.add(theVoucher.ILT_Class__c);
         }
 

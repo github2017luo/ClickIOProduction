@@ -172,7 +172,7 @@
     </applicationVisibilities>
     <classAccesses>
         <apexClass>AccountAffiliationController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>AccountAffiliationControllerTest</apexClass>
@@ -204,7 +204,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>AddTrainingEventController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>AddTrainingEventControllerTest</apexClass>
@@ -248,7 +248,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BroadcastMessageApexController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BroadcastMessageApexControllerTest</apexClass>
@@ -292,7 +292,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CancelOrderItemController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CancelOrderItemControllerTest</apexClass>
@@ -344,7 +344,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>ClassListInstructorCPSController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>ClassListInstructorCPSControllerTest</apexClass>
@@ -352,7 +352,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CommunitiesLandingController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CommunitiesLandingControllerTest</apexClass>
@@ -360,7 +360,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CommunitiesLoginController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CommunitiesLoginControllerTest</apexClass>
@@ -368,7 +368,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CommunitiesSelfRegConfirmController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CommunitiesSelfRegConfirmControllerTest</apexClass>
@@ -376,7 +376,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CommunitiesSelfRegController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CommunitiesSelfRegControllerTest</apexClass>
@@ -384,7 +384,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CommunitypageInstructors</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CommunitypageInstructorstest</apexClass>
@@ -416,7 +416,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>ConvertLearnerToInstructorController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>ConvertLearnerToInstructorControllerTest</apexClass>
@@ -427,8 +427,20 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>CustomLookUpController</apexClass>
+        <apexClass>CreateTrainingRevenueBatch</apexClass>
         <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CreateTrainingRevenueBatchTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CreateTrainingRevenueSchedule</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CustomLookUpController</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CustomLookUpControllerTest</apexClass>
@@ -436,7 +448,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CustomerUserDetailController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CustomerUserDetailControllerTest</apexClass>
@@ -512,7 +524,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>GeneratePDFHandlerCPS</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>GeneratePDFHandlerCPStest</apexClass>
@@ -520,7 +532,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>GeneratePDFHandlerInstCert</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>GeneratePDFHandlerInstCerttest</apexClass>
@@ -528,7 +540,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>GeneratePDFHandlerStudents</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>GeneratePDFHandlerStudentstest</apexClass>
@@ -544,7 +556,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>GetUserDetails</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>GetUserDetailsTest</apexClass>
@@ -564,11 +576,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>ILTClassRosterPDFController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>ILTInstructorCommunity</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>ILTInstructorCommunitytest</apexClass>
@@ -576,7 +588,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>ILTRosterActions</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>ILTRosterTriggerHandler</apexClass>
@@ -591,8 +603,16 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>LightningForgotPasswordController</apexClass>
+        <apexClass>LearningPlanAssignmentTriggerHandler</apexClass>
         <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>LearningPlanAssignmentTriggerHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>LightningForgotPasswordController</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>LightningForgotPasswordControllerTest</apexClass>
@@ -600,7 +620,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>LightningLoginFormController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>LightningLoginFormControllerTest</apexClass>
@@ -608,7 +628,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>LightningSelfRegisterController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>LightningSelfRegisterControllerTest</apexClass>
@@ -616,7 +636,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>LightningSetPasswordController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>LightningSetPasswordController_Test</apexClass>
@@ -640,7 +660,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>NewPriceListItemController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>OpportunityLineItemManagement</apexClass>
@@ -668,7 +688,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PHSSProgramMaterialsApexController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PHSSProgramMaterialsApexController_TEST</apexClass>
@@ -696,7 +716,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_CancelEnrollmentController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_CancelEnrollmentControllerTest</apexClass>
@@ -704,7 +724,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_CancelEnrollmentRestService</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_CancelEnrollmentRestServiceTest</apexClass>
@@ -712,7 +732,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_CaseCommentsController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_CaseCommentsController_TEST</apexClass>
@@ -724,7 +744,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_CaseHandler</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_CaseHandler_TEST</apexClass>
@@ -744,11 +764,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_ClassListInstructorViewController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_ContentVersionHandler</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_ContentVersionHandler_TEST</apexClass>
@@ -756,7 +776,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_CpsController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_CpsControllerTest</apexClass>
@@ -764,7 +784,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_CpsWrapper</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_CreateOrderRestService</apexClass>
@@ -776,7 +796,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_EmailNotification</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_EmailNotification_TEST</apexClass>
@@ -832,7 +852,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_GeneratePDFController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_InstructorCertificationCTRL_Test</apexClass>
@@ -840,7 +860,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_InstructorCertificationController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_LearningTriggerHandler</apexClass>
@@ -884,7 +904,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_ProgramListController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_ProgramListController_TEST</apexClass>
@@ -892,7 +912,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_PublishCertificates</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_PublishCertificatesBatch</apexClass>
@@ -924,7 +944,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_RosterListController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_TestUtility</apexClass>
@@ -964,7 +984,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_VideoPlayerTwoApexController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_VideoPlayerTwoApexController_TEST</apexClass>
@@ -972,7 +992,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_VoucherListController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_VoucherListControllerTest</apexClass>
@@ -988,7 +1008,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_WalkInStudentController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_WalkInStudentController_Test</apexClass>
@@ -1024,7 +1044,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_myCertifications</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_skedJobAllocationtoILTInstructor</apexClass>
@@ -1036,11 +1056,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_skedJobtoILTClass</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_skedLocationtoILTlocation</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_skedResourceLocation_Test</apexClass>
@@ -1096,7 +1116,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>RCClassHeaderCmpCtrl</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>RCClassHeaderCmpCtrlTest</apexClass>
@@ -1108,7 +1128,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>RCILTClassRosterListCmpCtrl</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>RCILTClassRosterListCmpCtrlTest</apexClass>
@@ -1116,7 +1136,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>RCILTClassroomAndLocationCmpCtrl</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>RCILTClassroomAndLocationCmpCtrlTest</apexClass>
@@ -1124,7 +1144,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>RCILTViewerCmpCtrl</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>RCILTViewerCmpCtrlTest</apexClass>
@@ -1132,7 +1152,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>RCInstructorClassListCmpCtrl</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>RCInstructorClassListCmpCtrlTest</apexClass>
@@ -1140,7 +1160,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>RCOnlineCompletionCtrl</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>RCOnlineCompletionCtrlTest</apexClass>
@@ -1164,7 +1184,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SDRelatedListDocumentsController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>SDRelatedListDocumentsTest</apexClass>
@@ -1236,7 +1256,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>StudentListingController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>StudentListingControllertest</apexClass>
@@ -1244,7 +1264,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SubmitCaseController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>SubmitCaseControllertest</apexClass>
@@ -1252,7 +1272,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SubmitOrderCreditController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>SubmitOrderCreditControllerTest</apexClass>
@@ -1383,6 +1403,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>TransactionPaymentTriggerHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TransactionPaymentTriggerHelperTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>TrggrUtility</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -1412,7 +1440,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>UpdateContactRecord</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>UpdateContactRecordTest</apexClass>
@@ -1488,7 +1516,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>myCertifications</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>myCertificationstest</apexClass>
@@ -1500,7 +1528,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_AccountUtil</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_AccountUtilTest</apexClass>
@@ -1508,7 +1536,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_AddressBookUtil</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_AddressBookUtilTest</apexClass>
@@ -1524,15 +1552,15 @@
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_BillToShipToAddressSelectorClone</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_BillToShipToAddressSelectorCtrl</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_CartController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_CartControllerTest</apexClass>
@@ -1540,7 +1568,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_CartItemUtil</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_CartItemUtilTest</apexClass>
@@ -1556,11 +1584,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_ClassCartUtil</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_CommunityClassSearchController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_CommunityClassSearchCtrlTest</apexClass>
@@ -1568,11 +1596,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_Context</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_CyberSourceCCProcessorController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_CyberSourceCCProcessorPostback</apexClass>
@@ -1580,7 +1608,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_CyberSourceCaptureUtil</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_CyberSourceCaptureUtilTest</apexClass>
@@ -1588,7 +1616,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_CyberSourceCreditUtil</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_CyberSourceCreditUtilTest</apexClass>
@@ -1596,7 +1624,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_CyberSourceRestApiUtil</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_CyberSourceRestApiUtilTest</apexClass>
@@ -1604,7 +1632,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_CyberSourceRestRequest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_CyberSourceRestRequestMock</apexClass>
@@ -1616,7 +1644,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_CyberSourceUtil</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_CyberSourceUtilTest</apexClass>
@@ -1624,11 +1652,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_Exception</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_FulfillmentUtil</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_FulfillmentUtilTest</apexClass>
@@ -1636,11 +1664,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_ILTrainingClassUtil</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_OnAccountBalanceController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_OnAccountBalanceControllerTest</apexClass>
@@ -1664,7 +1692,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_PriceOverrideModalController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_PriceOverrideModalControllerTest</apexClass>
@@ -1672,11 +1700,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_ProductListCmpControllerClone</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_ProductListComponentController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_ProductListComponentCtrlTest</apexClass>
@@ -1684,7 +1712,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_ProductUtil</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_ProductUtilTest</apexClass>
@@ -1692,7 +1720,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_PurchaseOrderController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_PurchaseOrderControllerTest</apexClass>
@@ -1700,7 +1728,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_StoredPaymentUtil</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_StoredPaymentUtilTest</apexClass>
@@ -1712,7 +1740,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_TransactionPaymentUtil</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_TransactionPaymentUtilTest</apexClass>
@@ -1720,7 +1748,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_VoucherUtil</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_VoucherUtilTest</apexClass>
@@ -1736,7 +1764,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_hk_Order</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>phss_cc_hk_OrderTest</apexClass>
@@ -6926,6 +6954,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Channel_Compensation__c.FI_State_Formula__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Channel_Compensation__c.FI_Zip_Formula__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Channel_Compensation__c.FOCIS_Category__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -6962,6 +7000,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Channel_Compensation__c.Fulfillment_Item__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Channel_Compensation__c.Has_Matching_State__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Channel_Compensation__c.Has_Matching_Zip__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -7502,7 +7550,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.User__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -8495,9 +8543,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Dedicated_Internal_Salesforce_Helpdesk__c.SF_Case_Number__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -9388,6 +9436,11 @@
         <editable>true</editable>
         <field>Integration_Error_Log__c.Fixed_by__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Integration_Error_Log__c.Fulfillment_Current_Status__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -14221,6 +14274,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Training_Events__c.FS_Licensing_Customer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Training_Events__c.Facility_Address_1__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -16236,6 +16294,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>ccrz__E_StoredPayment__c-PHSS CC Stored Payment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ccrz__E_TransactionPayment__c-PHSS CC Transaction Payment Layout - READ ONLY</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>items_Quip__x-items_Quip Layout</layout>

@@ -14,6 +14,7 @@
             <value>
                 <fullName>General Water Safety</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
                 <label>General Water Safety</label>
             </value>
             <value>
@@ -45,6 +46,11 @@
                 <fullName>Sun Safety</fullName>
                 <default>false</default>
                 <label>Sun Safety</label>
+            </value>
+            <value>
+                <fullName>Water Safety Today</fullName>
+                <default>false</default>
+                <label>Water Safety Today</label>
             </value>
         </valueSetDefinition>
     </valueSet>

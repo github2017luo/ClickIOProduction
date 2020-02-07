@@ -439,6 +439,14 @@
         <formFactor>Large</formFactor>
         <pageOrSobjectType>ccrz__E_Order__c</pageOrSobjectType>
         <type>Flexipage</type>
+        <profile>SB ARC NAT Team</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>CC_Order_Record_Page2</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>ccrz__E_Order__c</pageOrSobjectType>
+        <type>Flexipage</type>
         <profile>ARC Finance Credit Card Team</profile>
     </profileActionOverrides>
     <profileActionOverrides>

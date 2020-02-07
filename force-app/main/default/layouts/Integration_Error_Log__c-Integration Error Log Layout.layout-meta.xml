@@ -27,6 +27,10 @@
                 <behavior>Edit</behavior>
                 <field>Parent_Integration_Error_Log__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Fulfillment_Current_Status__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

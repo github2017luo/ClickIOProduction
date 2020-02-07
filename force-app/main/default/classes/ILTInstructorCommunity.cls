@@ -47,7 +47,7 @@ public without sharing class ILTInstructorCommunity{
     Public static List<account> accList;
     Public Static List<contact> conList;
     Public static List<User> lstUser;
-    Public static List<id> uidlist; 
+    //Public static List<id> uidlist;
     Public static list<redwing__Training_Plan_Section__c> trpsclist;
     Public Static list<redwing__Training_Plan_Section_Assignment__c> lpsAssignmentList;
     Public Static list<redwing__Training_Plan_Section_Assignment__c> lpssecAsslist;
@@ -1150,15 +1150,20 @@ public without sharing class ILTInstructorCommunity{
 
             try {
                 if(lstUser.size() > 0 && errmsgvc!=true ){
-                    uidlist = new list<id>();
-                    System.debug('PROFILE id'+lstUser);
+                    //uidlist = new list<id>();
+                    //System.debug('PROFILE id'+lstUser);
                     insert lstUser;
                     system.debug('inserted user'+lstUser);
+
+                    // Hot Fix - avoid assigning permission sets to user here, this is handled by Appinium trigger
+                    // on profiles which is configured in LearnTrac, Start Here, LMS Permission Rules, Assign Learner Profile Addtl Perms
+                    /*
                     for(user u:lstuser)
                     {
                         uidlist.add(u.id);
                     }
                     assignUserPermission(uidlist);
+                    */
                 }
             }
             catch(Exception e){
@@ -1754,13 +1759,17 @@ public without sharing class ILTInstructorCommunity{
 
         return newUserName;
     }
-    
+
+    // Hot Fix - avoid assigning permission sets to user here, this is handled by Appinium trigger
+    // on profiles which is configured in LearnTrac, Start Here, LMS Permission Rules, Assign Learner Profile Addtl Perms
+    // This method (assignUserPermission) now deprecated - SJC - 01-25-2020
+    /*
     // Assign Permission sets to users
     @future
     public static void assignUserPermission(List<id> lstUsere)
     {  
         try{
-            /*********Get map of permission sets to assign to user*********/
+            //*********Get map of permission sets to assign to user*********
             Map<String,id> permissionSetMap = new Map<String,id>();
             permissionSetAssList = new list<PermissionSetAssignment>();
             set<string> myString = new Set<String>{'LMS_External_User', 'LMS_Player_User', 'Player_User', 'ViewTrac_Lightning_UI_User'};
@@ -1806,9 +1815,7 @@ public without sharing class ILTInstructorCommunity{
             throw new AuraHandledException(e.getMessage());
         }
     }
-    
-    
-    
+    */
     
     // Creating Account and Contact if student does not exist or return if its already existing
     public Static Contact fetchContact(JSONWrapper.Students student, Boolean ret){
