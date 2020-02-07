@@ -188,9 +188,6 @@
         <label>Add Fee to Order Item</label>
         <locationX>623</locationX>
         <locationY>217</locationY>
-        <connector>
-            <targetReference>Set_Order_Fulfillment</targetReference>
-        </connector>
         <inputAssignments>
             <field>ILT_Class__c</field>
             <value>

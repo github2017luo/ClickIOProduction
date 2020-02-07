@@ -3,9 +3,9 @@
     <fullName>State_Formula__c</fullName>
     <description>Set state value for Training Revenue</description>
     <externalId>false</externalId>
-    <formula>IF(  AND(!ISNULL(ILT_Class__c), Order__r.ccrz__Storefront__c &lt;&gt; &quot;CREStore&quot;), 
+    <formula>IF(  AND(!ISBLANK(ILT_Class__c), Order__r.ccrz__Storefront__c &lt;&gt; &quot;CREStore&quot;), 
  IF(
-    AND(!ISNULL(ILT_Class__r.Skedulo_Job_Id__c), !ISNULL( ILT_Class__r.Location_State__c )),
+    AND(!ISBLANK(ILT_Class__r.Skedulo_Job_Id__c), !ISBLANK( ILT_Class__r.Location_State__c )),
     ILT_Class__r.Location_State__c, Order__r.ccrz__Account__r.BillingState ) ,Order__r.ccrz__Account__r.BillingState)</formula>
     <label>State Formula</label>
     <required>false</required>

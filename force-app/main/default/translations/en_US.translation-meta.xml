@@ -201,6 +201,10 @@
         <name>Direct_Assignment_To_Bucket_Account_Error</name>
     </customLabels>
     <customLabels>
+        <label><!-- Error_Message_For_CRE_RBC --></label>
+        <name>Error_Message_For_CRE_RBC</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Global Ghost Contacts --></label>
         <name>Global_Ghost_Contacts</name>
     </customLabels>
@@ -447,6 +451,10 @@
     <customLabels>
         <label><!-- SDocsDoclistId --></label>
         <name>SDocsDoclistId</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SDocsDoclistIdForTP --></label>
+        <name>SDocsDoclistIdForTP</name>
     </customLabels>
     <customLabels>
         <label><!-- SDocsRunAsUserName --></label>
@@ -712,7 +720,7 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows>
-            <fullName>Schedule_New_Training_Event-1</fullName>
+            <fullName>Schedule_New_Training_Event-3</fullName>
             <screens>
                 <fields>
                     <name>EventCancelled</name>
@@ -732,6 +740,9 @@
                 <name>Success_Screen</name>
             </screens>
             <screens>
+                <fields>
+                    <name>Number_of_Students_in_Class</name>
+                </fields>
                 <fields>
                     <name>ProcessorCancel</name>
                 </fields>
@@ -781,7 +792,7 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows>
-            <fullName>Disable_Price_Group_Accounts-1</fullName>
+            <fullName>Disable_Price_Group_Accounts-2</fullName>
         </flows>
         <fullName>Disable_Price_Group_Accounts</fullName>
     </flowDefinitions>
@@ -793,7 +804,7 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows>
-            <fullName>Add_Student_Name_for_NAT-1</fullName>
+            <fullName>Add_Student_Name_for_NAT-2</fullName>
             <screens>
                 <fields>
                     <name>ErrorMessage</name>
@@ -1668,7 +1679,7 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows>
-            <fullName>Full_Service_Minimum_Quantity-3</fullName>
+            <fullName>Full_Service_Minimum_Quantity-4</fullName>
         </flows>
         <fullName>Full_Service_Minimum_Quantity</fullName>
     </flowDefinitions>
@@ -3347,7 +3358,7 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows>
-            <fullName>Transaction_Payment_Controller-8</fullName>
+            <fullName>Transaction_Payment_Controller-9</fullName>
         </flows>
         <fullName>Transaction_Payment_Controller</fullName>
     </flowDefinitions>
@@ -3667,7 +3678,7 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows>
-            <fullName>Add_Rescheduling_Fee_to_Order-3</fullName>
+            <fullName>Add_Rescheduling_Fee_to_Order-4</fullName>
             <screens>
                 <fields>
                     <name>PricingError</name>
@@ -3787,7 +3798,32 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows>
-            <fullName>Opportunity_Controller-5</fullName>
+            <fullName>Process_Open_Orders_file_MANUAL-1</fullName>
+            <screens>
+                <fields>
+                    <name>Validation</name>
+                </fields>
+                <name>Checker</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>Check_Prior_to_Execution</name>
+                </fields>
+                <fields>
+                    <name>Number_to_Process</name>
+                    <validationRule/>
+                </fields>
+                <fields>
+                    <name>mes</name>
+                </fields>
+                <name>Process_Screen</name>
+            </screens>
+        </flows>
+        <fullName>Process_Open_Orders_file_MANUAL</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <fullName>Opportunity_Controller-6</fullName>
         </flows>
         <fullName>Opportunity_Controller</fullName>
     </flowDefinitions>

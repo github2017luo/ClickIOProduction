@@ -305,10 +305,6 @@
     <picklistValues>
         <picklist>Topic__c</picklist>
         <values>
-            <fullName>General Water Safety</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Hands-only CPR %28course code%3A HSSCPR701 r%2E2018</fullName>
             <default>false</default>
         </values>
@@ -330,6 +326,10 @@
         </values>
         <values>
             <fullName>Sun Safety</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Water Safety Today</fullName>
             <default>false</default>
         </values>
     </picklistValues>

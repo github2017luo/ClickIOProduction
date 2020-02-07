@@ -144,9 +144,13 @@ global without sharing class LightningSelfRegisterController {
                 List<Id> userList = new List<Id>();
                 userList.add(userId);
 
+                // Hot Fix - avoid assigning permission sets to user here, this is handled by Appinium trigger
+                // on profiles which is configured in LearnTrac, Start Here, LMS Permission Rules, Assign Learner Profile Addtl Perms
+                /*
                 if (!Test.isRunningTest()) {
                     ILTInstructorCommunity.assignUserPermission(userList);
                 }
+                */
 
                 // create a fake userId for test.
                 if (Test.isRunningTest()) {

@@ -427,6 +427,18 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CreateTrainingRevenueBatch</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CreateTrainingRevenueBatchTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CreateTrainingRevenueSchedule</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CustomLookUpController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -588,6 +600,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>JSONWrapper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>LearningPlanAssignmentTriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>LearningPlanAssignmentTriggerHandlerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -1380,6 +1400,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>TestupdateTrainingEventFacilityAddress</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TransactionPaymentTriggerHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TransactionPaymentTriggerHelperTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -6925,6 +6953,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Channel_Compensation__c.FI_State_Formula__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Channel_Compensation__c.FI_Zip_Formula__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Channel_Compensation__c.FOCIS_Category__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -6962,6 +7000,16 @@
         <editable>false</editable>
         <field>Channel_Compensation__c.Fulfillment_Item__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Channel_Compensation__c.Has_Matching_State__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Channel_Compensation__c.Has_Matching_Zip__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -8494,9 +8542,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Dedicated_Internal_Salesforce_Helpdesk__c.SF_Case_Number__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -9386,6 +9434,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Integration_Error_Log__c.Fixed_by__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Integration_Error_Log__c.Fulfillment_Current_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -14216,6 +14269,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Training_Events__c.Est_Training_Event_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Training_Events__c.FS_Licensing_Customer__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

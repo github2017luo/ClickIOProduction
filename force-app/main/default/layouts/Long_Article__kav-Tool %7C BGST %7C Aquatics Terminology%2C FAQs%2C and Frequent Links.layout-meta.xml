@@ -64,7 +64,7 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>LG Progam: General FAQs</label>
+        <label>LG Program: General FAQs</label>
         <layoutColumns>
             <layoutItems>
                 <field>Section_6__c</field>
@@ -112,7 +112,7 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>LifeGuard Manager (Councilman Hunsaker) FAQs</label>
+        <label>Lifeguard Manager (Councilman Hunsaker) FAQs</label>
         <layoutColumns>
             <layoutItems>
                 <field>Section_10__c</field>

@@ -555,18 +555,64 @@
             console.log("extUser+++"+extUser);
             console.log("isParnterUser+++"+isParnterUser);
             
-            if(extUser === true && isParnterUser === false)
+            var addInstr = [];
+            
+            if(typeof component.get("v.AdditionalInstructors") !== 'undefined' && component.get("v.AdditionalInstructors") != null)
             {
+                for(var i=0;i<component.get("v.AdditionalInstructors").length;i++)
+                {
+                    if(component.get("v.AdditionalInstructors")[i] != null)
+                    {
+                        addInstr.push(component.get("v.AdditionalInstructors")[i].Id) ;
+                    }
+                }
+            }
+            console.log(addInstr.length);
+            
+            addInstr.push(intUsrId);
+            
+            console.log(addInstr.length);
+            
+            helper.removeDuplicate(component,addInstr);
+            
+            var instBool = component.get("v.dupInsError");
+            
+            if(extUser === true && isParnterUser === false)
+            {   
                 //if(allValid && orgBool && crsBool)
-                if(allValid && orgBool)
+                if(allValid && orgBool && !instBool)
                 {
                     helper.stepOne(component, event);
                 }
+                else
+                {
+                    var toastEvent = $A.get("e.force:showToast");
+                    toastEvent.setParams({
+                        "title"		: "Error!",
+                        "mode"		: "pester",
+                        "duration"	: "10000",
+                        "type"		: "error",
+                        "message"	: $A.get("$Label.c.Error_Message_For_CRE_RBC")
+                    });
+                    toastEvent.fire();
+                }
             } else {
                 //if(allValid && orgBool && crsBool && usrBool)
-                if(allValid && orgBool && usrBool)
+                if(allValid && orgBool && usrBool && !instBool)
                 {
                     helper.stepOne(component, event);
+                }
+                else
+                {
+                    var toastEvent = $A.get("e.force:showToast");
+                    toastEvent.setParams({
+                        "title"		: "Error!",
+                        "mode"		: "pester",
+                        "duration"	: "10000",
+                        "type"		: "error",
+                        "message"	: $A.get("$Label.c.Error_Message_For_CRE_RBC")
+                    });
+                    toastEvent.fire();
                 }
             }
             // Show/hide credit card info

@@ -114,7 +114,7 @@ public without sharing class PHSS_skedJobtoILTClass {
         }
         
         if(!mapCanceledJobs.isEmpty()) {   
-            List<sked__Job__c> lstCanceledJobs = MapCanceledJobs.values();  
+            List<sked__Job__c> lstCanceledJobs = mapCanceledJobs.values();
             for (sked__Job__c theJob : addDependentStackedClasses(lstCanceledJobs, true)) {
                 if (!mapCanceledJobs.containsKey(theJob.Id)) {
                     mapCanceledJobs.put(theJob.Id, theJob);
@@ -1262,29 +1262,19 @@ public without sharing class PHSS_skedJobtoILTClass {
                 lv.redwing__Type__c = 'Published';
                 lv.redwing__Version_selection_behavior__c = null;
 
-                // This code has no function - insertedclassId not even populated at this point
-                /*
-                if(insertedclassId.containskey(l.Id)){
-                    lv.redwing__ILT__c = insertedclassId.get(l.Id);
-                }
-                else {
-                    //TODO: Handle custom record types here
-                }
-                */
-                
                 lVersions.put(l.Id,lv);
             }
-            
+
             if(lVersions.size() > 0){
                 insert lVersions.values();
             }
-            
+
             //Update header information
             for(redwing__Learning__c l : lstLearning){
                 l.redwing__Current_Published_Version__c = lVersions.get(l.Id).Id;
                 l.redwing__Published__c = true;
             }
-            
+
             if(lstLearning.size() > 0){
                 update lstLearning;
             }
@@ -1371,6 +1361,25 @@ public without sharing class PHSS_skedJobtoILTClass {
                         }
                     }
                 }
+            }
+        }
+
+        // Update Learning Versions now that ILT Class has been inserted/upserted
+        if (lstLearning.size() > 0 && lVersions.size() > 0) {
+            for (redwing__Learning__c l : lstLearning) {
+                redwing__Learning_Version__c lv = new redwing__Learning_Version__c();
+                if (lVersions.containsKey(l.Id)) {
+                    lv = lVersions.get(l.Id);
+
+                    // Associate to ILT Class with same external Id
+                    lv.redwing__ILT__r = new redwing__ILT_Class__c(Skedulo_Job_Id_External__c = l.Skedulo_Job_Id_External__c);
+
+                    lVersions.put(l.Id, lv);
+                }
+            }
+
+            if (lVersions.size() > 0) {
+                update lVersions.values();
             }
         }
 
@@ -1489,7 +1498,9 @@ public without sharing class PHSS_skedJobtoILTClass {
         // *** US1562 - Change status of outstanding rosters (status = 'Cancelled')
 
         // Generate List of both claimed and unused vouchers for this class
-        String claimedStatuses = 'Reserved, Claimed';
+        // DE2620 - SJC - Added Pending Cancellation to list of statuses, as for some reason another process is setting these
+        // and without this filter added a Pending Cancellation would be incorrectly reset to Void
+        String claimedStatuses = 'Reserved, Claimed, Pending Cancellation';
         //List<String> ClaimedStatuses = System.label.ClaimedVoucherTypes.split(';');
 
         List<Voucher__c> lstVouchersToUpdate = new List<Voucher__c>();

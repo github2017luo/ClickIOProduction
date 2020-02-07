@@ -72,6 +72,7 @@
     <aura:attribute name = "crsError" 				type = "Boolean" 	default = "false"/>
     <aura:attribute name = "usrError" 				type = "Boolean" 	default = "false"/>
     <aura:attribute name = "prereqError" 			type = "Boolean" 	default = "false"/>
+    <aura:attribute name = "dupInsError" 			type = "Boolean" 	default = "false"/>
     
     <aura:attribute name = "isSuccess" 				type = "Boolean" 	default = "false"/>
     <aura:attribute name = "isSubmitted" 			type = "Boolean" 	default = "false"/>
@@ -317,6 +318,12 @@
                             </div>
                             
                             <div class = "slds-box slds-theme_shade">Instructors</div><br/>
+                            
+                            <aura:if isTrue="{!v.dupInsError}" >
+                                <div class="slds-text-heading_Large slds-text-title_bold" style = "color:red;"> 
+                                    You are not allowed to enter the same instructor multiple times. Please check for duplicate instructors below.
+                                </div>
+                            </aura:if>
                             <div class = "slds-size_3-of-8">
                                 
                                 <aura:if isTrue="{!and(v.isExtUser == true,v.isPartner == false)}">
@@ -941,6 +948,7 @@
                         <div class="slds-col">
                             <button class="slds-button slds-button_neutral customButtonRed" onclick="{!c.cancel}">Cancel</button>
                         </div>
+                        <br/>
                         
                         <div class="slds-col slds-size_2-of-3 " >
                             <lightning:progressIndicator currentStep="{!v.stepNumber}" type="base"

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Escalation Follow Up</name>
+    <queueMembers>
+        <publicGroups>
+            <publicGroup>TSC_Management</publicGroup>
+        </publicGroups>
+        <users>
+            <user>amber.chick@redcross.org</user>
+            <user>debra.baker@redcross.org</user>
+            <user>gloria.price@redcross.org</user>
+            <user>joy.zukauskas@redcross.org</user>
+            <user>lisa.buzzelli@redcross.org</user>
+            <user>loretta.stahl@redcross.org</user>
+            <user>marianne.shrum@redcross.org</user>
+            <user>melinda.hair@redcross.org</user>
+            <user>sharon.reynolds@redcross.org</user>
+            <user>tracy.quinn@redcross.org</user>
+            <user>yolanda.jones@redcross.org</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>
