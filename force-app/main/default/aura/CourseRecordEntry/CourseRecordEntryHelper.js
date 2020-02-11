@@ -588,4 +588,5 @@
             component.set("v.dupInsError", false);
         }
      }
+
 })
