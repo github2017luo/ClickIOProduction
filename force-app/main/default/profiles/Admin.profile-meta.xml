@@ -183,6 +183,14 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>AccountContactRelationTriggerHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AccountContactRelationTriggerHandlerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>AccountPricingAgreementCleanUpBatch</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -16268,7 +16276,7 @@
         <layout>items_Quip__x-items_Quip Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>redwing__Achievement_Assignment__c-PHSS Achievement Assignment Layout</layout>
+        <layout>redwing__Achievement_Assignment__c-PHSS Achievement Assignment Layout - Admin</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>redwing__Achievement__c-PHSS Achievement Layout</layout>

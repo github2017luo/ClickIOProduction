@@ -179,6 +179,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>AccountContactRelationTriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AccountContactRelationTriggerHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>AccountPricingAgreementCleanUpBatch</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -15399,10 +15407,6 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Dedicated_Internal_Salesforce_Helpdesk__c-Account Merge</layout>
-        <recordType>Dedicated_Internal_Salesforce_Helpdesk__c.RCLC</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Dedicated_Internal_Salesforce_Helpdesk__c-Account Merge</layout>
         <recordType>Dedicated_Internal_Salesforce_Helpdesk__c.Report_Request</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -15416,6 +15420,10 @@
     <layoutAssignments>
         <layout>Dedicated_Internal_Salesforce_Helpdesk__c-Account Merge</layout>
         <recordType>Dedicated_Internal_Salesforce_Helpdesk__c.User_Deactivation</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Dedicated_Internal_Salesforce_Helpdesk__c-RCLC</layout>
+        <recordType>Dedicated_Internal_Salesforce_Helpdesk__c.RCLC</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Delivery_Failure_Response_Log__c-Delivery Failure Response Log Layout</layout>

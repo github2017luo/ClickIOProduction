@@ -578,7 +578,7 @@
             var instBool = component.get("v.dupInsError");
             
             if(extUser === true && isParnterUser === false)
-            {   
+            {
                 //if(allValid && orgBool && crsBool)
                 if(allValid && orgBool && !instBool)
                 {

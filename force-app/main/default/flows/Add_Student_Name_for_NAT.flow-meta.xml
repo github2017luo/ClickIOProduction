@@ -155,7 +155,7 @@
         <label>Get Fulfillment Item</label>
         <locationX>167</locationX>
         <locationY>60</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Found_Order</targetReference>
         </connector>
@@ -199,7 +199,7 @@
         <label>Get Order Item</label>
         <locationX>93</locationX>
         <locationY>218</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Fulfillment_Item</targetReference>
         </connector>

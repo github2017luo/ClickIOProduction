@@ -475,7 +475,7 @@ Send an email to each Learner with a self-registration Voucher URL. Include the 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>PHSS IC Community URL Domain</shortDescription>
-        <value>https://www.instructorscorner.org</value>
+        <value>https://www.redcrosslearningcenter.org</value>
     </labels>
     <labels>
         <fullName>PHSS_InMaintenance_Message_Part_1</fullName>

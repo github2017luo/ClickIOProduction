@@ -183,6 +183,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>AccountContactRelationTriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AccountContactRelationTriggerHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>AccountPricingAgreementCleanUpBatch</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -8522,9 +8530,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Dedicated_Internal_Salesforce_Helpdesk__c.RCLC_Issue__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -15448,11 +15456,11 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Dedicated_Internal_Salesforce_Helpdesk__c-New User Request</layout>
-        <recordType>Dedicated_Internal_Salesforce_Helpdesk__c.RCLC</recordType>
+        <recordType>Dedicated_Internal_Salesforce_Helpdesk__c.User_Creation_Request</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Dedicated_Internal_Salesforce_Helpdesk__c-New User Request</layout>
-        <recordType>Dedicated_Internal_Salesforce_Helpdesk__c.User_Creation_Request</recordType>
+        <layout>Dedicated_Internal_Salesforce_Helpdesk__c-RCLC</layout>
+        <recordType>Dedicated_Internal_Salesforce_Helpdesk__c.RCLC</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Dedicated_Internal_Salesforce_Helpdesk__c-Report Request</layout>

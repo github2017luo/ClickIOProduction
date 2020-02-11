@@ -720,7 +720,7 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows>
-            <fullName>Schedule_New_Training_Event-3</fullName>
+            <fullName>Schedule_New_Training_Event-4</fullName>
             <screens>
                 <fields>
                     <name>EventCancelled</name>
@@ -742,6 +742,7 @@
             <screens>
                 <fields>
                     <name>Number_of_Students_in_Class</name>
+                    <validationRule/>
                 </fields>
                 <fields>
                     <name>ProcessorCancel</name>
@@ -804,7 +805,7 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows>
-            <fullName>Add_Student_Name_for_NAT-2</fullName>
+            <fullName>Add_Student_Name_for_NAT-4</fullName>
             <screens>
                 <fields>
                     <name>ErrorMessage</name>
@@ -1628,7 +1629,7 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows>
-            <fullName>Order_Header_Status_Update-2</fullName>
+            <fullName>Order_Header_Status_Update-4</fullName>
         </flows>
         <fullName>Order_Header_Status_Update</fullName>
     </flowDefinitions>
