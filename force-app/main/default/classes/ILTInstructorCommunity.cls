@@ -2614,6 +2614,8 @@ public without sharing class ILTInstructorCommunity{
             list<ccrz__E_Cart__c> lstCarts = new list<ccrz__E_Cart__c>();
             for(ccrz__E_Cart__c ccart : [select id,Opportunity__c from ccrz__E_Cart__c where Opportunity__c=:opptyId]){
                 ccart.Opportunity__c = o.id;
+                // DE2530 - Insure that account Id (as well as opportunity Id) is updated in cart when account is changed
+                ccart.ccrz__Account__c = o.AccountId;
                 lstCarts.add(ccart);
             }
             if(!lstCarts.isEmpty()){
@@ -2624,7 +2626,18 @@ public without sharing class ILTInstructorCommunity{
         }
         return o.Id;
     }
-    
+
+
+    @AuraEnabled
+    public static void deleteOpportunity(String opptyId) {
+
+        if(opptyId !=null && opptyId !=''){
+            delete [select Id from ccrz__E_Cart__c where Opportunity__c=:opptyId];
+            delete [select id from opportunity where id =:opptyId];
+        }
+        return;
+    }
+
     @AuraEnabled
     public static ccrz__E_Product__c getLearningPlanId(String ccProdId) {
         

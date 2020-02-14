@@ -3,16 +3,16 @@
     <actionCalls>
         <name>DoNothing</name>
         <label>DoNothing</label>
-        <locationX>184</locationX>
-        <locationY>34</locationY>
+        <locationX>377</locationX>
+        <locationY>50</locationY>
         <actionName>Donothing</actionName>
         <actionType>apex</actionType>
     </actionCalls>
     <assignments>
         <name>CancelCount</name>
         <label>CancelCount</label>
-        <locationX>244</locationX>
-        <locationY>551</locationY>
+        <locationX>315</locationX>
+        <locationY>723</locationY>
         <assignmentItems>
             <assignToReference>cntCancel</assignToReference>
             <operator>Assign</operator>
@@ -27,8 +27,8 @@
     <assignments>
         <name>Count_Order_Items</name>
         <label>Count Order Items</label>
-        <locationX>69</locationX>
-        <locationY>378</locationY>
+        <locationX>50</locationX>
+        <locationY>474</locationY>
         <assignmentItems>
             <assignToReference>cntOrderItems</assignToReference>
             <operator>Assign</operator>
@@ -43,8 +43,8 @@
     <assignments>
         <name>On_Hold_Count</name>
         <label>On Hold Count</label>
-        <locationX>537</locationX>
-        <locationY>414</locationY>
+        <locationX>614</locationX>
+        <locationY>459</locationY>
         <assignmentItems>
             <assignToReference>cntOnHold</assignToReference>
             <operator>Assign</operator>
@@ -59,8 +59,8 @@
     <assignments>
         <name>ReturnCount</name>
         <label>ReturnCount</label>
-        <locationX>423</locationX>
-        <locationY>481</locationY>
+        <locationX>527</locationX>
+        <locationY>535</locationY>
         <assignmentItems>
             <assignToReference>cntReturn</assignToReference>
             <operator>Assign</operator>
@@ -75,8 +75,8 @@
     <assignments>
         <name>Set_Cancelled</name>
         <label>Set Cancelled</label>
-        <locationX>849</locationX>
-        <locationY>393</locationY>
+        <locationX>997</locationX>
+        <locationY>533</locationY>
         <assignmentItems>
             <assignToReference>sOrder.ccrz__OrderStatus__c</assignToReference>
             <operator>Assign</operator>
@@ -91,8 +91,8 @@
     <assignments>
         <name>Set_In_Process</name>
         <label>Set In Process</label>
-        <locationX>1272</locationX>
-        <locationY>369</locationY>
+        <locationX>1244</locationX>
+        <locationY>388</locationY>
         <assignmentItems>
             <assignToReference>sOrder.ccrz__OrderStatus__c</assignToReference>
             <operator>Assign</operator>
@@ -107,8 +107,8 @@
     <assignments>
         <name>Set_On_Hold</name>
         <label>Set On Hold</label>
-        <locationX>680</locationX>
-        <locationY>388</locationY>
+        <locationX>719</locationX>
+        <locationY>766</locationY>
         <assignmentItems>
             <assignToReference>sOrder.ccrz__OrderStatus__c</assignToReference>
             <operator>Assign</operator>
@@ -123,8 +123,8 @@
     <assignments>
         <name>Set_Returned</name>
         <label>Set Returned</label>
-        <locationX>943</locationX>
-        <locationY>393</locationY>
+        <locationX>1146</locationX>
+        <locationY>456</locationY>
         <assignmentItems>
             <assignToReference>sOrder.ccrz__OrderStatus__c</assignToReference>
             <operator>Assign</operator>
@@ -139,8 +139,8 @@
     <assignments>
         <name>Set_Shipped</name>
         <label>Set Shipped</label>
-        <locationX>771</locationX>
-        <locationY>391</locationY>
+        <locationX>830</locationX>
+        <locationY>629</locationY>
         <assignmentItems>
             <assignToReference>sOrder.ccrz__OrderStatus__c</assignToReference>
             <operator>Assign</operator>
@@ -155,8 +155,8 @@
     <assignments>
         <name>ShippedCount</name>
         <label>ShippedCount</label>
-        <locationX>338</locationX>
-        <locationY>517</locationY>
+        <locationX>424</locationX>
+        <locationY>622</locationY>
         <assignmentItems>
             <assignToReference>cntShipped</assignToReference>
             <operator>Assign</operator>
@@ -171,8 +171,8 @@
     <decisions>
         <name>Count_Order_Item_Record_Type</name>
         <label>Count Order Item Record Type</label>
-        <locationX>282</locationX>
-        <locationY>355</locationY>
+        <locationX>351</locationX>
+        <locationY>405</locationY>
         <defaultConnector>
             <targetReference>Count_Order_Items</targetReference>
         </defaultConnector>
@@ -255,8 +255,8 @@
     <decisions>
         <name>Determine_Order_Status</name>
         <label>Determine Order Status</label>
-        <locationX>825</locationX>
-        <locationY>221</locationY>
+        <locationX>918</locationX>
+        <locationY>301</locationY>
         <defaultConnector>
             <targetReference>Set_In_Process</targetReference>
         </defaultConnector>
@@ -315,7 +315,7 @@
         </rules>
         <rules>
             <name>Is_On_Hold</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>1 AND (2 OR 3 OR 4 OR 5)</conditionLogic>
             <conditions>
                 <leftValueReference>cntOnHold</leftValueReference>
                 <operator>GreaterThan</operator>
@@ -325,10 +325,28 @@
             </conditions>
             <conditions>
                 <leftValueReference>sOrder.ccrz__OrderStatus__c</leftValueReference>
-                <operator>NotEqualTo</operator>
+                <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>In Process</stringValue>
+                    <stringValue>Order Submitted</stringValue>
                 </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>sOrder.ccrz__OrderStatus__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Open</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>sOrder.ccrz__OrderStatus__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>On Hold</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>sOrder.ccrz__OrderStatus__c</leftValueReference>
+                <operator>EqualTo</operator>
             </conditions>
             <connector>
                 <targetReference>Set_On_Hold</targetReference>
@@ -354,8 +372,8 @@
     <decisions>
         <name>Is_Status_for_Processing</name>
         <label>Is Status for Processing</label>
-        <locationX>274</locationX>
-        <locationY>104</locationY>
+        <locationX>370</locationX>
+        <locationY>167</locationY>
         <defaultConnector>
             <targetReference>Get_Order_Items</targetReference>
         </defaultConnector>
@@ -430,8 +448,8 @@
     <loops>
         <name>Loop_through_Order_Items</name>
         <label>Loop through Order Items</label>
-        <locationX>289</locationX>
-        <locationY>204</locationY>
+        <locationX>365</locationX>
+        <locationY>294</locationY>
         <assignNextValueToReference>sOrderItem</assignNextValueToReference>
         <collectionReference>colOrderItems</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -458,8 +476,8 @@
     <recordLookups>
         <name>Get_Order</name>
         <label>Get Order</label>
-        <locationX>61</locationX>
-        <locationY>157</locationY>
+        <locationX>232</locationX>
+        <locationY>164</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_Status_for_Processing</targetReference>
@@ -479,8 +497,8 @@
     <recordLookups>
         <name>Get_Order_Items</name>
         <label>Get Order Items</label>
-        <locationX>520</locationX>
-        <locationY>59</locationY>
+        <locationX>598</locationX>
+        <locationY>177</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_through_Order_Items</targetReference>
@@ -502,12 +520,12 @@
     <recordUpdates>
         <name>Update_Order_Status</name>
         <label>Update Order Status</label>
-        <locationX>854</locationX>
-        <locationY>527</locationY>
+        <locationX>1019</locationX>
+        <locationY>754</locationY>
         <inputReference>sOrder</inputReference>
     </recordUpdates>
     <startElementReference>Get_Order</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>cntCancel</name>
         <dataType>Number</dataType>

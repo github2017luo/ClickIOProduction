@@ -654,6 +654,7 @@ public without sharing class PHSS_skedJobtoILTClass {
     public void upsertILTClass(List<sked__Job__c> newRecords, Map<Id, sked__Job__c> oldRecords) {
         Map<Id, Id> jobLearningMap = fetchJobLearningMap(newRecords);
         Map<Id, String> suppInfoMap = new Map<Id, String>();
+        Map<Id, Training_Events__c> trainingEventMap = new Map<Id, Training_Events__c>();
         Map<Id, Id> scheduleToParentJobIdMap = new Map<Id, Id>();
         Map<Id, redwing__ILT_Class__c> scheduleToParentClassMap = new Map<Id,redwing__ILT_Class__c>();
         Map<String,redwing__Learning_Version__c> lVersions = new Map<String,redwing__Learning_Version__c>();
@@ -743,9 +744,11 @@ public without sharing class PHSS_skedJobtoILTClass {
                      
         // Get value from training event to populate Supplement
         if (SetTrainingEvents.size() > 0) {
-            List<Training_Events__c> trainingEvents = [Select Id, Supp_Info__c from Training_Events__c Where Id In :SetTrainingEvents];
+            List<Training_Events__c> trainingEvents = [Select Id, Supp_Info__c, Voucher_Created__c, Scheduling_Status__c, CC_Order_Item__c, CC_Order__c
+                from Training_Events__c Where Id In :SetTrainingEvents];
             for (Training_Events__c theTrainingEvent : trainingEvents) {
                 if (String.isNotBlank(theTrainingEvent.Supp_Info__c)) suppInfoMap.put(theTrainingEvent.Id, theTrainingEvent.Supp_Info__c);
+                trainingEventMap.put(theTrainingEvent.Id, theTrainingEvent);
             }
         }
 
@@ -1336,7 +1339,11 @@ public without sharing class PHSS_skedJobtoILTClass {
                 // Skip full service classes:  Vouchers for full service-type classes are created using TE process (they
                 // are created in process builder 'Create Voucher From TE' and associate a new voucher to an order, order line, and TE
 
-                if (theClass.Request_Type__c != null && !theClass.Request_Type__c.contains('Full Service')) {
+                if (theClass.Request_Type__c != null && (!theClass.Request_Type__c.contains('Full Service')
+                    || (theClass.Request_Type__c.contains('Full Service') && theClass.Skedulo_Training_Event__c != null &&
+                        trainingEventMap.containsKey(theClass.Skedulo_Training_Event__c) &&
+                        trainingEventMap.get(theClass.Skedulo_Training_Event__c).Scheduling_Status__c == 'Completed') &&
+                        trainingEventMap.get(theClass.Skedulo_Training_Event__c).Voucher_Created__c)) {
                     // Insure that the Learning Plan Id will be available if we need to create voucher, otherwise need to skip
                     if (catalogIds.get(jobCatalogMap.get(theClass.Skedulo_Job_Id__c)) != null) {
                         // For new ILT Class records use the previously calculated max seats(number of students) for voucher count
@@ -1356,6 +1363,10 @@ public without sharing class PHSS_skedJobtoILTClass {
                                 Voucher__c objVoucher = new Voucher__c();
                                 objVoucher.ILT_Class__c = theClass.Id;
                                 objVoucher.Learning_Plan__c = catalogIds.get(jobCatalogMap.get(theClass.Skedulo_Job_Id__c)).LMS_Learning_Plan__c;
+                                if (theClass.Request_Type__c.contains('Full Service')) {
+                                    objVoucher.CC_Order__c = trainingEventMap.get(theClass.Skedulo_Training_Event__c).CC_Order__c;
+                                    objVoucher.CC_Order_Item__c = trainingEventMap.get(theClass.Skedulo_Training_Event__c).CC_Order_Item__c;
+                                }
                                 voucherList.add(objVoucher);
                             }
                         }
@@ -1448,19 +1459,21 @@ public without sharing class PHSS_skedJobtoILTClass {
 
         List<redwing__ILT_Session__c> updSessionRecords = new List<redwing__ILT_Session__c>();
         //Update Session with job Active field if students are registered
-        // Eliminate update of session records to avoid Job cancellation errors
-        /*
+
         for(redwing__ILT_Session__c sesRec : [Select Id, Skedulo_Job_Status__c, Skedulo_Job_Id_External__c, Skedulo_Job_Active__c
             From redwing__ILT_Session__c Where Skedulo_Job_Id_External__c IN: MapCanceledJobs.keySet()]){
-            sesRec.Skedulo_Job_Active__c = false;
-            sesRec.Skedulo_Job_Status__c = 'Cancelled';
-            updSessionRecords.add(sesRec); 
+
+            redwing__ILT_Session__c updatedSesRec = new redwing__ILT_Session__c();
+            updatedSesRec.Id = sesRec.Id;
+            updatedSesRec.Skedulo_Job_Active__c = false;
+            updatedSesRec.Skedulo_Job_Status__c = 'Cancelled';
+            updSessionRecords.add(updatedSesRec);
         }
 
         if(updSessionRecords.size() > 0){
             update updSessionRecords;
         }
-        */
+
         Set<Id> SetIds = new Set<Id>();
         Set<Id> SetjobIds = new Set<Id>();
         for(sked__Job__c job : MapCanceledJobs.values()){
