@@ -16,6 +16,10 @@
                 <field>User__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Username__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Learning_Plan__c</field>
             </layoutItems>

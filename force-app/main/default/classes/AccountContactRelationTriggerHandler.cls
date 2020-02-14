@@ -9,7 +9,7 @@ Notes      :  Instantiated from AccountContactRelationTrigger.trigger
 
 *************************************************************************************/
 
-public with sharing class AccountContactRelationTriggerHandler {
+public without sharing class AccountContactRelationTriggerHandler {
 
     @testVisible
     private static final String ACR_ROLE_INSTRUCTOR = 'Instructor';
@@ -104,7 +104,7 @@ public with sharing class AccountContactRelationTriggerHandler {
             }
 
             List<User> usersToUpdate = new List<User>([
-                SELECT Id, ContactId, Contact.AccountId, Contact.Account.Id, Contact.Account.Owner.Alias
+                SELECT Id, UserRoleId, ContactId, Contact.AccountId, Contact.Account.Id, Contact.Account.Owner.Alias
                 FROM User
                 WHERE ContactId IN :contactIds
             ]);
@@ -132,10 +132,12 @@ public with sharing class AccountContactRelationTriggerHandler {
 
             for(AccountContactRelation acr : accountContactRelationsToProcess){
                 User thisUser = contactToUserMap.get(acr.ContactId);
-                String newRoleName = thisUser.Contact.Account.Owner.Alias+' Customer Person Account';
-                Id newUserRoleId = userRoleNameMap.get(newRoleName);
                 Id newProfileId;
-                userToRoleMap.put(thisUser.Id, newUserRoleId);
+                if(thisUser.UserRoleId == null){
+                    String newRoleName = thisUser.Contact.Account.Owner.Alias+' Customer Person Account';
+                    Id newUserRoleId = userRoleNameMap.get(newRoleName);
+                    userToRoleMap.put(thisUser.Id, newUserRoleId);
+                }
                 if(acr.Roles.contains(ACR_ROLE_ADMINISTRATOR)){
                     newProfileId = adminProfile.Id;
                 }
@@ -159,13 +161,14 @@ public with sharing class AccountContactRelationTriggerHandler {
     private static void updateUserRecordsAsync(Map<Id, Id> userToProfileMap, Map<Id, Id> userToRoleMap){
         List<User> usersToUpdate = new List<User>();
         for(Id userId : userToProfileMap.keySet()){
-            usersToUpdate.add(
-                new User(
-                    Id = userId,
-                    ProfileId = userToProfileMap.get(userId),
-                    UserRoleId = userToRoleMap.get(userId)
-                )
+            User newUser = new User(
+                Id = userId,
+                ProfileId = userToProfileMap.get(userId)
             );
+            if(userToRoleMap.containsKey(userId)){
+                newUser.UserRoleId = userToRoleMap.get(userId);
+            }
+            usersToUpdate.add(newUser);
         }
         update usersToUpdate;
     }

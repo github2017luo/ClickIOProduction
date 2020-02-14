@@ -968,7 +968,7 @@
         <name>Get_Open_Order_Amount</name>
         <label>Get Open Order Amount</label>
         <locationX>1133</locationX>
-        <locationY>306</locationY>
+        <locationY>305</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Transaction_Payment</targetReference>
@@ -981,6 +981,8 @@
             </value>
         </filters>
         <object>Account</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Open_Order_Amount__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Order</name>

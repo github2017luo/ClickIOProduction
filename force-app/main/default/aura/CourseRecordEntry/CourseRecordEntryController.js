@@ -113,6 +113,8 @@
         console.log("productSfid**>>**"+productSfid);
         
         component.set("v.CCProductId",productSfid);
+        // DE2530 - Prevent account from being changed after product selected
+        component.set("v.isProductSelected",true);        
 
         //helper.getLearningPlanAttributes(component, event, helper);
 
@@ -404,11 +406,21 @@
         component.set("v.showLoadingSpinner", true);
         
     },
+    
     cancel : function(component, event, helper){
+        console.log('*** cancel ***');       
         $A.get("e.force:refreshView").fire();
-        //$A.get("e.force:refreshView").fire();
+        //$A.get("e.force:refreshView").fire();       
         component.set("v.stepNumber", "Zero");
     },
+    
+    cancelDropOpp : function(component, event, helper){
+        console.log('*** cancelDropOpp ***');
+        helper.cleanUp(component, event, helper);         
+        $A.get("e.force:refreshView").fire();
+        //$A.get("e.force:refreshView").fire();       
+        component.set("v.stepNumber", "Zero");
+    },    
     
     calculateStudentInstructorRatio : function(component,event,helper){
         var CCProductId = component.get("v.CCProductId");
@@ -725,7 +737,7 @@
         {
         	component.set("v.stepNumber", "Complete");
         }
-    },
+    },   
     
     accountSelected : function (component,event,helper){
         console.log("account Selected");
@@ -786,9 +798,5 @@
         component.set("v.State", selectedSite["redwing__State__c"]);
         component.set("v.Zip", selectedSite["redwing__Postal_Code__c"]);
     },
-    
-    cancel : function(component, event, helper){
-        $A.get("e.force:refreshView").fire();
-        component.set("v.stepNumber", "Zero");
-    }
+
 })
