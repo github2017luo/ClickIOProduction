@@ -1835,7 +1835,8 @@ public without sharing class ILTInstructorCommunity{
                 System.debug('*** newUserHandle:'+newUserHandle);
                 System.debug('*** newUserDomain:'+newUserDomain);
                 
-                Pattern handleSuffixPattern = Pattern.compile('^(.*?)([0-9]*)(\\@.*)');
+                //Pattern handleSuffixPattern = Pattern.compile('^(.*?)([0-9]*)(\\@.*)');
+                Pattern handleSuffixPattern = Pattern.compile('^(\\Q'+newUserHandle+'\\E)([0-9]*)(\\@.*)');
                 for (String theUserName : userNameEmailMap.keySet()) {
                     Matcher handleSuffixMatcher = handleSuffixPattern.matcher(theUserName);
                     if (handleSuffixMatcher.matches() && handleSuffixMatcher.groupCount() >= 3) {
