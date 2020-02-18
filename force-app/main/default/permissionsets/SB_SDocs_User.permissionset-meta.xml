@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <classAccesses>
+        <apexClass>PHSS_Utility</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>SDOC__SDAuth</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -38,6 +42,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SDOC__SDListCreateController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SDOC__SDPDFUploadController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -114,6 +122,42 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SDRelatedListDocumentsController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SSign__SSConfig</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SSign__SSCreateSig</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SSign__SSLicensesController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SSign__SSMultiSignController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SSign__SSScheduledRequests</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SSign__SSTemplateController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SSign__SSTemplateEditor</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SSign__SSUtil</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SSign__SSUtilWoS</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <description>Allows user to generate and view S-Docs, but not edit S-Docs Template records.</description>
@@ -1498,6 +1542,10 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>SDOC__SDPDFUpload</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>SDOC__SDRelationshipDelete</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -1551,6 +1599,42 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>SDRelatedListDocuments</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>SSign__SSConfig</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>SSign__SSCreateEnvelope</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>SSign__SSCreateSig</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>SSign__SSEmailSignRequest</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>SSign__SSLicenses</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>SSign__SSMultiSign</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>SSign__SSTemplateEditor</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>SSign__SSTemplatePDF</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>SSign__SSViewEnvIncl</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
 </PermissionSet>

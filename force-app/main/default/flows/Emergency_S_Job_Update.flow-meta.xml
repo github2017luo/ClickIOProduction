@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <interviewLabel>Emergency S-Job Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Emergency S-Job Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Jobs_in_Status_10</name>
+        <label>Update Jobs in Status 10</label>
+        <locationX>201</locationX>
+        <locationY>50</locationY>
+        <filters>
+            <field>SDOC__Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>10</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>SDOC__Start__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>SDOC__SDJob__c</object>
+    </recordUpdates>
+    <startElementReference>Update_Jobs_in_Status_10</startElementReference>
+    <status>Active</status>
+</Flow>

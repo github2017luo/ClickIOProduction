@@ -595,6 +595,7 @@
                 if(allValid && orgBool && !instBool)
                 {
                     helper.stepOne(component, event);
+                    helper.createIltLocation(component); //DE2554
                 }
                 else
                 {
@@ -613,6 +614,7 @@
                 if(allValid && orgBool && usrBool && !instBool)
                 {
                     helper.stepOne(component, event);
+                    helper.createIltLocation(component); //DE2554
                 }
                 else
                 {
@@ -647,7 +649,8 @@
                 });
                 $A.enqueueAction(action); 
             }
-            helper.createIltLocation(component);
+            //DE2554 - moving it under validation block
+            //helper.createIltLocation(component);
         }
         
         else if(currentSN == "Two")
