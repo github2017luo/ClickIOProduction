@@ -8446,12 +8446,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Dedicated_Internal_Salesforce_Helpdesk__c.Additional_Contact_to_be_Merged__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Dedicated_Internal_Salesforce_Helpdesk__c.Approved_in_UAT__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Dedicated_Internal_Salesforce_Helpdesk__c.Configuration_Request_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Dedicated_Internal_Salesforce_Helpdesk__c.Contact_to_be_Merged__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -8488,6 +8498,11 @@
         <editable>false</editable>
         <field>Dedicated_Internal_Salesforce_Helpdesk__c.Lightning_related__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Dedicated_Internal_Salesforce_Helpdesk__c.Merge_fields_to_be_aware_of__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -8532,6 +8547,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Dedicated_Internal_Salesforce_Helpdesk__c.Primary_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Dedicated_Internal_Salesforce_Helpdesk__c.Primary_Contact__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -15533,6 +15553,10 @@
         <recordType>Dedicated_Internal_Salesforce_Helpdesk__c.Configuration_Request</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Dedicated_Internal_Salesforce_Helpdesk__c-Contact Merge</layout>
+        <recordType>Dedicated_Internal_Salesforce_Helpdesk__c.Contact_Merge_Requests</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Dedicated_Internal_Salesforce_Helpdesk__c-New User Request</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -17116,6 +17140,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Dedicated_Internal_Salesforce_Helpdesk__c.Configuration_Request</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Dedicated_Internal_Salesforce_Helpdesk__c.Contact_Merge_Requests</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
