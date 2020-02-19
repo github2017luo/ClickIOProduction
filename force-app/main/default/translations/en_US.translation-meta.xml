@@ -805,18 +805,12 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows>
-            <fullName>Add_Student_Name_for_NAT-4</fullName>
+            <fullName>Add_Student_Name_for_NAT-5</fullName>
             <screens>
                 <fields>
                     <name>ErrorMessage</name>
                 </fields>
                 <name>Error_Message</name>
-            </screens>
-            <screens>
-                <fields>
-                    <name>NoNATFulfillment</name>
-                </fields>
-                <name>Not_Found</name>
             </screens>
             <screens>
                 <fields>

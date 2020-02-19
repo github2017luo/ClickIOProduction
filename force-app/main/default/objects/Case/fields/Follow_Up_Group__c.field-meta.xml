@@ -221,6 +221,11 @@
                 <label>TSC NAT - Sponsored</label>
             </value>
             <value>
+                <fullName>TSC Refund Cases</fullName>
+                <default>false</default>
+                <label>TSC Refund Cases</label>
+            </value>
+            <value>
                 <fullName>Web Assistance Team</fullName>
                 <default>false</default>
                 <label>Web Assistance Team</label>

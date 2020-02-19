@@ -633,7 +633,7 @@
         }
         if(jsonStr!='')
         	jsonStr = '{'+'\"Students\": ['+jsonStr+'] } ';
-        
+
         var action = cmp.get("c.invokeMethodswithboolean");
         console.log("cpsWrap: " + JSON.stringify(cmp.get("v.cpsWrap")));
         action.setParams({ JSON : classDetailJSON, JSON1 : jsonStr, blend1 : true , wrapper: cmp.get("v.cpsWrap")});
