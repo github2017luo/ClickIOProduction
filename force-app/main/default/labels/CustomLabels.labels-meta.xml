@@ -417,6 +417,20 @@
         <value>Online Work</value>
     </labels>
     <labels>
+        <fullName>Open_Order_Processing_Error_No_Account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Open Order Processing Error No Account</shortDescription>
+        <value>Account Not Found</value>
+    </labels>
+    <labels>
+        <fullName>Open_Order_Processing_Error_No_Order</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Open Order Processing Error No Order</shortDescription>
+        <value>CC Order Not Found</value>
+    </labels>
+    <labels>
         <fullName>Organization</fullName>
         <categories>Custom RC UI</categories>
         <language>en_US</language>

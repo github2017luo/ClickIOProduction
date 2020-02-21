@@ -104,6 +104,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Charged incorrect price</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Complaints</fullName>
             <default>false</default>
         </values>
@@ -117,6 +121,10 @@
         </values>
         <values>
             <fullName>Course Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer Dissatisfaction</fullName>
             <default>false</default>
         </values>
         <values>
@@ -141,6 +149,10 @@
         </values>
         <values>
             <fullName>New Registration</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No voucher created</fullName>
             <default>false</default>
         </values>
         <values>
@@ -2045,6 +2057,10 @@
         </values>
         <values>
             <fullName>Community Course Registration</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Credit Adjustment</fullName>
             <default>false</default>
         </values>
         <values>

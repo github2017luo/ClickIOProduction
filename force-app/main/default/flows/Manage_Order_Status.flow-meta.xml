@@ -3,8 +3,8 @@
     <assignments>
         <name>Add_OrderFulfillment_Collection</name>
         <label>Add OrderFulfillment Collection</label>
-        <locationX>539</locationX>
-        <locationY>1258</locationY>
+        <locationX>568</locationX>
+        <locationY>1259</locationY>
         <assignmentItems>
             <assignToReference>colFulfillmentItems</assignToReference>
             <operator>Add</operator>
@@ -194,8 +194,8 @@
     <assignments>
         <name>Output_Order_Fulfillment_Item</name>
         <label>Output Order Fulfillment Item</label>
-        <locationX>1476</locationX>
-        <locationY>681</locationY>
+        <locationX>1482</locationX>
+        <locationY>737</locationY>
         <assignmentItems>
             <assignToReference>colOFulfillmentItem</assignToReference>
             <operator>Add</operator>
@@ -725,7 +725,7 @@
         <name>Available_Credit</name>
         <label>Available Credit</label>
         <locationX>529</locationX>
-        <locationY>646</locationY>
+        <locationY>645</locationY>
         <defaultConnector>
             <targetReference>Over_Credit_Limit</targetReference>
         </defaultConnector>
@@ -754,7 +754,7 @@
         </rules>
         <rules>
             <name>Has_Available_Credit</name>
-            <conditionLogic>(1 AND 3) OR 2</conditionLogic>
+            <conditionLogic>((1 AND 3) OR 2) or (4 and 5)</conditionLogic>
             <conditions>
                 <leftValueReference>sOrder.ccrz__TotalAmount__c</leftValueReference>
                 <operator>LessThanOrEqualTo</operator>
@@ -774,6 +774,20 @@
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue>cc</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>sOrder.ccrz__OrderStatus__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>On Hold</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>cCreditLimit</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -865,8 +879,8 @@
     <decisions>
         <name>Count_Course_Records</name>
         <label>Count Course Records</label>
-        <locationX>346</locationX>
-        <locationY>1043</locationY>
+        <locationX>342</locationX>
+        <locationY>1048</locationY>
         <defaultConnector>
             <targetReference>Set_to_Submitted</targetReference>
         </defaultConnector>
@@ -1197,8 +1211,8 @@
     <decisions>
         <name>Is_Online_Class2</name>
         <label>Is Online Class2</label>
-        <locationX>671</locationX>
-        <locationY>1188</locationY>
+        <locationX>688</locationX>
+        <locationY>1183</locationY>
         <defaultConnector>
             <targetReference>Set_Shipped</targetReference>
         </defaultConnector>
@@ -1459,7 +1473,7 @@
             <label>IfReserved</label>
         </rules>
     </decisions>
-    <description>Added Individual Account Record Type Check - added additional fields to sOrder to allow for reducing SOQLs in On Hold Check</description>
+    <description>Added Individual Account Record Type Check - added additional fields to sOrder to allow for reducing SOQLs in On Hold Check - Changed Online Order Flow - On Hold no longer included in Available Credit calculation</description>
     <formulas>
         <name>AddtoCourse</name>
         <dataType>Number</dataType>
@@ -2059,7 +2073,7 @@
         <inputReference>colOutTrainingEvent</inputReference>
     </recordUpdates>
     <startElementReference>Lookup_Order2</startElementReference>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <name>ActiveContract</name>
         <dataType>Boolean</dataType>

@@ -256,7 +256,7 @@
         <name>Determine_Order_Status</name>
         <label>Determine Order Status</label>
         <locationX>918</locationX>
-        <locationY>301</locationY>
+        <locationY>300</locationY>
         <defaultConnector>
             <targetReference>Set_In_Process</targetReference>
         </defaultConnector>
@@ -315,7 +315,7 @@
         </rules>
         <rules>
             <name>Is_On_Hold</name>
-            <conditionLogic>1 AND (2 OR 3 OR 4 OR 5)</conditionLogic>
+            <conditionLogic>(1 AND (2 OR 3 OR 5))  OR 4</conditionLogic>
             <conditions>
                 <leftValueReference>cntOnHold</leftValueReference>
                 <operator>GreaterThan</operator>

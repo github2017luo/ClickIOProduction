@@ -744,7 +744,7 @@ public without sharing class PHSS_skedJobtoILTClass {
                      
         // Get value from training event to populate Supplement
         if (SetTrainingEvents.size() > 0) {
-            List<Training_Events__c> trainingEvents = [Select Id, Supp_Info__c, Voucher_Created__c, Scheduling_Status__c, CC_Order_Item__c, CC_Order__c
+            List<Training_Events__c> trainingEvents = [Select Id, Supp_Info__c, Scheduling_Status__c, CC_Order_Item__c, CC_Order__c, CC_Order_Item__r.ccrz__Product__c
                 from Training_Events__c Where Id In :SetTrainingEvents];
             for (Training_Events__c theTrainingEvent : trainingEvents) {
                 if (String.isNotBlank(theTrainingEvent.Supp_Info__c)) suppInfoMap.put(theTrainingEvent.Id, theTrainingEvent.Supp_Info__c);
@@ -1344,8 +1344,7 @@ public without sharing class PHSS_skedJobtoILTClass {
                 if (theClass.Request_Type__c != null && (!theClass.Request_Type__c.contains('Full Service')
                     || (theClass.Request_Type__c.contains('Full Service') && theClass.Skedulo_Training_Event__c != null &&
                         trainingEventMap.containsKey(theClass.Skedulo_Training_Event__c) &&
-                        trainingEventMap.get(theClass.Skedulo_Training_Event__c).Scheduling_Status__c == 'Completed') &&
-                        trainingEventMap.get(theClass.Skedulo_Training_Event__c).Voucher_Created__c)) {
+                        'Completed, Rescheduling'.contains(trainingEventMap.get(theClass.Skedulo_Training_Event__c).Scheduling_Status__c)))) {
                     // Insure that the Learning Plan Id will be available if we need to create voucher, otherwise need to skip
                     if (catalogIds.get(jobCatalogMap.get(theClass.Skedulo_Job_Id__c)) != null) {
                         // For new ILT Class records use the previously calculated max seats(number of students) for voucher count
@@ -1366,6 +1365,7 @@ public without sharing class PHSS_skedJobtoILTClass {
                                 objVoucher.ILT_Class__c = theClass.Id;
                                 objVoucher.Learning_Plan__c = catalogIds.get(jobCatalogMap.get(theClass.Skedulo_Job_Id__c)).LMS_Learning_Plan__c;
                                 if (theClass.Request_Type__c.contains('Full Service')) {
+                                    objVoucher.CC_Product__c = trainingEventMap.get(theClass.Skedulo_Training_Event__c).CC_Order_Item__r.ccrz__Product__c;
                                     objVoucher.CC_Order__c = trainingEventMap.get(theClass.Skedulo_Training_Event__c).CC_Order__c;
                                     objVoucher.CC_Order_Item__c = trainingEventMap.get(theClass.Skedulo_Training_Event__c).CC_Order_Item__c;
                                 }

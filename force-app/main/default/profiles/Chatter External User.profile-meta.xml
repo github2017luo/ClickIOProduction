@@ -671,6 +671,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>OpenOrderProcessingTriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OpenOrderProcessingTriggerHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>OpportunityLineItemManagement</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -860,6 +868,18 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PHSS_GeneratePDFController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PHSS_Geolocation</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PHSS_GeolocationMockImpl</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PHSS_Geolocation_test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>

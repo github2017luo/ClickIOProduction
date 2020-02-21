@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <processMetadataValues>
+            <name>apexSelection</name>
+            <value>
+                <stringValue>Donothing</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_1_A1</name>
+        <label>DoNothing</label>
+        <locationX>100</locationX>
+        <locationY>200</locationY>
+        <actionName>Donothing</actionName>
+        <actionType>apex</actionType>
+    </actionCalls>
     <decisions>
         <processMetadataValues>
             <name>index</name>
@@ -19,8 +33,38 @@
             <name>myRule_1</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>formula_myRule_1</leftValueReference>
-                <operator>EqualTo</operator>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideReferenceTo</name>
+                    <value>
+                        <stringValue>ccrz__E_Product__c</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.ccrz__Product__c</leftValueReference>
+                <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
@@ -28,7 +72,35 @@
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
             </connector>
-            <label>Is Course</label>
+            <label>Check for product</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>5.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision10</name>
+        <label>myDecision10</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_11</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_11</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_11_A1</targetReference>
+            </connector>
+            <label>Is NA</label>
         </rules>
     </decisions>
     <decisions>
@@ -59,7 +131,7 @@
             <connector>
                 <targetReference>myRule_3_A1</targetReference>
             </connector>
-            <label>Is Fee</label>
+            <label>Is Course</label>
         </rules>
     </decisions>
     <decisions>
@@ -90,7 +162,7 @@
             <connector>
                 <targetReference>myRule_5_A1</targetReference>
             </connector>
-            <label>Is Standard</label>
+            <label>Is Fee</label>
         </rules>
     </decisions>
     <decisions>
@@ -121,7 +193,7 @@
             <connector>
                 <targetReference>myRule_7_A1</targetReference>
             </connector>
-            <label>Is Community</label>
+            <label>Is Standard</label>
         </rules>
     </decisions>
     <decisions>
@@ -135,6 +207,9 @@
         <label>myDecision8</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision10</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_9</name>
@@ -149,7 +224,7 @@
             <connector>
                 <targetReference>myRule_9_A1</targetReference>
             </connector>
-            <label>Is NA</label>
+            <label>Is Community</label>
         </rules>
     </decisions>
     <description>Order Item Controller</description>
@@ -157,10 +232,21 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
+                <stringValue> ISPICKVAL([ccrz__E_OrderItem__c].ccrz__Product__c.ccrz__InventoryType__c ,  &quot;NA&quot;)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_11</name>
+        <dataType>Boolean</dataType>
+        <expression> ISPICKVAL({!myVariable_current.ccrz__Product__r.ccrz__InventoryType__c} ,  &quot;NA&quot;)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
                 <stringValue> ISPICKVAL([ccrz__E_OrderItem__c].ccrz__Product__c.ccrz__InventoryType__c ,  &quot;COURSE&quot;)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_myRule_1</name>
+        <name>formula_myRule_3</name>
         <dataType>Boolean</dataType>
         <expression> ISPICKVAL({!myVariable_current.ccrz__Product__r.ccrz__InventoryType__c} ,  &quot;COURSE&quot;)</expression>
     </formulas>
@@ -171,7 +257,7 @@
                 <stringValue> ISPICKVAL([ccrz__E_OrderItem__c].ccrz__Product__c.ccrz__InventoryType__c ,  &quot;FEE&quot;)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_myRule_3</name>
+        <name>formula_myRule_5</name>
         <dataType>Boolean</dataType>
         <expression> ISPICKVAL({!myVariable_current.ccrz__Product__r.ccrz__InventoryType__c} ,  &quot;FEE&quot;)</expression>
     </formulas>
@@ -182,7 +268,7 @@
                 <stringValue> ISPICKVAL([ccrz__E_OrderItem__c].ccrz__Product__c.ccrz__InventoryType__c ,  &quot;STANDARD&quot;)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_myRule_5</name>
+        <name>formula_myRule_7</name>
         <dataType>Boolean</dataType>
         <expression> ISPICKVAL({!myVariable_current.ccrz__Product__r.ccrz__InventoryType__c} ,  &quot;STANDARD&quot;)</expression>
     </formulas>
@@ -193,20 +279,9 @@
                 <stringValue> ISPICKVAL([ccrz__E_OrderItem__c].ccrz__Product__c.ccrz__InventoryType__c ,  &quot;COMMUNITY&quot;)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_myRule_7</name>
-        <dataType>Boolean</dataType>
-        <expression> ISPICKVAL({!myVariable_current.ccrz__Product__r.ccrz__InventoryType__c} ,  &quot;COMMUNITY&quot;)</expression>
-    </formulas>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
-                <stringValue> ISPICKVAL([ccrz__E_OrderItem__c].ccrz__Product__c.ccrz__InventoryType__c ,  &quot;NA&quot;)</stringValue>
-            </value>
-        </processMetadataValues>
         <name>formula_myRule_9</name>
         <dataType>Boolean</dataType>
-        <expression> ISPICKVAL({!myVariable_current.ccrz__Product__r.ccrz__InventoryType__c} ,  &quot;NA&quot;)</expression>
+        <expression> ISPICKVAL({!myVariable_current.ccrz__Product__r.ccrz__InventoryType__c} ,  &quot;COMMUNITY&quot;)</expression>
     </formulas>
     <interviewLabel>Order_Item_Controller-4_InterviewLabel</interviewLabel>
     <label>Order Item Controller</label>
@@ -260,9 +335,89 @@
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_1_A1</name>
+        <name>myRule_11_A1</name>
+        <label>Is NA</label>
+        <locationX>1100</locationX>
+        <locationY>200</locationY>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Inventory Type</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Inventory_Type__c</field>
+            <value>
+                <stringValue>NA</stringValue>
+            </value>
+        </inputAssignments>
+        <object>ccrz__E_OrderItem__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[ccrz__E_OrderItem__c]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_3_A1</name>
         <label>Set Inventory Type</label>
-        <locationX>100</locationX>
+        <locationX>300</locationX>
         <locationY>200</locationY>
         <filters>
             <processMetadataValues>
@@ -376,9 +531,9 @@
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_3_A1</name>
+        <name>myRule_5_A1</name>
         <label>Set Fee</label>
-        <locationX>300</locationX>
+        <locationX>500</locationX>
         <locationY>200</locationY>
         <filters>
             <processMetadataValues>
@@ -456,9 +611,9 @@
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_5_A1</name>
+        <name>myRule_7_A1</name>
         <label>Is Standard</label>
-        <locationX>500</locationX>
+        <locationX>700</locationX>
         <locationY>200</locationY>
         <filters>
             <processMetadataValues>
@@ -536,9 +691,9 @@
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_7_A1</name>
+        <name>myRule_9_A1</name>
         <label>Is Community</label>
-        <locationX>700</locationX>
+        <locationX>900</locationX>
         <locationY>200</locationY>
         <filters>
             <processMetadataValues>
@@ -623,86 +778,6 @@
             <field>ccrz__ExtSKU__c</field>
             <value>
                 <elementReference>myVariable_current.ccrz__Product__r.ccrz__SKU__c</elementReference>
-            </value>
-        </inputAssignments>
-        <object>ccrz__E_OrderItem__c</object>
-    </recordUpdates>
-    <recordUpdates>
-        <processMetadataValues>
-            <name>evaluationType</name>
-            <value>
-                <stringValue>always</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>extraTypeInfo</name>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>isChildRelationship</name>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>reference</name>
-            <value>
-                <stringValue>[ccrz__E_OrderItem__c]</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>referenceTargetField</name>
-        </processMetadataValues>
-        <name>myRule_9_A1</name>
-        <label>Is NA</label>
-        <locationX>900</locationX>
-        <locationY>200</locationY>
-        <filters>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </processMetadataValues>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>myVariable_current.Id</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Inventory Type</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideReferenceTo</name>
-                <value>
-                    <stringValue/>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Inventory_Type__c</field>
-            <value>
-                <stringValue>NA</stringValue>
             </value>
         </inputAssignments>
         <object>ccrz__E_OrderItem__c</object>
