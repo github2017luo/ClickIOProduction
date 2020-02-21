@@ -76,7 +76,7 @@
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_1</name>
-            <conditionLogic>or</conditionLogic>
+            <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
                     <name>inputDataType</name>
@@ -195,7 +195,7 @@
                         <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.Order__r.ccrz__Order__r.ccrz__OrderStatus__c</leftValueReference>
+                <leftValueReference>myVariable_current.Order__r.ccrz__OrderStatus__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue>Completed</stringValue>
@@ -238,7 +238,7 @@
             <label>Fulfilment Created</label>
         </rules>
     </decisions>
-    <interviewLabel>Fulfillment_Controller-2_InterviewLabel</interviewLabel>
+    <interviewLabel>Fulfillment_Controller-4_InterviewLabel</interviewLabel>
     <label>Fulfillment Controller</label>
     <processMetadataValues>
         <name>ObjectType</name>
