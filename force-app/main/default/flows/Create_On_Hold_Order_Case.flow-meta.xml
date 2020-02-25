@@ -286,7 +286,7 @@
         <name>Order_Status_On_Hold</name>
         <label>Order Status On Hold</label>
         <locationX>667</locationX>
-        <locationY>136</locationY>
+        <locationY>135</locationY>
         <defaultConnector>
             <targetReference>Do_Nothing</targetReference>
         </defaultConnector>
@@ -319,10 +319,13 @@
             <conditions>
                 <leftValueReference>sOrder.ccrz__OrderStatus__c</leftValueReference>
                 <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>On Hold</stringValue>
+                </rightValue>
             </conditions>
             <conditions>
                 <leftValueReference>sOrder.Error_Message__c</leftValueReference>
-                <operator>EqualTo</operator>
+                <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue>Over Credit Limit</stringValue>
                 </rightValue>

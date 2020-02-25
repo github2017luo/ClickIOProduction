@@ -901,11 +901,14 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Offering_Id__c</fields>
         <fields>Request_Type__c</fields>
         <fields>redwing__Learning__c</fields>
         <fields>redwing__Location__c</fields>
         <fields>redwing__Start_Date__c</fields>
         <fields>redwing__End_Date__c</fields>
+        <fields>CREATEDBY_USER</fields>
+        <fields>CREATED_DATE</fields>
         <relatedList>redwing__ILT_Class__c.Skedulo_Account__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>

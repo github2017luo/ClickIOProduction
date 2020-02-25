@@ -771,7 +771,7 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows>
-            <fullName>Order_Status_On_Hold-1</fullName>
+            <fullName>Order_Status_On_Hold-3</fullName>
         </flows>
         <fullName>Order_Status_On_Hold</fullName>
     </flowDefinitions>
@@ -962,6 +962,12 @@
             <fullName>Voucher_Controller-1</fullName>
         </flows>
         <fullName>Voucher_Controller</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <fullName>Order_Status_On_Hold_Now-1</fullName>
+        </flows>
+        <fullName>Order_Status_On_Hold_Now</fullName>
     </flowDefinitions>
     <flowDefinitions>
         <flows>
@@ -3289,7 +3295,7 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows>
-            <fullName>Create_On_Hold_Order_Case-4</fullName>
+            <fullName>Create_On_Hold_Order_Case-7</fullName>
         </flows>
         <fullName>Create_On_Hold_Order_Case</fullName>
     </flowDefinitions>
@@ -3459,15 +3465,24 @@
     <flowDefinitions>
         <flows>
             <choices>
-                <name>GeneralStore</name>
+                <name>choice_no</name>
             </choices>
             <choices>
-                <name>CPS</name>
+                <name>choice_yes</name>
             </choices>
             <choices>
                 <name>CREStore</name>
             </choices>
-            <fullName>Create_Contract-3</fullName>
+            <choices>
+                <name>GeneralStore</name>
+            </choices>
+            <choices>
+                <name>COM</name>
+            </choices>
+            <choices>
+                <name>CPS</name>
+            </choices>
+            <fullName>Create_Contract-4</fullName>
             <screens>
                 <fields>
                     <name>Effective_End_Date</name>
@@ -3483,13 +3498,13 @@
                     <name>Group_Name</name>
                 </fields>
                 <fields>
-                    <name>Storefront</name>
-                </fields>
-                <fields>
                     <name>dspAccount</name>
                 </fields>
                 <fields>
                     <name>dspOppurtunityName</name>
+                </fields>
+                <fields>
+                    <name>selStorefront</name>
                 </fields>
                 <name>Establish_Price_Group</name>
             </screens>
@@ -3507,6 +3522,30 @@
                     <name>Selected_Price_Lists</name>
                 </fields>
                 <name>Price_Lists</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>CatMessage</name>
+                </fields>
+                <fields>
+                    <name>selCategory</name>
+                </fields>
+                <fields>
+                    <name>txt_select_pl_category</name>
+                </fields>
+                <name>Select_Price_List_Category</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>SelPriceListDisplay</name>
+                </fields>
+                <fields>
+                    <name>pl_add_more_price_lists</name>
+                </fields>
+                <fields>
+                    <name>txt_add_more_price_lists</name>
+                </fields>
+                <name>scrn_add_more_price_lists</name>
             </screens>
         </flows>
         <fullName>Create_Contract</fullName>
@@ -3789,7 +3828,7 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows>
-            <fullName>Order_Status_Controller-8</fullName>
+            <fullName>Order_Status_Controller-9</fullName>
         </flows>
         <fullName>Order_Status_Controller</fullName>
     </flowDefinitions>
