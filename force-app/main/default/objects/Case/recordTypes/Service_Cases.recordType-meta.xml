@@ -3022,6 +3022,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Correction</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Coupon Provided</fullName>
             <default>false</default>
         </values>

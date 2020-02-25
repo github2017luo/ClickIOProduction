@@ -416,6 +416,11 @@
                 <default>false</default>
                 <label>Eligible</label>
             </value>
+            <value>
+                <fullName>Correction</fullName>
+                <default>false</default>
+                <label>Correction</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Granted Grace Period for Expired Base Level Cert</controllingFieldValue>
@@ -763,6 +768,11 @@
             <controllingFieldValue>Instructor</controllingFieldValue>
             <controllingFieldValue>Student</controllingFieldValue>
             <valueName>Eligible</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Instructor</controllingFieldValue>
+            <controllingFieldValue>Student</controllingFieldValue>
+            <valueName>Correction</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>MTN</controllingFieldValue>
