@@ -25,6 +25,17 @@
 		//alert('Date + 7 ' + todayPlus7);        
         
         component.set("v.todaysDatePlus7",todayPlus7);
+        
+        var pageReference = {
+            type: 'standard__component',
+            attributes: {
+                componentName: 'c:PHSS_ClassPostingDashboard',
+            },
+            state: {
+                 
+            }
+        };
+        component.set("v.pageReference", pageReference);
     },
     
     productCountIncrement: function (component, event, helper) {
@@ -95,6 +106,7 @@
         var offering = tempList[edit_index -1];
 
         //component.set("v.offeringId", offering.offeringId);
+        component.set("v.editMode", true);
         component.set("v.courseError",false);
         component.set("v.formatError",false);
         component.set("v.zoneError",false);
@@ -103,6 +115,7 @@
         component.set("v.productChange", false);
 		component.set("v.cpsWrap.offeringId", offering.offeringId);
         component.set("v.cpsWrap.accId",offering.accId);
+        component.set("v.cpsWrap.oppId",component.get("v.oppIdParent"));
         component.set("v.cpsWrap.accName",offering.accName);
         component.set("v.CCProductId",offering.ccProductId);
         component.set("v.cpsWrap.ccProductId",offering.ccProductId);
@@ -130,9 +143,9 @@
         component.set("v.selectedLookUpRecord1",offering.OfferingInformation.selectedAccount);
         component.set("v.selectedLookUpRecord5",offering.OfferingInformation.selectedFacility);
 		//alert("Selected Facility "+ JSON.stringify((offering.OfferingInformation.selectedFacility)));
-
 		helper.requiredSchedule(component,event,helper);
-		component.set("v.stepNumber", "One");        
+		component.set("v.stepNumber", "One"); 
+         
     },
     
     deleteOffering : function(component, event, helper) {
@@ -213,15 +226,16 @@
             helper.formatTime(component,event,helper);
             helper.updateGeoLatLong(component,event,helper);
             helper.validateFields(component,event,helper);
-            helper.createIltLocation(component);
-            
+            //helper.createIltLocation(component);
+            /*
             if(component.get('v.cpsWrap.locationId') != ""){
                 var timeOut = '0';
             }
-            
-            if(component.get("v.allValid") == false && component.get("v.offeringId") > 0 && component.get("v.cpsWrap.offeringId") == "0"){
+            */
+            if(component.get("v.allValid") == false && component.get("v.geoCodeLookup") == false && component.get("v.offeringId") > 0 && component.get("v.cpsWrap.offeringId") == "0"){
                     component.set("v.showError","false");
                     component.set("v.errorMessage","");
+                	var timeOut = '0';
             }
             
             if(component.get("v.allValid") == true){
@@ -240,11 +254,14 @@
                     component.set("v.orgError",false);
                 }
                 
-                if(component.get("v.allValid") && component.get("v.isUrlValid") && !component.get("v.orgError")) {
+                if(component.get("v.allValid")  && component.get("v.isUrlValid") && !component.get("v.orgError") && !component.get("v.geoCodeLookup")) {
+                    //alert("No Errors Path");
+                    helper.createIltLocation(component);
                     var tempList = component.get("v.offeringsList");
                     var existingOfferingInCart = component.get("v.cpsWrap.offeringId");
                     var offeringJson = JSON.stringify(component.get("v.cpsWrap"));
                     //alert('***New Offerings.. '+offeringJson);
+                    //alert('***Existing Offering In Cart.. '+existingOfferingInCart);
                     if(existingOfferingInCart != "0"){
                         tempList[existingOfferingInCart -1].quantity = "1";
                         if(component.get("v.productChange")){
@@ -287,7 +304,8 @@
                     helper.clearForm(component,event,helper);
                     
                     component.set("v.stepNumber", "Two");    
-                } else if(component.get("v.offeringId") > 0 && component.get("v.cpsWrap.offeringId") == "0") {
+                } else if(!component.get("v.geoCodeLookup") && component.get("v.offeringId") > 0 && component.get("v.cpsWrap.offeringId") == "0") {
+                    //alert("Just Keep Going");
                     var action = component.get("c.getDisplayPaymentInfo"); 
                     action.setParams({ opportunityId : component.get("v.oppIdParent")});
                     action.setCallback(this, function(response) {
@@ -384,18 +402,26 @@
         component.set("v.pMethod", "billSprt");
     },
     
+    addOffering : function(component, event, helper){
+        //alert("Add Offering Function");
+    	helper.clearForm(component,event,helper);
+   		component.set("v.stepNumber", "One");
+        component.set("v.editMode", "false");
+    },
+    
     onclickAddToCart : function(component, event, helper) {
         	var timeOut = '3000';
             helper.requiredSchedule(component,event,helper);
             helper.formatTime(component,event,helper);
         	helper.updateGeoLatLong(component,event,helper);
             helper.validateFields(component,event,helper);
-            helper.createIltLocation(component);
+            //helper.createIltLocation(component);
         	
-        
+        	/*
             if(component.get('v.cpsWrap.locationId') != ""){
                 var timeOut = '0';
             }
+            */
 
             if(component.get("v.allValid") == true){
                 document.getElementById("Accspinner").style.display = "block";
@@ -412,11 +438,12 @@
                     component.set("v.orgError",false);
                 }
                 
-                if(component.get("v.allValid") && component.get("v.isUrlValid") && !component.get("v.orgError")) {
+                if(component.get("v.allValid") && component.get("v.isUrlValid") && !component.get("v.orgError") && !component.get("v.geoCodeLookup")) {
+                    helper.createIltLocation(component);
                     var tempList = component.get("v.offeringsList");
                     var existingOfferingInCart = component.get("v.cpsWrap.offeringId");
                     var offeringJson = JSON.stringify(component.get("v.cpsWrap"));
-                    //alert('***New Offerings.. '+offeringJson);
+                    //alert('***New Offering: '+offeringJson);
                     if(existingOfferingInCart != "0"){
                         tempList[existingOfferingInCart -1].quantity = "1";
                         if(component.get("v.productChange")){
@@ -491,6 +518,11 @@
         	component.set("v.stepNumber", "Zero");
         }
     },
+    cancelDropOpp : function(component, event, helper){
+        helper.cleanUp(component, event, helper);
+        $A.get("e.force:refreshView").fire();
+        component.set("v.stepNumber", "Zero");
+    },  
         
     handleChange : function (component, event) {
         // This will contain the string of the "value" attribute of the selected option
@@ -499,55 +531,64 @@
     },
     
 	accountSelected : function (component,event,helper){
-        console.log("account Selected");
+        //alert("AccountOpportunityCreated " + component.get("v.accountOpportunityCreated"));
+        if(component.get("v.accountOpportunityCreated") != true){ 
+                console.log("account Selected");
         
-        var orgId 	= component.get("v.selectedLookUpRecord1").Id;
-        var orgName = component.get("v.selectedLookUpRecord1").Name;
-        
-        component.set("v.cpsWrap.accId",orgId);
-        component.set("v.cpsWrap.accName",orgName);
-        
-        console.log("***orgId***"+orgId);
-        if(orgId != null || orgId != undefined){
-        var opptyId = component.get("v.oppIdParent");
-        var action = component.get("c.createOppForCCUpdate");
-        console.log("***oppId***"+opptyId);
-        action.setParams({
-            AccountId: orgId,
-            storeFront: 'CPS',
-            opptyId : opptyId
-        });
-        
-        action.setCallback(this, function(response) {
-            
-            var state = response.getState();
-            
-            console.log(state);
-            if (state === "SUCCESS") {
-                var storeResponse = response.getReturnValue();
-                if(storeResponse != null){
-                   component.set("v.oppIdParent",storeResponse);
- 		   		   component.set("v.cpsWrap.oppId",storeResponse);
-                }
-            }
-            else if (state === "ERROR") {
+                var orgId 	= component.get("v.selectedLookUpRecord1").Id;
+                var orgName = component.get("v.selectedLookUpRecord1").Name;
                 
-                var errors = response.getError();
-                if (errors) {
+                component.set("v.cpsWrap.accId",orgId);
+                component.set("v.cpsWrap.accName",orgName);
+                
+                console.log("***orgId***"+orgId);
+                if(orgId != null || orgId != undefined){
+                var opptyId = component.get("v.oppIdParent");
+                var action = component.get("c.createOppForCCUpdate");
+                console.log("***oppId***"+opptyId);
+                action.setParams({
+                    AccountId: orgId,
+                    storeFront: 'CPS',
+                    opptyId : opptyId
+                });
+                
+                action.setCallback(this, function(response) {
                     
-                    if (errors[0] && errors[0].message) {
-                        console.log("Error message: " + 
-                                    errors[0].message);
+                    var state = response.getState();
+                    
+                    console.log(state);
+                    if (state === "SUCCESS") {
+                        var storeResponse = response.getReturnValue();
+                        if(storeResponse != null){
+                           component.set("v.oppIdParent",storeResponse);
+                           component.set("v.cpsWrap.oppId",storeResponse);
+                           component.set("v.accountOpportunityCreated", true);
+                           //alert("Your Opportunity Id " + storeResponse);
+                           
+                        }
                     }
-                } else {
-                    console.log("Unknown error");
+                    else if (state === "ERROR") {
+                        
+                        var errors = response.getError();
+                        if (errors) {
+                            
+                            if (errors[0] && errors[0].message) {
+                                console.log("Error message: " + 
+                                            errors[0].message);
+                            }
+                        } else {
+                            console.log("Unknown error");
+                        }
+                    }
+                    
+                });
+                
+                $A.enqueueAction(action);
                 }
-            }
-            
-        });
         
-        $A.enqueueAction(action);
         }
+        
+
     },
     
     
@@ -565,6 +606,8 @@
             component.set("v.cpsWrap.city", selectedSite["redwing__City__c"]);
             component.set("v.cpsWrap.state", selectedSite["redwing__State__c"]);
             component.set("v.cpsWrap.zip", selectedSite["redwing__Postal_Code__c"]);
+            component.set("v.cpsWrap.geoLat", selectedSite["GeoLocation__Latitude__s"]);
+            component.set("v.cpsWrap.geoLng", selectedSite["GeoLocation__Longitude__s"]);
             component.set('v.cpsWrap.locationId', siteId);
         	//alert("siteSelected Location ID " + siteId);
             //alert("siteSelected Location ID " + component.get('v.cpsWrap.locationId'));            
@@ -578,5 +621,24 @@
         console.log('check if payment completed'+component.get("v.paymentComplete"));
 
     },
+    callDashboard : function(component, event, helper){
+        alert("Call CPS Dashboard ");
+        /*
+        var navService = component.find("navService");
+        var pageReference = component.get("v.pageReference");
+        alert("Navigate to  "+JSON.stringify(pageReference));
+        event.preventDefault();
+        navService.navigate(pageReference);
+        */
+		
+        var evnt = $A.get("e.force:navigateToComponent");
+        evnt.setParams({
+            componentDef  : "c:PHSS_ClassPostingDashboard",
+            componentAttributes: { }
+    	});
+        evnt.fire();
+        
+
+	},
 
 })

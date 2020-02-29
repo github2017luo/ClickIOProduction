@@ -873,6 +873,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Coronavirus</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Hurricane Barry</fullName>
             <default>false</default>
         </values>

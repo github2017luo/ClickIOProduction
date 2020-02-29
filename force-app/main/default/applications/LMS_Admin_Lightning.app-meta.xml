@@ -7,16 +7,13 @@
     <label>LMS Admin Lightning</label>
     <navType>Standard</navType>
     <tabs>standard-home</tabs>
-    <tabs>ccrz__E_Product__c</tabs>
     <tabs>redwing__Training_Plan__c</tabs>
     <tabs>redwing__Learning__c</tabs>
     <tabs>redwing__Achievement__c</tabs>
-    <tabs>Course_Catalog__c</tabs>
-    <tabs>Course_Catalog_Tag__c</tabs>
-    <tabs>redwing__Training_Track__c</tabs>
-    <tabs>ccrz__E_PriceList__c</tabs>
-    <tabs>ccrz__E_Category__c</tabs>
-    <tabs>ccrz__E_Spec__c</tabs>
+    <tabs>scormanywhere__Course__c</tabs>
+    <tabs>scormanywhere__Transcript__c</tabs>
+    <tabs>standard-report</tabs>
     <tabs>redwing__Achievement_Assignment__c</tabs>
+    <tabs>Course_Catalog__c</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>

@@ -7,6 +7,10 @@
         <value xsi:nil="true"/>
     </values>
     <values>
+        <field>sked__Value_New__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
         <field>sked__Value__c</field>
         <value xsi:type="xsd:string">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5za2VkdWxvLmNvbS9hdXRoL3Rva2VuIiwiYXVkIjpbIjVjMDIzM2U3OTFjMjNkNGZhZGRkNjBjODAxNTBmNzM2Il0sImp0aSI6Ino2Q0dla3hEVEt3VmY2RFZRR3BUODQyR3JYbUJnN3RuIiwiaHR0cHM6Ly9hcGkuc2tlZHVsby5jb20vc2ZfZW52Ijoic2FsZXNmb3JjZSIsImh0dHBzOi8vYXBpLnNrZWR1bG8uY29tL3ZlbiI6eyJ1c2VyX2lkIjoiMDA1MFYwMDAwMDZqclFsUUFJIiwiY29tbXVuaXR5X2lkIjpudWxsfSwiaHR0cHM6Ly9hcGkuc2tlZHVsby5jb20vdXNlcl9pZCI6Im9hdXRoMnxzZi1zYWxlc2ZvcmNlfDAwNTBWMDAwMDA2anJRbFFBSSIsImh0dHBzOi8vYXBpLnNrZWR1bG8uY29tL29yZ2FuaXphdGlvbl9pZCI6IjAwRGQwMDAwMDAwYnhLekVBSSIsImh0dHBzOi8vYXBpLnNrZWR1bG8uY29tL3VzZXJuYW1lIjoibGh1bnRAc2tlZHVsby5jb20iLCJzdWIiOiJvYXV0aDJ8c2Ytc2FsZXNmb3JjZXwwMDUwVjAwMDAwNmpyUWxRQUkiLCJodHRwczovL2FwaS5za2VkdWxvLmNvbS92ZW5kb3IiOiJzYWxlc2ZvcmNlIiwiaHR0cHM6Ly9hcGkuc2tlZHVsby5jb20vcmVzb3VyY2VfaWQiOm51bGwsImh0dHBzOi8vYXBpLnNrZWR1bG8uY29tL3JvbGVzIjpbIlNjaGVkdWxlciIsIlJlc291cmNlIiwiQWRtaW5pc3RyYXRvciJdfQ.QLS9CJUqt0uuC-KDbzSMk_mjdv39XjCReXsIMolVH9I</value>
     </values>

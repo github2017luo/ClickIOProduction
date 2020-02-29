@@ -16,6 +16,11 @@
                 <label>California Wildfires</label>
             </value>
             <value>
+                <fullName>Coronavirus</fullName>
+                <default>false</default>
+                <label>Coronavirus</label>
+            </value>
+            <value>
                 <fullName>Hurricane Barry</fullName>
                 <default>false</default>
                 <label>Hurricane Barry</label>
