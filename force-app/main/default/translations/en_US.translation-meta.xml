@@ -3138,12 +3138,6 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows>
-            <fullName>Learning_Plan_Assignment_Controller-2</fullName>
-        </flows>
-        <fullName>Learning_Plan_Assignment_Controller</fullName>
-    </flowDefinitions>
-    <flowDefinitions>
-        <flows>
             <fullName>Manual_Update_of_Fulfillment_Items_to_Complete-2</fullName>
             <screens>
                 <fields>

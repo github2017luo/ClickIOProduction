@@ -103,6 +103,7 @@
         component.set("v.zoneError",false);
         component.set("v.scheduleError",false);
         component.set("v.showError",false);
+        component.set("v.geoCodeLookup",false);
         component.set("v.errorMessage","");
         
         // Course validation
@@ -201,6 +202,15 @@
             component.set("v.isUrlValid",false)
         }
         
+        //Geo Code Validation
+        if(component.get("v.allValid") && !component.get("v.cpsWrap").geoLat && !component.get("v.cpsWrap").geoLng){
+            component.set("v.showError","true");
+            component.set("v.geoCodeLookup","true");
+            component.set("v.cpsWrap.zip","");
+            var errMsg = "Please Re-enter your Facilities Zip Code.";
+            component.set("v.errorMessage",errMsg);
+        }
+        
         component.set("v.cpsWrap.OfferingInformation.selectedAccount",component.get("v.selectedLookUpRecord1"));
         component.set("v.cpsWrap.OfferingInformation.selectedFacility",component.get("v.selectedLookUpRecord5"));
         
@@ -294,7 +304,7 @@
         //alert('***Offerings.. '+JSON.stringify(component.get("v.offeringsList")));
         var tempList = component.get("v.offeringsList");
         tempList.forEach(function(offering) {
-            //alert('Location ID '+offering.locationId);
+            //alert('Opportunity ID '+offering.oppId+ " CCProductID "+offering.ccProductId);
             //alert('***Offerings.. '+JSON.stringify((offering)));
             
             var action = component.get("c.postClass");
@@ -311,9 +321,9 @@
                     //alert(component.get("v.offeringsPosted") + " == " + component.get("v.offeringId"));
                     if(component.get("v.offeringsPosted") == component.get("v.offeringId")){
                         if(component.get("v.offeringId") > 1){
-                            alert('Classes posted successfully!!!');
+                            alert('Class postings created!!!\n\nPlease allow up 48 hours for your Classes to appear on https://www.redcross.org/take-a-class.');
                         } else {
-                            alert('Class posted successfully!!!');
+                            alert('Class posting created!!!\n\nPlease allow up 48 hours for your Class to appear on https://www.redcross.org/take-a-class.');
                         }
                     }
 
@@ -359,8 +369,14 @@
                     var courseName = getResponse.LMS_Learning_Plan__r.Name;
                     var courseFormat = getResponse.LMS_Learning_Plan__r.Classroom_Setting__c;
                     var courseDuration = getResponse.LMS_Learning_Plan__r.redwing__Duration__c;
-                    
- 					var hours = Math.floor(courseDuration / 60); 
+                    //alert("LP Defined CourseDuration " + courseDuration);
+                    var hours = 0;
+                    if(courseDuration < 60){
+                        hours = courseDuration; 
+                    } else {
+                        var hours = Math.floor(courseDuration / 60); 
+                    }
+ 					
                 	console.log("Hours: " + hours);
                     component.set("v.LPDuration", hours);
                     component.set("v.LPName", courseName);
@@ -381,6 +397,7 @@
                     component.set("v.cpsWrap.courseName", 'Not Found');
                     component.set("v.cpsWrap.classFormat", courseFormat); 
                     component.set("v.cpsWrap.classDuration", '');
+                    //alert("LP Not Defined CourseDuration " + courseDuration);
                 }
             //}
         });
@@ -390,6 +407,7 @@
 		component.set("v.cpsWrap.offeringId","0");
         //component.set("v.cpsWrap.accId","");
         //component.set("v.cpsWrap.accName","");
+        component.set("v.cpsWrap.oppId",component.get("v.oppIdParent"));
         component.set("v.showError","false");
         component.set("v.errorMessage","");
         component.set("v.productChange", false);
@@ -442,10 +460,14 @@
                 if(session.classDate && session.startTime && session.endTime){
                     var diff = Math.abs(new Date(session.classDate + " " + session.startTime) - new Date(session.classDate + " " + session.endTime)); 
                     var minutes = Math.floor(diff/60000);
-                    // console.log("Minutes: " + minutes);
+                    //alert("Minutes: " + minutes);
                     var hours = Math.floor(minutes / 60); 
-                    // console.log("Hours: " + hours);
+                    //alert("Hours: " + hours);
+                    if(required_time < 60){
+                        hours = minutes;
+                    }
                     var timeScheduled = (component.get('v.ScheduledTime') +  hours);
+                    //alert("timeScheduled: " + timeScheduled);
                     if(timeScheduled >= required_time && component.get('v.cpsWrap.classDuration') != 0){ 
                         component.set("v.scheduleError",false);
                     } else {
@@ -500,7 +522,7 @@
                         document.getElementById('geoCodeLng').value = lng;
 						console.log("Lat: " + document.getElementById('geoCodeLat').value + " Lng: " + document.getElementById('geoCodeLng').value);
                         //console.log("Returned GEO Codes Lat: " + component.get("v.geoLat") + " Long:" + component.get("v.geoLong") );
-						this.updateGeoLatLong(component,event,helper);
+						//this.updateGeoLatLong(component,event,helper);
                     }
 
 		        }
@@ -540,7 +562,8 @@
     },
     updateGeoLatLong : function (component, event, helper) {
     		component.set("v.cpsWrap.geoLat", document.getElementById('geoCodeLat').value);
-            component.set("v.cpsWrap.geoLng", document.getElementById('geoCodeLng').value);              
+            component.set("v.cpsWrap.geoLng", document.getElementById('geoCodeLng').value);
+        	//alert("Lat: " + component.get("v.cpsWrap.geoLat") + " Lng: " + component.get("v.cpsWrap.geoLng"));
     },
     createIltLocation : function(component) {
 
@@ -570,5 +593,44 @@
             //alert("Location ID "+component.get('v.cpsWrap.locationId'));
         });
         $A.enqueueAction(action);
+    },
+    cleanUp : function (component,event,helper){
+        console.log("cleanUp");
+        var opptyId = component.get("v.oppIdParent");
+       
+        if (opptyId != null || opptyId != undefined){
+            var action = component.get("c.deleteOpportunity");
+           
+            action.setParams({
+                opptyId : opptyId
+            });
+            console.log("opptyId="+opptyId);
+            action.setCallback(this, function(response) {
+               
+                var state = response.getState();
+               
+                console.log(state);
+                if (state === "SUCCESS") {
+                    var storeResponse = response.getReturnValue();
+   
+                }
+                else if (state === "ERROR") {
+                   
+                    var errors = response.getError();
+                    if (errors) {
+                       
+                        if (errors[0] && errors[0].message) {
+                            console.log("Error message: " +
+                                        errors[0].message);
+                        }
+                    } else {
+                        console.log("Unknown error");
+                    }
+                }
+               
+            });
+           
+            $A.enqueueAction(action);
+        }
     },
 })

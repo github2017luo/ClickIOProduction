@@ -1999,6 +1999,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>skedJobToILTClass_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>skedJobTrigger_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -9346,6 +9350,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Fulfillment_Item__c.Is_updated__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Fulfillment_Item__c.Opportunity_Owner_Email__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -11902,6 +11911,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>PHSS_Custom_Metadata__mdt.ProfileName__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PHSS_Custom_Metadata__mdt.State_Codes__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -15296,6 +15310,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>sked__Admin_Setting__mdt.sked__Value_New__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>sked__Admin_Setting__mdt.sked__Value__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -15307,6 +15326,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>sked__Change_Event__e.sked__Data__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>sked__Log_Event__e.sked__Message__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>sked__Log_Event__e.sked__Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -15768,10 +15797,6 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Dedicated_Internal_Salesforce_Helpdesk__c-Account Merge</layout>
-        <recordType>Dedicated_Internal_Salesforce_Helpdesk__c.Contact_Merge_Requests</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Dedicated_Internal_Salesforce_Helpdesk__c-Account Merge</layout>
         <recordType>Dedicated_Internal_Salesforce_Helpdesk__c.Report_Request</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -15785,6 +15810,10 @@
     <layoutAssignments>
         <layout>Dedicated_Internal_Salesforce_Helpdesk__c-Account Merge</layout>
         <recordType>Dedicated_Internal_Salesforce_Helpdesk__c.User_Deactivation</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Dedicated_Internal_Salesforce_Helpdesk__c-Contact Merge</layout>
+        <recordType>Dedicated_Internal_Salesforce_Helpdesk__c.Contact_Merge_Requests</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Dedicated_Internal_Salesforce_Helpdesk__c-RCLC</layout>
