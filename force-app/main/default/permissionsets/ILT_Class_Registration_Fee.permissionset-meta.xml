@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Allows the ILT Class registration fee to be edited.</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>redwing__ILT_Class__c.Registration_Fee__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>ILT Class Registration Fee</label>
+</PermissionSet>

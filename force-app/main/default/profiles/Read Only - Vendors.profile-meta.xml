@@ -8779,6 +8779,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Dedicated_Internal_Salesforce_Helpdesk__c.Related_Case__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Dedicated_Internal_Salesforce_Helpdesk__c.Report_Object__c</field>
         <readable>false</readable>
     </fieldPermissions>
