@@ -155,8 +155,9 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Open Order Processing</label>
     <nameField>
+        <displayFormat>OOP-{0000000000}</displayFormat>
         <label>Open Order Processing</label>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Open_Order_Processing</pluralLabel>
     <searchLayouts>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Allows users to view all DISH tickets, not just their own.</description>
+    <description>Allows users to view all DISH tickets, not just their own. Read, Create, Edit, View All,</description>
     <hasActivationRequired>false</hasActivationRequired>
-    <label>DISH Ticket Access_ALL</label>
+    <label>DISH Ticket View Access_ALL</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>

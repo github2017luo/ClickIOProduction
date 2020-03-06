@@ -1643,7 +1643,7 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows>
-            <fullName>Order_Header_Status_Update-5</fullName>
+            <fullName>Order_Header_Status_Update-6</fullName>
         </flows>
         <fullName>Order_Header_Status_Update</fullName>
     </flowDefinitions>
@@ -3834,7 +3834,7 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows>
-            <fullName>Manage_Order_Status-6</fullName>
+            <fullName>Manage_Order_Status-7</fullName>
         </flows>
         <fullName>Manage_Order_Status</fullName>
     </flowDefinitions>

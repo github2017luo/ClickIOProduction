@@ -231,6 +231,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Cancel Posting - No Refund</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Canceled CRS</fullName>
             <default>false</default>
         </values>
@@ -468,6 +472,10 @@
         </values>
         <values>
             <fullName>MTN Instructor%2FIT Updates</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Modification to Posting</fullName>
             <default>false</default>
         </values>
         <values>
@@ -902,6 +910,10 @@
         </values>
         <values>
             <fullName>Hurricane Michael</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tennessee Tornadoes</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -3347,6 +3359,10 @@
         </values>
         <values>
             <fullName>Certificates</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Class Posting Service</fullName>
             <default>false</default>
         </values>
         <values>

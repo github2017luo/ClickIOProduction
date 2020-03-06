@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <excludeButtons>DataDotComAccountInsights</excludeButtons>
+    <excludeButtons>DataDotComClean</excludeButtons>
+    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
     <layoutSections>
         <customLabel>true</customLabel>
         <detailHeading>false</detailHeading>
@@ -865,6 +868,15 @@
         <fields>NAME</fields>
         <fields>ccrz__AllowMixedPricingCarts__c</fields>
         <relatedList>ccrz__E_AccountSetting__c.ccrz__Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>redwing__Street__c</fields>
+        <fields>redwing__City__c</fields>
+        <fields>redwing__State__c</fields>
+        <fields>redwing__Postal_Code__c</fields>
+        <fields>Skedulo_Type__c</fields>
+        <relatedList>redwing__ILT_Location__c.Account__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>

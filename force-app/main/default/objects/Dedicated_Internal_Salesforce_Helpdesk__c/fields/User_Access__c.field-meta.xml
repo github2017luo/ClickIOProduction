@@ -42,6 +42,11 @@
                 <default>false</default>
                 <label>SABA LMS</label>
             </value>
+            <value>
+                <fullName>TransUAT Sandbox</fullName>
+                <default>false</default>
+                <label>TransUAT Sandbox</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
     <visibleLines>6</visibleLines>
