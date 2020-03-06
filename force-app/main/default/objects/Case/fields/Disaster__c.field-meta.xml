@@ -55,6 +55,11 @@
                 <default>false</default>
                 <label>Hurricane Michael</label>
             </value>
+            <value>
+                <fullName>Tennessee Tornadoes</fullName>
+                <default>false</default>
+                <label>Tennessee Tornadoes</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

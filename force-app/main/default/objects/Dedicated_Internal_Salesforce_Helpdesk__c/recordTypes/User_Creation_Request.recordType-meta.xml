@@ -195,6 +195,10 @@
             <fullName>Skedulo</fullName>
             <default>false</default>
         </values>
+        <values>
+            <fullName>TransUAT Sandbox</fullName>
+            <default>false</default>
+        </values>
     </picklistValues>
     <picklistValues>
         <picklist>User_Request_Type__c</picklist>

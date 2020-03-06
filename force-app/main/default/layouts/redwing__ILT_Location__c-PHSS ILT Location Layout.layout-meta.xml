@@ -134,6 +134,11 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Offering_Id__c</fields>
+        <fields>redwing__Start_Date__c</fields>
+        <fields>redwing__End_Date__c</fields>
+        <fields>Learning_Plan__c</fields>
+        <fields>CC_Order_Number__c</fields>
         <relatedList>redwing__ILT_Class__c.redwing__Location__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>

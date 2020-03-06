@@ -107,6 +107,14 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Cancel Posting - Full Refund</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancel Posting - Partial Refund</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Charged incorrect price</fullName>
             <default>false</default>
         </values>
@@ -200,6 +208,14 @@
         </values>
         <values>
             <fullName>PO Requests</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Posting Not Canceled - Full Refund</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Posting Not Canceled - Partial Refund</fullName>
             <default>false</default>
         </values>
         <values>
@@ -2112,6 +2128,10 @@
         </values>
         <values>
             <fullName>Certificates</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Class Posting Service</fullName>
             <default>false</default>
         </values>
         <values>

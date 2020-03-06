@@ -112,6 +112,21 @@
                 <label>Canceled CRS</label>
             </value>
             <value>
+                <fullName>Cancel Posting - Full Refund</fullName>
+                <default>false</default>
+                <label>Cancel Posting - Full Refund</label>
+            </value>
+            <value>
+                <fullName>Cancel Posting - No Refund</fullName>
+                <default>false</default>
+                <label>Cancel Posting - No Refund</label>
+            </value>
+            <value>
+                <fullName>Cancel Posting - Partial Refund</fullName>
+                <default>false</default>
+                <label>Cancel Posting - Partial Refund</label>
+            </value>
+            <value>
                 <fullName>Cardio</fullName>
                 <default>false</default>
                 <label>Cardio</label>
@@ -507,6 +522,11 @@
                 <label>Marketing Registration</label>
             </value>
             <value>
+                <fullName>Modification to Posting</fullName>
+                <default>false</default>
+                <label>Modification to Posting</label>
+            </value>
+            <value>
                 <fullName>Modify</fullName>
                 <default>false</default>
                 <label>Modify</label>
@@ -640,6 +660,16 @@
                 <fullName>Portal Payment</fullName>
                 <default>false</default>
                 <label>Portal Payment</label>
+            </value>
+            <value>
+                <fullName>Posting Not Canceled - Full Refund</fullName>
+                <default>false</default>
+                <label>Posting Not Canceled - Full Refund</label>
+            </value>
+            <value>
+                <fullName>Posting Not Canceled - Partial Refund</fullName>
+                <default>false</default>
+                <label>Posting Not Canceled - Partial Refund</label>
             </value>
             <value>
                 <fullName>Post Offering</fullName>
@@ -1079,6 +1109,30 @@
             <controllingFieldValue>Community Course Support</controllingFieldValue>
             <controllingFieldValue>Course Records</controllingFieldValue>
             <valueName>Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Class Posting Service</controllingFieldValue>
+            <valueName>Cancel Posting - Full Refund</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Class Posting Service</controllingFieldValue>
+            <valueName>Cancel Posting - No Refund</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Class Posting Service</controllingFieldValue>
+            <valueName>Cancel Posting - Partial Refund</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Class Posting Service</controllingFieldValue>
+            <valueName>Modification to Posting</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Class Posting Service</controllingFieldValue>
+            <valueName>Posting Not Canceled - Full Refund</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Class Posting Service</controllingFieldValue>
+            <valueName>Posting Not Canceled - Partial Refund</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Special Processes</controllingFieldValue>
