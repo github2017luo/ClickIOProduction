@@ -103,7 +103,7 @@
         <name>Account_Flow</name>
         <label>Account Flow</label>
         <locationX>396</locationX>
-        <locationY>52</locationY>
+        <locationY>51</locationY>
         <defaultConnector>
             <targetReference>Assign_Account_Info</targetReference>
         </defaultConnector>
@@ -127,8 +127,8 @@
     <decisions>
         <name>Check_Account_Contact_Relationship</name>
         <label>Check Account Contact Relationship</label>
-        <locationX>810</locationX>
-        <locationY>163</locationY>
+        <locationX>811</locationX>
+        <locationY>162</locationY>
         <defaultConnector>
             <targetReference>Assign_Account_Contact_Relationship</targetReference>
         </defaultConnector>
@@ -147,7 +147,7 @@
                 <leftValueReference>sAccountContactRelationship.ContactId</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <elementReference>frmContactId</elementReference>
+                    <elementReference>sContact.Id</elementReference>
                 </rightValue>
             </conditions>
             <connector>
@@ -181,6 +181,7 @@
             <label>Is Blank</label>
         </rules>
     </decisions>
+    <description>Updated Contact ID to 18 CHAR</description>
     <formulas>
         <name>NewAccountName</name>
         <dataType>String</dataType>

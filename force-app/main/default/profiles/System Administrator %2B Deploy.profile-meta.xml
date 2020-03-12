@@ -907,6 +907,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>PHSS_PostError</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>PHSS_PriceListItemTriggerHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -2373,6 +2377,11 @@
         <editable>false</editable>
         <field>Account.Billing_Street_Custom__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Block_Certificate_Export_to_AWS__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -11442,6 +11451,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.Order_Generated__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.Override_Channel__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
