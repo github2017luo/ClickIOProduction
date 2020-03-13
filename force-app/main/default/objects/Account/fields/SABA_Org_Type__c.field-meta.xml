@@ -7,7 +7,7 @@
     <label>Org Type</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
-    <trackHistory>true</trackHistory>
+    <trackHistory>false</trackHistory>
     <type>Picklist</type>
     <valueSet>
         <valueSetDefinition>
@@ -71,6 +71,11 @@
                 <fullName>CEPFS</fullName>
                 <default>false</default>
                 <label>CEPFS</label>
+            </value>
+            <value>
+                <fullName>COM</fullName>
+                <default>false</default>
+                <label>COM</label>
             </value>
             <value>
                 <fullName>Community Branch</fullName>

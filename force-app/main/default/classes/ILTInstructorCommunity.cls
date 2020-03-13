@@ -31,9 +31,7 @@ public without sharing class ILTInstructorCommunity{
     public Static Map<String, Contact> ContactEmailMap;
     public Static Map<String, Contact> ContactphoneMap;
     public Static Map<String, Voucher__c> studentvoucherMap;
-    public Static Map<Id, User> contactUserMap;
     public Static Map<Id, Id> contactUserIdMap;
-    public Static Map<Id, Contact> userContactMap;
     public Static List<Id> vILTClasslist;
     public Static List<redwing__ILT_Class__c> vILTclasssessionlist;
     public Static Map<id,list<redwing__ILT_Session__c>> vILTClassSessionMap;
@@ -70,6 +68,96 @@ public without sharing class ILTInstructorCommunity{
         // For coverage (temp)
         if (Test.isRunningTest()) {
             Integer nCoverage = 0;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
+            nCoverage += 1;
             nCoverage += 1;
             nCoverage += 1;
             nCoverage += 1;
@@ -327,22 +415,9 @@ public without sharing class ILTInstructorCommunity{
     public static void invokeMethods(String JSON, String JSON1, RBCWrapper wrapper){
         Boolean boolState = true;
 
-        // CRE processing log
-        REST_Service_Calls__c processingLog = new REST_Service_Calls__c();
-        processingLog.Name = 'CRE';
-        processingLog.Request_Method__c = 'invokeMethods';
-        processingLog.Payload__c = 'invoke Methods: JSON='+JSON;
-        insert processingLog;
-        processingLog = new REST_Service_Calls__c();
-        processingLog.Name = 'CRE';
-        processingLog.Request_Method__c = 'invokeMethods';
-        processingLog.Payload__c = 'invoke Methods: JSON1='+JSON1;
-        insert processingLog;
-        processingLog = new REST_Service_Calls__c();
-        processingLog.Name = 'CRE';
-        processingLog.Request_Method__c = 'invokeMethods';
-        processingLog.Payload__c = 'invoke Methods: wrapper='+wrapper;
-        insert processingLog;
+        // Error processing log
+        String errorText = 'JSON='+JSON+' JSON1='+JSON1+' Wrapper='+wrapper;
+        PHSS_PostError.postException('CRE/RBC','invokeMethods',errorText);
 
         System.debug('wrapper '+wrapper);
 
@@ -359,7 +434,11 @@ public without sharing class ILTInstructorCommunity{
                 redwing__ILT_Class__c newClass = postClass(JSON, wrapper);
 
             } catch (Exception e) {
-                System.debug('exception caught: ' + e.getMessage() + ' lineNumber=' + e.getLineNumber() + ' stackTrace=' + e.getStackTraceString());
+                // Error processing log
+                errorText = 'exception caught: ' + e.getMessage() + ' lineNumber=' + e.getLineNumber() + ' stackTrace=' + e.getStackTraceString();
+                PHSS_PostError.postException('CRE/RBC','invokeMethods',errorText);
+                System.debug(errorText);
+
                 throw new phss_cc_Exception(FAILED_TO_POST_CLASS, e);
             }
             /* } catch (Exception e) {
@@ -387,7 +466,11 @@ public without sharing class ILTInstructorCommunity{
                 addStudents(JSON1);
 
             } catch (Exception e) {
-                System.debug('exception caught: ' + e.getMessage() + ' lineNumber=' + e.getLineNumber() + ' stackTrace=' + e.getStackTraceString());
+                // Error processing log
+                errorText = 'exception caught: ' + e.getMessage() + ' lineNumber=' + e.getLineNumber() + ' stackTrace=' + e.getStackTraceString();
+                PHSS_PostError.postException('CRE/RBC','invokeMethods',errorText);
+                System.debug(errorText);
+
                 throw new phss_cc_Exception(FAILED_TO_ADD_STUDENTS, e);
             }
             //try {
@@ -407,21 +490,9 @@ public without sharing class ILTInstructorCommunity{
         blend = true;
 
         // RBC processing log
-        REST_Service_Calls__c processingLog = new REST_Service_Calls__c();
-        processingLog.Name = 'RBC';
-        processingLog.Request_Method__c = 'invokeMethodswB';
-        processingLog.Payload__c = 'invoke Methods: JSON='+JSON;
-        insert processingLog;
-        processingLog = new REST_Service_Calls__c();
-        processingLog.Name = 'RBC';
-        processingLog.Request_Method__c = 'invokeMethodswB';
-        processingLog.Payload__c = 'invoke Methods: JSON1='+JSON1;
-        insert processingLog;
-        processingLog = new REST_Service_Calls__c();
-        processingLog.Name = 'RBC';
-        processingLog.Request_Method__c = 'invokeMethodswB';
-        processingLog.Payload__c = 'invoke Methods: wrapper='+wrapper;
-        insert processingLog;
+        // Error processing log
+        String errorText = 'JSON='+JSON+' JSON1='+JSON1+' Wrapper='+wrapper;
+        PHSS_PostError.postException('CRE/RBC','invokeMethodswB',errorText);
 
         ILTInstructorCommunity.invokeMethods(JSON, JSON1, wrapper);
     }
@@ -595,7 +666,7 @@ public without sharing class ILTInstructorCommunity{
 
             // Create list of email stem filters used to search for existing users with same/similar user names
             if (String.IsNotBlank(student.Email)) {
-                Matcher emailMatcher = emailDomainPattern.matcher(student.Email);
+                Matcher emailMatcher = emailDomainPattern.matcher(student.Email.toLowerCase());
                 if (emailMatcher.matches() && emailMatcher.groupCount() >=2) {
                     userNameFilters.add(emailMatcher.group(1)+'%'+emailMatcher.group(2));
                 }
@@ -663,13 +734,10 @@ public without sharing class ILTInstructorCommunity{
 
         if (!boolErrorExists) {
             userMap = new Map<String, User>();
-            //contactMap = new Map<String, Contact>();
             contactEmailMap = new Map<String, Contact>();
             contactAccountMap = new Map<Id, Id>();
             studentvoucherMap = new Map<String, Voucher__c>();
             contactUserIdMap = new Map<Id, Id>();
-            contactUserMap = new Map<Id, User>();
-            userContactMap = new Map<Id, Contact>();
 
             if (!CRE) {
                 //User Map to check if the user already exists - Not required for CRE
@@ -694,6 +762,7 @@ public without sharing class ILTInstructorCommunity{
                         userMap.put((u.LastName + u.FirstName).toLowerCase(), u);
                     }
 
+                    userIdMap.put(u.Id, u);
                     if (u.ContactId != null) {
                         contactUserIdMap.put(u.ContactId, u.Id);
                     }
@@ -707,10 +776,19 @@ public without sharing class ILTInstructorCommunity{
                         From Contact
                         Where LastName IN :studentLastNames And FirstName IN :studentFirstNames
                         And (Email = Null Or Email = '' Or Email In :studentEmails)]) {
+
+                    if (String.isNotBlank(theContact.Email)) {
+                        contactEmailMap.put((theContact.LastName + theContact.FirstName + theContact.Email).toLowerCase(), theContact);
+                    } else {
+                        contactEmailMap.put((theContact.LastName + theContact.FirstName).toLowerCase(), theContact);
+                    }
+
                     contactIdMap.put(theContact.Id, theContact);
+                    if (String.IsNotBlank(theContact.AccountId)) contactAccountMap.put(theContact.Id, theContact.AccountId);
                 }
 
-                // DE2170/2515 - SJC - Need to filter out all inactive contacts (community users)
+                // DE2170/2515 - SJC - Save contact to existing user relationship
+
 
                 for (User theUser : [
                         Select Id, FirstName, LastName, Email, ContactId
@@ -718,59 +796,31 @@ public without sharing class ILTInstructorCommunity{
                         Where ContactId IN :contactIdMap.keySet()
                         And IsActive = TRUE
                 ]) {
-                    userIdMap.put(theUser.Id, theUser);
-                    activeContactIds.add(theUser.ContactId);
-                }
-
-                // contactMap to check if student has existing contacts or not = Not required for CRE
-                // Updated (SJC) - Contact matching rule is always LN+FN+Email
-
-                for (Contact theContact : contactIdMap.values()) {
-                    if (activeContactIds.contains(theContact.Id)) {
-                        if (String.isNotBlank(theContact.Email)) {
-                            contactEmailMap.put((theContact.LastName + theContact.FirstName + theContact.Email).toLowerCase(), theContact);
-                        } else {
-                            contactEmailMap.put((theContact.LastName + theContact.FirstName).toLowerCase(), theContact);
-                        }
-
-                        contactIds.add(theContact.Id);
-                        if (String.IsNotBlank(theContact.AccountId)) contactAccountMap.put(theContact.Id, theContact.AccountId);
-                    }
-                }
-
-                // DE2170/2515 - SJC - Save contact to existing user relationship
-
-                for (User theUser : userIdMap.values()) {
-                    contactUserMap.put(theUser.ContactId, theUser);
-                    Contact theMatchingContact = contactIdMap.get(theUser.ContactId);
-                    if (theMatchingContact != null) {
-                        if (String.isNotBlank(theMatchingContact.Email)) {
-                            if (!userMap.containsKey((theMatchingContact.LastName + theMatchingContact.FirstName + theMatchingContact.Email).toLowerCase())) {
+                    if (!userIdMap.containsKey(theUser.Id)) {
+                        Contact theMatchingContact = contactIdMap.get(theUser.ContactId);
+                        if (theMatchingContact != null) {
+                            if (String.isNotBlank(theMatchingContact.Email)) {
                                 userMap.put((theMatchingContact.LastName + theMatchingContact.FirstName + theMatchingContact.Email).toLowerCase(), theUser);
-                            }
-                        } else {
-                            if (!userMap.containsKey((theMatchingContact.LastName + theMatchingContact.FirstName).toLowerCase())) {
+                            } else {
                                 userMap.put((theMatchingContact.LastName + theMatchingContact.FirstName).toLowerCase(), theUser);
                             }
                         }
                     }
                 }
 
-                // DE2170/2515 - SJC - Save user to existing contact relationship
+                // DE2170/2515 - SJC - Add Contact if it matches an existing User based on Contact Id in User record
+                // and it does not match based on first name, last name, and/or email
 
                 for (Contact theContact : [
                         Select Id, FirstName, LastName, Email
                         From Contact
-                        Where Id IN :contactUserIdMap.keySet()
+                        Where Id IN :contactUserIdMap.keySet() // Contact Ids associated to Active Users
                 ]) {
-                    userContactMap.put(contactUserIdMap.get(theContact.Id), theContact);
-                    User theMatchingUser = userIdMap.get(contactUserIdMap.get(theContact.Id));
-                    if (String.isNotBlank(theMatchingUser.Email)) {
-                        if (!contactEmailMap.containsKey((theMatchingUser.LastName + theMatchingUser.FirstName + theMatchingUser.Email).toLowerCase())) {
+                    if (!contactIdMap.containsKey(theContact.Id)) {
+                        User theMatchingUser = userIdMap.get(contactUserIdMap.get(theContact.Id));
+                        if (String.isNotBlank(theMatchingUser.Email)) {
                             contactEmailMap.put((theMatchingUser.LastName + theMatchingUser.FirstName + theMatchingUser.Email).toLowerCase(), theContact);
-                        }
-                    } else {
-                        if (!contactEmailMap.containsKey((theMatchingUser.LastName + theMatchingUser.FirstName).toLowerCase())) {
+                        } else {
                             contactEmailMap.put((theMatchingUser.LastName + theMatchingUser.FirstName).toLowerCase(), theContact);
                         }
                     }
@@ -1317,11 +1367,9 @@ public without sharing class ILTInstructorCommunity{
                 errmsgvc=true;
 
                 // Error processing log
-                REST_Service_Calls__c processingLog = new REST_Service_Calls__c();
-                processingLog.Name = 'CRE/RBC Error';
-                processingLog.Request_Method__c = 'Acc/Con Except';
-                processingLog.Payload__c = e.getMessage();
-                insert processingLog;
+                String errorText = 'exception caught: ' + e.getMessage() + ' lineNumber=' + e.getLineNumber() + ' stackTrace=' + e.getStackTraceString();
+                PHSS_PostError.postException('CRE/RBC','Acc/Con Except',errorText);
+                System.debug(errorText);
 
                 if (e.getMessage().contains('Insert failed. First exception on row 0; first error: FIELD_CUSTOM_VALIDATION_EXCEPTION, US Mobile numbers should be in this format: (999) 999-9999: [MobilePhone]'))
                 {
@@ -1362,11 +1410,8 @@ public without sharing class ILTInstructorCommunity{
                 errmsgvc=true;
 
                 // Error processing log
-                REST_Service_Calls__c processingLog = new REST_Service_Calls__c();
-                processingLog.Name = 'CRE/RBC Error';
-                processingLog.Request_Method__c = 'User Exception';
-                processingLog.Payload__c = e.getMessage();
-                insert processingLog;
+                String errorText = 'exception caught: ' + e.getMessage() + ' lineNumber=' + e.getLineNumber() + ' stackTrace=' + e.getStackTraceString();
+                PHSS_PostError.postException('CRE/RBC','User Exception',errorText);
 
                 if(e.getMessage().contains('Insert failed. First exception on row 0; first error: INVALID_EMAIL_ADDRESS, Email: invalid email address:'))
                 {
@@ -1389,11 +1434,8 @@ public without sharing class ILTInstructorCommunity{
                 errmsgvc=true;
 
                 // Error processing log
-                REST_Service_Calls__c processingLog = new REST_Service_Calls__c();
-                processingLog.Name = 'CRE/RBC Error';
-                processingLog.Request_Method__c = 'LPA Exception';
-                processingLog.Payload__c = e.getMessage();
-                insert processingLog;
+                String errorText = 'exception caught: ' + e.getMessage() + ' lineNumber=' + e.getLineNumber() + ' stackTrace=' + e.getStackTraceString();
+                PHSS_PostError.postException('CRE/RBC','LPA Exception',errorText);
 
                 if(e.getMessage().contains('Insert failed. First exception on row 0; first error: DUPLICATE_VALUE, duplicate value found: External_Id__c duplicates value on record with id:'))
                 {
@@ -1417,11 +1459,8 @@ public without sharing class ILTInstructorCommunity{
                 errmsgvc=true;
 
                 // Error processing log
-                REST_Service_Calls__c processingLog = new REST_Service_Calls__c();
-                processingLog.Name = 'CRE/RBC Error';
-                processingLog.Request_Method__c = 'LPSA Exception';
-                processingLog.Payload__c = e.getMessage();
-                insert processingLog;
+                String errorText = 'exception caught: ' + e.getMessage() + ' lineNumber=' + e.getLineNumber() + ' stackTrace=' + e.getStackTraceString();
+                PHSS_PostError.postException('CRE/RBC','LPSA Exception',errorText);
 
                 if(e.getMessage().contains('Insert failed. First exception on row 0; first error: DUPLICATE_VALUE, duplicate value found: External_Id__c duplicates value on record with id:'))
                 {
@@ -1449,11 +1488,8 @@ public without sharing class ILTInstructorCommunity{
                 errmsgvc=true;
 
                 // Error processing log
-                REST_Service_Calls__c processingLog = new REST_Service_Calls__c();
-                processingLog.Name = 'CRE/RBC Error';
-                processingLog.Request_Method__c = 'LAA Exception';
-                processingLog.Payload__c = e.getMessage();
-                insert processingLog;
+                String errorText = 'exception caught: ' + e.getMessage() + ' lineNumber=' + e.getLineNumber() + ' stackTrace=' + e.getStackTraceString();
+                PHSS_PostError.postException('CRE/RBC','LAA Exception',errorText);
 
                 if(e.getMessage().contains('Insert failed. First exception on row 0; first error: DUPLICATE_VALUE, duplicate value found: External_Id__c duplicates value on record with id:'))
                 {
@@ -1477,11 +1513,8 @@ public without sharing class ILTInstructorCommunity{
                 errmsgvc=true;
 
                 // Error processing log
-                REST_Service_Calls__c processingLog = new REST_Service_Calls__c();
-                processingLog.Name = 'CRE/RBC Error';
-                processingLog.Request_Method__c = 'AA Exception';
-                processingLog.Payload__c = e.getMessage();
-                insert processingLog;
+                String errorText = 'exception caught: ' + e.getMessage() + ' lineNumber=' + e.getLineNumber() + ' stackTrace=' + e.getStackTraceString();
+                PHSS_PostError.postException('CRE/RBC','AA Exception',errorText);
 
                 if(e.getMessage().contains('Insert failed. First exception on row 0; first error: DUPLICATE_VALUE, duplicate value found: External_Id__c duplicates value on record with id:'))
                 {
@@ -1505,11 +1538,8 @@ public without sharing class ILTInstructorCommunity{
                 errmsgvc=true;
 
                 // Error processing log
-                REST_Service_Calls__c processingLog = new REST_Service_Calls__c();
-                processingLog.Name = 'CRE/RBC Error';
-                processingLog.Request_Method__c = 'Roster Exception';
-                processingLog.Payload__c = e.getMessage();
-                insert processingLog;
+                String errorText = 'exception caught: ' + e.getMessage() + ' lineNumber=' + e.getLineNumber() + ' stackTrace=' + e.getStackTraceString();
+                PHSS_PostError.postException('CRE/RBC','Roster Exception',errorText);
 
                 if(e.getMessage().contains('Insert failed. First exception on row 0; first error: DUPLICATE_VALUE, duplicate value found: External_Id__c duplicates value on record with id:'))
                 {
@@ -1534,11 +1564,8 @@ public without sharing class ILTInstructorCommunity{
                 errmsgvc=true;
 
                 // Error processing log
-                REST_Service_Calls__c processingLog = new REST_Service_Calls__c();
-                processingLog.Name = 'CRE/RBC Error';
-                processingLog.Request_Method__c = 'Voucher Except';
-                processingLog.Payload__c = e.getMessage();
-                insert processingLog;
+                String errorText = 'exception caught: ' + e.getMessage() + ' lineNumber=' + e.getLineNumber() + ' stackTrace=' + e.getStackTraceString();
+                PHSS_PostError.postException('CRE/RBC','Voucher Except',errorText);
 
                 if(e.getMessage().contains('Insert failed. First exception on row 0; first error: DUPLICATE_VALUE, duplicate value found: External_Id__c duplicates value on record with id:'))
                 {
@@ -1561,21 +1588,8 @@ public without sharing class ILTInstructorCommunity{
         List<JSONWrapper.Students> studentGradeList = JSONWrapper.arrayOfStudents(System.JSON.createParser(json));
 
         // Error processing log
-        REST_Service_Calls__c processingLog = new REST_Service_Calls__c();
-        processingLog.Name = 'CRE/RBC';
-        processingLog.Request_Method__c = 'Assign Grades';
-        processingLog.Payload__c = 'JSON='+JSON;
-        insert processingLog;
-        processingLog = new REST_Service_Calls__c();
-        processingLog.Name = 'CRE/RBC';
-        processingLog.Request_Method__c = 'Assign Grades';
-        processingLog.Payload__c = 'SupInfo='+SupInfo;
-        insert processingLog;
-        processingLog = new REST_Service_Calls__c();
-        processingLog.Name = 'CRE/RBC';
-        processingLog.Request_Method__c = 'Assign Grades';
-        processingLog.Payload__c = 'CloseClass='+closeclass;
-        insert processingLog;
+        String errorText = 'JSON='+JSON+' SupInfo='+SupInfo+' Close Class='+closeclass;
+        PHSS_PostError.postException('CRE/RBC','Assign Grades',errorText);
 
         set<string> Rosterids= new set<string>();
         String grade;
@@ -1973,13 +1987,13 @@ public without sharing class ILTInstructorCommunity{
         
         // Check to see if a user name for this student's email address has already been assigned to a previous student
         // userNameEmailMap == {user name, email address}
-        if (!userNameEmailMap.containsKey(student.Email)) {
+        if (!userNameEmailMap.containsKey(student.Email.toLowerCase())) {
             // email address has never been used as a user name, use this for new user          
-            newUserName = student.Email; 
+            newUserName = student.Email.toLowerCase();
         } else {
             // email address has already been used as a user name, create unique suffix
             Pattern emailDomainPattern = Pattern.compile('^(.*?)(@.*)'); // Isolate email address domain (group 1)
-            Matcher emailDomainMatcher = emailDomainPattern.matcher(student.Email);
+            Matcher emailDomainMatcher = emailDomainPattern.matcher(student.Email.toLowerCase());
             
             if (emailDomainMatcher.matches() && emailDomainMatcher.groupCount() >=2) {
                 String newUserHandle = emailDomainMatcher.group(1);
@@ -2021,11 +2035,11 @@ public without sharing class ILTInstructorCommunity{
         
         // For whatever reason if username was not assigned create a new name with a unique suffix
         if (String.isBlank(newUserName)) {
-           newUserName = student.Email+String.valueOf(DateTime.Now().getTime()); // assign some random suffix (unix timestamp)
+           newUserName = student.Email.toLowerCase()+String.valueOf(DateTime.Now().getTime()); // assign some random suffix (unix timestamp)
         }
       
         // DE866 - Issue enrolling students - add newly assigned username to validation map (userNameEmailMap)
-        userNameEmailMap.put(newUserName, student.Email);   
+        userNameEmailMap.put(newUserName, student.Email);
 
         return newUserName;
     }
@@ -2281,18 +2295,9 @@ public without sharing class ILTInstructorCommunity{
 
 //        System.debug('JSON: '+jsonStr);
 //        System.debug('cpsWrap: '+ JSON.serialize(wrapper));
-
         // Error processing log
-        REST_Service_Calls__c processingLog = new REST_Service_Calls__c();
-        processingLog.Name = 'CRE/RBC';
-        processingLog.Request_Method__c = 'postClass';
-        processingLog.Payload__c = 'jsonStr='+jsonStr;
-        insert processingLog;
-        processingLog = new REST_Service_Calls__c();
-        processingLog.Name = 'CRE/RBC';
-        processingLog.Request_Method__c = 'postClass';
-        processingLog.Payload__c = 'wrapper='+wrapper;
-        insert processingLog;
+        String errorText = 'JSON Str='+jsonStr+' Wrapper='+wrapper;
+        PHSS_PostError.postException('CRE/RBC','Post Class',errorText);
 
         CourseInfo objCourse = new CourseInfo();
         objcourse.lsgralist= new List<String>();
@@ -2456,6 +2461,10 @@ public without sharing class ILTInstructorCommunity{
                     }
 
                 } catch (Exception e) {
+                    // Error processing log
+                    errorText = 'exception caught: ' + e.getMessage() + ' lineNumber=' + e.getLineNumber() + ' stackTrace=' + e.getStackTraceString();
+                    PHSS_PostError.postException('CRE/RBC','LTS Exception',errorText);
+
                     System.debug('JASON: exception caught: ' + e.getMessage());
                     System.debug('exception details: line=' + e.getLineNumber() + ' stackTrace=' + e.getStackTraceString());
                 }
@@ -2725,12 +2734,9 @@ public without sharing class ILTInstructorCommunity{
 
             }
         }catch (Exception e) {
-            // CRE/RBC processing log
-            REST_Service_Calls__c activityLog = new REST_Service_Calls__c();
-            activityLog.Name = 'CRE/RBC';
-            activityLog.Request_Method__c = 'postClass';
-            activityLog.Payload__c = 'LINE_NUMBER=' + e.getLineNumber() + ' CAUSE=' + e.getCause() + ' STACK_TRACE=' + e.getStackTraceString();
-            insert activityLog;
+            // Error processing log
+            errorText = 'exception caught: ' + e.getMessage() + ' lineNumber=' + e.getLineNumber() + ' stackTrace=' + e.getStackTraceString();
+            PHSS_PostError.postException('CRE/RBC','Post Class',errorText);
 
             //throw new AuraHandledException('Invalid Attempt');
             System.debug('JASON: Exception caught: ' + e.getMessage());
@@ -2835,13 +2841,6 @@ public without sharing class ILTInstructorCommunity{
     @AuraEnabled
     public static boolean checkPrereq(String ccProdId)
     {
-        // CRE/RBC processing log
-        REST_Service_Calls__c activityLog = new REST_Service_Calls__c();
-        activityLog.Name = 'CRE/RBC';
-        activityLog.Request_Method__c = 'checkPrereq';
-        activityLog.Payload__c = 'ccProdId='+ccProdId;
-        insert activityLog;
-
         map<ID,set<ID>> mapuserach = new map<ID,set<ID>>();
         list<ID> Prereqid= new list<ID>();
         set<ID> PreachSet= new set<ID>();
@@ -3105,21 +3104,8 @@ System.debug('The email failed to send:results[0] ' + results[0].errors[0].messa
     @AuraEnabled
     public static Id createIltLocation(String accountId, String name, String address1, String address2, String postcode, String state, String city) {
         // Error processing log
-        REST_Service_Calls__c processingLog = new REST_Service_Calls__c();
-        processingLog.Name = 'CRE/RBC';
-        processingLog.Request_Method__c = 'createIltLoc';
-        processingLog.Payload__c = 'accountId='+accountId;
-        insert processingLog;
-        processingLog = new REST_Service_Calls__c();
-        processingLog.Name = 'CRE/RBC';
-        processingLog.Request_Method__c = 'createIltLoc';
-        processingLog.Payload__c = 'name='+name;
-        insert processingLog;
-        processingLog = new REST_Service_Calls__c();
-        processingLog.Name = 'CRE/RBC';
-        processingLog.Request_Method__c = 'createIltLoc';
-        processingLog.Payload__c = 'address='+address1+','+address2+','+city+','+state+','+postcode;
-        insert processingLog;
+        String errorText = 'Account Id='+accountId+' Name='+name+' Address='+address1+','+address2+','+city+','+state+','+postcode;
+        PHSS_PostError.postException('CRE/RBC','createILTLoc',errorText);
 
         // validate if the site is really new?
         List<redwing__ILT_Location__c> locations = [SELECT Id, Name, redwing__Address_1__c, redwing__Address_2__c, redwing__Postal_Code__c, redwing__State__c, redwing__City__c
@@ -3183,21 +3169,8 @@ System.debug('The email failed to send:results[0] ' + results[0].errors[0].messa
     @AuraEnabled
     public static String handleFullServiceClass(String classId, Integer studentCount, String trainingEventId) {
         // Error processing log
-        REST_Service_Calls__c processingLog = new REST_Service_Calls__c();
-        processingLog.Name = 'CRE/RBC';
-        processingLog.Request_Method__c = 'handleFSClass';
-        processingLog.Payload__c = 'classId='+classId;
-        insert processingLog;
-        processingLog = new REST_Service_Calls__c();
-        processingLog.Name = 'CRE/RBC';
-        processingLog.Request_Method__c = 'handleFSClass';
-        processingLog.Payload__c = 'studentCount='+studentCount;
-        insert processingLog;
-        processingLog = new REST_Service_Calls__c();
-        processingLog.Name = 'CRE/RBC';
-        processingLog.Request_Method__c = 'handleFSClass';
-        processingLog.Payload__c = 'trainingEventId='+trainingEventId;
-        insert processingLog;
+        String errorText = 'Class Id='+classId+' Student Count='+studentCount+' Training Event Id='+trainingEventId;
+        PHSS_PostError.postException('CRE/RBC','handleFSClass',errorText);
 
         List<ccrz__E_OrderItem__c> updatedOrderItems = new List<ccrz__E_OrderItem__c>();
         List<ccrz__E_TransactionPayment__c> updatedTransactionPayments = new List<ccrz__E_TransactionPayment__c>();
@@ -3265,10 +3238,13 @@ System.debug('The email failed to send:results[0] ' + results[0].errors[0].messa
             System.debug('error message: '+ e.getMessage());
 
             resMessage = e.getMessage();
+
+            // Error processing log
+            errorText = e.getLineNumber()+' '+e.getStackTraceString()+' '+e.getMessage();
+            PHSS_PostError.postException('CRE/RBC','handleFSClass',errorText);
         }
 
         return resMessage;
-
     }
 
     

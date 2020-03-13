@@ -16,7 +16,7 @@
             <assignToReference>sAccountContactRelationship.ContactId</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>frmContactId</elementReference>
+                <elementReference>sContact.Id</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -110,7 +110,7 @@
         <name>Account_Flow</name>
         <label>Account Flow</label>
         <locationX>398</locationX>
-        <locationY>73</locationY>
+        <locationY>72</locationY>
         <defaultConnector>
             <targetReference>Assign_Account_Info</targetReference>
         </defaultConnector>
@@ -154,7 +154,7 @@
                 <leftValueReference>sAccountContactRelationship.ContactId</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <elementReference>frmContactId</elementReference>
+                    <elementReference>sContact.Id</elementReference>
                 </rightValue>
             </conditions>
             <connector>
@@ -167,7 +167,7 @@
         <name>Check_Account_Record_Type</name>
         <label>Check Account Record Type</label>
         <locationX>798</locationX>
-        <locationY>55</locationY>
+        <locationY>54</locationY>
         <defaultConnector>
             <targetReference>Convert_to_Individual</targetReference>
         </defaultConnector>
@@ -213,6 +213,7 @@
             <label>Is Blank</label>
         </rules>
     </decisions>
+    <description>Updated to decision to use sContact.ID from frmContactID</description>
     <formulas>
         <name>NewAccountName</name>
         <dataType>String</dataType>
@@ -286,7 +287,7 @@
         <name>Get_Contact</name>
         <label>Get Contact</label>
         <locationX>171</locationX>
-        <locationY>51</locationY>
+        <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Check_Contact_Status</targetReference>

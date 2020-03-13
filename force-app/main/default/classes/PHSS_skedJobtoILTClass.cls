@@ -1687,8 +1687,17 @@ public without sharing class PHSS_skedJobtoILTClass {
         String classFields = 'sked__Account__c,sked__Location__c,sked__Type__c,Ready_to_Publish__c,Location_Confirmed__c,';
         classFields += 'Course_Class_Type__c,Is_Stacked_Class__c,Is_Master_Class__c,Course_Code__c,';
         classFields += 'sked__Parent__c,Course_Catalog__c,sked__TimeZone__c,sked__Start__c,sked__Finish__c,';
-        classFields += 'sked__Recurring_Schedule__c,sked__Description__c,Number_of_Instructors__c,sked__Address__c';
+        classFields += 'sked__Recurring_Schedule__c,sked__Description__c,Number_of_Instructors__c,sked__Address__c,';
+        classFields += 'Training_Event__c,sked__Account__c';
         List<String> classFieldList = classFields.split(',');
+
+        for (String theClassField : classFieldList) {
+            if (newValues.containsKey(theClassField) && oldValues.containsKey(theClassField)) {
+                system.debug(theClassField + '=' + newValues.get(theClassField) + ':' + oldValues.get(theClassField));
+            } else if (!(!newValues.containsKey(theClassField) && !oldValues.containsKey(theClassField))) {
+                system.debug(theClassField + '=' + newValues.get(theClassField) + ':' + oldValues.get(theClassField));
+            }
+        }
 
         for (String theClassField : classFieldList) {
             if (newValues.containsKey(theClassField) && oldValues.containsKey(theClassField)) {
@@ -1696,9 +1705,13 @@ public without sharing class PHSS_skedJobtoILTClass {
                     classFieldChange = true;
                     break;
                 }
+                // DE2634 - The following expression is logically equivalent to if (A AND Not B) or (Not A AND B)
+                // where A = newValues and B = oldValues when combined with above if (A AND B)
+            } else if (newValues.containsKey(theClassField) || oldValues.containsKey(theClassField)) {
+                classFieldChange = true;
+                break;
             }
         }
-
         return classFieldChange;
     }
 
