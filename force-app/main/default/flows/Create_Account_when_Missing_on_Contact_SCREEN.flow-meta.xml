@@ -198,6 +198,21 @@
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
+            <name>IsOwnerInactive</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>sContact.Owner.IsActive</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>InactiveResponse</targetReference>
+            </connector>
+            <label>IsOwnerInactive</label>
+        </rules>
+        <rules>
             <name>Is_Blank</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
@@ -213,7 +228,7 @@
             <label>Is Blank</label>
         </rules>
     </decisions>
-    <description>Updated to decision to use sContact.ID from frmContactID</description>
+    <description>Updated to decision to use sContact.ID from frmContactID add Owner Active Check</description>
     <formulas>
         <name>NewAccountName</name>
         <dataType>String</dataType>
@@ -305,6 +320,7 @@
         <queriedFields>AccountId</queriedFields>
         <queriedFields>FirstName</queriedFields>
         <queriedFields>NSSCCConnector__Contact_Status__c</queriedFields>
+        <queriedFields>OwnerId</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Individual_Record_Type</name>
@@ -380,6 +396,22 @@
         <fields>
             <name>startMessage</name>
             <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Contact you are trying to convert is already an Individual Account&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>InactiveResponse</name>
+        <label>InactiveResponse</label>
+        <locationX>39</locationX>
+        <locationY>352</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>InactiveOwnerMessage</name>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 16px;&quot;&gt;The Contact Owner is &lt;/b&gt;&lt;b style=&quot;font-size: 16px; color: rgb(241, 9, 9);&quot;&gt;INACTIVE&lt;/b&gt;&lt;b style=&quot;font-size: 16px;&quot;&gt;.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Please change the Contact Owner and try again.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>

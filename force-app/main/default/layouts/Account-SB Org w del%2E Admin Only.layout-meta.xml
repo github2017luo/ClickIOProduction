@@ -852,10 +852,10 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Scheduling_Status__c</fields>
         <fields>Start_Date__c</fields>
         <fields>Course_Name__c</fields>
         <fields>Course_Order_Status__c</fields>
+        <fields>Scheduling_Status__c</fields>
         <relatedList>Training_Events__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>

@@ -2073,7 +2073,7 @@
         <inputReference>colOutTrainingEvent</inputReference>
     </recordUpdates>
     <startElementReference>Lookup_Order2</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>ActiveContract</name>
         <dataType>Boolean</dataType>

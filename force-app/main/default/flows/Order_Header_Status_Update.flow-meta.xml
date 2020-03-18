@@ -525,7 +525,7 @@
         <inputReference>sOrder</inputReference>
     </recordUpdates>
     <startElementReference>Get_Order</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>cntCancel</name>
         <dataType>Number</dataType>
