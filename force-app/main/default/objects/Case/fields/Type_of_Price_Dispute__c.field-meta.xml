@@ -144,6 +144,11 @@
                 <label>Credit Memo</label>
             </value>
             <value>
+                <fullName>Credit Memo Application</fullName>
+                <default>false</default>
+                <label>Credit Memo Application</label>
+            </value>
+            <value>
                 <fullName>CRE or Community Order</fullName>
                 <default>false</default>
                 <label>CRE or Community Order</label>
@@ -619,6 +624,10 @@
         <valueSettings>
             <controllingFieldValue>Invoice Payments</controllingFieldValue>
             <valueName>Credit Balance Application</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Invoice Payments</controllingFieldValue>
+            <valueName>Credit Memo Application</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Invoice Payments</controllingFieldValue>

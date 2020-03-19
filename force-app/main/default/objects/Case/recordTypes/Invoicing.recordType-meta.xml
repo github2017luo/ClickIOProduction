@@ -5479,6 +5479,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Credit Memo Application</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Customer Already Paid</fullName>
             <default>false</default>
         </values>
