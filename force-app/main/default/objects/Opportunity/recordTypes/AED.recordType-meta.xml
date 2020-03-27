@@ -836,6 +836,10 @@
     <picklistValues>
         <picklist>LeadSource</picklist>
         <values>
+            <fullName>HealthStream</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Marketing Lead</fullName>
             <default>false</default>
         </values>

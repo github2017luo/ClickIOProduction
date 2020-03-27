@@ -275,6 +275,13 @@
         <value>In Progress</value>
     </labels>
     <labels>
+        <fullName>InsctructorwithCertifications_ExportAll_SDOC_List</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>comma separated list of SDOC ids</shortDescription>
+        <value>a3W3o000002J8gwEAC,a3W3o000002J8grEAC</value>
+    </labels>
+    <labels>
         <fullName>Instructors</fullName>
         <categories>Custom RC UI</categories>
         <language>en_US</language>

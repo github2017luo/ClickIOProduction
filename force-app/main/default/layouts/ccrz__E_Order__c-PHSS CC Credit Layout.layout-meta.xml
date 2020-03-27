@@ -530,6 +530,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Offering_Id__c</fields>
         <fields>redwing__End_Date__c</fields>
         <fields>redwing__Start_Date__c</fields>
         <fields>CPS_Registration_URL__c</fields>

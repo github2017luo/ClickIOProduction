@@ -9,11 +9,16 @@
     <type>Picklist</type>
     <valueSet>
         <valueSetDefinition>
-            <sorted>false</sorted>
+            <sorted>true</sorted>
             <value>
                 <fullName>Email</fullName>
                 <default>false</default>
                 <label>Email</label>
+            </value>
+            <value>
+                <fullName>Portal Billing</fullName>
+                <default>false</default>
+                <label>Portal Billing</label>
             </value>
             <value>
                 <fullName>Postal Mail</fullName>

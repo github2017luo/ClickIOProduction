@@ -924,7 +924,7 @@
  {!myVariable_current.Class_Setting__c}= &#39;Online&#39;
 )</expression>
     </formulas>
-    <interviewLabel>Order_Item_Status_Controller_Change-10_InterviewLabel</interviewLabel>
+    <interviewLabel>Order_Item_Status_Controller_Change-11_InterviewLabel</interviewLabel>
     <label>Order Item Status Controller - Change</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -983,6 +983,55 @@
         <connector>
             <targetReference>myDecision4</targetReference>
         </connector>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Evaluation Result</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>operatorDataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Evaluation_Result__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Successful</stringValue>
+            </value>
+        </filters>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>

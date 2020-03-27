@@ -338,6 +338,10 @@
             <fieldText>PO Name</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <validationRule>
+                <errorMessage>&lt;p&gt;&lt;span style=&quot;color: rgb(231, 13, 13); background-color: rgb(255, 255, 255);&quot;&gt;Special Characters not allowed in PO Display Name or Stored Payment Name. You may use a period, comma or dash&lt;/span&gt;&lt;/p&gt;</errorMessage>
+                <formulaExpression>REGEX( {!newPO_Name}, &quot;^[a-zA-Z0-9_\\,\\.\\-\\s]*$&quot;)</formulaExpression>
+            </validationRule>
         </fields>
         <fields>
             <name>newStart_Date</name>

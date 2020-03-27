@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Allows specific groups to manage price lists</description>
+    <description>Allows Business Users to Access Pricing for Products</description>
     <fieldPermissions>
         <editable>false</editable>
         <field>ccrz__E_PriceGroupPricelist__c.Discount__c</field>
