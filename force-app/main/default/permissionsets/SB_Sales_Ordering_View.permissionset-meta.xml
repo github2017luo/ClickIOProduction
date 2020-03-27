@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Permission set for view Cloud Craze</description>
+    <description>Permission set for view Orders</description>
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Credit_Available__c</field>

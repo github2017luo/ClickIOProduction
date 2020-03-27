@@ -496,6 +496,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>redwing__ILT_Class__c.Class_Closed_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>redwing__ILT_Class__c.Skedulo_Job_Id_External__c</field>
         <readable>true</readable>
@@ -503,6 +508,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>redwing__ILT_Class__c.Skedulo_Job_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>redwing__ILT_Class__c.Skedulo_Job_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

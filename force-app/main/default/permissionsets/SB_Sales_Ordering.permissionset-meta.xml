@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Permission set for Cloud Craze</description>
+    <description>Grants Users access to place Orders.</description>
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Active_Contract_Exception_Status__c</field>

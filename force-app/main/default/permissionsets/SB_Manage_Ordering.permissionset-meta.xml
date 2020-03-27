@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Place Order, Manage Order, Place Cart, Manage Cart</description>
+    <description>Allows users to Place Orders, Manage Orders Create Carts, Manage Cart. Required for all users working on or supporting SB.</description>
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Consolidate_Period_Fulfillments__c</field>

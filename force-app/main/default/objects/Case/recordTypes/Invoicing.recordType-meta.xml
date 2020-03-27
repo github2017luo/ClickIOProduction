@@ -1682,6 +1682,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Portal Billing</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Postal Mail</fullName>
             <default>false</default>
         </values>

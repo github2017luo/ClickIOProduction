@@ -189,7 +189,7 @@
         <inputReference>oPriceGroupAccout</inputReference>
     </recordUpdates>
     <startElementReference>Get_Opportunity_Price_Group_Accounts</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>colExistingPriceGroupAccount</name>
         <dataType>SObject</dataType>
